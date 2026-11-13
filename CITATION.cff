@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use or refer to this work, please cite it as below."
+title: "Field Studio: a dated research agenda with its demonstrated components"
+type: dataset
+authors:
+  - family-names: "Birchard"
+    given-names: "Mathew"
+    affiliation: "DCV Systems, LLC"
+version: "0.1.0-research"
+date-released: "2026-11-12"
+license: CC-BY-4.0
+repository: "https://github.com/dirtcodevet/field-studio"
+abstract: "A mesh-free sculpting, simulation and rendering tool in which every form is an implicit field on a sparse, multi-level lattice. A dated research record: direction, published ingredients, mechanisms, measurements, failures and next steps. Code to follow separately under Apache-2.0."
+keywords:
+  - implicit surfaces
+  - signed distance fields
+  - digital sculpting
+  - contact simulation
+  - rendering
+  - procedural generation
