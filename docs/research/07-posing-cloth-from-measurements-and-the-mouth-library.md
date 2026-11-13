@@ -172,7 +172,7 @@ The author left open that any work session may build bones and muscles as field 
 
 ## C2. Cloth from measurements
 
-### C2.1 Measurements taken from the field (a794d4b9, 11 Nov 20:06; rules revised to 12 Nov 05:2x)
+### C2.1 Measurements taken from the field (a794d4b9, 11 Nov 20:06; rules revised to 12 Nov about 05:20)
 
 *Evidence: measured on named cases (the human model; a mannequin assembled from primitives; a dress form).*
 

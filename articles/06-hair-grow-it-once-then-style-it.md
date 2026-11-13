@@ -24,7 +24,9 @@ Not done: motion. Today the hair is statics only. Growing a head takes about 6.5
 
 Write-up: https://github.com/dirtcodevet/field-studio
 
-Images: `../images/model_segments/05_head_three_quarter.png`, `../images/model_segments/07_hair_back_three_quarter.png`, `../images/model_segments/16_hairline_shadow_before_after_reference.png`
+![head three quarter](../images/model_segments/05_head_three_quarter.png)
+![hair back three quarter](../images/model_segments/07_hair_back_three_quarter.png)
+![hairline shadow before after reference](../images/model_segments/16_hairline_shadow_before_after_reference.png)
 
 *Prepared November 12, 2026.*
 

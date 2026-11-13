@@ -8,10 +8,10 @@ known flaws. They are not comparisons against any other tool. No image contains 
 | File | What it shows |
 |---|---|
 | `08_teeth_gums_front.png` | Generated teeth and gums from the mouth library, as field parts, in the tool's clay view. |
-| `09_window_section_mouth_parts.png` | The Field Studio window: a section cut through a head with mouth parts, the tool shelf and the step timeline. |
+| `09_window_section_mouth_parts.png` | The Field Studio window in its section view, zoomed close: a section plane through a head built from mouth-library parts. The cut shows the parts' layered rings rather than recognizable anatomy; the timeline at the bottom lists the eight build steps (head, upper and lower teeth, upper and lower gums, tongue, mandible, maxilla), and the tool shelf is on the left. |
 | `10_window_sphere_shelf.png` | The Field Studio window with a sphere: the tool shelf with names, the layer list ("Implicit field F(X) = 0 (no mesh)"). |
 | `11_grids_before_after.png` | The floor grid before and after a rework, on a ball and on a head-and-neck start form. |
-| `13_elbow_section_fold_vs_corrective.png` | A section through a test elbow at 70 degrees: skinning alone folds the field (red), the contact-solved corrective does not. |
+| `13_elbow_section_fold_vs_corrective.png` | A section through the synthetic test elbow at 70 degrees, in the plane of the bend (grey = tissue, white = outside). Left: skinning alone; the folded region (red: points with two or more pre-images) is the small area at the upper left of the inner elbow. Right: the contact-solved corrective; no red anywhere. |
 | `14_teeth_gums_look.png` | An earlier look render of teeth and gums (layered scattering). It pre-dates a contact fix: note the dark slit between the upper central incisors, and the render noise. |
 
 ## The human model, in segments (`model_segments/`)

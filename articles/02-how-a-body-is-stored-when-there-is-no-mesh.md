@@ -31,7 +31,8 @@ fields, Frisken et al. 2000; VDB, Museth 2013).
 
 Write-up: https://github.com/dirtcodevet/field-studio
 
-Images: `../images/tools_only/11_grids_before_after.png`, `../images/tools_only/09_window_section_mouth_parts.png`
+![grids before after](../images/tools_only/11_grids_before_after.png)
+![window section mouth parts](../images/tools_only/09_window_section_mouth_parts.png)
 
 *Prepared November 12, 2026.*
 

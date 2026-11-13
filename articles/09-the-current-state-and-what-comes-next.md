@@ -28,7 +28,9 @@ depends on it, and a runtime engine built for these fields.
 
 The full write-up has the methods, the numbers, the failures and the sources: https://github.com/dirtcodevet/field-studio
 
-Images: `../images/model_segments/15_portrait_light_preset_clay.png`, `../images/tools_only/08_teeth_gums_front.png`, `../images/model_segments/06_head_side.png`
+![portrait light preset clay](../images/model_segments/15_portrait_light_preset_clay.png)
+![teeth gums front](../images/tools_only/08_teeth_gums_front.png)
+![head side](../images/model_segments/06_head_side.png)
 
 *Prepared November 12, 2026.*
 

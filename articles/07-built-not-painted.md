@@ -24,7 +24,9 @@ cells, and the lash roots need work. Both are known and logged with their causes
 
 Write-up: https://github.com/dirtcodevet/field-studio
 
-Images: `../images/model_segments/01_eye_right_closeup.png`, `../images/model_segments/03_lips_closeup.png`, `../images/model_segments/17_hand_back_skin.png`
+![eye right closeup](../images/model_segments/01_eye_right_closeup.png)
+![lips closeup](../images/model_segments/03_lips_closeup.png)
+![hand back skin](../images/model_segments/17_hand_back_skin.png)
 
 *Prepared November 12, 2026.*
 

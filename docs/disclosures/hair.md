@@ -110,8 +110,8 @@ third 3.88 / 4.44 / 5.15 mm), sides' p95 width +2.2–3.0 mm, crown +1.4 mm. Tha
 0.992 against 0.05, p99 0.021; a handful of nodes; energy flat), so it is not a verified result.
 
 ## 3. The wave phase field: neighbouring strands wave in step, in clumps
-**First recorded:** 2026-10-29 (a phase field in the older form path); engine version 2026-11-12, children blend 10:0x
-PT, wave-only shift 12:1x PT. **Status:** BUILT AND MEASURED.
+**First recorded:** 2026-10-29 (a phase field in the older form path); engine version 2026-11-12, children blend about 10:00
+PT, wave-only shift about 12:10 PT. **Status:** BUILT AND MEASURED.
 
 **The cause.** An air-dried natural wave is in step only inside a clump that formed while wet: neighbouring locks are
 loosely together and patches of the head are apart. One random phase per strand reads as crimp; one phase per 35 mm

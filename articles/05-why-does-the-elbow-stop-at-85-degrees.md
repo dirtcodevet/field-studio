@@ -26,7 +26,8 @@ separate setup, reaches 55 degrees on the human model, with visible defects in t
 
 Write-up: https://github.com/dirtcodevet/field-studio
 
-Images: `../images/model_segments/12_elbow_55deg_clay.png`, `../images/tools_only/13_elbow_section_fold_vs_corrective.png`
+![elbow 55deg clay](../images/model_segments/12_elbow_55deg_clay.png)
+![elbow section fold vs corrective](../images/tools_only/13_elbow_section_fold_vs_corrective.png)
 
 *Prepared November 12, 2026.*
 

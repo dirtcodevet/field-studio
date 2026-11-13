@@ -75,7 +75,7 @@ coupled processes when their dependencies require it.** Observation triggers ref
 whether a physical consequence exists (an unseen wet garment still wets a visible chair).
 
 ## 4. Compact encodings: authoritative data versus view-dependent caches
-**First stated:** 2026-11-12, ~16:50 PT. **Status:** proposed; an experiment is planned.
+**First stated:** 2026-11-12, ~16:50 PT. **Status:** measured on named cases (two runs, 2026-11-12, 19:31-19:32 PT); at its pre-registered marks the verdict is NO; a render comparison is next.
 
 **Idea.** Data is stored compactly and decoded locally on the graphics processor; on memory-bound hardware fewer bytes
 plus a few decode operations can be faster, if decoding is local and random-access. Two kinds of data are kept apart:
@@ -86,6 +86,28 @@ plus a few decode operations can be faster, if decoding is local and random-acce
 The test measures total edit and render cost, including decoding and writes, not only memory saved. Adaptive distance
 fields have a substantial history (Frisken et al., *Adaptively Sampled Distance Fields*, SIGGRAPH 2000); any distinct
 contribution would be the specific encoding, its update mechanism, and a demonstrated tradeoff.
+
+**First measurement (2026-11-12, 19:31-19:32 PT; one machine, CPU).** 5,000 random finest-level surface bricks of the
+human model's current store (each brick 729 samples, today stored at 16 bits per sample), re-encoded and decoded.
+Marks written before the runs: the surface's normal displacement p99 <= 5 um and max <= 15 um; no sign change at any
+sample with |F| >= 2 um; the surface normal's p99 angle change <= 1 degree; at most 50 % of 16-bit storage.
+
+| Format | Size vs 16-bit | Normal displacement p99 / max | Sign changes | Normal angle p99 / max |
+|---|---|---|---|---|
+| 8 bits, uniform per brick | 50 % | 24.9 / 121 um (first run's measure) | 1,562 | 2.83 / 59 deg |
+| 8 bits, companded per brick (finer near the surface) | 50 % | 2.83 / 4.44 um | 0 | 1.40 / 5.7 deg |
+| 8 bits, companded, cube-root curve | 50 % | 2.57 / 3.78 um | 0 | 1.29 / 4.7 deg |
+| 9 bits, companded per brick | 56 % | 1.41 / 2.31 um | 0 | 0.70 / 3.4 deg |
+| 10 bits, companded | 62.5 % | 0.87 / 2.09 um | 0 | 0.42 / 2.8 deg |
+
+What it shows: at 8 bits with companding the surface itself holds (under 5 um, no sign change); the surface normal is
+what misses its 1-degree mark. 9 bits meets every mark except size (56 % against the 50 % mark), so no format passes
+all marks together. A flaw in the first run's displacement measure (a crossing's position along a lattice edge is
+ill-conditioned where the edge runs nearly tangent to the surface) was recorded and replaced before the second run.
+Open: whether a 1-degree normal change is visible at all (a close-up render comparison decides it), and mixed
+allocation (more bits only in cells the surface crosses). Not yet measured: decode cost on the graphics processor,
+edit-save-reopen stability, thin gaps. Per this section's rule, any adoption starts with display caches, not the
+authoritative store.
 
 ## 5. Store the recipe, keep the authored edits
 **First stated:** 2026-11-12, ~16:50 PT (a reading of the DNA analogy); in use in the generators since 10-30 / 11-09.

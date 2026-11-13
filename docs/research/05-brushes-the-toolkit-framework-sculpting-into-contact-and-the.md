@@ -133,7 +133,7 @@ Failures on record:
 - **Volume.** Ten passes at r 30, s 0.5 on a 40 mm bump: height -53 %, volume -20.7 %. Smooth shrinks.
 - **CPU-path stall.** On the CPU path a 40 mm bump stalls at about 63 % remaining, because Smooth compresses the
   field at the edge of its 6h band and the release re-distance skips it. The card path does not stall.
-- The author's own report after sculpting (2026-11-12 18:2x): Smooth "works fairly well", but a smoothed lid bulge
+- The author's own report after sculpting (2026-11-12 about 18:20): Smooth "works fairly well", but a smoothed lid bulge
   came back after further strokes, and some surfaces keep small tear or grain marks.
 
 ### 4. Shared stroke rules
@@ -156,7 +156,7 @@ Failures on record:
   counted from node signs before and after a stroke (b0 by 26-connectivity, b2 by 6-connectivity, b1 from the Euler
   characteristic). A pocket the stroke made is filled; a closed opening is reported with "keep it / undo the
   stroke". Detection was measured on the card on a slit and a torus with the guard switched off.
-- **Band-only dabs** (card 2026-11-08 / 11-11; CPU 2026-11-12 12:5x; measured on named cases). Nodes farther from
+- **Band-only dabs** (card 2026-11-08 / 11-11; CPU 2026-11-12 about 12:50; measured on named cases). Nodes farther from
   the surface than 1.6 x the dab's move + 6h keep their values. The CPU version first skipped on both sides and left
   a 28.6 um notch where a growing surface crossed a brick row; the fix is one-sided (a growing dab skips deep inside
   only, a cutting dab deep outside only): 5-8 um, identical to no band. On the card the same per-node skip is tied to
@@ -166,7 +166,7 @@ Failures on record:
 
 ### 5. "The sheet under the brush": nothing behind the worked surface moves
 
-The author's requirement (2026-11-12 12:5x): tools "only impact the surface that they are working on, and nothing
+The author's requirement (2026-11-12 about 12:50): tools "only impact the surface that they are working on, and nothing
 behind them, unless you activate a setting or a toggle". The cases he named: an eyelid over the eye, the two lips,
 a bra's two faces over the skin beneath.
 
@@ -227,7 +227,7 @@ is a brush setting (default 0.3 mm; 0 gives real contact, measured 0.000 mm on a
 toward the eye slides over the globe at the gap instead of sinking in. Brush picks stop at locked parts instead of
 passing through them (2026-11-12 15:48). Cost on the human model: 4.4-6.5 ms of a lid stroke's frame; one CPU case
 where the bound was evaluated brick by brick took 10.5 s of a 13.3 s stroke and was cut to about 0.4 s by evaluating
-all near bricks in one call (2026-11-12 01:5x, field bit-identical).
+all near bricks in one call (2026-11-12 about 01:50, field bit-identical).
 
 ### 7. Sculpting surfaces into contact
 
@@ -293,7 +293,7 @@ The author's report after sculpting: "Swell worked fairly well too." The contact
 - *Folding.* F(x - v w) folds once the pull exceeds about 0.67 r; Snake Hook showed three surfaces on a probe ray.
 - *The ring lied.* Grab moved 42 % at half radius and 7 % at 0.75 r against a drawn 50 % and 16 %.
 
-**The drag constraint taken from the form** (proposed and built in a working copy 2026-11-12 19:0x, CPU path only;
+**The drag constraint taken from the form** (proposed and built in a working copy 2026-11-12 about 19:00, CPU path only;
 evidence state: measured on named cases). At the press, with camera forward f and normal n0: m = f - (f . n0) n0,
 s = |m|. The drag plane passes through the pressed point c0 with normal m / s: it contains n0 and faces the camera
 as much as a plane containing n0 can. Each cursor ray is intersected with it. Within 5 degrees of head-on
@@ -319,7 +319,7 @@ Axis a = v / |v|; pivot P = c0 - D a with D = max(T, r), T the depth of the form
 the pivot and the pressed end scale by (D + Le) / D with Le = |v| w(rho / r), rho the distance from the axis; beyond
 the end the displacement falls linearly to zero over max(2|v|, r). The inverse is closed-form.
 
-**Form-aware Grab** (decision 2026-11-12 09:5x, in the author's words "Form-aware Grab"; evidence state: proposed;
+**Form-aware Grab** (decision 2026-11-12 about 09:50, in the author's words "Form-aware Grab"; evidence state: proposed;
 the prototype had not been started in the records read). A Grab whose weight follows the form's own interior, for
 example the distance through the material from the pressed point computed from the field itself, or a
 connectivity-limited falloff, so the far side of a head or the next finger does not move. It uses no elasticity
@@ -341,7 +341,7 @@ tube is as deep outward as inward and the blend acts on anything in reach, a lin
 the mouth slit cut the lower lip across the slit by up to 226 um at 811 points. In the window it showed nothing
 while drawing, then 3-4 minutes of work after release.
 
-**The rebuilt pencil** (2026-11-12 15:5x, working copy only, never landed; evidence state: measured on named cases).
+**The rebuilt pencil** (2026-11-12 about 15:50, working copy only, never landed; evidence state: measured on named cases).
 1. Picks define a Catmull-Rom curve sampled about every h. Each pick is moved along its view ray onto the surface as
    it was before the stroke; without that the line steered by its own fresh relief (0.27 mm median wobble: beaded
    ridges, ribbed valleys); with it, at most 0.13 mm.
@@ -365,7 +365,7 @@ doesn't crease well, it covers too broad of an area, it mangles most surfaces su
 ### 10. The toolkit framework: ten principles and the experience harness
 
 Written 2026-11-12 ~17:55 after a study of Blender's sculpt tools; evidence state: proposed. The build order that
-follows from it (the harness first, then Grab on the common machinery) was agreed by the author at 18:4x.
+follows from it (the harness first, then Grab on the common machinery) was agreed by the author at about 18:40.
 
 1. **Full 3D.** A tool gives the same result from any view; the camera only says where the hand points.
 2. **What you see is what moves.** The ring is the true reach and its inner ring the true 50 % weight.
@@ -433,7 +433,7 @@ chin, cheeks) in under five minutes.
   (target 1.5, not met). The author ranked a brushes-only run best so far on 2026-11-11 18:48.
 - Along the way: a nose split into two lobes (mirror), a granular jaw (midline snap stacking about 15 Smooth passes),
   jaw scratches on the card (ring samples reading unheld bricks), and the chin bands of section 3.1.
-- 2026-11-12 17:2x: the author could not block out a head by hand. The script had pulled only from the side and
+- 2026-11-12 about 17:20: the author could not block out a head by hand. The script had pulled only from the side and
   front views, where screen-plane tools happen to do what was meant, with strokes chosen to work, and it judged the
   outline in millimetres. It measured the field, not the experience.
 - The author's summary that evening: Smooth and Swell worked fairly well; "Most of the other tools are effectively useless";

@@ -204,7 +204,7 @@ coupled processes when their dependencies require it.** Observation triggers ref
 whether a physical consequence exists (an unseen wet garment still wets a visible chair).
 
 ## 4. Compact encodings: authoritative data versus view-dependent caches
-**First stated:** 2026-11-12, ~16:50 PT. **Status:** proposed; an experiment is planned.
+**First stated:** 2026-11-12, ~16:50 PT. **Status:** measured on named cases (two runs, 2026-11-12, 19:31-19:32 PT); at its pre-registered marks the verdict is NO; a render comparison is next.
 
 **Idea.** Data is stored compactly and decoded locally on the graphics processor; on memory-bound hardware fewer bytes
 plus a few decode operations can be faster, if decoding is local and random-access. Two kinds of data are kept apart:
@@ -215,6 +215,28 @@ plus a few decode operations can be faster, if decoding is local and random-acce
 The test measures total edit and render cost, including decoding and writes, not only memory saved. Adaptive distance
 fields have a substantial history (Frisken et al., *Adaptively Sampled Distance Fields*, SIGGRAPH 2000); any distinct
 contribution would be the specific encoding, its update mechanism, and a demonstrated tradeoff.
+
+**First measurement (2026-11-12, 19:31-19:32 PT; one machine, CPU).** 5,000 random finest-level surface bricks of the
+human model's current store (each brick 729 samples, today stored at 16 bits per sample), re-encoded and decoded.
+Marks written before the runs: the surface's normal displacement p99 <= 5 um and max <= 15 um; no sign change at any
+sample with |F| >= 2 um; the surface normal's p99 angle change <= 1 degree; at most 50 % of 16-bit storage.
+
+| Format | Size vs 16-bit | Normal displacement p99 / max | Sign changes | Normal angle p99 / max |
+|---|---|---|---|---|
+| 8 bits, uniform per brick | 50 % | 24.9 / 121 um (first run's measure) | 1,562 | 2.83 / 59 deg |
+| 8 bits, companded per brick (finer near the surface) | 50 % | 2.83 / 4.44 um | 0 | 1.40 / 5.7 deg |
+| 8 bits, companded, cube-root curve | 50 % | 2.57 / 3.78 um | 0 | 1.29 / 4.7 deg |
+| 9 bits, companded per brick | 56 % | 1.41 / 2.31 um | 0 | 0.70 / 3.4 deg |
+| 10 bits, companded | 62.5 % | 0.87 / 2.09 um | 0 | 0.42 / 2.8 deg |
+
+What it shows: at 8 bits with companding the surface itself holds (under 5 um, no sign change); the surface normal is
+what misses its 1-degree mark. 9 bits meets every mark except size (56 % against the 50 % mark), so no format passes
+all marks together. A flaw in the first run's displacement measure (a crossing's position along a lattice edge is
+ill-conditioned where the edge runs nearly tangent to the surface) was recorded and replaced before the second run.
+Open: whether a 1-degree normal change is visible at all (a close-up render comparison decides it), and mixed
+allocation (more bits only in cells the surface crosses). Not yet measured: decode cost on the graphics processor,
+edit-save-reopen stability, thin gaps. Per this section's rule, any adoption starts with display caches, not the
+authoritative store.
 
 ## 5. Store the recipe, keep the authored edits
 **First stated:** 2026-11-12, ~16:50 PT (a reading of the DNA analogy); in use in the generators since 10-30 / 11-09.
@@ -1127,7 +1149,7 @@ Failures on record:
 - **Volume.** Ten passes at r 30, s 0.5 on a 40 mm bump: height -53 %, volume -20.7 %. Smooth shrinks.
 - **CPU-path stall.** On the CPU path a 40 mm bump stalls at about 63 % remaining, because Smooth compresses the
   field at the edge of its 6h band and the release re-distance skips it. The card path does not stall.
-- The author's own report after sculpting (2026-11-12 18:2x): Smooth "works fairly well", but a smoothed lid bulge
+- The author's own report after sculpting (2026-11-12 about 18:20): Smooth "works fairly well", but a smoothed lid bulge
   came back after further strokes, and some surfaces keep small tear or grain marks.
 
 ### 4. Shared stroke rules
@@ -1150,7 +1172,7 @@ Failures on record:
   counted from node signs before and after a stroke (b0 by 26-connectivity, b2 by 6-connectivity, b1 from the Euler
   characteristic). A pocket the stroke made is filled; a closed opening is reported with "keep it / undo the
   stroke". Detection was measured on the card on a slit and a torus with the guard switched off.
-- **Band-only dabs** (card 2026-11-08 / 11-11; CPU 2026-11-12 12:5x; measured on named cases). Nodes farther from
+- **Band-only dabs** (card 2026-11-08 / 11-11; CPU 2026-11-12 about 12:50; measured on named cases). Nodes farther from
   the surface than 1.6 x the dab's move + 6h keep their values. The CPU version first skipped on both sides and left
   a 28.6 um notch where a growing surface crossed a brick row; the fix is one-sided (a growing dab skips deep inside
   only, a cutting dab deep outside only): 5-8 um, identical to no band. On the card the same per-node skip is tied to
@@ -1160,7 +1182,7 @@ Failures on record:
 
 ### 5. "The sheet under the brush": nothing behind the worked surface moves
 
-The author's requirement (2026-11-12 12:5x): tools "only impact the surface that they are working on, and nothing
+The author's requirement (2026-11-12 about 12:50): tools "only impact the surface that they are working on, and nothing
 behind them, unless you activate a setting or a toggle". The cases he named: an eyelid over the eye, the two lips,
 a bra's two faces over the skin beneath.
 
@@ -1221,7 +1243,7 @@ is a brush setting (default 0.3 mm; 0 gives real contact, measured 0.000 mm on a
 toward the eye slides over the globe at the gap instead of sinking in. Brush picks stop at locked parts instead of
 passing through them (2026-11-12 15:48). Cost on the human model: 4.4-6.5 ms of a lid stroke's frame; one CPU case
 where the bound was evaluated brick by brick took 10.5 s of a 13.3 s stroke and was cut to about 0.4 s by evaluating
-all near bricks in one call (2026-11-12 01:5x, field bit-identical).
+all near bricks in one call (2026-11-12 about 01:50, field bit-identical).
 
 ### 7. Sculpting surfaces into contact
 
@@ -1287,7 +1309,7 @@ The author's report after sculpting: "Swell worked fairly well too." The contact
 - *Folding.* F(x - v w) folds once the pull exceeds about 0.67 r; Snake Hook showed three surfaces on a probe ray.
 - *The ring lied.* Grab moved 42 % at half radius and 7 % at 0.75 r against a drawn 50 % and 16 %.
 
-**The drag constraint taken from the form** (proposed and built in a working copy 2026-11-12 19:0x, CPU path only;
+**The drag constraint taken from the form** (proposed and built in a working copy 2026-11-12 about 19:00, CPU path only;
 evidence state: measured on named cases). At the press, with camera forward f and normal n0: m = f - (f . n0) n0,
 s = |m|. The drag plane passes through the pressed point c0 with normal m / s: it contains n0 and faces the camera
 as much as a plane containing n0 can. Each cursor ray is intersected with it. Within 5 degrees of head-on
@@ -1313,7 +1335,7 @@ Axis a = v / |v|; pivot P = c0 - D a with D = max(T, r), T the depth of the form
 the pivot and the pressed end scale by (D + Le) / D with Le = |v| w(rho / r), rho the distance from the axis; beyond
 the end the displacement falls linearly to zero over max(2|v|, r). The inverse is closed-form.
 
-**Form-aware Grab** (decision 2026-11-12 09:5x, in the author's words "Form-aware Grab"; evidence state: proposed;
+**Form-aware Grab** (decision 2026-11-12 about 09:50, in the author's words "Form-aware Grab"; evidence state: proposed;
 the prototype had not been started in the records read). A Grab whose weight follows the form's own interior, for
 example the distance through the material from the pressed point computed from the field itself, or a
 connectivity-limited falloff, so the far side of a head or the next finger does not move. It uses no elasticity
@@ -1335,7 +1357,7 @@ tube is as deep outward as inward and the blend acts on anything in reach, a lin
 the mouth slit cut the lower lip across the slit by up to 226 um at 811 points. In the window it showed nothing
 while drawing, then 3-4 minutes of work after release.
 
-**The rebuilt pencil** (2026-11-12 15:5x, working copy only, never landed; evidence state: measured on named cases).
+**The rebuilt pencil** (2026-11-12 about 15:50, working copy only, never landed; evidence state: measured on named cases).
 1. Picks define a Catmull-Rom curve sampled about every h. Each pick is moved along its view ray onto the surface as
    it was before the stroke; without that the line steered by its own fresh relief (0.27 mm median wobble: beaded
    ridges, ribbed valleys); with it, at most 0.13 mm.
@@ -1359,7 +1381,7 @@ doesn't crease well, it covers too broad of an area, it mangles most surfaces su
 ### 10. The toolkit framework: ten principles and the experience harness
 
 Written 2026-11-12 ~17:55 after a study of Blender's sculpt tools; evidence state: proposed. The build order that
-follows from it (the harness first, then Grab on the common machinery) was agreed by the author at 18:4x.
+follows from it (the harness first, then Grab on the common machinery) was agreed by the author at about 18:40.
 
 1. **Full 3D.** A tool gives the same result from any view; the camera only says where the hand points.
 2. **What you see is what moves.** The ring is the true reach and its inner ring the true 50 % weight.
@@ -1427,7 +1449,7 @@ chin, cheeks) in under five minutes.
   (target 1.5, not met). The author ranked a brushes-only run best so far on 2026-11-11 18:48.
 - Along the way: a nose split into two lobes (mirror), a granular jaw (midline snap stacking about 15 Smooth passes),
   jaw scratches on the card (ring samples reading unheld bricks), and the chin bands of section 3.1.
-- 2026-11-12 17:2x: the author could not block out a head by hand. The script had pulled only from the side and
+- 2026-11-12 about 17:20: the author could not block out a head by hand. The script had pulled only from the side and
   front views, where screen-plane tools happen to do what was meant, with strokes chosen to work, and it judged the
   outline in millimetres. It measured the field, not the experience.
 - The author's summary that evening: Smooth and Swell worked fairly well; "Most of the other tools are effectively useless";
@@ -2176,7 +2198,7 @@ The author left open that any work session may build bones and muscles as field 
 
 ## C2. Cloth from measurements
 
-### C2.1 Measurements taken from the field (a794d4b9, 11 Nov 20:06; rules revised to 12 Nov 05:2x)
+### C2.1 Measurements taken from the field (a794d4b9, 11 Nov 20:06; rules revised to 12 Nov about 05:20)
 
 *Evidence: measured on named cases (the human model; a mannequin assembled from primitives; a dress form).*
 
@@ -2382,11 +2404,11 @@ Every kind except scalp hair and its edge is shorter than its own gravity length
 
 ### D1.4 The fibre: an inherited helix, and the curl index as the waviness lever
 
-*Types 2026-10-31; the lever finding 2026-11-12 13:3x. Status: measured on named cases (single hanging fibre); full head at higher curl index not verified (D1.7).*
+*Types 2026-10-31; the lever finding 2026-11-12 about 13:30. Status: measured on named cases (single hanging fibre); full head at higher curl index not verified (D1.7).*
 
 In the frame carried along the strand, the rest curvature is κ0·(cos θ, flat·sin θ) with θ = τ0·(s − start) + phase, ramped in over `ramp_mm`. κ0 = 2/CD where CD is the curve diameter. τ0 comes from the curl index i (stretched length over end-to-end length): for a round helix τ0 = κ0/√(i² − 1); for a flattened one, by bisection on the measured index of the generated path. So at fixed i the shape is self-similar in CD: free amplitude ≈ (i² − 1)·CD/2, wavelength ≈ π·√(i² − 1)·CD. The classification follows de la Mettrie and Loussouarn. Design values: wavy = CD 48 mm, i 1.10, flat 0.25, a/b 1.3, lock of ~30 hairs, bond 0.1; curly = CD 10 mm, i 2.0, lock ~50, bond 0.35. Lock size and bond strength are stored as traits of the type: clumping is a property the fibre carries, not a style.
 
-**What was wrong first.** To get "a bit more waviness" (author's review, 11-12 12:1x) the first lever tried was a tighter CD (48 → 44 mm). Measured on the head: no gain. One hanging fibre, 250 mm, dry, rms offset from the straight hang: CD 48/i 1.10: 4.75 mm; CD 44/i 1.10: 4.59; CD 40/i 1.10: 4.61; CD 40/i 1.15: 5.67 (+19 %); CD 35/i 1.20: 6.32 (+33 %). A tighter CD alone makes smaller, shorter waves. The lever is the curl index. Gravity stretches the hanging wave: about 89 mm against 69 mm free.
+**What was wrong first.** To get "a bit more waviness" (author's review, 11-12 about 12:10) the first lever tried was a tighter CD (48 → 44 mm). Measured on the head: no gain. One hanging fibre, 250 mm, dry, rms offset from the straight hang: CD 48/i 1.10: 4.75 mm; CD 44/i 1.10: 4.59; CD 40/i 1.10: 4.61; CD 40/i 1.15: 5.67 (+19 %); CD 35/i 1.20: 6.32 (+33 %). A tighter CD alone makes smaller, shorter waves. The lever is the curl index. Gravity stretches the hanging wave: about 89 mm against 69 mm free.
 
 ### D1.5 The settle, the rest gate, the cached head
 
@@ -2414,7 +2436,7 @@ Solver: L-BFGS-B in scaled variables. Growth is by continuation: the active arc 
 
 ### D1.6 Waves: the phase fault found and fixed
 
-*Banding measured 2026-11-12 02:2x; phase field 07:17 (077d0d39); jitter fix 09:26 (0df28b28); phase-aware child blend 10:05 (2ffb3d9f); wave-only shift 12:10 (b6e2d95d). Status: measured on named cases.*
+*Banding measured 2026-11-12 about 02:20; phase field 07:17 (077d0d39); jitter fix 09:26 (0df28b28); phase-aware child blend 10:05 (2ffb3d9f); wave-only shift 12:10 (b6e2d95d). Status: measured on named cases.*
 
 **The fault.** The approved base (head "n2c") gave each 35 mm drying section one wave phase. That size came from barrel styling; applied to an air-dried head it put waves in step in horizontal bands. Measured: per 30° sector, the mean wave held 0.12–0.72 of the strands' wave variance (random phases give ~0.0002).
 
@@ -2428,7 +2450,7 @@ Solver: L-BFGS-B in scaled variables. Growth is by continuation: the active arc 
 
 ### D1.7 Head variants, the gate results, the cost of air-drying, and flyaways
 
-*2026-11-12. Status: measured on named cases. None of the later variants has replaced the base; hair work was put on hold at 18:4x the same day.*
+*2026-11-12. Status: measured on named cases. None of the later variants has replaced the base; hair work was put on hold at about 18:40 the same day.*
 
 "Loose stretch" below means a run of at least 5 consecutive points with fewer than 6 other-strand points within 4 mm, outside the last 15 % of the strand.
 

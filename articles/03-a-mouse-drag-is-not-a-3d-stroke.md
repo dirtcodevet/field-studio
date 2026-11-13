@@ -27,7 +27,7 @@ The rebuilt toolkit hasn't had its hands-on test yet. That's the next benchmark,
 
 Write-up: https://github.com/dirtcodevet/field-studio
 
-Images: `../images/tools_only/10_window_sphere_shelf.png`
+![window sphere shelf](../images/tools_only/10_window_sphere_shelf.png)
 
 *Prepared November 12, 2026.*
 

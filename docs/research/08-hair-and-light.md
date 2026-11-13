@@ -64,11 +64,11 @@ Every kind except scalp hair and its edge is shorter than its own gravity length
 
 ### D1.4 The fibre: an inherited helix, and the curl index as the waviness lever
 
-*Types 2026-10-31; the lever finding 2026-11-12 13:3x. Status: measured on named cases (single hanging fibre); full head at higher curl index not verified (D1.7).*
+*Types 2026-10-31; the lever finding 2026-11-12 about 13:30. Status: measured on named cases (single hanging fibre); full head at higher curl index not verified (D1.7).*
 
 In the frame carried along the strand, the rest curvature is κ0·(cos θ, flat·sin θ) with θ = τ0·(s − start) + phase, ramped in over `ramp_mm`. κ0 = 2/CD where CD is the curve diameter. τ0 comes from the curl index i (stretched length over end-to-end length): for a round helix τ0 = κ0/√(i² − 1); for a flattened one, by bisection on the measured index of the generated path. So at fixed i the shape is self-similar in CD: free amplitude ≈ (i² − 1)·CD/2, wavelength ≈ π·√(i² − 1)·CD. The classification follows de la Mettrie and Loussouarn. Design values: wavy = CD 48 mm, i 1.10, flat 0.25, a/b 1.3, lock of ~30 hairs, bond 0.1; curly = CD 10 mm, i 2.0, lock ~50, bond 0.35. Lock size and bond strength are stored as traits of the type: clumping is a property the fibre carries, not a style.
 
-**What was wrong first.** To get "a bit more waviness" (author's review, 11-12 12:1x) the first lever tried was a tighter CD (48 → 44 mm). Measured on the head: no gain. One hanging fibre, 250 mm, dry, rms offset from the straight hang: CD 48/i 1.10: 4.75 mm; CD 44/i 1.10: 4.59; CD 40/i 1.10: 4.61; CD 40/i 1.15: 5.67 (+19 %); CD 35/i 1.20: 6.32 (+33 %). A tighter CD alone makes smaller, shorter waves. The lever is the curl index. Gravity stretches the hanging wave: about 89 mm against 69 mm free.
+**What was wrong first.** To get "a bit more waviness" (author's review, 11-12 about 12:10) the first lever tried was a tighter CD (48 → 44 mm). Measured on the head: no gain. One hanging fibre, 250 mm, dry, rms offset from the straight hang: CD 48/i 1.10: 4.75 mm; CD 44/i 1.10: 4.59; CD 40/i 1.10: 4.61; CD 40/i 1.15: 5.67 (+19 %); CD 35/i 1.20: 6.32 (+33 %). A tighter CD alone makes smaller, shorter waves. The lever is the curl index. Gravity stretches the hanging wave: about 89 mm against 69 mm free.
 
 ### D1.5 The settle, the rest gate, the cached head
 
@@ -96,7 +96,7 @@ Solver: L-BFGS-B in scaled variables. Growth is by continuation: the active arc 
 
 ### D1.6 Waves: the phase fault found and fixed
 
-*Banding measured 2026-11-12 02:2x; phase field 07:17 (077d0d39); jitter fix 09:26 (0df28b28); phase-aware child blend 10:05 (2ffb3d9f); wave-only shift 12:10 (b6e2d95d). Status: measured on named cases.*
+*Banding measured 2026-11-12 about 02:20; phase field 07:17 (077d0d39); jitter fix 09:26 (0df28b28); phase-aware child blend 10:05 (2ffb3d9f); wave-only shift 12:10 (b6e2d95d). Status: measured on named cases.*
 
 **The fault.** The approved base (head "n2c") gave each 35 mm drying section one wave phase. That size came from barrel styling; applied to an air-dried head it put waves in step in horizontal bands. Measured: per 30° sector, the mean wave held 0.12–0.72 of the strands' wave variance (random phases give ~0.0002).
 
@@ -110,7 +110,7 @@ Solver: L-BFGS-B in scaled variables. Growth is by continuation: the active arc 
 
 ### D1.7 Head variants, the gate results, the cost of air-drying, and flyaways
 
-*2026-11-12. Status: measured on named cases. None of the later variants has replaced the base; hair work was put on hold at 18:4x the same day.*
+*2026-11-12. Status: measured on named cases. None of the later variants has replaced the base; hair work was put on hold at about 18:40 the same day.*
 
 "Loose stretch" below means a run of at least 5 consecutive points with fewer than 6 other-strand points within 4 mm, outside the last 15 % of the strand.
 

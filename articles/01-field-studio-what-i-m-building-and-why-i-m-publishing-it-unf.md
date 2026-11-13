@@ -26,7 +26,8 @@ places where our code needs a different design first (article 8).
 
 Write-up: https://github.com/dirtcodevet/field-studio
 
-Images: `../images/tools_only/10_window_sphere_shelf.png`, `../images/model_segments/04_head_front.png`
+![window sphere shelf](../images/tools_only/10_window_sphere_shelf.png)
+![head front](../images/model_segments/04_head_front.png)
 
 *Prepared November 12, 2026.*
 

@@ -62,8 +62,8 @@ Very little has reached the last two.
 | Topic | Result | Evidence state |
 |---|---|---|
 | Contact read from each body's own distance field, with the published IPC barrier inside an equilibrium Newton solve | Two fingertip pads: 27 s vs 86 s for a standard barrier solver, forces within 1 %. Lips: 16 s vs 27 s. **Reversal:** an eyelid on a rigid eye, 73 s vs 7.4 s. **Unresolved:** a hand on a cheek did not converge in 10 minutes. | measured on named synthetic cases |
-| Tools defined by an explicit 3D constraint, not the screen plane | A 30 mm pull along the surface normal gives 29.4-29.9 mm from five views, where the shipped tool gives 30.1 / 17.7 / 5.7 / 0.8 mm. | measured in a lane copy; not shipped |
-| Compact encoding of the distance field | 8 bits per value keeps the surface within 5 um with no sign changes, but surface normals miss a 1-degree mark; 9 bits passes (56 % of 16-bit storage). | measured on 5,000 surface bricks |
+| Tools defined by an explicit 3D constraint, not the screen plane | A 30 mm pull along the surface normal gives 29.4-29.9 mm from five views, where the shipped tool gives 30.1 / 17.7 / 5.7 / 0.8 mm. | measured in a working copy, not yet shipped |
+| Compact encoding of the distance field | 8 bits per value keeps the surface within 5 um with no sign changes, but surface normals miss a 1-degree mark; 9 bits passes (56 % of 16-bit storage). | measured on 5,000 surface bricks, two runs ([Part 2, section 4](docs/research/02-the-author-s-concepts-dated-with-their-evidence.md)); no format met all its marks |
 | Why an elbow stalls near 85-90 degrees | On a stand-in arm, three contact laws stall at similar angles; bones that articulate made it worse while the tissue stays bonded to both. An open question, tested one change at a time. | measured; diagnosis open |
 
 Full conditions, failures and sources are in the write-up.
@@ -95,4 +95,7 @@ repository's first commit and its `v0.1.0-research` release.
 The write-up, the articles and the images are licensed under the
 [Creative Commons Attribution 4.0 International licence](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0);
 see [`LICENSE`](LICENSE). Credit: Mathew Birchard - DCV Systems, LLC - @birchard_mathew. The tool's source code is not
-part of this release; it will follow under Apache-2.0. To cite this work, see [`CITATION.cff`](CITATION.cff).
+part of this release; it will follow under Apache-2.0. Nothing in this release grants a patent licence, and nothing
+in it is legal advice. To cite this work, see [`CITATION.cff`](CITATION.cff).
+
+Copyright 2026 Mathew Birchard - DCV Systems, LLC.

@@ -30,7 +30,8 @@ self-contact first among them.
 
 Write-up: https://github.com/dirtcodevet/field-studio
 
-Images: `../images/model_segments/02_eye_left_closeup.png`, `../images/model_segments/03_lips_closeup.png`
+![eye left closeup](../images/model_segments/02_eye_left_closeup.png)
+![lips closeup](../images/model_segments/03_lips_closeup.png)
 
 *Prepared November 12, 2026.*
 

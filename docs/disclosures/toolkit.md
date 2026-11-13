@@ -38,7 +38,7 @@ These define how every tool is built and judged.
 9. **Immediacy.** The window never stops answering.
 10. **A tool is proven by the experience it gives**, not only by field numbers.
 
-## 2. The drag constraint taken from the form (PROPOSED 2026-11-12; BUILT 2026-11-12 19:0x)
+## 2. The drag constraint taken from the form (PROPOSED 2026-11-12; BUILT 2026-11-12 about 19:00)
 
 Problem: mapping a 2D drag to a 3D move on a plane parallel to the screen makes a pull along the surface normal
 depend on the view. Measured on the camera-plane mapping, a 30 mm pull along n0 gave 30.1 / 17.7 / 5.7 / 0.8 mm from
@@ -60,7 +60,7 @@ Mechanism:
 Measured (working copy, real window driven by scripted mouse events, CPU path): the same 30 mm pull gave
 29.9 / 29.9 / 29.9 / 29.4 / 29.9 mm from 0 / 30 / 60 / 80 degrees and from above.
 
-## 3. Anchored moves: computed from the stroke-start field (PROPOSED 2026-11-12; BUILT 2026-11-12 19:1x)
+## 3. Anchored moves: computed from the stroke-start field (PROPOSED 2026-11-12; BUILT 2026-11-12 about 19:10)
 
 The result of a move tool (Grab, Stretch) is a function of the field at stroke start and the drag's current total.
 It is never an accumulation of per-event increments.
@@ -78,7 +78,7 @@ It is never an accumulation of per-event increments.
 (Mesh sculptors restore the original mesh at each step of an anchored grab. Here the same principle is carried out on
 an implicit field, by first-touch brick restore and inverse-map resampling.)
 
-## 4. Grab as the flow of a translating kernel (PROPOSED 2026-11-12; BUILT 2026-11-12 19:0x)
+## 4. Grab as the flow of a translating kernel (PROPOSED 2026-11-12; BUILT 2026-11-12 about 19:00)
 
 - **The deformation.** It is the time-1 flow of the time-dependent velocity field
   V_t(x) = w(|x - c(t)| / r) v, where c(t) = c0 + t v, t in [0, 1], and v is the total drag.
@@ -103,7 +103,7 @@ vector potential. A divergence-free flow preserves volume exactly and stays one-
 shape deformation: von Funck, Theisel and Seidel 2006; Angelidis, Cani, Wyvill and King 2004. A volume dial blends
 toward the plain flow.
 
-## 5. Stretch as an exact anchored elongation (PROPOSED 2026-11-12; BUILT, not yet measured, 2026-11-12 19:1x)
+## 5. Stretch as an exact anchored elongation (PROPOSED 2026-11-12; BUILT, not yet measured, 2026-11-12 about 19:10)
 
 Its predecessor scaled F about the pressed point itself, along a camera-plane axis. Measured: the pressed point moved
 0.0 mm from every view, and a circling drag left a sharp ring around a flattened disc.
