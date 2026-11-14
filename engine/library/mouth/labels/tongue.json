@@ -1,0 +1,76 @@
+{
+ "name": "tongue",
+ "inherits": null,
+ "_": "fs-mouth 11-11; format: design C7 (engine/fieldstudio/DESIGN_PRODUCT_2026-11-10.md); optics: engine/materials/profiles + engine/library/mouth/media_fit.json (fitted to cited in-vivo colours); how the renderers read it: fs-light (pending)",
+ "form": {
+  "rules": [
+   {
+    "what": "length tip to vallecula (women)",
+    "value_mm": 68.4,
+    "sd_mm": 1.4
+   },
+   {
+    "what": "width",
+    "value_mm": 42.0
+   },
+   {
+    "what": "fungiform papillae on the tip",
+    "value_per_cm2": 108
+   },
+   {
+    "what": "circumvallate papillae",
+    "count": [
+     8,
+     9
+    ],
+    "diameter_mm": 1.3
+   }
+  ]
+ },
+ "medium": {
+  "layers": [
+   {
+    "name": "saliva film",
+    "thickness": {
+     "v": 0.069,
+     "unit": "mm",
+     "src": "R22 anterior tongue 68.9 um"
+    },
+    "profile": "saliva",
+    "role": "coat"
+   },
+   {
+    "name": "dorsal mucosa with filiform papillae",
+    "thickness": {
+     "v": 0.5,
+     "unit": "mm",
+     "q": "E"
+    },
+    "profile": "tongue",
+    "relief": "filiform 0.195 mm high, 0.355 mm wide (render-time relief)"
+   },
+   {
+    "name": "muscle",
+    "profile": "muscle.skeletal"
+   }
+  ]
+ },
+ "physics": {
+  "profile": "tongue",
+  "contact": {
+   "tongue-teeth": "slide",
+   "tongue-palate": "slide",
+   "tongue-floor": "bond"
+  }
+ },
+ "look": {
+  "generator": "engine/library/mouth/tongue.py Tongue",
+  "settings": [
+   "seed"
+  ]
+ },
+ "modifiers": {
+  "coating": "not yet (keratin on the filiform tips: whiter)",
+  "wet": "saliva film thickness"
+ }
+}

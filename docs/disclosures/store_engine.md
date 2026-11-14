@@ -100,7 +100,7 @@ sign errors in one cavity wall). All four are one fault: the edit was not evalua
 5. The op is a plain dictionary (data zlib + base64 float32 with its sha256): replaying it gives the same bytes.
 
 **3a. What the safe sign rule assumes, where each assumption is checked, and what would falsify it** (written
-2026-11-12 after an outside review asked for exactly this). The certificate is: if no point of the new surface lies
+2026-11-12). The certificate is: if no point of the new surface lies
 within s_k of X_k, the open ball of radius s_k around X_k lies on one side of the surface, so every X with
 |X - X_k| < s_k shares the sign of T_k. It is sound only when s_k <= the true distance from X_k to the new surface and
 the sign of T_k is the true new sign at X_k.
@@ -179,7 +179,7 @@ shape as its own, gated edit.
   exactly those bricks current on the card (no full resync). Measured on the full body: a torso Draw 14.6 -> 23.6 fps,
   a body Smooth 2.5 -> 5.8 fps, the mirror sync 266 -> 0 ms per stroke. A debug check compares every card brick with
   the CPU field at its own nodes (bricks off by > 50 um, allowing half an fp16 step); measured clean after each of 12
-  repeated Smooth strokes on the eyelid (2026-11-12, this lane).
+  repeated Smooth strokes on the eyelid (2026-11-12).
 - **Repeated smoothing converges, it does not return.** Measured 2026-11-12 on the CPU path and on the card: 12
   Smooth strokes (r 6 mm) over an upper-eyelid bulge lower it from 1.54 mm to 0.45 / 0.49 mm and then stall; no stroke
   raises it again; release to the next stroke 0.45-0.6 s.

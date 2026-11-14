@@ -1,0 +1,321 @@
+{
+ "id": "saliva",
+ "kind": "fluid",
+ "family": "fluid",
+ "_": "Whole human saliva at ~35 C: 99.5 % water with mucins (MUC5B, MUC7), proteins and salts; shear-thinning and viscoelastic (stringy, spinnbarkeit), an excellent boundary lubricant of soft oral tissue. Built from water.variants.saliva plus research. World lane 2026-11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.004,
+   "q": "E",
+   "src": "a free liquid surface; mucin films on tissue follow papillae"
+  },
+  "n": {
+   "v": 1.335,
+   "q": "E",
+   "src": "water.variants.saliva: 99.5 % water; no measured value found (GAPS 7)"
+  },
+  "F0": {
+   "v": 0.0206,
+   "q": "D",
+   "src": "((n-1)/(n+1))^2"
+  }
+ },
+ "optics_summary": {
+  "n": {
+   "v": 1.335,
+   "q": "E",
+   "src": "water.variants.saliva: 99.5 % water; no measured value found (GAPS 7)"
+  },
+  "absorption": {
+   "v": "clear; water-like absorption (negligible at mm scale in the visible)",
+   "q": "D",
+   "src": "GAPS 5 water mu_a < 1 per m in 400-700 nm"
+  },
+  "scattering_length_mm": {
+   "v": null,
+   "q": "E",
+   "src": "not found: no scatterers resolved; clear film"
+  },
+  "translucency": {
+   "v": "transparent film",
+   "q": "D",
+   "src": "as absorption"
+  }
+ },
+ "contact": {
+  "surface_tension_mN_m": {
+   "v": 45.6,
+   "q": "M",
+   "src": "ERMPS18 (+/- 6.5, du Nouy, 30 young adults)"
+  },
+  "viscosity_mPa_s": {
+   "v": {
+    "unstimulated_1_300_per_s": [
+     1.5,
+     1.6
+    ],
+    "other_studies_90_per_s": [
+     3.8,
+     8.8
+    ],
+    "submandibular_70Hz": 1.1
+   },
+   "q": "M",
+   "src": "SCHIPPER07 via GAPS 7; MOUTHMD section 10 (R36)"
+  },
+  "density_kg_m3": {
+   "v": [
+    1002,
+    1012
+   ],
+   "q": "E",
+   "src": "HUMPHREY01: E: recalled (specific gravity 1.002-1.012, standard physiology), not re-read; the Humphrey 2001 abstract gives no numbers"
+  },
+  "flow_mL_min": {
+   "v": {
+    "unstimulated": [
+     0.3,
+     0.4
+    ],
+    "stimulated": [
+     1,
+     3
+    ]
+   },
+   "q": "E",
+   "src": "HUMPHREY01: E: recalled from Humphrey & Williamson 2001, not re-read (the abstract gives no numbers)"
+  },
+  "daily_L": {
+   "v": [
+    0.5,
+    1.5
+   ],
+   "q": "E",
+   "src": "HUMPHREY01: E: recalled from Humphrey & Williamson 2001, not re-read"
+  },
+  "film_um": {
+   "v": {
+    "tongue_tip": 68.9,
+    "floor": 62.5,
+    "cheek": 44.0,
+    "back_palate": 29.7,
+    "front_palate": 11.3
+   },
+   "q": "M",
+   "src": "MOUTHMD D19 (R22)"
+  },
+  "lubrication": {
+   "v": {
+    "soft_contact_mu_with_saliva": 0.02,
+    "dry_soft_contact_mu": [
+     1,
+     2
+    ]
+   },
+   "q": "E",
+   "src": "BONGAERTS07: E: recalled from Bongaerts 2007 (PDMS-PDMS model contact), not re-read (publisher page refused 11-08): saliva cuts friction ~2 orders"
+  },
+  "stringiness": {
+   "v": "viscoelastic threads between lips/teeth when the mouth opens (spinnbarkeit); thread length grows with mucin (unstimulated > stimulated)",
+   "q": "E",
+   "src": "STOKES07: E: recalled from Stokes & Davies 2007 (shear-thinning, viscoelastic, G' > G'' at low strain), not re-read"
+  },
+  "solver": {
+   "phase": {
+    "v": "fluid",
+    "q": "D",
+    "src": "a liquid (deform.model)"
+   },
+   "collision_thickness_mm": {
+    "v": {
+     "film_on_surface": "the film's own thickness (layers / film values)",
+     "particle_solver": "half the particle spacing"
+    },
+    "q": "D",
+    "src": "ANON_E solver convention: a liquid has no skin of its own; it keeps a no-penetration boundary at solids"
+   },
+   "penetration_response": {
+    "model": {
+     "v": "incompressible: no stiffness ramp; a pressure projection (or weakly compressible SPH with numerical sound speed >= 10x the max flow speed) keeps it out of solids and out of itself",
+     "q": "D",
+     "src": "bulk modulus (water 2.2 GPa: effectively incompressible at body speeds)"
+    },
+    "ramp": {
+     "v": "pressure_projection",
+     "q": "D",
+     "src": "as model"
+    },
+    "boundary_wetting": {
+     "v": "the contact angle per pair (pairs/world.json wetting) sets the meniscus at a solid",
+     "q": "D",
+     "src": "DEGENNES04"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": {
+      "on_wettable_surface": 0.0,
+      "on_superhydrophobic": [
+       0.3,
+       0.9
+      ]
+     },
+     "q": "M",
+     "src": "RICHARD02 / DEGENNES04: drops stick and spread on wettable solids; bounce only on (super)hydrophobic ones"
+    },
+    "response_time_ms": {
+     "v": {
+      "drop_R1mm": 12.2,
+      "drop_R2mm": 34.5
+     },
+     "q": "D",
+     "src": "RICHARD02 tau = 2.6 sqrt(rho R^3/gamma) with rho 1005, gamma 0.0456 N/m"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "sound": 1500,
+      "capillary_wave_1mm": 0.53
+     },
+     "q": "D",
+     "src": "sound ~ water's (CRC; oils ~1450); capillary-wave phase speed sqrt(2 pi gamma/(rho lambda)) at lambda 1 mm"
+    },
+    "damping_ratio": {
+     "v": "viscous: set by viscosity_mPa_s (no separate damping)",
+     "q": "D",
+     "src": "Newtonian/viscous dissipation"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "non_newtonian_fluid",
+   "q": "E",
+   "src": "STOKES07: E: recalled from Stokes & Davies 2007 (shear-thinning, viscoelastic, G' > G'' at low strain), not re-read"
+  },
+  "density_kg_m3": {
+   "v": 1005,
+   "q": "E",
+   "src": "mid of contact.density_kg_m3"
+  },
+  "viscoelastic": {
+   "elastic_dominant_low_strain": {
+    "v": "G' > G'' at low strain (weak gel)",
+    "q": "E",
+    "src": "STOKES07: E: recalled from Stokes & Davies 2007 (shear-thinning, viscoelastic, G' > G'' at low strain), not re-read"
+   },
+   "relaxation_s": {
+    "v": null,
+    "q": "E",
+    "src": "not found: an extensional relaxation time for whole saliva (CaBER literature) was not retrieved"
+   }
+  },
+  "sim": {
+   "note": {
+    "v": "drops and threads: a power-law fluid (n_flow ~0.5-0.8, E) with a small elastic stretch term; films: thin-film lubrication",
+    "q": "E",
+    "src": "ANON_E from shear-thinning + spinnbarkeit"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.6,
+   "q": "E",
+   "src": "water-like (>= 99 % water): IAPWS ~0.62 at 35 C"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 4100,
+   "q": "E",
+   "src": "water-like, slightly lowered by solutes"
+  },
+  "effusivity": {
+   "v": 1571,
+   "q": "D",
+   "src": "sqrt(k rho c) with the values above"
+  },
+  "emissivity": {
+   "v": 0.96,
+   "q": "E",
+   "src": "water's value (CRC)"
+  }
+ },
+ "states": {
+  "stimulated": {
+   "set": {
+    "contact.viscosity_mPa_s": 1.3
+   },
+   "q": "E",
+   "src": "ANON_E: stimulated (parotid-rich) saliva is thinner, more watery (SCHIPPER07 trend)"
+  },
+  "dry_mouth": {
+   "set": {
+    "contact.lubrication": "lost: friction of soft tissue rises toward the dry value"
+   },
+   "q": "M",
+   "src": "BONGAERTS07 trend"
+  }
+ },
+ "sources": {
+  "ERMPS18": {
+   "cite": "Evaluation of salivary surface tension in a cohort of young healthy adults. Eur Rev Med Pharmacol Sci 22 (2018), PMID 29565473 (via GAPS 7)",
+   "url": "https://www.europeanreview.org/?p=14457",
+   "lic": "terms not stated; numbers used as facts"
+  },
+  "SCHIPPER07": {
+   "cite": "Schipper RG, Silletti E, Vingerhoeds MH. Arch Oral Biol 52:1114 (2007) (via GAPS 7)",
+   "url": "https://doi.org/10.1016/j.archoralbio.2007.06.009",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "MOUTHMD": {
+   "cite": "The project's research note mouth_teeth_tongue.md D19 / section 10 (saliva film by site, R22; rheology snippets R36)",
+   "url": "local",
+   "lic": "project record"
+  },
+  "HUMPHREY01": {
+   "cite": "Humphrey SP, Williamson RT. A review of saliva: normal composition, flow, and function. J Prosthet Dent 85:162-169 (2001). Recalled: unstimulated ~0.3-0.4 mL/min, stimulated ~1-3 mL/min, 0.5-1.5 L/day",
+   "url": "https://doi.org/10.1067/mpr.2001.113778",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "BONGAERTS07": {
+   "cite": "Bongaerts JHH, Rossetti D, Stokes JR. The lubricating properties of human whole saliva. Tribol Lett 27:277-287 (2007). Recalled: saliva cuts soft-contact (PDMS) friction by ~2 orders, boundary mu ~0.02",
+   "url": "https://doi.org/10.1007/s11249-007-9232-y",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "STOKES07": {
+   "cite": "Stokes JR, Davies GA. Viscoelasticity of human whole saliva collected after acid and mechanical stimulation. Biorheology 44:141-160 (2007). Recalled: shear-thinning, elastic (G' > G'' at low strain), long extensional relaxation (spinnbarkeit)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17851164/",
+   "lic": "paywalled; qualitative findings used"
+  },
+  "GAPS": {
+   "cite": "Project research note the project's materials research note GAPS_RESEARCH.md (11-07), which carries the primary citations (IAPWS14/08, MAVON97, ELKHYAT04, MOTWANI01, SONNER15, SCHIPPER07, ERMPS18, DAIMON07, POPEFRY97)",
+   "url": "local",
+   "lic": "project record; primary sources' terms listed there"
+  },
+  "IAPWS": {
+   "cite": "IAPWS releases: Surface Tension of Ordinary Water Substance (2014); Viscosity of Ordinary Water (2008); IAPWS-95 density; thermal conductivity (2011)",
+   "url": "http://www.iapws.org/release.html",
+   "lic": "freely available releases; numbers used as facts"
+  },
+  "ANON_E": {
+   "cite": "Estimate made in this lane; the reason is given in each src",
+   "url": "-",
+   "lic": "own work"
+  },
+  "RICHARD02": {
+   "cite": "Richard D, Clanet C, Quere D. Contact time of a bouncing drop. Nature 417:811 (2002): tau = 2.6 sqrt(rho R^3 / gamma), independent of impact speed",
+   "url": "https://doi.org/10.1038/417811a",
+   "lic": "paywalled; formula used as fact"
+  },
+  "DEGENNES04": {
+   "cite": "de Gennes P-G, Brochard-Wyart F, Quere D. Capillarity and Wetting Phenomena. Springer (2004): capillary length, Bond number, Tanner spreading",
+   "url": "https://doi.org/10.1007/978-0-387-21656-0",
+   "lic": "book, copyright; formulas used"
+  },
+  "CRC": {
+   "cite": "CRC Handbook of Chemistry and Physics (any recent edition): standard property tables for water, ice, air, oils. Values recalled as standard table values, not re-checked line by line this session",
+   "url": "https://hbcp.chemnetbase.com",
+   "lic": "copyright, paywalled; individual physical constants used as facts, no table copied"
+  }
+ }
+}

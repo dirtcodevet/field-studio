@@ -1,0 +1,90 @@
+{
+ "name": "gingiva",
+ "inherits": null,
+ "_": "fs-mouth 11-11; format: design C7 (engine/fieldstudio/DESIGN_PRODUCT_2026-11-10.md); optics: engine/materials/profiles + engine/library/mouth/media_fit.json (fitted to cited in-vivo colours); how the renderers read it: fs-light (pending)",
+ "form": {
+  "rules": [
+   {
+    "what": "free gingival margin above the CEJ (labial)",
+    "value_mm": [
+     0.5,
+     1.0
+    ]
+   },
+   {
+    "what": "gingival scallop U1 / U2 / U3",
+    "value_mm": [
+     4.3,
+     3.7,
+     4.4
+    ],
+    "src": "reference content/mouth_2026-11-11/numbers.json"
+   },
+   {
+    "what": "zenith distal shift U1 / U2 / U3",
+    "value_mm": [
+     1.1,
+     0.4,
+     0.0
+    ]
+   },
+   {
+    "what": "thickness (thin / thick phenotype)",
+    "value_mm": [
+     0.8,
+     1.7
+    ]
+   }
+  ]
+ },
+ "medium": {
+  "layers": [
+   {
+    "name": "saliva film",
+    "thickness": {
+     "v": 0.03,
+     "unit": "mm",
+     "q": "E"
+    },
+    "profile": "saliva",
+    "role": "coat"
+   },
+   {
+    "name": "keratinised epithelium",
+    "thickness": {
+     "v": 0.3,
+     "unit": "mm"
+    },
+    "profile": "gingiva",
+    "fit": "media_fit.json gingiva.epithelium"
+   },
+   {
+    "name": "lamina propria",
+    "until": "part:bone",
+    "profile": "gingiva",
+    "fit": "media_fit.json gingiva.lamina_propria"
+   }
+  ],
+  "fields": "the gum part's surface plus a channel 'lp' (the lamina propria's outer face: the surface offset 0.3 mm inward, the keratinised epithelium between); bone a part of its own (slides / bonds: parts, fs-light's rule)"
+ },
+ "physics": {
+  "profile": "gingiva",
+  "contact": {
+   "gingiva-tooth": "touch / bond (see tooth)",
+   "gingiva-bone": "bond",
+   "gingiva-lip / cheek mucosa": "touch (vestibule, a potential space)"
+  }
+ },
+ "look": {
+  "generator": "engine/library/mouth/gums.py Gums",
+  "settings": [
+   "recession",
+   "seed"
+  ]
+ },
+ "modifiers": {
+  "recession": "the margin moves apically (form)",
+  "inflammation": "not yet (perfusion state on the one blood cause)",
+  "pigment": "not yet (melanin in the epithelium, built)"
+ }
+}

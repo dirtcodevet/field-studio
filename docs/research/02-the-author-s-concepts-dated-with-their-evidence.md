@@ -6,7 +6,7 @@ These are the concepts the author introduced, with the time each was first state
 is or would be built, and what has been measured. Several have relatives in published work, named where known.
 
 ## 1. Contact read from each body's own distance field, with a short-range barrier
-**First stated:** 2026-11-12, ~15:30 PT (the author's "magnetic field" idea: a repulsion between surfaces that reaches
+**First stated:** 2026-11-12, ~15:30 PT (framed as a magnetic field: a repulsion between surfaces that reaches
 its limit where they touch). **Status:** built in two forms and measured on synthetic cases; promising on the tested
 soft-on-soft cases, not established as generally better.
 
@@ -45,7 +45,7 @@ force inside an equilibrium Newton solve, as in IPC-family methods; renaming the
 itself place it outside existing barrier-method patents, and no clearance is claimed.
 
 ## 2. A field through the environment as the contact *sensor*
-**First stated:** 2026-11-12, ~15:55 PT (the author's touch-screen analogy). **Status:** proposed; not built.
+**First stated:** 2026-11-12, ~15:55 PT (framed as a touch-screen analogy). **Status:** proposed; not built.
 
 **Idea.** One field solved through the space between bodies reports where anything is approaching anything, as a
 finger is detected by the disturbance it makes in a touch screen's field. Under a fixed-potential, parallel-surface
@@ -111,7 +111,7 @@ authoritative store.
 
 ## 5. Store the recipe, keep the authored edits
 **First stated:** 2026-11-12, ~16:50 PT (a reading of the DNA analogy); in use in the generators since 10-30 / 11-09.
-A generated asset is **a versioned recipe (generator version, seed, settings, dependencies) + the author's subsequent
+A generated asset is **a versioned recipe (generator version, seed, settings, dependencies) + the subsequent authored
 modifications + caches that can be rebuilt**, so an improved generator never silently changes an approved character.
 Not claimed as an invention; recorded as the project's practice.
 
@@ -140,7 +140,7 @@ volumetric terms are under 2 % of the elastic energy (which does not by itself e
 conditioning); the energy sits 44 % in the front crease and 22 % in a 22 mm plug of soft tissue between bone ends that
 do not articulate; the real flexion axis (Visible Human Female, left elbow) lies ~36 % of the arm's depth from the back
 skin. Controlled one-change-at-a-time runs from a frozen baseline followed the same evening (Part 6, section B.9):
-bones that articulate at the axis did not move the stall ("No on every mark"), and neither did fat at its literature
+bones that articulate at the axis did not move the stall (no on every pre-registered mark), and neither did fat at its literature
 stiffness. The current plan: the skin as its own sliding sheet over the tissue, on the human model's real arm, with
 a 2 mm crease resolution as the control; then the axis depth and the integration formulation, each separately.
 

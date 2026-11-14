@@ -1,0 +1,54 @@
+Field Studio
+Copyright 2026 Mathew Birchard - DCV Systems, LLC - @birchard_mathew
+
+The source code in this repository (engine/, tests/) is licensed under the Apache License, Version 2.0; see LICENSE.
+The three light profiles named under "Data" below are the exception: CC BY-SA 4.0 data files.
+The write-up, documents, articles and images (docs/, articles/, images/, README.md, CHANGELOG.md) are licensed under
+the Creative Commons Attribution 4.0 International licence; see LICENSE-CC-BY-4.0.
+
+Field Studio contains no third-party source code. It depends on the following packages, which are installed
+separately (pip) and are not included in this repository:
+
+  NumPy                 BSD-3-Clause (with 0BSD, MIT, Zlib and CC0-1.0 parts)    https://numpy.org
+  SciPy                 BSD-3-Clause                                              https://scipy.org
+  Numba                 BSD-2-Clause                                              https://numba.pydata.org
+  llvmlite (via Numba)  BSD-2-Clause and Apache-2.0 WITH LLVM-exception           https://github.com/numba/llvmlite
+  PySide6-Essentials    LGPL-3.0-only (or GPL-2.0 / GPL-3.0): Qt for Python, used  https://www.qt.io/qt-for-python
+  and Shiboken6         unmodified as a dynamically loaded library
+  Pillow                MIT-CMU (HPND)                                            https://python-pillow.org
+  CuPy (optional)       MIT                                                       https://cupy.dev
+                        CuPy loads NVIDIA CUDA components, which the user installs under NVIDIA's own licence terms.
+  Matplotlib (optional) Matplotlib licence (PSF-based)                            https://matplotlib.org
+
+Data in engine/materials/profiles/ and engine/library/mouth/
+-----------------------------------------------------------
+Each value in a material profile names its source and that source's licence status (the "src", "cite" and "lic"
+fields). Most values are physical quantities (densities, moduli, friction coefficients, reflectances) taken as facts
+from the cited publications; no text, table or dataset is reproduced from a source whose licence does not allow it.
+Sources marked public domain (United States government works) and CC0 (for example refractiveindex.info) need no
+attribution and are cited in the profiles.
+
+Every source is attributed in the profile that uses it and listed, with its licence class, in docs/DATA_SOURCES.md
+(generated from the profiles' own source blocks).
+
+  CC BY-SA 4.0 data files: engine/materials/profiles/light.sky.json, light.studio.json and light.sun.json are
+  licensed under CC BY-SA 4.0 as whole files (not Apache-2.0), because each carries a 33-value excerpt of:
+    CIE (2019) CIE standard illuminant D65. International Commission on Illumination, Vienna.
+      doi:10.25039/CIE.DS.hjfjmt59. https://creativecommons.org/licenses/by-sa/4.0/
+
+  Facts only (no text, table or figure reproduced), named here because their terms limit reuse of the works
+  themselves:
+    Sources under non-commercial licences (CC BY-NC, CC BY-NC-SA, CC BY-NC-ND), for example Pakpour et al. (2012)
+      Sci Rep 2:549 in sand.wet.json: findings stated in our own words as facts.
+    The IT'IS Foundation tissue properties database: individual averages cited as facts in the tissue profiles;
+      the database is not copied.
+    An accepted manuscript on abdominal adipose tissue (Calvo-Gallego et al.) in fat.subcutaneous.json: fitted
+      constants and points read from one published curve, used as facts.
+    Gent AN (1958), Rubber Chem Technol 31(4):896-906, doi:10.5254/1.3542351: the hardness-to-modulus formula, in
+      rubber.sole.json.
+
+The neutral studio environment (engine/fieldstudio/fieldstudio/gpu/studio_env.py) is generated from a formula; no
+image is used. The tool's glyphs and icons are drawn by its own code.
+
+Nothing in this repository grants a patent licence beyond the Apache License's own terms, and nothing in it is
+legal advice. See docs/PATENTS.md for the patents read during development and how Field Studio's mechanisms differ.

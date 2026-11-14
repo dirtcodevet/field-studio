@@ -2,15 +2,14 @@
 
 # Part 10. Patent readings carried over, and what is held out of the code
 
-**Read this first.** By the author's decision this release publishes flags only: it names each patent our review
+**Read this first.** By decision, this release publishes flags only: it names each patent our review
 flagged and says what was done about it, and it publishes no conclusion that our code does or does not meet any
-claim. These are our own readings of claim text, made by non-lawyers (the engineering sessions, and
-one outside review the author obtained on 2026-11-12). No patent attorney has been consulted. A search hit is a
+claim. These are our own readings of claim text, made by non-lawyers. No patent attorney has been consulted. A search hit is a
 screening flag, not proof; writing our own code or
 measuring better performance is not protection; and a status such as "expired - fee related" is a dated note, not
 a permanent fact. The searches were not exhaustive. Nothing here is a clearance, and nothing here is legal advice.
 
-How a reading is recorded in this project (adopted 2026-11-12, from the outside review): each proposed restriction
+How a reading is recorded in this project (adopted 2026-11-12): each proposed restriction
 names the claim element that causes the concern, and each design-around names the element that is absent.
 
 ## 10.1 Flags on code as it stands: held out of any public code until redesigned
@@ -31,7 +30,7 @@ Because the edit program, the tracer and the band store are central, the tool's 
 |---|---|---|
 | Geodesic voxel binding for skinning weights | Autodesk US 9,836,879 B2, US 10,062,203 | volumetric bone heat solved on the lattice (Baran and Popović 2007), Part 7; our own geodesic bench module is study-only |
 | Regularised Kelvinlet brushes | Pixar US 10,586,401 | not used; see 10.1 |
-| Exact cubic in-voxel ray hit for distance grids | NVIDIA US 11,823,319 | marching with bracketing and bisection; the reading is recorded both as "clear, elements named" and as "not verified either way" in different records, so it is treated as open |
+| Exact cubic in-voxel ray hit for distance grids | NVIDIA US 11,823,319 | marching with bracketing and bisection; one record names the elements as absent and another marks the reading as not verified either way, so it is treated as open |
 | Cubic turning-point shadow rays; voxel-local hit storage | NVIDIA US 11,887,245; US 12,175,588 | not used; hits are kept in object or world space |
 | Feedback photon splatting | NVIDIA US 12,315,070 | not used |
 
@@ -54,9 +53,8 @@ quaternion blending, bone heat, and the hair models of Marschner et al. 2003 and
 implemented), per-brick spherical-harmonic sky transfer and light tracing for caustics (probe results), photon
 mapping, and non-linear sphere tracing (Seyb et al. 2019; benched only).
 
-The author's position, in his words (2026-11-11 and 11-12): "using a patented method is legally risky. We can
-study and learn from it though. Then improve it." And: "We should attempt to learn from existing research, and
-build our own mechanisms."
+The position taken (2026-11-11 and 11-12): using a patented method is a legal risk; a patented method may be studied
+and learned from, and then improved on; the work learns from existing research and builds its own mechanisms.
 
 ---
 

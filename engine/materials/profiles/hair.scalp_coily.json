@@ -1,0 +1,712 @@
+{
+ "id": "hair.scalp_coily",
+ "kind": "fibre",
+ "family": "hair",
+ "_": "Coily scalp hair (curl types VI-VIII), flat elliptic fibre from a retro-curved follicle (most hair of African descent). One keratin fibre (cuticle of 4-8 scale layers over the cortex), at ~20-25 C and 50-65 % RH unless a state says otherwise. Contact is fibre-on-fibre: nothing passes through anything; strands touch at the fibre radius, slide with the scale or catch against it, and lock together by capillary bridges when wet or oiled. Eye-and-hair materials lane, 2026-11-07. Curly fibres carry stress in the toe region (strength adds there; ~0 in straight: HAIRMD T8 R21); grows slower (256-280 um/d, HAIRMD T5).",
+ "surface": {
+  "alpha": {
+   "v": 0.08,
+   "q": "D",
+   "src": "HAIRMD T7: measured specular FWHM 9-10 deg -> lobe sd 3.8-4.3 deg -> beta_m ~0.08-0.1 (R34); used as the GGX-like width of the R lobe; pbrt 'typical' 0.25 is ~3x wider"
+  },
+  "n": {
+   "v": 1.55,
+   "q": "M",
+   "src": "HAIRMD T7: eta 1.55 (pbrt typical, Blender default; keratin 1.55-1.56)"
+  },
+  "F0": {
+   "v": 0.0465,
+   "q": "D",
+   "src": "((1.55 - 1)/(1.55 + 1))^2"
+  },
+  "cuticle_tilt_deg": {
+   "v": [
+    2.5,
+    3.0
+   ],
+   "q": "M",
+   "src": "HAIRMD T7 (R34 goniophotometry); KINDS_HEAD: 2.7-3.4 deg D from 0.5 um step over 8.3-10.7 um scale interval"
+  }
+ },
+ "optics_summary": {
+  "model": {
+   "v": "Marschner / Chiang hair BSDF (R, TT, TRT lobes shifted +2a, -a, -4a)",
+   "q": "M",
+   "src": "HAIRMD T7"
+  },
+  "n": {
+   "v": 1.55,
+   "q": "M",
+   "src": "HAIRMD T7"
+  },
+  "absorption": {
+   "v": "melanin per hair diameter: pbrt sigma_a RGB black 3.35/5.58/10.96, brown 0.84/1.39/2.74, blond 0.06/0.10/0.20; Chiang eumelanin 0.506/0.841/1.653, pheomelanin 0.343/0.733/1.924",
+   "q": "M",
+   "src": "HAIRMD T7 (R32, R33)"
+  },
+  "translucency": {
+   "v": "blond and grey fibres pass light (TT, TRT strong); black nearly opaque per fibre",
+   "q": "D",
+   "src": "from absorption"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry_with_scale": 0.25,
+     "dry_against_scale": 0.4,
+     "wet_with_scale": 0.45,
+     "oiled_with_scale": 0.19
+    },
+    "q": "E",
+    "src": "ANON_E: static ~1.6x the kinetic values below (fibre static/kinetic ratios); a 2008 sliding-angle test gave hair-on-hair static ~0.5 virgin, 0.6-1.1 treated (search summary, weak); wet x1.9 and oiled x0.75 as kinetic"
+   },
+   "kinetic": {
+    "v": {
+     "dry_with_scale": 0.15,
+     "dry_against_scale": 0.25,
+     "wet_with_scale": 0.29,
+     "wet_against_scale": 0.48,
+     "oiled_with_scale": 0.11,
+     "oiled_against_scale": 0.17
+    },
+    "q": "E",
+    "src": "ANON_E from measured anchors: single fibre on polyamide 0.13 dry / 0.25 wet (DEWRI25), on hard rubber 0.18-0.26 (SCOTT80); against-scale 1.23x to > 2x with-scale (WEIAND25), 1.7x taken; wet = dry x 1.9 (DEWRI25 ratio); oiled / conditioned >= 25 % lower than clean (BOWEN16)"
+   },
+   "counterface": "hair on hair (the pair table carries comb, skin, cotton, silk); 'with scale' = sliding toward the tip, 'against' = toward the root",
+   "load_dependence": {
+    "v": "mu falls as load rises (fibre thins and flattens; more so wet)",
+    "q": "M",
+    "src": "DEWRI25; SCOTT80 'decreasing slightly'"
+   },
+   "speed_dependence": {
+    "v": {
+     "1_in_min": 0.18,
+     "9_in_min": 0.24,
+     "22_in_min": 0.26
+    },
+    "q": "M",
+    "src": "SCOTT80 (vs hard rubber): rises with speed"
+   }
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": {
+     "virgin_88deg": 30.5,
+     "virgin_97deg": 24.9,
+     "bleached_78deg": 36.7
+    },
+    "q": "D",
+    "src": "NEUMANN from the water contact angles below (CA_SCC12, CA_RSC22); 18-MEA keeps virgin hair low-energy"
+   },
+   "capillary_bridge_uN_per_crossing": {
+    "v": {
+     "water_cos1": 33.5,
+     "sebum_cos1": 13.9
+    },
+    "q": "D",
+    "src": "PHYS F = 4 pi R gamma cos(theta), R = 37 um, gamma water 72, sebum ~30 mN/m (E), cos(theta) = 1 upper bound (receding angle on a wet fibre is low)"
+   },
+   "tack": {
+    "v": "dry: none; wet: bundles coalesce (elastocapillary); sebum raised fibre withdrawal force 2-8x (1 % synthetic sebum)",
+    "q": "M",
+    "src": "STYLING D13 (P58), P43 (Bico 2004)"
+   }
+  },
+  "restitution": {
+   "v": null,
+   "q": "E",
+   "src": "not found and not meaningful for a fibre: a hair has almost no mass; collisions are damped by bending and air drag (see solver.impact)"
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": {
+     "virgin": [
+      88,
+      97
+     ],
+     "18MEA_stripped": 83,
+     "bleached": [
+      62.5,
+      78
+     ],
+     "bleached_conditioned": 83.5
+    },
+    "q": "M",
+    "src": "CA_SCC12 (Wilhelmy, single fibres); CA_RSC22 (native Mongolian 97.0, bleached 62.5)"
+   },
+   "oil_contact_angle_deg": {
+    "v": 0,
+    "q": "E",
+    "src": "sebum and cosmetic oils spread on keratin (they wick along fibres and into bundles: STYLING P56, P58); 0 taken"
+   }
+  },
+  "water_absorption": {
+   "v": {
+    "capacity_pct_mass_virgin": 30,
+    "capacity_pct_mass_bleached": 45,
+    "equilibrium_pct_at_RH": {
+     "29": 6.0,
+     "40": 7.6,
+     "50": 9.8,
+     "65": 12.8,
+     "70": 13.6
+    }
+   },
+   "q": "M",
+   "src": "STYLING P29/P46 (Robbins via Lab Muffin) and D12"
+  },
+  "swelling_on_wetting": {
+   "v": {
+    "diameter_pct": 15,
+    "length_pct": [
+     1,
+     2
+    ]
+   },
+   "q": "M",
+   "src": "STYLING P60 (diameter ~15 %); length 1-2 % is E (keratin fibres swell far more across than along: Robbins & Fernee 1983 qualitative)"
+  },
+  "oil_absorption": {
+   "v": "coconut, olive, sunflower oil diffuse into the fibre (bridges fade); mineral oil stays on the surface",
+   "q": "M",
+   "src": "STYLING P56"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": "positive end of the series, just below human skin: hair charges + against comb plastics (PE, PP, PVC, PTFE, hard rubber) and silk/cotton are close to neutral against it; nylon sits near hair (small charge)",
+    "q": "M",
+    "src": "TRIBO ordering (secondary copies of AlphaLab)"
+   },
+   "combing_charge_vs_RH": {
+    "v": "falls linearly from 20 to 50 % RH; above ~60 % RH static fly-aways vanish",
+    "q": "M",
+    "src": "LUNN77 (the >60 % clause is E from the regain curve)"
+   },
+   "resistivity_ohm_m": {
+    "v": {
+     "RH_20": 1000000000000.0,
+     "RH_65": 1000000000.0,
+     "wet": 100000.0
+    },
+    "q": "E",
+    "src": "not found for hair as numbers; keratin (wool) falls ~0.3 decade per % water content (wool 3e12 ohm cm at 7 % water to 6e6 at 25 %, search summary, unverified); with hair's regain curve (STYLING D12) this gives the values to an order of magnitude; E: recalled, not re-read"
+   },
+   "charge_decay_s": {
+    "v": "log half-life linear in RH (20-50 %): seconds to minutes in dry winter air, sub-second above ~60 % RH",
+    "q": "E",
+    "src": "LUNN77 gives the linear-log law; magnitudes E"
+   },
+   "permittivity_rel": {
+    "v": {
+     "dry": 4,
+     "RH_65": 6
+    },
+    "q": "E",
+    "src": "keratin/wool dielectric constants ~3-6 rising with water (recalled textile data, not reopened)"
+   }
+  },
+  "hardness": {
+   "v": null,
+   "q": "E",
+   "src": "not found as a hardness number for hair (nanoindentation exists; not read)"
+  },
+  "abrasion": {
+   "v": "cuticle flattens at 10 mN, wears and lifts at 100 mN over 10^4 crossed-fibre cycles; lifted scales make friction direction-dependent",
+   "q": "M",
+   "src": "BOWEN16"
+  },
+  "solver": {
+   "phase": {
+    "v": "fibre",
+    "q": "D",
+    "src": "a slender rod (Cosserat); length/diameter > 10^3"
+   },
+   "collision_thickness_mm": {
+    "v": 0.037,
+    "q": "D",
+    "src": "fibre radius d/2 = 74/2 um (minimum separation between centrelines = d)"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 41900000.0,
+     "q": "D",
+     "src": "upper bound: axial E 3.1 GPa / d; the transverse modulus of hair was not found (lower). In practice: treat the fibre as incompressible across and use an IPC barrier at d_hat = 0.1 r"
+    },
+    "ramp": {
+     "v": "barrier_log",
+     "q": "D",
+     "src": "IPC barrier keeps centrelines >= d apart (no pass-through), friction from the lagged normal force"
+    },
+    "contact_damping_ratio": {
+     "v": 0.05,
+     "q": "E",
+     "src": "keratin loss factor ~0.1 at low frequency (fibre DMA, recalled) -> zeta ~ tan(delta)/2; E: recalled, not re-read"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": null,
+     "q": "E",
+     "src": "not meaningful: momentum is carried by the bending wave, not a bounce"
+    },
+    "response_time_ms": {
+     "v": 158.0,
+     "q": "D",
+     "src": "PHYS first bending period of a free 5 cm end (min of 5 cm and the typical length; E 3.1 GPa, d 74 um): how fast a struck hair answers; scales with L^2"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "longitudinal": 1530.0,
+      "torsional_shear": 870.0
+     },
+     "q": "D",
+     "src": "PHYS sqrt(E/rho), sqrt(G/rho) with E 3.1 GPa, G 1.0 GPa (HARPER07 at ~50 % RH)"
+    },
+    "damping_ratio": {
+     "v": 0.05,
+     "q": "E",
+     "src": "as contact_damping_ratio; air drag dominates for free hair"
+    }
+   },
+   "self_contact": {
+    "fibre_fibre_friction_kinetic": {
+     "v": {
+      "dry": {
+       "with_scale": 0.15,
+       "against_scale": 0.25
+      },
+      "wet": {
+       "with_scale": 0.29,
+       "against_scale": 0.48
+      },
+      "oiled": {
+       "with_scale": 0.11,
+       "against_scale": 0.17
+      }
+     },
+     "q": "E",
+     "src": "as contact.friction.kinetic (anchors DEWRI25, SCOTT80, WEIAND25, BOWEN16)"
+    },
+    "direction_rule": {
+     "v": "the 'against' value applies when the contact point moves toward the ROOT of the fibre being rubbed (its scale edges face the tip); each fibre carries its root-to-tip tangent; two fibres crossing in opposite orientations both see 'against' in one of them",
+     "q": "M",
+     "src": "WEIAND25 (cuticle edges interlock root-ward)"
+    },
+    "min_separation_mm": {
+     "v": 0.074,
+     "q": "D",
+     "src": "centreline distance >= d (two radii)"
+    },
+    "bundle_contact": {
+     "v": "strands in a lock lie near-parallel and touch along lines, not points: use segment-segment line contact with friction along the axis (the directional pair) and across it (the 'with' value). Dry locks hold by entanglement and the against-scale catch; wet and oiled locks are held by capillary bridges (per crossing values above) and coalesce elastocapillary into clumps (mean clump ~0.67 of the largest stable one); conditioner lowers friction and packs locks ~15 % denser",
+     "q": "M",
+     "src": "STYLING P43 (Bico 2004), D13, P57; BOWEN16"
+    },
+    "packing_fraction": {
+     "v": {
+      "loose_dry": [
+       0.1,
+       0.3
+      ],
+      "aligned_lock": [
+       0.5,
+       0.7
+      ],
+      "max_hex": 0.907
+     },
+     "q": "E",
+     "src": "geometry: random loose hair is mostly air; aligned wet locks approach hexagonal packing (0.907 limit); no measurement found"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "fibre_rod",
+   "q": "D",
+   "src": "Cosserat / discrete elastic rod: stretch, bend (two axes for an elliptic section), twist"
+  },
+  "density_kg_m3": {
+   "v": 1320.0,
+   "q": "M",
+   "src": "JSCC82 re-read 11-08 (J Soc Cosmet Chem 33(2), 1982, Table V, 21 C, six tresses): hair fibre density 1.32 +/- 0.005 g/cm3 at 0 and 12 % RH, 1.34 at 44 %, 1.36 at 65 %, 1.32 at 75-85 %"
+  },
+  "diameter_um": {
+   "v": 74,
+   "q": "D",
+   "src": "HAIRMD T4: African section area 4274 +/- 215 um2 -> 73.8 um eq. circle (R10, D); forensic 60-90 um flat"
+  },
+  "ellipticity_a_over_b": {
+   "v": 1.75,
+   "q": "M",
+   "src": "HAIRMD T4: African descent ~1.75-1.83 (secondary reviews, weak); bending the flat face is ~3x easier than the edge (D)"
+  },
+  "length_mm": {
+   "v": [
+    50,
+    400
+   ],
+   "q": "E",
+   "src": "HAIRMD T5 African growth 256-280 um/d over a shorter anagen; coiled length shows ~1/2-1/5 of it (shrinkage)"
+  },
+  "medulla": {
+   "v": "not found per type",
+   "q": "E",
+   "src": "no coily-specific medulla data read"
+  },
+  "E_GPa": {
+   "v": {
+    "tensile_dry": 3.1,
+    "bending_dry": 10.0,
+    "tensile_wet": 1.2
+   },
+   "q": "M",
+   "src": "SAYAHI16 tensile 3.1 +/- 0.16; MAMADA07 bending ~10 GPa (bundles); wet = dry / 2.5 is D from MATRIX21 (dry 2-3x wet)"
+  },
+  "poisson": {
+   "v": 0.37,
+   "q": "M",
+   "src": "DEWRI25 citing Lee & Kwon (0.37 +/- 0.05)"
+  },
+  "shear_GPa": {
+   "v": {
+    "RH_le_10": 1.5,
+    "RH_50": 1.0,
+    "RH_90": 0.7,
+    "in_water": 0.1
+   },
+   "q": "M",
+   "src": "HARPER07 torsion pendulum (>1.5 at <=10 % RH to ~0.7 at 90 %); RH_50 interpolated (D); in water ~0.1 is E (keratin fibres lose about an order of magnitude of torsional rigidity when soaked: wool data, recalled)"
+  },
+  "bending_stiffness_EI_Nm2": {
+   "v": {
+    "round_E3.1": 4.56e-09,
+    "round_E10_bending": 1.47e-08,
+    "ellipse_soft_axis": 2.61e-09,
+    "ellipse_stiff_axis": 7.99e-09,
+    "wet_swollen": 3.19e-09
+   },
+   "q": "D",
+   "src": "PHYS EI = E pi d^4/64 at d 74 um; ellipse a/b 1.75 at equal area (I = pi a b^3/4); wet: d x1.15, E/2.5. Which E to use: tensile 3.1 matches single-fibre sag (hair.md), bending 10 GPa is the bundle test; choose by the look of a hanging lock"
+  },
+  "torsion": {
+   "v": {
+    "GJ_Nm2": 2.94e-09,
+    "GJ_wet_Nm2": 5.15e-10
+   },
+   "q": "D",
+   "src": "PHYS GJ, J = pi d^4/32, G 1.0 GPa dry (50 % RH), 0.1 GPa wet"
+  },
+  "curl": {
+   "radius_cm": {
+    "v": [
+     0.2,
+     0.49
+    ],
+    "q": "D",
+    "src": "types VII-VIII fit 6 cm of hair inside a 0.98 cm ring (DELAMETTRIE07 follow-up via HAIRMD R20) -> curl radius < 0.49 cm; 0.2 lower end E"
+   },
+   "class": {
+    "v": "De la Mettrie types VI-VIII",
+    "q": "M",
+    "src": "DELAMETTRIE07; Africans 95 % curly (HAIRMD T4 R21)"
+   },
+   "shrinkage_pct": {
+    "v": [
+     50,
+     80
+    ],
+    "q": "M",
+    "src": "STYLING cutting table: coily shrinks 50-80 % (curly 25-50 %)"
+   },
+   "twists": {
+    "v": "the section rotates along the shaft (twists and kinks); breakage starts at the kinks",
+    "q": "E",
+    "src": "qualitative (Franbourg 2003 via HAIRMD R25 abstract)"
+   }
+  },
+  "gravity_length_cm": {
+   "v": 4.34,
+   "q": "D",
+   "src": "PHYS (EI/(rho A g))^(1/3), E 3.1 GPa: a free end shorter than this barely sags"
+  },
+  "mass_mg_per_m": {
+   "v": 5.68,
+   "q": "D",
+   "src": "PHYS rho A"
+  },
+  "plastic": {
+   "yield_strain_pct": {
+    "v": {
+     "hookean_end": [
+      2,
+      3
+     ],
+     "yield_region_end": [
+      25,
+      30
+     ]
+    },
+    "q": "E",
+    "src": "Robbins' tensile curve of keratin fibres (Hookean to ~2 %, yield plateau to ~25-30 %, post-yield to break), recalled, not reopened"
+   },
+   "elastic_recovery": {
+    "v": {
+     "dry_stretch_pct": 20,
+     "wet_stretch_pct": 50
+    },
+    "q": "M",
+    "src": "STYLING P37: healthy hair stretches ~20 % dry, ~50 % wet and recovers fully (salon test)"
+   },
+   "set_glass_transition_C": {
+    "v": {
+     "wet": "< 0",
+     "dry": [
+      50,
+      100
+     ]
+    },
+    "q": "M",
+    "src": "STYLING section 4 (Tg climbs as it dries: why hair keeps the shape it cools in)"
+   }
+  },
+  "fracture": {
+   "strength_kPa": {
+    "v": 201000,
+    "q": "M",
+    "src": "SAYAHI16 stress at break 201 +/- 11 MPa"
+   },
+   "break_strain_pct": {
+    "v": {
+     "dry": 47,
+     "wet": [
+      50,
+      60
+     ]
+    },
+    "q": "M",
+    "src": "SAYAHI16 47 +/- 4 % dry; DEWRI25 cites strain to 52 %; wet 50-60 is E (keratin breaks at higher strain when wet, recalled)"
+   }
+  },
+  "sim": {
+   "xpbd_bend_compliance_per_Nm2": {
+    "v": 219000000.0,
+    "q": "D",
+    "src": "1/EI (round, E 3.1 GPa); divide by segment length per the XPBD rod formulation"
+   },
+   "xpbd_stretch_compliance_per_N": {
+    "v": 0.075,
+    "q": "D",
+    "src": "1/(E A): effectively inextensible; use a hard length constraint"
+   },
+   "segment_length_mm": {
+    "v": [
+     1,
+     3
+    ],
+    "q": "E",
+    "src": "a few segments per gravity length / per curl turn; curl needs >= 8 segments per turn"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.2,
+   "q": "E",
+   "src": "keratin/wool fibre ~0.2 W/mK (recalled textile value; a hair mass is far lower, mostly air); E: recalled, not re-read"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1500,
+   "q": "E",
+   "src": "dry keratin ~1.3-1.6 kJ/kgK (recalled); water raises it; E: recalled, not re-read"
+  },
+  "effusivity": {
+   "v": 629.0,
+   "q": "D",
+   "src": "sqrt(k rho c) of the solid fibre"
+  },
+  "emissivity": {
+   "v": 0.95,
+   "q": "E",
+   "src": "organic dielectric in the thermal IR (typical 0.9-0.97)"
+  },
+  "denature_C": {
+   "v": 233,
+   "q": "M",
+   "src": "STYLING (iron temperature row: keratin denatures ~233 C; damage from 130-170 C repeated)"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {},
+   "q": "M",
+   "src": "the base values (50-65 % RH)"
+  },
+  "wet": {
+   "set": {
+    "deform.E_GPa.tensile_dry": 1.2,
+    "deform.shear_GPa.RH_50": 0.1,
+    "deform.diameter_um": 85.1,
+    "deform.density_kg_m3": 1278.0,
+    "contact.solver.collision_thickness_mm": 0.0425,
+    "contact.friction.kinetic.dry_with_scale": 0.29,
+    "contact.friction.kinetic.dry_against_scale": 0.48,
+    "surface.coat": {
+     "n": 1.333,
+     "alpha": 0.01
+    },
+    "mass_gain_pct": 30
+   },
+   "q": "D",
+   "src": "MATRIX21 (E / 2-3), STYLING P60 (d +15 %), P29 (+30 % mass), DEWRI25 (mu x1.9); density 1.32 x 1.30 / (1.15^2 x 1.015); water coat darkens (STYLING wet row)"
+  },
+  "oiled": {
+   "set": {
+    "contact.friction.kinetic.dry_with_scale": 0.11,
+    "contact.friction.kinetic.dry_against_scale": 0.17,
+    "surface.coat": {
+     "n": 1.47,
+     "alpha": 0.03
+    },
+    "contact.adhesion.capillary_bridge_uN_per_crossing": 13.9,
+    "contact.electrostatic.combing_charge_vs_RH": "low (lubricated)"
+   },
+   "q": "E",
+   "src": "BOWEN16 (>= 25 % lower mu with sebum), STYLING P56 (film > 0.5 um hides the scale steps: mirror-like), P58 (bridges, withdrawal force x2-8); n of sebum from oil.sebum"
+  },
+  "product": {
+   "set": {
+    "contact.friction.kinetic.dry_with_scale": 0.1,
+    "contact.friction.kinetic.dry_against_scale": 0.13,
+    "contact.electrostatic.combing_charge_vs_RH": "low",
+    "self_contact.packing_gain_pct": 15
+   },
+   "q": "E",
+   "src": "conditioner/silicone: combing work -85 %, volume -15 % (STYLING D13, P57); lowers the direction difference (scales smoothed) - values E; grit/texture spray is the opposite (friction up): STYLING P59"
+  }
+ },
+ "sources": {
+  "HAIRMD": {
+   "cite": "The project's research note hair.md (2026-10-19): T4 shaft, T7 optics, T8 mechanics; its keys R2, R10, R20-R22, R32-R34",
+   "url": "local",
+   "lic": "project record; the papers it cites as listed there"
+  },
+  "KINDS_HEAD": {
+   "cite": "The project's research note hair_kinds_head.md: per-kind table (lash, brow, edge hairs), K1-K5, K19",
+   "url": "local",
+   "lic": "project record"
+  },
+  "KINDS_VB": {
+   "cite": "The project's research note hair_kinds_vellus_body.md: K1-K5 body kinds",
+   "url": "local",
+   "lic": "project record"
+  },
+  "KINDS_AP": {
+   "cite": "The project's research note on hair kinds (underarm and lower body): AP1, AP4, AP10, T5",
+   "url": "local",
+   "lic": "project record"
+  },
+  "STYLING": {
+   "cite": "The project's research note hair_styling.md: D12 regain (Robbins via P29), P43 Bico 2004 elastocapillary, P46 porosity, P56 oils, P57 conditioner, P58 sebum, P60 wet swelling, P37 elasticity, shrinkage table",
+   "url": "local",
+   "lic": "project record; underlying trade and journal sources as listed there"
+  },
+  "SAYAHI16": {
+   "cite": "Sayahi E et al. Int J Cosmet Sci 38:470 (2016) (hair.md R22): E 3.1 +/- 0.16 GPa, stress at break 201 MPa, strain 47 %",
+   "url": "https://doi.org/10.1111/ics.12313",
+   "lic": "paywalled; numbers used as facts (read via hair.md)"
+  },
+  "MAMADA07": {
+   "cite": "Mamada A, Nakamura K. J Cosmet Sci 58(5):485 (2007) (hair_kinds_head K19): bending modulus ~10 GPa, 50-fibre bundles, women < 40",
+   "url": "https://library.scconline.org/",
+   "lic": "SCC library; abstract read; numbers used as facts"
+  },
+  "DEWRI25": {
+   "cite": "Dewri SP, Gnanamoorthy R. Investigation on the friction coefficient of Indian-origin human hair. Tribology in Industry 47(2):326-332 (2025): single fibre on polyamide capstan, steady mu 0.13 +/- 0.02 dry, 0.25 +/- 0.03 wet; mu falls with load; cites Lee & Kwon Poisson 0.37 +/- 0.05, strain to 0.52",
+   "url": "https://doi.org/10.24874/ti.1848.01.25.03",
+   "lic": "open access journal (licence line not found in the PDF text); numbers used as facts"
+  },
+  "SCOTT80": {
+   "cite": "Scott GV, Robbins CR. Effects of surfactant solutions on hair fiber friction. J Soc Cosmet Chem 31(4):179-200 (1980): capstan vs hard rubber, dry mu seldom > 0.2; 0.18 / 0.24 / 0.26 at 1 / 9 / 22 in/min",
+   "url": "https://library.scconline.org/v031n04/17",
+   "lic": "SCC online library, free page view; numbers used as facts"
+  },
+  "KONNO24": {
+   "cite": "Konno S, Asanuma K, Nonomura Y. Friction dynamics of straight, curly and wavy hair. J Oleo Sci 73 (2024): probe toward the root 0.47 / 0.51 / 0.54; finger model on bundles mu_k 0.67 (straight), 0.64 (curly), stick-slip against the cuticle",
+   "url": "https://doi.org/10.5650/jos.ess23245",
+   "lic": "J-STAGE open access, licence not checked; abstract numbers used as facts"
+  },
+  "BOWEN16": {
+   "cite": "Bowen J, Johnson SA, Avery AR, Adams MJ. Friction and wear of human hair fibres. Surf Topogr Metrol Prop 4:024008 (2016): crossed fibres, 18 C 40-50 % RH; sebum or conditioner >= 25 % lower initial mu than hexane-cleaned; direction dependence after cuticle lifting (~1000 cycles)",
+   "url": "https://doi.org/10.1088/2051-672X/4/2/024008",
+   "lic": "all rights reserved (abstract only read); numbers used as facts"
+  },
+  "WEIAND25": {
+   "cite": "Weiand E, Rodriguez-Ropero F, Roiter Y, Angioletti-Uberti S, Dini D, Ewen JP. Understanding and controlling the friction of human hair. Adv Colloid Interface Sci 345:103580 (2025): anisotropic friction from cuticle edges interlocking root-ward; 18-MEA loss raises friction; tip-to-root mu > 2x root-to-tip in Robbins' data, 23 % in high-load capstan data (as read in search summaries of the review)",
+   "url": "https://doi.org/10.1016/j.cis.2025.103580",
+   "lic": "CC BY 4.0 (full text not reached; abstract and summaries only)"
+  },
+  "HARPER07": {
+   "cite": "TRI/Princeton single-fibre torsion pendulum studies, J Cosmet Sci 57-58 (2006-2007; library.scconline.org v057n05, v058n04): untreated hair shear modulus > 1.5 GPa at <= 10 % RH falling to ~0.7 GPa at 90 % RH; G' 1.58 GPa (22 % RH), cortex ~0.6 GPa",
+   "url": "https://library.scconline.org/v058n04/67",
+   "lic": "SCC library; numbers read in search summaries; used as facts"
+  },
+  "MATRIX21": {
+   "cite": "'The matrix revisited', J Cosmet Sci 72 special edition (library.scconline.org v072nSE): dry Young's modulus 2-3x the wet one; modulus falls with RH",
+   "url": "https://library.scconline.org/v072nSE/47",
+   "lic": "SCC library; number read in a search summary; used as fact"
+  },
+  "CA_SCC12": {
+   "cite": "J Cosmet Sci 63(1) (2012), Wilhelmy contact angles on single fibres: virgin 88 +/- 2 deg, 18-MEA stripped 83 +/- 2, bleached 78 +/- 1, bleached + conditioner 83.5",
+   "url": "https://library.scconline.org/v063n01/35",
+   "lic": "SCC library; numbers read via a search summary"
+  },
+  "CA_RSC22": {
+   "cite": "Open-access hair-surface wetting study (RSC Soft Matter 2022 d1sm01720a or PMC8991896, CC BY): native Mongolian hair 97.0 +/- 1.7 deg, bleached 62.5 +/- 0.8; cos theta linear in sulfonate coverage",
+   "url": "https://pubs.rsc.org/en/content/articlehtml/2022/sm/d1sm01720a",
+   "lic": "CC BY 3.0/4.0 (which of the two articles carries the numbers not verified)"
+  },
+  "LUNN77": {
+   "cite": "Lunn AC, Evans RE. The electrostatic properties of human hair. J Soc Cosmet Chem 28:549-569 (1977): combing charge falls linearly 20-50 % RH; log charge half-life linear in RH; quats cut charge mainly by lubrication",
+   "url": "https://library.scconline.org/v028n09/65",
+   "lic": "SCC library; trends used as facts"
+  },
+  "TRIBO": {
+   "cite": "Triboelectric series (AlphaLab 2009 table and its secondary copies, 72 F 35 % RH): human hands/skin at the positive end, human hair just below; most plastics (PE, PP, PVC, PTFE) negative of hair",
+   "url": "https://www.trifield.com/content/tribo-electric-series/",
+   "lic": "AlphaLab: reproduce only in whole; ordering used as fact, no table copied"
+  },
+  "NEUMANN": {
+   "cite": "Neumann equation of state: cos theta = -1 + 2 sqrt(gs/gl) exp(-beta (gl - gs)^2), beta = 1.247e-4 (m2/mJ)^2 (Kwok & Neumann 1999)",
+   "url": "https://doi.org/10.1016/S0001-8686(98)00087-6",
+   "lic": "method; used here to derive"
+  },
+  "DELAMETTRIE07": {
+   "cite": "De la Mettrie R, Saint-Leger D, Loussouarn G et al. Shape variability and classification of human hair: a worldwide approach. Hum Biol 79:265 (2007); curl meter ring 0.98 cm diameter for types VII-VIII (Loussouarn follow-up, via hair.md R20)",
+   "url": "https://doi.org/10.1353/hub.2007.0045",
+   "lic": "paywalled; class definitions used as facts"
+  },
+  "MULBERRY": {
+   "cite": "Mulberry Park Silks press release (vendor-commissioned texture-analyser test, lab not named): hair tress pulled over 22 momme silk 3529 g mm vs cotton 5344 g mm (-34 %)",
+   "url": "https://mulberryparksilks.com/blogs/press-releases/silk-pillowcase-friction-study",
+   "lic": "vendor page; weak evidence, ratio only used"
+  },
+  "ANON_E": {
+   "cite": "This lane's estimate (reason given in each src)",
+   "url": "local",
+   "lic": "own"
+  },
+  "PHYS": {
+   "cite": "Standard mechanics: EI = E pi d^4/64 (ellipse I = pi a b^3/4 at equal area), J = pi d^4/32, gravity length (EI/(rho A g))^(1/3), cantilever first mode f1 = 1.875^2/(2 pi L^2) sqrt(EI/(rho A)), wave speeds sqrt(E/rho), sqrt(G/rho), capillary bridge between crossed cylinders F = 4 pi R gamma cos theta",
+   "url": "textbook",
+   "lic": "physics; used to derive"
+  },
+  "JSCC82": {
+   "cite": "J Soc Cosmet Chem 33(2) (1982): hair fibre density vs relative humidity, Table V (SCC online library v033n02/39)",
+   "url": "https://library.scconline.org/v033n02/39",
+   "lic": "free to read; numbers used as facts, text studied only"
+  }
+ }
+}

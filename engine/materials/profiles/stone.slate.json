@@ -1,0 +1,621 @@
+{
+ "id": "stone.slate",
+ "kind": "rigid_solid",
+ "family": "stone",
+ "_": "Slate (fine-grained foliated metamorphic mudrock: mica/chlorite/quartz), roofing and flooring grade; elastic-brittle with transverse isotropy about the cleavage. Dry, room temperature, intact stone (no joints); natural stone varies quarry to quarry, so the central values carry wide ranges. Finish (polished, honed, flamed, sawn, riven) changes the look and the grip far more than the rock does. Solids research lane 11-07 (the project's materials research note SOLIDS.md).",
+ "surface": {
+  "alpha": {
+   "v": 0.25,
+   "q": "E",
+   "src": "honed finish; GGX alpha estimated from gloss practice (polished stone 70-90 GU at 60 deg ~ alpha 0.02-0.05, honed 10-30 GU ~ 0.2-0.35, flamed/sawn/riven matte); no BRDF fit read"
+  },
+  "alpha_by_finish": {
+   "v": {
+    "honed": 0.25,
+    "riven": 0.6,
+    "polished": 0.08
+   },
+   "q": "E",
+   "src": "as alpha: finish categories from dimension-stone practice"
+  },
+  "n": {
+   "v": 1.56,
+   "q": "E",
+   "src": "mica / chlorite / quartz ~1.55-1.60"
+  },
+  "F0": {
+   "v": 0.0479,
+   "q": "D",
+   "src": "((n - 1)/(n + 1))^2"
+  }
+ },
+ "optics_summary": {
+  "colour_note": {
+   "v": "blue-grey, dark grey, green-grey, purple; satin sheen on riven faces from aligned mica; darkens strongly when wet",
+   "q": "E",
+   "src": "rock description (petrography, common practice)"
+  },
+  "translucency": {
+   "v": "opaque",
+   "q": "E",
+   "src": "observation"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": [
+      0.4,
+      0.7
+     ],
+     "wet": [
+      0.4,
+      0.7
+     ]
+    },
+    "q": "E",
+    "src": "BYERLEE78 rock friction; mica/chlorite-rich foliation planes sit lower (phyllosilicates mu ~0.3-0.5); water changes rock-rock friction little except clay/mica-rich rocks"
+   },
+   "kinetic": {
+    "v": {
+     "dry": [
+      0.5,
+      0.7
+     ],
+     "wet": [
+      0.4,
+      0.7
+     ]
+    },
+    "q": "E",
+    "src": "slightly below static (rate-and-state friction of rock: a few % lower)"
+   },
+   "counterface": "stone on stone (BYERLEE78); against shoe rubber see rubber_slider_PTV and the pair table"
+  },
+  "rubber_slider_PTV": {
+   "v": {
+    "riven_dry_PTV": [
+     65,
+     85
+    ],
+    "riven_wet_PTV": [
+     40,
+     60
+    ],
+    "honed_dry_PTV": [
+     60,
+     80
+    ],
+    "honed_wet_PTV": [
+     25,
+     40
+    ]
+   },
+   "q": "E",
+   "src": "UKSRG pendulum values by finish: E from the finish ranking (polished << honed < sawn/flamed/riven) and the PTV 36 safe line; no measured value found for this rock; mu = 3 PTV / (330 - PTV)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": [
+     40,
+     70
+    ],
+    "q": "E",
+    "src": "clean mineral oxide/carbonate surfaces are high-energy but quickly covered by adsorbed water and organics; effective 40-70 (E)"
+   },
+   "tack": {
+    "v": "none",
+    "q": "E",
+    "src": "observation"
+   }
+  },
+  "restitution": {
+   "v": [
+    0.7,
+    0.9
+   ],
+   "q": "E",
+   "src": "hard sphere (steel, glass) on a thick stone slab: the slab is near-rigid; ball material and slab support dominate"
+  },
+  "solver": {
+   "phase": "solid",
+   "collision_thickness_mm": {
+    "v": 0.1,
+    "q": "E",
+    "src": "numerical offset only: a rigid solid has no compliant surface layer; 0.1 mm sits below what reads on screen at character distance and above the field's float/step resolution at metre scale, so contacts never show a gap or a pass-through; finishes (lacquer, sealer, a water film) are thinner still"
+   },
+   "penetration_response": {
+    "ramp": "hertz",
+    "E_star_GPa": {
+     "v": 74.7,
+     "q": "D",
+     "src": "E / (1 - nu^2) from the profile's E 70 GPa (E) and nu 0.25 (the half-space modulus; a rigid indenter assumed, the soft partner's own E* combines in series)"
+    },
+    "contact_stiffness_kPa_per_mm": {
+     "v": 951000.0,
+     "q": "D",
+     "src": "mean pressure per mm of overlap under a 50 mm-radius flat patch (hand-sized): k = 2 E* a (flat punch), / (pi a^2): ~1e5-1e6 kPa/mm, so the solver should treat the surface as an unyielding barrier and let the soft partner deform"
+    },
+    "hertz_constant_N_per_m1_5_R25mm": {
+     "v": 15700000000.0,
+     "q": "D",
+     "src": "F = (4/3) E* sqrt(R) d^1.5 for a rigid sphere R 25 mm"
+    },
+    "contact_damping_ratio": {
+     "v": 0.071,
+     "q": "D",
+     "src": "zeta = -ln e / sqrt(pi^2 + ln^2 e) from restitution 0.8"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": [
+      0.7,
+      0.9
+     ],
+     "q": "E",
+     "src": "hard sphere on a thick slab, E (ball and support dominate)"
+    },
+    "response_time_ms": {
+     "v": 0.269,
+     "q": "D",
+     "src": "Hertz contact time t = 2.87 (m^2 / (R E*^2 v))^0.2 for a rigid 1 kg sphere, R 25 mm, 1 m/s on this material: tens of microseconds. In a hand slap the soft tissue sets the pulse (ms); this surface only has to not yield, so the slap's sound and stop come from the hand"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "bar_longitudinal": 5045,
+      "shear": 3191
+     },
+     "q": "D",
+     "src": "sqrt(E/rho), sqrt(G/rho), G = E/(2(1+nu)), rho 2750"
+    },
+    "damping_ratio": {
+     "v": 0.071,
+     "q": "D",
+     "src": "as contact_damping_ratio (energy lost per impact, from restitution)"
+    }
+   },
+   "_": "A wall, floor or step of this stone: an unyielding barrier at body scale; the soft body deforms against it."
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": [
+     40,
+     70
+    ],
+    "q": "E",
+    "src": "riven slate, unsealed; not measured here"
+   }
+  },
+  "porosity": {
+   "v": [
+    0.002,
+    0.01
+   ],
+   "q": "E",
+   "src": "ROCK slate < 1 %; E: recalled from ROCK, not re-read"
+  },
+  "water_absorption": {
+   "v": [
+    0.1,
+    0.25
+   ],
+   "q": "M",
+   "src": "ASTM C629 Class I exterior slate absorption max 0.25 % by weight (confirmed 11-08 via web search of the C629-99 table; C121 test, 24 h immersion, % by dry mass); the 0.1 lower end is E (typical)"
+  },
+  "oil_absorption": {
+   "v": "unsealed calcareous and porous stones stain with oil (it wicks in and darkens permanently); granite and slate much less",
+   "q": "E",
+   "src": "stone-care practice"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": "near neutral; slightly conductive when damp (E)",
+    "q": "E",
+    "src": "not in ALPHALAB; by mineral (quartz glass-like +, calcite near neutral)"
+   },
+   "resistivity_ohm_m": {
+    "v": [
+     100000.0,
+     10000000000.0
+    ],
+    "q": "E",
+    "src": "ROCK electrical: dry dense rock 1e9-1e12 ohm m; porous rock set by pore water (1e2-1e4 wet); E: recalled from ROCK, not re-read"
+   }
+  },
+  "hardness": {
+   "v": [
+    2.5,
+    4
+   ],
+   "q": "E",
+   "src": "mica/chlorite matrix ~2.5-3, quartz silt harder; bulk scratch ~3-4"
+  },
+  "abrasion": {
+   "v": "moderate; riven texture holds grip as it wears",
+   "q": "E",
+   "src": "ROCK/ASTM: moderate; riven texture holds grip as it wears"
+  }
+ },
+ "deform": {
+  "model": "brittle",
+  "density_kg_m3": {
+   "v": 2750,
+   "q": "E",
+   "src": "ROCK slate 2700-2800; E: recalled from ROCK, not re-read"
+  },
+  "E_GPa": {
+   "v": 70,
+   "q": "E",
+   "src": "ROCK typical 40-110 GPa (static; dynamic higher); central value for this grade; E: recalled from ROCK, not re-read"
+  },
+  "poisson": {
+   "v": 0.25,
+   "q": "E",
+   "src": "ROCK typical 0.15-0.3; E: recalled from ROCK, not re-read"
+  },
+  "shear_GPa": {
+   "v": 28.0,
+   "q": "D",
+   "src": "E / (2 (1 + nu))"
+  },
+  "bulk_GPa": {
+   "v": 46.7,
+   "q": "D",
+   "src": "E / (3 (1 - 2 nu))"
+  },
+  "fracture": {
+   "strength_compressive_MPa": {
+    "v": {
+     "typical": 150,
+     "range": [
+      80,
+      250
+     ]
+    },
+    "q": "E",
+    "src": "ROCK uniaxial compressive strength range for the rock type; E: recalled from ROCK, not re-read"
+   },
+   "strength_tensile_MPa": {
+    "v": {
+     "typical": 10,
+     "range": [
+      5,
+      25
+     ]
+    },
+    "q": "E",
+    "src": "ROCK Brazilian / direct tension; ~1/10-1/20 of UCS (brittle); E: recalled from ROCK, not re-read"
+   },
+   "toughness_KIC_MPa_m05": {
+    "v": [
+     0.8,
+     3.0
+    ],
+    "q": "E",
+    "src": "ROCK slate mode I strongly anisotropic: along cleavage ~0.8-1.5, across ~2-3 MPa m^0.5; E: recalled from ROCK, not re-read"
+   },
+   "spec_minimums": {
+    "v": "ASTM C629 exterior slate: absorption <= 0.25 %, modulus of rupture across grain >= 62.1 MPa, along grain >= 48.3 MPa (recalled from the source, not re-read 11-07)",
+    "q": "E",
+    "src": "ASTM: E: recalled from ASTM, not re-read (was M); ASTM"
+   },
+   "_": "Brittle: fails in tension from flaws; compressive strength ~10-20 x tensile. Edges and corners chip; thin slabs crack under point loads or impact."
+  },
+  "sim": {
+   "_": "Rigid at character scale (E is ~1e6 x skin's); use E only for impact/fracture, sound, or thin slabs.",
+   "xpbd_compliance_1_Pa": {
+    "v": 1.43e-11,
+    "q": "D",
+    "src": "1 / E"
+   },
+   "p_wave_speed_m_s": {
+    "v": 5527,
+    "q": "D",
+    "src": "sqrt((K + 4G/3)/rho), for impact sound"
+   }
+  },
+  "anisotropy": {
+   "_": "Transversely isotropic about the cleavage normal: stiff and strong in the cleavage plane, weak across it in tension (it splits along cleavage).",
+   "E_parallel_cleavage_GPa": {
+    "v": [
+     70,
+     110
+    ],
+    "q": "E",
+    "src": "ROCK slate in-plane modulus; E: recalled from ROCK, not re-read"
+   },
+   "E_perpendicular_cleavage_GPa": {
+    "v": [
+     40,
+     70
+    ],
+    "q": "E",
+    "src": "ROCK slate normal-to-cleavage modulus; ratio ~1.5-2; E: recalled from ROCK, not re-read"
+   },
+   "MOR_across_grain_MPa_min": {
+    "v": 62.1,
+    "q": "M",
+    "src": "ASTM C629 Class I exterior: modulus of rupture across grain min 9000 psi = 62.1 MPa (the C629-99 table text seen via web search 11-08; the current C629/C629M-22 not purchased)"
+   },
+   "MOR_along_grain_MPa_min": {
+    "v": 49.6,
+    "q": "M",
+    "src": "ASTM C629/C629M-22 Class I exterior: along grain min 7200 psi [50 MPa] (store snippet and the C629-99 table, via web search 11-08); corrected from 48.3 (= 7000 psi, recalled) to 49.6 (7200 psi)"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 2.0,
+   "q": "E",
+   "src": "ROCK conductivity 1.5-3.0 W/mK; E: recalled from ROCK, not re-read"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 760.0,
+   "q": "E",
+   "src": "ROCK specific heat (rock-forming minerals 750-920 J/kgK); E: recalled from ROCK, not re-read"
+  },
+  "effusivity": {
+   "v": 2045,
+   "q": "D",
+   "src": "sqrt(k rho c) = sqrt(2.0 x 2750 x 760) W s^0.5 m^-2 K^-1"
+  },
+  "contact_temp_with_skin_C": {
+   "v": 24.8,
+   "q": "D",
+   "src": "SKINTH: T = (e_skin 33 + e 20)/(e_skin + e), skin 33 C on material 20 C, e_skin = 1188 (sqrt(0.37 x 1090 x 3500)); lower = feels colder"
+  },
+  "emissivity": {
+   "v": 0.92,
+   "q": "E",
+   "src": "polished stone emissivity ~0.9-0.95 (IR tables)"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {},
+   "_": "the base"
+  },
+  "wet": {
+   "set": {
+    "surface.alpha": 0.125
+   },
+   "q": "E",
+   "src": "a water film (n 1.333) smooths the micro-relief: honed/sawn stone looks darker, more saturated and glossier when wet; porous stone darkens as it absorbs (refractive matching in the pores)"
+  },
+  "sealed": {
+   "set": {
+    "contact.wetting.water_contact_angle_deg": [
+     80,
+     110
+    ]
+   },
+   "q": "E",
+   "src": "impregnating / siloxane sealers make the surface hydrophobic (stone-protection literature 80-110 deg)"
+  }
+ },
+ "sources": {
+  "ASTM": {
+   "cite": "ASTM dimension-stone specifications: C615 granite, C503 marble, C568 limestone, C616 sandstone (quartz-based), C629 slate (minimum / maximum requirements)",
+   "url": "https://www.astm.org",
+   "lic": "paywalled standards; the spec limits are used as facts (recalled from the source, not re-read 11-07)"
+  },
+  "ROCK": {
+   "cite": "Typical engineering ranges for intact rock: Goodman RE, Introduction to Rock Mechanics (2nd ed., 1989); Schoen JH, Physical Properties of Rocks (2nd ed., 2015); Engineering ToolBox rock tables",
+   "url": "",
+   "lic": "paywalled texts / free web; ranges used as facts (recalled from the source, not re-read 11-07)"
+  },
+  "BYERLEE78": {
+   "cite": "Byerlee J. Friction of rocks. Pure Appl Geophys 116:615-626 (1978)",
+   "url": "https://doi.org/10.1007/BF00876528",
+   "lic": "paywalled; the law's numbers used as facts"
+  },
+  "GHOSH99": {
+   "cite": "Ghosh G. Dispersion-equation coefficients for the refractive index and birefringence of calcite and quartz crystals. Opt Commun 163:95-102 (1999), via refractiveindex.info",
+   "url": "https://refractiveindex.info/?shelf=main&book=CaCO3",
+   "lic": "refractiveindex.info database CC0; paper paywalled"
+  },
+  "RUBBERCO": {
+   "cite": "Rubberco, 'PTV flooring ratings UK: pendulum test values explained' (supplier blog): unprotected polished marble ~10-20 wet PTV",
+   "url": "https://rubberco.co.uk/blogs/news/ptv-flooring-ratings-uk-pendulum-test-values-explained",
+   "lic": "commercial web page; number used as a fact, low authority"
+  },
+  "CARRARA_DS": {
+   "cite": "Carrara C / levigati white Carrara slab spec sheets (Capietra; MOHD): honed, BS/UNI EN 14231 SRV dry 75, wet 31; wax-finished Bianco Carrara (Petra Antiqua catalogue) dry 77, wet 30",
+   "url": "https://capietra.com/carrara-c-marble-slab",
+   "lic": "manufacturer data sheets; numbers used as facts"
+  },
+  "STONESPEC": {
+   "cite": "Stone Specialist, 'The time of tests: slip resistance': finish dominates; worn, dirty polished stone wet can be 'no better than ice'",
+   "url": "https://www.stonespecialist.com/news/time-tests-slip-resistance",
+   "lic": "trade magazine; findings used"
+  },
+  "UKSRG": {
+   "cite": "UK Slip Resistance Group guidelines (issue 5, 2016) and HSE 'Assessing the slip resistance of flooring' (2012): PTV bands 0-24 high, 25-35 moderate, 36+ low slip potential; PTV to CoF mu = 3 PTV / (330 - PTV)",
+   "url": "https://www.hse.gov.uk/pubns/geis2.pdf",
+   "lic": "UK Open Government Licence (HSE); UKSRG guideline numbers used as facts"
+  },
+  "JENSEN01": {
+   "cite": "Jensen HW, Marschner SR, Levoy M, Hanrahan P. A practical model for subsurface light transport. SIGGRAPH 2001, Fig./Table of measured sigma_s', sigma_a (mm^-1)",
+   "url": "https://graphics.stanford.edu/papers/bssrdf/",
+   "lic": "paper free to read; measured numbers used as facts"
+  },
+  "SKINTH": {
+   "cite": "skin thermal inputs for contact temperature: k 0.37 W/mK, c 3500 J/kgK (Duck 1990 tissue tables, typical), rho 1090 from skin.body",
+   "url": "",
+   "lic": "numbers used as facts"
+  },
+  "ETB": {
+   "cite": "The Engineering ToolBox, Friction and friction coefficients for some common materials",
+   "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+   "lic": "free web reference; numbers used as facts"
+  },
+  "DERLER12": {
+   "cite": "Derler S, Gerhardt L-C. Tribology of skin: review and analysis of experimental results for the friction coefficient of human skin. Tribol Lett 45:1-27 (2012)",
+   "url": "https://doi.org/10.1007/s11249-011-9854-y",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "ECOSTRESS": {
+   "cite": "Meerdink SK et al. 2019, The ECOSTRESS spectral library version 1.0, Remote Sens Environ 230:111196; Baldridge AM et al. 2009, The ASTER spectral library version 2.0, Remote Sens Environ 113:711-715",
+   "url": "https://speclib.jpl.nasa.gov/",
+   "lic": "free; Caltech (c) 2017, citation asked; numbers used as cited facts, raw files study only"
+  },
+  "USGS7": {
+   "cite": "Kokaly RF et al. 2017, USGS Spectral Library Version 7, USGS Data Series 1035, doi:10.5066/F7RR1WDJ",
+   "url": "https://www.sciencebase.gov/catalog/item/586e8c88e4b0f5ce109fccae",
+   "lic": "US public domain"
+  },
+  "LANE": {
+   "cite": "fs-materials lane estimates (11-14), each named in its src; replaced as measured values are found",
+   "url": "",
+   "lic": "own work"
+  }
+ },
+ "look": {
+  "_": "The look as numbers (fs-materials 11-14; materials/library.py resolve_look, the card shading materials/look.cuh): the mean albedo is MEASURED (a variety face spectrum -> linear sRGB: fs_build/fs-materials/research/STONE_LOOK_RESEARCH.md); the composition about it keeps that mean at every zoom. ",
+  "varieties": {
+   "v": {
+    "dark_grey": {
+     "albedo_lin": [
+      0.092,
+      0.096,
+      0.099
+     ],
+     "sample": "ECOSTRESS ward92, Bangor PA slate, face"
+    },
+    "weathered": {
+     "albedo_lin": [
+      0.184,
+      0.17,
+      0.159
+     ],
+     "sample": "ECOSTRESS 0680, weathered roof slate, face"
+    },
+    "red": {
+     "albedo_lin": [
+      0.255,
+      0.163,
+      0.148
+     ],
+     "sample": "ECOSTRESS ward91, red slate, face"
+    }
+   },
+   "q": "M",
+   "src": "ECOSTRESS / USGS face spectra integrated by the lane (fs_build/fs-materials/research/STONE_LOOK_RESEARCH.md)"
+  },
+  "default_variety": {
+   "v": "dark_grey",
+   "q": "E",
+   "src": "LANE: the common building colour"
+  },
+  "albedo_lin": {
+   "v": [
+    0.092,
+    0.096,
+    0.099
+   ],
+   "q": "M",
+   "src": "ECOSTRESS: the default variety"
+  },
+  "iron_dir": {
+   "v": [
+    0.6825,
+    0.5627,
+    0.4665
+   ],
+   "q": "D",
+   "src": "unit log ratio of two measured varieties (the colour axis between them)"
+  },
+  "copy_log_sd": {
+   "v": 0.05,
+   "q": "E",
+   "src": "LANE: block-to-block lightness within one source"
+  },
+  "copy_iron_sd": {
+   "v": 0.06,
+   "q": "E",
+   "src": "LANE: block-to-block spread along the colour axis"
+  },
+  "grain": {
+   "v": {
+    "size_mm": 0.05,
+    "log_sd": 0.05,
+    "dir": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "fine_mm": 0.0,
+    "fine_log_sd": 0.0,
+    "interstice_log": 0.0,
+    "interstice_r0": 0.8,
+    "dark_p": 0.0,
+    "dark_log": 0.0,
+    "cluster_mm": 1.0,
+    "cluster_log_sd": 0.05
+   },
+   "q": "E",
+   "src": "LANE: from the rock type (grain size class) and the reference photos"
+  },
+  "laminae": {
+   "v": {
+    "spacing_mm": 0.6,
+    "iron_log_sd": 0.0,
+    "grey_log_sd": 0.05,
+    "warp_mm": 0.1,
+    "dip_deg": [
+     0.0,
+     1.0
+    ]
+   },
+   "q": "E",
+   "src": "LANE"
+  },
+  "spots": {
+   "v": {
+    "cell_mm": 0.0,
+    "share": 0.0,
+    "radius_cells": 0.0,
+    "log": 0.0
+   },
+   "q": "E",
+   "src": "LANE"
+  },
+  "mottle": {
+   "v": {
+    "lam_mm": 40.0,
+    "log_sd": 0.03
+   },
+   "q": "E",
+   "src": "LANE"
+  },
+  "micro": {
+   "v": {
+    "amp_um": 0.0,
+    "radius_cells": 0.7
+   },
+   "q": "E",
+   "src": "LANE: the grains standing above the interstices on a cut face (geometry: look.cuh mat_micro)"
+  },
+  "finishes": {
+   "v": {
+    "riven": {
+     "alpha": 0.55,
+     "on_sigma": 0.3,
+     "relief": "riven_or_tooled",
+     "grain_clip": 1.0
+    },
+    "honed": {
+     "alpha": 0.3,
+     "on_sigma": 0.2,
+     "relief": "honed",
+     "grain_clip": 0.1
+    }
+   },
+   "q": "E",
+   "src": "surface.alpha_by_finish where the profile has it; gloss for comparison (granite, Sanmartin et al. 2011: sawn 12.5-24.8 GU at 60 deg, honed 8.5-22, polished 67-89; Carrara, Careddu & Aru 2023: polished 61.9 GU at 60 deg, rough finishes 0.1-6 GU; research)"
+  }
+ }
+}

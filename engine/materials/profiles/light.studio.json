@@ -1,0 +1,170 @@
+{
+ "id": "light.studio",
+ "kind": "light_source",
+ "family": "light",
+ "_": "Studio and set lights for portrait/figure photography and film: tungsten (3200 K), HMI (5600 K), LED panels (CRI/TLCI), flash with softboxes. Typical illuminances on the subject. World lane 2026-11-07.",
+ "emission": {
+  "tungsten_cct_K": {
+   "v": 3200,
+   "q": "E",
+   "src": "E: recalled from IESNA / CIE lighting practice (CIE_LIGHTING), not re-read: CIE_LIGHTING: studio tungsten-halogen lamps rated 3200 K (Planckian; CIE illuminant A is 2856 K household)"
+  },
+  "tungsten_spectrum": {
+   "v": "Planckian at 3200 K (smooth, Ra 100); use Planck's law",
+   "q": "D",
+   "src": "blackbody (CODATA constants)"
+  },
+  "hmi_cct_K": {
+   "v": [
+    5600,
+    6000
+   ],
+   "q": "E",
+   "src": "E: recalled from IESNA / CIE lighting practice (CIE_LIGHTING), not re-read: CIE_LIGHTING: HMI rated 5600 K, drifts up with lamp age"
+  },
+  "hmi_spectrum": {
+   "v": "metal-halide line spectrum, Ra ~90+",
+   "q": "E",
+   "src": "E: recalled from IESNA / CIE lighting practice (CIE_LIGHTING), not re-read: CIE_LIGHTING"
+  },
+  "led_quality": {
+   "v": {
+    "CRI_Ra_high_end": [
+     95,
+     98
+    ],
+    "R9_high_end": [
+     80,
+     95
+    ],
+    "TLCI_broadcast_ok": ">= 85 (EBU: 85-100 needs little or no correction)"
+   },
+   "q": "E",
+   "src": "E: recalled from IESNA / CIE lighting practice (CIE_LIGHTING), not re-read: CIE_LIGHTING: CIE 13.3 (CRI) / EBU Tech 3355 TLCI-2012 (CIE_LIGHTING)"
+  },
+  "flash_cct_K": {
+   "v": [
+    5500,
+    5800
+   ],
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: studio flash tubes (xenon) ~5500 K (manufacturer specs, recalled)"
+  },
+  "flash_energy_Ws": {
+   "v": [
+    250,
+    1000
+   ],
+   "q": "E",
+   "src": "monolight range"
+  },
+  "softbox": {
+   "v": {
+    "size_m": [
+     0.6,
+     1.5
+    ],
+    "distance_m": [
+     1,
+     3
+    ],
+    "note": "apparent size sets shadow softness: angular size of a 1 m box at 1.5 m ~37 deg vs the sun's 0.53 deg"
+   },
+   "q": "D",
+   "src": "angular size 2 atan(0.5/1.5); sizes E (common practice)"
+  },
+  "subject_illuminance_lux": {
+   "v": {
+    "tv_studio_key": [
+     800,
+     2000
+    ],
+    "film_key_iso800_f2.8": [
+     200,
+     600
+    ],
+    "portrait_continuous_led": [
+     500,
+     3000
+    ],
+    "office_ambient_ref": 500
+   },
+   "q": "E",
+   "src": "E: recalled from IESNA / CIE lighting practice (CIE_LIGHTING), not re-read: CIE_LIGHTING / broadcast practice (recalled; ranges)"
+  },
+  "inverse_square": {
+   "v": "E = I / d^2 for a small source; a softbox closer than ~its size falls off slower",
+   "q": "D",
+   "src": "photometry"
+  }
+ },
+ "surface": {
+  "note": {
+   "v": "a light source: no material surface",
+   "q": "D",
+   "src": "definition"
+  }
+ },
+ "states": {
+  "tungsten_3200": {
+   "set": {
+    "emission.cct_K": 3200
+   },
+   "q": "E",
+   "src": "E: recalled from IESNA / CIE lighting practice (CIE_LIGHTING), not re-read: CIE_LIGHTING"
+  },
+  "daylight_5600": {
+   "set": {
+    "emission.cct_K": 5600
+   },
+   "q": "E",
+   "src": "E: recalled from IESNA / CIE lighting practice (CIE_LIGHTING), not re-read: CIE_LIGHTING"
+  }
+ },
+ "sources": {
+  "CIE_LIGHTING": {
+   "cite": "General daylight / lighting-engineering figures (IESNA Lighting Handbook 10th ed.; CIE 085 / CIE 13.3-1995 colour rendering; EBU Tech 3355 TLCI-2012): sky luminances, illuminances, CCTs. Recalled typical ranges",
+   "url": "https://tech.ebu.ch/publications/tech3355",
+   "lic": "EBU Tech 3355 free; IES handbook copyright; typical numbers used as facts"
+  },
+  "CODATA18": {
+   "cite": "CODATA 2018 recommended values (NIST): c = 299792458 m/s exact, sigma = 5.670374419e-8 W m-2 K-4 exact, k_B, standard atmosphere 101325 Pa, g_n = 9.80665 m/s2 (CGPM 1901)",
+   "url": "https://physics.nist.gov/cuu/Constants/",
+   "lic": "NIST, US government work, public domain"
+  },
+  "CIE_D65": {
+   "cite": "CIE (2019) CIE standard illuminant D65. International Commission on Illumination, Vienna. doi:10.25039/CIE.DS.hjfjmt59 (ISO/CIE 11664-2:2022 Table B.1). Fetched 11-07 from files.cie.co.at/Publications-datasets/CIE_std_illum_D65.csv",
+   "url": "https://doi.org/10.25039/CIE.DS.hjfjmt59",
+   "lic": "CC BY-SA 4.0 (dataset metadata, 11-07): attribution given here; the 33-value excerpt is ShareAlike - keep this attribution with it. Re-checked 11-08: the D65 data page now shows only 'Copyright CIE' and its metadata JSON is not reachable (404); a CIE CSV metadata record (another dataset) states CC BY-SA 4.0. BY-SA permits commercial use with attribution and ShareAlike, so not STUDY ONLY under P13; the ShareAlike duty travels with the excerpt"
+  },
+  "ANON_E": {
+   "cite": "Estimate made in this lane; the reason is given in each src",
+   "url": "-",
+   "lic": "own work"
+  },
+  "KOPP11": {
+   "cite": "Kopp G, Lean JL. A new, lower value of total solar irradiance: evidence and climate significance. Geophys Res Lett 38:L01706 (2011): TSI 1360.8 +/- 0.5 W/m2",
+   "url": "https://doi.org/10.1029/2010GL045777",
+   "lic": "AGU; number used as fact"
+  }
+ },
+ "contact": {
+  "solver": {
+   "phase": {
+    "v": "non_colliding",
+    "q": "D",
+    "src": "SCHEMA: gas and light are non_colliding; light passes through transparent media and reflects from surfaces; it carries no mass"
+   },
+   "collision_thickness_mm": {
+    "v": null,
+    "q": "D",
+    "src": "not applicable"
+   },
+   "radiation_pressure_uN_m2": {
+    "v": 4.54,
+    "q": "D",
+    "src": "full sun absorbed: solar constant / c (KOPP11); negligible on bodies"
+   }
+  }
+ }
+}

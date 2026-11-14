@@ -1,0 +1,1807 @@
+{
+  "id": "skin.glabrous",
+  "kind": "layered_tissue",
+  "family": "human_soft",
+  "_": "Glabrous (ridged) skin of the palm, finger pads and sole: no hair, no sebaceous glands, a thick stratum corneum (palm ~47, heel ~86 cell layers), epidermis 0.3-0.8 mm, friction ridges ~0.4-0.55 mm pitch, dense eccrine sweat glands (palm ~240, sole ~290 /cm2) that open on the ridges. Friction depends above all on moisture: it peaks at an intermediate moisture and on smooth impermeable surfaces climbs with dwell as sweat is occluded. Stack in contact.solver: the finger pad, with palm and heel variants. SKIN lane 11-07.",
+  "surface": {
+    "alpha": {
+      "v": 0.35,
+      "q": "E",
+      "src": "no palm specular measurement; skin.body's Donner m 0.35 (ridged and usually matte)"
+    },
+    "n": {
+      "v": 1.45,
+      "q": "E",
+      "src": "the thick SC dominates the surface (SC n ~1.47-1.55, skin.body note); 1.45 E"
+    }
+  },
+  "optics_summary": {
+    "structure": {
+      "v": {
+        "epidermis_mm": {
+          "palm": [
+            0.27,
+            0.62
+          ],
+          "finger_pad": [
+            0.37,
+            0.79
+          ],
+          "sole": 0.55
+        },
+        "sc_layers": {
+          "palm": 47,
+          "heel": 86
+        },
+        "ridge_pitch_mm": [
+          0.4,
+          0.55
+        ],
+        "ridge_density_per_25mm2_women": [
+          14.8,
+          15.1
+        ],
+        "sweat_glands_per_cm2": {
+          "palm": 241,
+          "sole": 294
+        },
+        "sweat_ducts_per_mm2_fingertip": [
+          30,
+          86
+        ]
+      },
+      "q": "M",
+      "src": "HANDMD (Jones 2025 OCT, Bauer / Lee, ridge rows D17); FOOTMD R43; SRL F1, F11; ridge pitch is a calc in HANDMD (weak)"
+    }
+  },
+  "contact": {
+    "friction": {
+      "kinetic": {
+        "v": {
+          "dry": 0.6,
+          "moist": 1.6,
+          "wet": 0.5,
+          "oily": 0.28
+        },
+        "q": "D",
+        "src": "dry: finger pad on aluminium mean 0.6 (SEO09; 0.9-1.0 at 1 N, 0.4-0.5 at 10-20 N) and palm 0.62 +/- 0.22 (ZHANGMAK99); moist: the occluded-sweat friction at its fit origin on glass 1.6 / PP 1.4 (ADAMS13 Table 3, Pasumarty) - friction peaks at an intermediate moisture (ANDRE10); wet (free water): glass 0.50 / PP 0.28 (ADAMS13 Table 3); oily: BOBJER93 palm with paraffin oil 0.28 on polycarbonate"
+      },
+      "static": {
+        "v": {
+          "dry": 0.6,
+          "moist": 1.6,
+          "wet": 0.5,
+          "oily": 0.28
+        },
+        "q": "E",
+        "src": "static taken equal; on smooth impermeable faces static grip climbs with dwell (see dwell_rise)"
+      },
+      "dwell_rise": {
+        "v": {
+          "glass": {
+            "mu0": 0.23,
+            "mu_inf": 3.1,
+            "tau_s": 23
+          },
+          "polypropylene": {
+            "mu0": 0.37,
+            "mu_inf": 3.6,
+            "tau_s": 16
+          }
+        },
+        "q": "M",
+        "src": "ADAMS13 (Pasumarty 2011): mu(t) = mu_inf - (mu_inf - mu0) exp(-t / tau) as sweat is occluded under the pad, 3-24 mm/s; rough glass only ~1/3 of smooth; porous paper the reverse (falls)"
+      },
+      "pressure_law": {
+        "v": {
+          "dry_smooth_glass": "mu > 1, falling as p^-0.2 to p^-0.5",
+          "dry_rough_glass": 0.5
+        },
+        "q": "M",
+        "src": "DERLER09 finger pad and hand edge to 120 kPa"
+      },
+      "load_index_n": {
+        "v": [
+          0.8,
+          0.85
+        ],
+        "q": "M",
+        "src": "ADAMS13 Table 1 (F = k W^n)"
+      },
+      "palm_low_pressure": {
+        "v": {
+          "polycarbonate_glossy_6kPa": 2.22,
+          "with_paraffin_oil": 0.28,
+          "lard_high_pressure_static": 0.05
+        },
+        "q": "M",
+        "src": "BOBJER93 and Bobjer 2004 thesis: palmar skin is 'sticky', mu often > 1 at low loads; coarse texture lowers friction when clean, raises it when contaminated"
+      },
+      "counterface": "finger pad / palm on smooth hard surfaces (aluminium, glass, polypropylene, polycarbonate); see pairs/skin.json"
+    },
+    "adhesion": {
+      "surface_energy_mJ_m2": {
+        "v": null,
+        "q": "E",
+        "src": "not found for glabrous skin (no sebum: expect near the forearm's apolar ~27 mN/m CST, MAVON97 - E)"
+      },
+      "tack": {
+        "v": "strong on smooth impermeable surfaces once sweat is occluded (friction up x10 in tens of s); excess water lubricates (/3)",
+        "q": "M",
+        "src": "ADAMS13"
+      }
+    },
+    "wetting": {
+      "water_contact_angle_deg": {
+        "v": null,
+        "q": "E",
+        "src": "not found for palm or sole"
+      }
+    },
+    "restitution": {
+      "v": {
+        "heel_isolated": [
+          0.59,
+          0.73
+        ],
+        "heel_in_vivo": 0.22,
+        "forefoot_M5": 0.81
+      },
+      "q": "D",
+      "src": "e = sqrt(1 - energy loss): isolated heel pad 46.5-65.5 % (AERTS95); in vivo ~95 % incl. the leg (AERTS95); FOOTMD R24 energy loss 33.7 % at M5"
+    },
+    "electrostatic": {
+      "triboelectric": {
+        "v": {
+          "dry_skin_nC_J": 30,
+          "oily_skin_nC_J": 45,
+          "position": "near the positive end (gives up electrons): above nylon-class, below polyurethane foam"
+        },
+        "q": "M",
+        "src": "ALPHALAB09 rows 'Nylon, dry skin' +30 and 'Hair, oily skin' +45 nC/J (72 F, 35 % RH); skin is conductive, so metal rubbing cannot charge it"
+      },
+      "resistivity_ohm_m": {
+        "v": {
+          "stratum_corneum_low_freq": [
+            500,
+            5000
+          ],
+          "wet_skin_low_freq": 17
+        },
+        "q": "D",
+        "src": "1 / sigma: stratum corneum 2e-4 to 2e-3 S/m and wet skin 0.059 S/m at low frequency (GABRIEL96 via the Frontiers compiled table); DC dry stratum corneum is higher still and falls steeply with depth (YAMAMOTO76, numbers not retrieved)"
+      },
+      "surface_resistivity_ohm_sq": {
+        "v": null,
+        "q": "E",
+        "src": "not found: depends on surface moisture; YAMAMOTO76 gives a depth profile, not retrieved"
+      },
+      "permittivity_rel": {
+        "v": {
+          "wet_skin_low_freq": 1136
+        },
+        "q": "M",
+        "src": "GABRIEL96 via the Frontiers compiled table (low-frequency relative permittivity, wet skin)"
+      },
+      "charge_decay_s": {
+        "v": {
+          "skin_surface_local_wet": 1.7e-07,
+          "skin_surface_local_dry_sc": [
+            1e-06,
+            0.0001
+          ],
+          "whole_body_discharge_to_ground": 1.5e-07,
+          "whole_body_on_insulating_shoes": "seconds to minutes (E)"
+        },
+        "q": "D",
+        "src": "local: tau = eps0 eps_r rho (wet 8.85e-12 x 1136 x 17; dry stratum corneum rho 500-5000 with eps_r ~ 200-1000, E); whole body: JS001 R C = 1500 ohm x 100 pF; held charge on insulating soles depends on the sole, E"
+      }
+    },
+    "solver": {
+      "phase": "soft_solid",
+      "collision_thickness_mm": {
+        "v": 0.2,
+        "q": "E",
+        "src": "ridge relief: ridges ~0.1-0.2 mm high (ridge height NOT found, HANDMD) inside a 0.55 mm epidermis"
+      },
+      "compliance_layers": [
+        {
+          "name": "stratum_corneum_and_epidermis",
+          "thickness_mm": {
+            "v": 0.55,
+            "q": "M",
+            "src": "HANDMD fingertip epidermis 0.37-0.79 mm (95 % interval), middle"
+          },
+          "E_kPa": {
+            "v": 4000.0,
+            "q": "E",
+            "src": "FENG22 forearm epidermis; the thick glabrous SC is stiffer when dry and softens markedly when hydrated (ADAMS13, qualitative)"
+          },
+          "poisson": {
+            "v": 0.49,
+            "q": "E",
+            "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+          },
+          "compressible_to_fraction": {
+            "v": 0.85,
+            "q": "E",
+            "src": "ridges flatten first (E)"
+          }
+        },
+        {
+          "name": "dermis",
+          "thickness_mm": {
+            "v": 1.2,
+            "q": "E",
+            "src": "LAYERS dermis_mm.palm EST"
+          },
+          "E_kPa": {
+            "v": 40.0,
+            "q": "E",
+            "src": "FENG22 applied"
+          },
+          "poisson": {
+            "v": 0.49,
+            "q": "E",
+            "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+          },
+          "compressible_to_fraction": {
+            "v": 0.85,
+            "q": "E",
+            "src": "as skin.body"
+          }
+        },
+        {
+          "name": "pulp_fat_septa",
+          "thickness_mm": {
+            "v": 4.0,
+            "q": "E",
+            "src": "digital pulp fat chambered by septa, a few mm to the distal phalanx (HANDMD: thickness not found)"
+          },
+          "E_kPa": {
+            "v": 26.1,
+            "q": "E",
+            "src": "fat in vivo (SOFTTISSUE R31); the pulp is compliant below 1 N and stiffens above (HANDMD Serina 1997)"
+          },
+          "poisson": {
+            "v": 0.49,
+            "q": "E",
+            "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+          },
+          "compressible_to_fraction": {
+            "v": 0.5,
+            "q": "E",
+            "src": "E"
+          }
+        },
+        {
+          "name": "bone",
+          "thickness_mm": {
+            "v": 0.0,
+            "q": "E",
+            "src": "distal phalanx"
+          },
+          "E_kPa": {
+            "v": 17000000.0,
+            "q": "E",
+            "src": "rigid"
+          },
+          "poisson": {
+            "v": 0.3,
+            "q": "E",
+            "src": "typical"
+          },
+          "compressible_to_fraction": {
+            "v": 1.0,
+            "q": "E",
+            "src": "rigid"
+          }
+        }
+      ],
+      "penetration_response": {
+        "contact_stiffness_kPa_per_mm": {
+          "v": 5.453,
+          "q": "D",
+          "src": "series stack of compliance_layers: E_eff = T / sum(t_i / E_i) = 31.35 kPa over T 5.75 mm, / T; initial (small-strain) value; each layer stiffens with strain (the pulp is compliant below 1 N and stiffens above (HANDMD Serina 1997, Pawluk 1999: a viscoelastic sphere, paraboloid pressure))"
+        },
+        "E_eff_kPa": {
+          "v": 31.35,
+          "q": "D",
+          "src": "series stack of compliance_layers (initial)"
+        },
+        "ramp": {
+          "v": "barrier_log",
+          "q": "E",
+          "src": "IPC-style log barrier inside collision_thickness keeps surfaces apart; the tissue's own stiffening (exponential in strain) carries the load beyond it"
+        },
+        "contact_damping_ratio": {
+          "v": {
+            "finger_pad": 0.26,
+            "heel_pad_tissue": [
+              0.1,
+              0.17
+            ]
+          },
+          "q": "D",
+          "src": "as contact.solver.impact.damping_ratio (measured pad energy loss; JINDRICH03, KER96 / AERTS95, WEARING11). Replaced E 0.3 11-08"
+        }
+      },
+      "impact": {
+        "restitution": {
+          "v": {
+            "finger_pad": 0.44,
+            "finger_pad_range": [
+              0.37,
+              0.45
+            ],
+            "heel_in_vivo": 0.46,
+            "heel_isolated_pad": 0.72
+          },
+          "q": "D",
+          "src": "e = sqrt(1 - energy loss fraction), from contact.solver.impact.energy_loss_fraction (M): finger tap 0.81 (JINDRICH03) -> 0.44 (0.37-0.45); heel in vivo pendulum 0.79 (KINOSHITA93) -> 0.46; isolated heel pad single impact 0.48 (AERTS95/KER96) -> 0.72. Reconciled 11-08 ~00:15 (was finger 0.5 E, heel 0.66 mid of the isolated range). A body-level impact uses the in-vivo values; the isolated pad is the tissue alone"
+        },
+        "response_time_ms": {
+          "v": {
+            "heel_hysteresis_rest_dependence": "loss rises with log(rest time)",
+            "heel_pendulum_loss": 0.48,
+            "heel_oscillation_loss": 0.3
+          },
+          "q": "M",
+          "src": "KER96"
+        },
+        "wave_speed_m_s": {
+          "v": {
+            "dermis_shear": 3.5
+          },
+          "q": "D",
+          "src": "sqrt(13.3 kPa / 1090)"
+        },
+        "damping_ratio": {
+          "v": {
+            "finger_pad": 0.26,
+            "heel_pad_tissue": [
+              0.1,
+              0.17
+            ],
+            "heel_with_limb": 0.24
+          },
+          "q": "D",
+          "src": "from measured impact energy loss (energy_loss_fraction): finger pad 81 % (JINDRICH03) -> e 0.44 -> zeta 0.26; heel pad alone 48 % isolated (KER96 / AERTS95) to 66 % in gait (WEARING11) -> zeta 0.10-0.17; heel with the limb's soft tissue 79 % (KINOSHITA93) -> 0.24. Replaced E 0.3 (no glabrous value) 11-08"
+        },
+        "energy_loss_fraction": {
+          "v": {
+            "finger_pad_tap": 0.81,
+            "finger_pad_tap_range": [
+              0.8,
+              0.86
+            ],
+            "heel_in_vivo_pendulum": 0.79,
+            "heel_in_vivo_pendulum_range": [
+              0.75,
+              0.89
+            ],
+            "heel_isolated_pendulum_single": 0.48,
+            "heel_isolated_oscillation": 0.3,
+            "heel_gait_fluoroscopy": 0.66,
+            "heel_gait_cine_radiography": 0.178
+          },
+          "q": "M",
+          "src": "finger: JINDRICH03 Table 1 (pulp alone: nail-tracked compression, taps 0.66-0.91 m/s); heel in vivo pendulum: KINOSHITA93 (includes shank soft tissue, PAIN-CHALLIS 2001 / AERTS95); isolated pad: KER96 / AERTS95; gait: WEARING11 0.66 +/- 0.12, GEFEN01 17.8 +/- 0.8 % (methods differ ~4x)"
+        },
+        "force_time": {
+          "v": {
+            "finger_tap": {
+              "tap_duration_ms": [
+                81,
+                169
+              ],
+              "impact_velocity_m_s": [
+                0.66,
+                0.91
+              ],
+              "first_peak_N": [
+                1.9,
+                3.25
+              ],
+              "time_to_first_peak_ms": [
+                3.4,
+                4.2
+              ],
+              "pulp_compression_mm": [
+                1.74,
+                2.05
+              ]
+            },
+            "heel_gait": {
+              "strain_peak": 0.39,
+              "time_to_peak_ms": 150,
+              "deformation_mm": 10.3,
+              "stiffness_N_per_mm": [
+                32,
+                212
+              ],
+              "energy_J_per_step": 1.0
+            },
+            "heel_in_vivo_pendulum": {
+              "deformation_max_mm": 11.3
+            }
+          },
+          "q": "M",
+          "src": "finger: JINDRICH03 Table 1 (4 conditions, means); heel gait: GEFEN01 (strain 0.39 +/- 0.05 in ~150 ms), WEARING11 / FOOTMD R23 (10.3 mm, 32 -> 212 N/mm, ~1 J); pendulum: KINOSHITA93"
+        },
+        "loss_factor_impact": {
+          "v": {
+            "finger_pad": 0.51,
+            "heel_pad_tissue": [
+              0.21,
+              0.34
+            ],
+            "heel_with_limb": 0.48
+          },
+          "q": "D",
+          "src": "2 x the impact damping ratios below (from energy_loss_fraction: e = sqrt(1 - L), zeta from e = exp(-pi zeta / sqrt(1 - zeta^2))); an equivalent single-mode value for a whole contact pulse. how a solver uses it: integrate the Prony set (deform.viscoelastic.prony) as internal variables in an implicit step (one exponential update per term per step; stable at any dt) on top of the hyperelastic stress, so a 1-10 ms slap sees the short-time stiffness and loses energy in the 1-10 ms terms; do not use Rayleigh damping fitted to the ~15 Hz wobble: beta-damping gives zeta = beta * omega / 2, so a beta set for zeta 0.15 at 15 Hz (beta 3.2 ms) gives zeta ~5 at 250-500 Hz (a 1-2 ms pulse): over-damped, the slap goes dead. Where only one number fits, use the loss factor at the pulse's frequency f ~ 1 / (2 x contact time), zeta = tan_delta / 2."
+        },
+        "aerts95_setup": {
+          "_": "AERTS95 setup for the contact session's reproduction test (asked 11-08). Full text paywalled (ScienceDirect; no open copy via PMC, Europe PMC or Unpaywall); only the abstract, AERTS96's abstract and a secondary review were read. Every field not in those is recorded as not found.",
+          "striker_mass_kg": {
+            "v": null,
+            "q": "E",
+            "src": "not found: AERTS95 methods not read (paywalled). For comparison only: KINOSHITA93 / KINOSHITA96 in vivo drop-impact tester 5 kg (instrumented shaft)"
+          },
+          "impact_velocity_m_s": {
+            "v": null,
+            "q": "E",
+            "src": "not found: AERTS95 methods not read. For comparison only: KINOSHITA93 0.72 and 0.93 m/s; KINOSHITA96 0.57 and 0.94 m/s; WEIJERS05 in vivo pendulum 0.2, 0.4, 0.6 m/s"
+          },
+          "striker_face": {
+            "v": null,
+            "q": "E",
+            "src": "not found: AERTS95 striker shape and size not read"
+          },
+          "specimen": {
+            "v": "isolated heel pads from amputated feet: the fat pad with part of the calcaneus removed from the foot (AERTS96 abstract, describing AERTS95 and Bennett & Ker 1990); the same samples tested on the pendulum and on an Instron servo-hydraulic tester. AERTS96 follow-up: intact amputated feet mounted on steel rods driven through the calcaneus, pad freed stepwise: no observable difference from isolation. BIOMIM25 (secondary): the pendulum test needed the pad fixed against a solid wall",
+            "q": "M",
+            "src": "AERTS95 abstract; AERTS96 abstract; BIOMIM25"
+          },
+          "calcaneus_fixed": {
+            "v": "AERTS96: yes, steel rod through the calcaneus; AERTS95: pad kept on a calcaneus portion, fixture details not read",
+            "q": "M",
+            "src": "AERTS96 abstract; AERTS95 fixture not found"
+          },
+          "pad_thickness_unloaded_mm": {
+            "v": null,
+            "q": "E",
+            "src": "not found: AERTS95 specimen thickness and footprint not read"
+          },
+          "max_deformation_mm": {
+            "v": [
+              4,
+              5
+            ],
+            "q": "E",
+            "src": "secondary, unverified: a search-index summary of AERTS95 (page not identified) gives max displacement 4-5 mm; not checked against the paper"
+          },
+          "stiffness_N_per_m": {
+            "v": {
+              "isolated_at_body_weight": 900000,
+              "former_in_vivo": 150000
+            },
+            "q": "M",
+            "src": "AERTS95 abstract: ~900 kN/m at body weight (non-linear) with both test types; former in vivo pendulum 150 kN/m"
+          },
+          "loss_definition": {
+            "v": "hysteresis: area of the load-deformation loop as a fraction of the loading work (Instron 'first loop-half cycles' mimic one pendulum impact; pendulum loops from the striker's deceleration integrated to deformation). Not a rebound-velocity ratio",
+            "q": "M",
+            "src": "AERTS95 abstract (loops compared, 'first loop-half cycles'); exact formula in the methods not read"
+          },
+          "energy_loss_fraction": {
+            "v": {
+              "range_all": [
+                0.465,
+                0.655
+              ],
+              "instron_first_loop": 0.504,
+              "pendulum_isolated": 0.655,
+              "former_in_vivo_pendulum": 0.95
+            },
+            "q": "M",
+            "src": "AERTS95 abstract: 46.5-65.5 % with both test types, former in vivo up to 95 %; the split Instron 50.4 / pendulum 65.5 from BIOMIM25's table (secondary); split by speed or specimen not found"
+          },
+          "related_measured": {
+            "v": {
+              "KER96_single_impact_loss": 0.48,
+              "KER96_continuous_oscillation_loss": 0.3,
+              "KER96_rest_1s_loss": 0.33,
+              "KER96_loss_added_per_decade_rest": 0.037,
+              "BENNETT90_energy_returned_cyclic": 0.7,
+              "KINOSHITA93_in_vivo_loss": 0.79,
+              "KINOSHITA93_deformation_mm": 11.3,
+              "AERTS93_shod_stiffness_law": "k [N/m] = 51.25 x (loading rate [N/s])^0.76, R2 0.90 (shod heel, in vivo pendulum)"
+            },
+            "q": "M",
+            "src": "KER96 abstract; BENNETT90 abstract (~70 % returned, 37 C, cyclic); KINOSHITA93 abstract (drop tester 5 kg, 0.93 m/s, shank included); AERTS93 abstract"
+          },
+          "heel_dashpot_fit_measured": {
+            "v": "not found: no Kelvin-Voigt or dashpot coefficient (N s/m) fitted to measured heel impact data. Found instead: GEFEN01 Kelvin-Voigt with non-linear viscosity (values not in the abstract); PAIN01 a model with a heel pad element and wobbling shank tissue (values not read); SUZUKI17 / NEGISHI20 five-element Maxwell (Prony) fits to in vivo spherical indentation at 15-100 mm/s (values not read); GRIG17 Prony (deform.viscoelastic.prony.heel_fat_pad); AERTS93 rate-stiffening law",
+            "q": "M",
+            "src": "GEFEN01; PAIN01; SUZUKI17; NEGISHI20; AERTS93 abstracts"
+          }
+        },
+        "pad_impact_loss_recommended": {
+          "_": "For the contact solver's slap test (1 kg pad on a rigid core into a rigid wall at 4 m/s) and mm-amplitude pad impacts at 0.5-3 m/s. Chosen by setup (pad on bone, no limb, mm amplitude, impact rate), not by a target band. IMPACT_TISSUE.md section 9.",
+          "finger_pad_free_bounce_measured": {
+            "v": null,
+            "q": "E",
+            "src": "no measured reference yet: no drop, pendulum or free-rebound test of the finger pulp found (JINDRICH03 and SERINA97 are voluntary taps, PAWLUK99 imposed ramps, KERN23 / WIERT12 um-amplitude impedance, WU06 FE only)"
+          },
+          "test_setup_recommended": {
+            "v": {
+              "energy_loss_fraction": 0.5,
+              "energy_loss_range": [
+                0.465,
+                0.655
+              ],
+              "restitution": 0.71,
+              "restitution_range": [
+                0.59,
+                0.73
+              ]
+            },
+            "q": "E",
+            "src": "cross-tissue inference from AERTS95 (M for the isolated heel pad: pad on its calcaneus, no lower leg, pendulum and Instron first-loop impacts, 46.5-65.5 %) and KER96 (single impact ~48 %); e = sqrt(1 - L). The only measured impacts of a pad on rigid bone without the limb. The test's 1 kg at 4 m/s (8 J) is heel / palm scale, ~3000x a finger tap's 1.4-2.4 N mm into the pulp (JINDRICH03). Applied to the finger pad this is E (cross-tissue), not M or D"
+          },
+          "finger_qlv_free_bounce": {
+            "v": {
+              "loss_range": [
+                0.16,
+                0.26
+              ],
+              "restitution_range": [
+                0.86,
+                0.915
+              ],
+              "relaxed_tau_4p1ms_at_1m_s": 0.915,
+              "cocontracted_tau_1p8ms_at_1m_s": 0.87
+            },
+            "q": "D",
+            "src": "computed here (research/qlv_bounce.py): a 14-32 g point mass (finger effective mass from JINDRICH03's I 7.07e-5 kg m2 at r 0.070 m = 14 g; 32 g whole finger) free-bouncing on JINDRICH03's QLV (m 2.48 /mm, b 0.25 N/mm, c0 0.82, v 243 and 569 /s) at 0.5-1 m/s, peak compression 1.6-2.4 mm. A lower bound on loss: the same paper's measured loops dissipate 80-86 % and this single-term QLV (g_inf 0.82) cannot reproduce them; the heel QLV vs heel impacts shows the same shortfall (0.05 vs 0.47-0.66). Above ~1 m/s the forces leave the fit's range (measured 0-6.5 N; bounce 18-360 N): extrapolation"
+          },
+          "kern_dashpot": {
+            "v": {
+              "loss": 0.61,
+              "restitution": 0.622
+            },
+            "q": "E",
+            "src": "KERN23 / KERN08 read as a Kelvin-Voigt dashpot tau 1.273 ms (computed here): um amplitude, 1-6 N preload, driving-point impedance of the whole finger: the 100-150 Hz anti-resonance is partly the pulp spring against the moving finger mass (WU06: probe and finger mass shape such data), and the flat 'damping' region includes power carried into the finger, hand and arm (JINDRICH03: ~40 % of a tap's kinetic energy goes proximal). A rigid core has none of that, so not for this test"
+          },
+          "jindrich_tap_loop": {
+            "v": {
+              "loss": [
+                0.8,
+                0.86
+              ],
+              "restitution_if_free": [
+                0.37,
+                0.45
+              ]
+            },
+            "q": "M",
+            "src": "JINDRICH03 Table 1 energy dissipation 81 / 86 / 80 / 80 %: Ein and Eout by integrating force over positive and negative increments of nail-LED pulp compression over a whole 80-170 ms voluntary tap (impact, muscle-held load, lift). Pulp only and mm amplitude, but not a free bounce: an upper bound for the pad's own loss"
+          }
+        },
+        "documented_pad_impact_setup": {
+          "_": "Best-documented pad impact test found (11-08, for the contact session's proof scene). NO study found reports all of: striker mass, velocity, face, unloaded pad thickness + holding, and a measured loss. Chosen: GRIG17 (CC BY 4.0, full methods read on PMC): cadaveric heel fat pad on its potted calcaneus, 7 kg drop. It reports mass, velocity, face and holding; it does NOT report a thickness value or any energy loss / restitution. Alternative with a loss but no face or thickness: KINOSHITA93 (in vivo, abstract only). Candidates checked: AERTS95/96, KER96, KER89, BENNETT90, PAIN01, WEIJERS05, GEFEN01, KINOSHITA93/96, QIAN23, Challis & Murdock 2005, Naemi 2015, Behforootan 2017; see research/IMPACT_TISSUE.md section 10.",
+          "study": {
+            "v": "GRIG17",
+            "q": "M",
+            "src": "GRIG17 methods 2.1-2.3 (PMC5161234)"
+          },
+          "striker_mass_kg": {
+            "v": 7.0,
+            "q": "M",
+            "src": "GRIG17: accelerometer 'secured to the top of the 7 kg falling mass' (Dynatup 9250 HV drop rig, Instron)"
+          },
+          "drop_height_cm": {
+            "v": [
+              2,
+              4,
+              8,
+              16,
+              32,
+              64
+            ],
+            "q": "M",
+            "src": "GRIG17: increasing drop heights; a repeat 2 cm drop after each step, failure = >10 % change in peak force, time to peak or slope"
+          },
+          "impact_velocity_m_s": {
+            "v": [
+              0.6,
+              0.85,
+              1.2,
+              1.7,
+              2.4,
+              3.4
+            ],
+            "q": "M",
+            "src": "GRIG17: target velocities at impact for the six heights (actual velocity from the accelerometer)"
+          },
+          "striker_face": {
+            "v": {
+              "shape": "cylindrical, curved (no sharp edges)",
+              "diameter_mm": 50,
+              "curvature_radius_mm": "not reported"
+            },
+            "q": "M",
+            "src": "GRIG17: 'cylindrical, curved 50 mm diameter tup' above a 40 kN load cell (+/-5 N); curvature radius not reported"
+          },
+          "specimen": {
+            "v": "5 male cadaveric lower limbs, 40-57 y (mean 47), fresh-frozen -20 C, thawed; distal tibia, fibula, forefoot and talus removed: the intact calcaneus with its heel fat pad and plantar skin attached",
+            "q": "M",
+            "src": "GRIG17 2.1"
+          },
+          "holding": {
+            "v": "calcaneus kept and fixed: potted in PMMA bone cement in a 45 mm deep cylindrical pot, about half the calcaneal body below the rim; bone treated as rigid; pad face up to the falling tup",
+            "q": "M",
+            "src": "GRIG17 2.1 (dynamic-fixture details beyond the pot: not reported)"
+          },
+          "pad_thickness_unloaded_mm": {
+            "v": null,
+            "q": "E",
+            "src": "not reported: GRIG17 measured undeformed thickness from CT (1 mm slices, 0.4 x 0.4 mm pixels) but gives no value; its only number is a cited population average of 18 mm calcaneus-to-skin (Bojsen-Moller & Jorgensen 1991), not these specimens"
+          },
+          "loss_definition": {
+            "v": null,
+            "q": "E",
+            "src": "not reported: GRIG17 records force-time (25 kHz, 1 kHz low-pass), accelerometer and 33 000 fps video, and reports peak force (mean max before failure 6.52 +/- 1.96 kN); no loop area, rebound velocity or restitution"
+          },
+          "energy_loss_fraction": {
+            "v": null,
+            "q": "E",
+            "src": "not reported in GRIG17; Discussion only says its fitted models 'return all the stored energy' and miss the measured unloading curve and peak (qualitative: the tissue dissipates more than the models)"
+          },
+          "restitution": {
+            "v": null,
+            "q": "E",
+            "src": "not reported in GRIG17"
+          },
+          "measured_outputs": {
+            "v": {
+              "peak_force_before_failure_kN": [
+                6.52,
+                1.96
+              ],
+              "failed_at_height_cm": {
+                "64": 2,
+                "32": 2,
+                "16": 1
+              }
+            },
+            "q": "M",
+            "src": "GRIG17 results ([mean, SD]; specimens failing at each height)"
+          },
+          "alternative_with_loss": {
+            "v": {
+              "study": "KINOSHITA93",
+              "mode": "in vivo, subject prone, ankle at 90 deg fixed to a board (limb restrained; shank soft tissue included)",
+              "striker_mass_kg": 5.0,
+              "impact_velocity_m_s": [
+                0.72,
+                0.93
+              ],
+              "max_deformation_mm_at_0p93": 11.3,
+              "energy_absorbed_fraction": 0.79,
+              "energy_absorbed_range": [
+                0.75,
+                0.89
+              ],
+              "striker_face": "not reported",
+              "pad_thickness_unloaded_mm": "not reported",
+              "loss_definition": "'energy absorption' computed from the shaft's acceleration and displacement; exact formula not read"
+            },
+            "q": "M",
+            "src": "KINOSHITA93 abstract (mass, velocities, 11.3 mm, 79 % (75-89)); positioning from a secondary Descente report summary, not the paper; full text paywalled, face / thickness / formula not read"
+          },
+          "isolated_loss_other_setup": {
+            "v": {
+              "AERTS95_range": [
+                0.465,
+                0.655
+              ]
+            },
+            "q": "M",
+            "src": "AERTS95 abstract (isolated pads on calcaneus, pendulum + Instron loop area); mass, velocity, face, thickness not found: see aerts95_setup. Use as the isolated-pad loss target only as a cross-study pairing (E) with GRIG17's setup"
+          },
+          "others_checked_not_complete": {
+            "v": {
+              "QIAN23": "2.5 kg drop hammer, 10.3 cm height, heel pads with skin; face, thickness, holding, loss not reported (CC BY)",
+              "WEIJERS05": "in vivo pendulum 0.2/0.4/0.6 m/s; mass etc. not read (paywalled)",
+              "PAIN01": "simulation of an 11.78 kg pendulum at 1.0 m/s, not a measurement",
+              "CHALLIS05": "in vivo indentation (not impact): unloaded thickness 13.6-14.9 mm (ultrasound), loop loss 61-62 %"
+            },
+            "q": "M",
+            "src": "QIAN23 methods; WEIJERS05 abstract; PAIN01 abstract via index; Challis & Murdock ISB 2005 abstract 0780"
+          }
+        }
+      },
+      "compliance_layers_heel": [
+        {
+          "name": "stratum_corneum_and_epidermis",
+          "thickness_mm": {
+            "v": 0.55,
+            "q": "M",
+            "src": "FOOTMD R43 plantar epidermis 0.55 +/- 0.12"
+          },
+          "E_kPa": {
+            "v": 4000.0,
+            "q": "E",
+            "src": "FENG22"
+          },
+          "poisson": {
+            "v": 0.49,
+            "q": "E",
+            "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+          },
+          "compressible_to_fraction": {
+            "v": 0.9,
+            "q": "E",
+            "src": "E"
+          }
+        },
+        {
+          "name": "dermis",
+          "thickness_mm": {
+            "v": 1.64,
+            "q": "D",
+            "src": "FOOTMD R43 heel skin 2.19 total less epidermis"
+          },
+          "E_kPa": {
+            "v": 830.0,
+            "q": "M",
+            "src": "FOOTMD R45 plantar skin tensile 0.83 +/- 0.49 MPa (another lab 12.9-22.1 MPa)"
+          },
+          "poisson": {
+            "v": 0.49,
+            "q": "E",
+            "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+          },
+          "compressible_to_fraction": {
+            "v": 0.85,
+            "q": "E",
+            "src": "E"
+          }
+        },
+        {
+          "name": "microchamber_fat",
+          "thickness_mm": {
+            "v": 3.5,
+            "q": "M",
+            "src": "FOOTMD (1): thin microchamber layer 3-4 mm at the heel, barely compressible"
+          },
+          "E_kPa": {
+            "v": 136.0,
+            "q": "E",
+            "src": "FOOTMD R24 forefoot pad modulus 136 kPa applied (stiffer than the macro layer, E)"
+          },
+          "poisson": {
+            "v": 0.49,
+            "q": "E",
+            "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+          },
+          "compressible_to_fraction": {
+            "v": 0.85,
+            "q": "M",
+            "src": "FOOTMD: 'barely compressible'"
+          }
+        },
+        {
+          "name": "macrochamber_fat",
+          "thickness_mm": {
+            "v": 13.0,
+            "q": "M",
+            "src": "FOOTMD (1): 13 mm at the heel; does nearly all the compressing"
+          },
+          "E_kPa": {
+            "v": 121.0,
+            "q": "M",
+            "src": "FOOTMD R24 sole under metatarsal heads 121-136 kPa (ultrasound)"
+          },
+          "poisson": {
+            "v": 0.49,
+            "q": "E",
+            "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+          },
+          "compressible_to_fraction": {
+            "v": 0.49,
+            "q": "M",
+            "src": "FOOTMD (2): heel pad 16.9 -> 8.2 mm standing (roughly halves)"
+          }
+        },
+        {
+          "name": "bone",
+          "thickness_mm": {
+            "v": 0.0,
+            "q": "E",
+            "src": "calcaneus"
+          },
+          "E_kPa": {
+            "v": 17000000.0,
+            "q": "E",
+            "src": "rigid"
+          },
+          "poisson": {
+            "v": 0.3,
+            "q": "E",
+            "src": "typical"
+          },
+          "compressible_to_fraction": {
+            "v": 1.0,
+            "q": "E",
+            "src": "rigid"
+          }
+        }
+      ],
+      "heel_contact_stiffness_kPa_per_mm": {
+        "v": 7.392,
+        "q": "D",
+        "src": "series stack compliance_layers_heel: E_eff 138.15 kPa over 18.69 mm, / T"
+      },
+      "checks": {
+        "v": {
+          "heel_pad_standing_mm": [
+            16.9,
+            8.2
+          ],
+          "heel_stiffness_isolated_kN_m_at_bw": 900
+        },
+        "q": "M",
+        "src": "FOOTMD (2); AERTS95 follow-up (isolated pads ~900 kN/m at body weight)"
+      }
+    }
+  },
+  "deform": {
+    "model": {
+      "v": "neo_hookean",
+      "q": "E",
+      "src": "per layer at small strain; the pulp's stiffening as the tissue's exponential law"
+    },
+    "density_kg_m3": {
+      "v": 1090,
+      "q": "E",
+      "src": "as skin.body"
+    },
+    "E_kPa": {
+      "v": {
+        "epidermis": 4000.0,
+        "dermis": 40.0,
+        "plantar_skin_tension": 830.0
+      },
+      "q": "M",
+      "src": "FENG22 (forearm, applied); FOOTMD R45 plantar skin 0.83 MPa (another lab 12.9-22.1 MPa: 10x apart)"
+    },
+    "poisson": {
+      "v": 0.5,
+      "q": "E",
+      "src": "incompressible"
+    },
+    "pad_modulus_kPa": {
+      "v": {
+        "forefoot_M1": 136,
+        "forefoot_M3": 121
+      },
+      "q": "M",
+      "src": "FOOTMD R24 (ultrasound indentation, 20 healthy)"
+    },
+    "viscoelastic": {
+      "relaxation": {
+        "v": "heel tissue: stiffest, longest relaxation, least loss of 6 plantar sites (no number)",
+        "q": "M",
+        "src": "FOOTMD R25"
+      },
+      "prony": {
+        "v": {
+          "fingertip_pulp": [
+            {
+              "g": 0.18,
+              "tau_s": 0.0041
+            }
+          ],
+          "fingertip_pulp_g_inf": 0.82,
+          "fingertip_pulp_cocontracted_high_speed": [
+            {
+              "g": 0.19,
+              "tau_s": 0.0018
+            }
+          ],
+          "heel_fat_pad": [
+            {
+              "g": 0.06,
+              "tau_s": 0.001
+            },
+            {
+              "g": 0.77,
+              "tau_s": 0.01
+            },
+            {
+              "g": 0.02,
+              "tau_s": 0.1
+            }
+          ],
+          "heel_fat_pad_g_inf": 0.15
+        },
+        "q": "M",
+        "src": "fingertip: JINDRICH03 Table 2, G(t) = c0 + c1 exp(-v t), relaxed normal-speed taps c0 0.82, c1 0.18, v 243 +/- 179 /s (tau 4.1 ms); co-contracted high-speed v 569 /s, c1 0.19 (tau 1.8 ms); PAWLUK99 mean v 231 /s. Heel: GRIG17 Table 1 (cadaveric heel fat, to ~150 /s). Both multiply a nonlinear instantaneous stress (pulp_instantaneous_force; GRIG17 Yeoh)"
+      },
+      "prony_times_fingerpad_s": {
+        "v": [
+          0.004,
+          0.07,
+          1.4
+        ],
+        "q": "M",
+        "src": "PAWLUK99 abstract: three exponentials ~4 ms, ~70 ms, ~1.4 s plus a constant (ramp-and-hold, 0-2 N); weights not retrieved"
+      },
+      "pulp_instantaneous_force": {
+        "v": {
+          "law": "F = (b / m) (exp(m x) - 1), x pulp compression mm",
+          "m_per_mm": 2.48,
+          "b_N_per_mm": 0.25,
+          "m_range_per_mm": [
+            1.8,
+            3.4
+          ]
+        },
+        "q": "M",
+        "src": "JINDRICH03 Table 2 relaxed normal-speed taps (m 2.48 +/- 1.01, b 0.25 +/- 0.24); co-contracted m 2.85-2.89, b 0.20; PAWLUK99 m 1.6-3.2 (mean 2.1)"
+      },
+      "loss_factor_vs_freq": {
+        "v": {
+          "fingertip_pulp": {
+            "10Hz": 0.052,
+            "100Hz": 0.062,
+            "1000Hz": 0.007
+          },
+          "heel_fat_pad": {
+            "10Hz": 0.91,
+            "100Hz": 0.16,
+            "1000Hz": 0.022
+          }
+        },
+        "q": "D",
+        "src": "computed here from the prony entries (linear tan delta). The fingertip's linear tan delta (<= 0.06) cannot produce its measured 80-86 % tap hysteresis (contact.solver.impact.energy_loss_fraction): the loss comes from the QLV product of the exponential instantaneous stiffness and the relaxation at large strain, so run the QLV, not a linear loss factor"
+      },
+      "high_rate_E_kPa": {
+        "v": {
+          "heel_fat_pad": {
+            "0": 18,
+            "10": 24,
+            "20": 32,
+            "50": 73,
+            "100": 296,
+            "150": 1200
+          }
+        },
+        "q": "D",
+        "src": "keys: strain rate per s. GRIG17 Yeoh C10(rate) = 0.003 exp(0.028 rate) MPa (R2 0.49), E = 6 C10 initial; cadaveric heel fat"
+      },
+      "qlv": {
+        "_": "Fung quasi-linear viscoelasticity (QLV) for the glabrous pads, 11-08 (library lane). Stress (or force) is the convolution of a reduced relaxation G(t), G(0)=1, with the rate of an instantaneous elastic response: sigma(t) = integral_0^t G(t - s) d sigma_e(eps(s))/ds ds (force form: F(t) = integral G(t - s) dF_e(x(s))/ds ds). Solver recipe: per contact point keep one state per Prony term; with G = g_inf + sum g_i exp(-t/tau_i), each step h_i <- exp(-dt/tau_i) h_i + g_i exp(-dt/(2 tau_i)) (sigma_e[n+1] - sigma_e[n]) and sigma = g_inf sigma_e + sum h_i; the Fung continuous spectrum (C, tau1, tau2) is run through its prony_equivalent (one term per decade). The loss comes only from the relaxing fraction (1 - g_inf) acting on the exponential stiffness; it is not a damping coefficient to tune. Checked here (qlv_check): with these measured sets a single load-unload of the pad loses 0.18-0.37 (finger) and 0.05-0.41 (heel), so QLV of the pad alone gives e >= ~0.77; the measured in-vivo 0.79-0.81 losses include the voluntary tap loop and the limb (qlv_check.consequence).",
+        "finger_pad": {
+          "instantaneous_elastic": {
+            "law": {
+              "v": "F_e = (b / m) (exp(m x) - 1), x pulp compression mm (lumped force form, Pawluk-Howe)",
+              "q": "M",
+              "src": "JINDRICH03 Table 2 / PAWLUK99"
+            },
+            "m_per_mm": {
+              "v": 2.48,
+              "q": "M",
+              "src": "JINDRICH03 Table 2 relaxed normal-speed taps 2.48 +/- 1.01 (subjects 1.8-3.4; mean all conditions 2.7); PAWLUK99 1.6-3.2 (mean 2.1)"
+            },
+            "b_N_per_mm": {
+              "v": 0.25,
+              "q": "M",
+              "src": "JINDRICH03 Table 2 relaxed normal-speed 0.25 +/- 0.24; co-contracted 0.20"
+            },
+            "A_kPa": {
+              "v": 1.0,
+              "q": "D",
+              "src": "stress form sigma_e = A (exp(B eps) - 1): A = (b/m) / contact area = 0.101 N / ~1.0 cm2 (E: pad contact area near 1-2 N); the area grows with load, so the force form is the measured one and preferred for a lumped pad"
+            },
+            "B": {
+              "v": 12.4,
+              "q": "D",
+              "src": "B = m h with pulp thickness h ~5 mm (E: volar soft tissue over the distal phalanx, 3-7 mm); range 9-17 for m 1.8-3.4"
+            }
+          },
+          "reduced_relaxation": {
+            "form": {
+              "v": "prony: G(t) = c0 + c1 exp(-v t)",
+              "q": "M",
+              "src": "JINDRICH03 / PAWLUK99 form (PAWLUK99 used 3 exponentials, weights not retrieved)"
+            },
+            "prony": {
+              "v": {
+                "g_inf": 0.82,
+                "terms": [
+                  {
+                    "g": 0.18,
+                    "tau_s": 0.0041
+                  }
+                ]
+              },
+              "q": "M",
+              "src": "JINDRICH03 Table 2 relaxed normal-speed taps: c0 0.82, c1 0.18, v 243 +/- 179 /s (tau 4.1 ms); co-contracted high-speed c1 0.19, v 569 /s (tau 1.8 ms); c0, c1 not different across conditions"
+            },
+            "prony_times_ramp_hold_s": {
+              "v": [
+                0.004,
+                0.07,
+                1.4
+              ],
+              "q": "M",
+              "src": "PAWLUK99 abstract: ~4 ms, ~70 ms, ~1.4 s plus a constant; weights not retrieved, so the long terms are absent from the tap set (they matter for presses > 50 ms)"
+            },
+            "C": {
+              "v": null,
+              "q": "E",
+              "src": "not found: no Fung continuous-spectrum (C, tau1, tau2) fit of the finger pad retrieved; use the Prony set"
+            }
+          },
+          "valid_range": {
+            "v": {
+              "x_mm": [
+                0,
+                2.1
+              ],
+              "force_N": [
+                0,
+                3.3
+              ],
+              "pulp_speed_m_s": [
+                0,
+                0.91
+              ],
+              "times_s": [
+                0.001,
+                0.17
+              ]
+            },
+            "q": "M",
+            "src": "JINDRICH03 Table 1 (compression 1.74-2.05 mm, first peaks 1.9-3.25 N, taps 0.66-0.91 m/s, 81-169 ms); PAWLUK99 ramps to 80 mm/s, 0-2 N"
+          },
+          "test_condition": {
+            "v": "in vivo, 8 adults 27-38 y, index finger voluntary taps on a rigid load cell, pulp compression from a nail-mounted LED; 4 conditions (relaxed / co-contracted x normal / high speed)",
+            "q": "M",
+            "src": "JINDRICH03 Methods"
+          }
+        },
+        "heel_pad": {
+          "instantaneous_elastic": {
+            "law": {
+              "v": "sigma_e = A (exp(B eps) - 1), eps nominal compressive strain, sigma kPa",
+              "q": "M",
+              "src": "LEDOUX05 (Fung QLV form); PAI10 / LEDOUX07 (data the D values are fitted to)"
+            },
+            "A_kPa": {
+              "v": 2.66,
+              "q": "D",
+              "src": "fitted here to LEDOUX07 subcalcaneal ~100 kPa at ~50 % strain with ~750 kPa modulus (tangent at peak): A 2.66, B 7.31, initial modulus A B 19 kPa, matching GRIG17 heel fat 18 kPa at rest. Alternative PAI10 calcaneus (73.3 kPa at 52.5 %, 674 kPa): A 0.62, B 9.12. From 1-10 Hz cyclic slopes, so a little below a true instantaneous law"
+            },
+            "B": {
+              "v": 7.31,
+              "q": "D",
+              "src": "as A_kPa; range 7.3-9.1 over the two data sets"
+            },
+            "A_B_as_published": {
+              "v": {
+                "A_N": 14.84,
+                "A_N_sd": 12.83,
+                "B": 87.74,
+                "B_sd": 213.9
+              },
+              "q": "M",
+              "src": "LEDOUX05 Table 1 subcalcaneal (force A in N on 2x2 cm blocks, i.e. 37 kPa). Not usable as a pair: the mean B is carried by outliers (sd 2.4x the mean) and A 37 kPa with B 87.7 gives absurd stress beyond 5 % strain; kept as the record, the D pair is the one to run"
+            }
+          },
+          "reduced_relaxation": {
+            "form": {
+              "v": "fung_continuous: G(t) = [1 + C (E1(t/tau2) - E1(t/tau1))] / [1 + C ln(tau2/tau1)], E1 the exponential integral",
+              "q": "M",
+              "src": "LEDOUX05 / FUNG93"
+            },
+            "C": {
+              "v": 0.523,
+              "q": "M",
+              "src": "LEDOUX05 Table 1 subcalcaneal 0.523 +/- 0.189 (other sites 0.68-1.03; no site difference, p 0.43)"
+            },
+            "tau1_s": {
+              "v": 0.019,
+              "q": "M",
+              "src": "LEDOUX05 Table 1 subcalcaneal 0.019 +/- 0.054 (sd > mean: poorly fixed)"
+            },
+            "tau2_s": {
+              "v": 20170,
+              "q": "M",
+              "src": "LEDOUX05 Table 1 subcalcaneal 20170 +/- 15060; longer than the 300 s hold, so only bounded below (authors' caveat); heel the slowest site (p 0.035)"
+            },
+            "G_check": {
+              "v": {
+                "0.1s": 0.86,
+                "1s": 0.71,
+                "300s": 0.35
+              },
+              "q": "D",
+              "src": "G(t) computed here from C, tau1, tau2 (scipy exp1)"
+            },
+            "prony_equivalent": {
+              "v": {
+                "g_inf": 0.33,
+                "terms": [
+                  {
+                    "g": 0.06,
+                    "tau_s": 0.02
+                  },
+                  {
+                    "g": 0.07,
+                    "tau_s": 0.2
+                  },
+                  {
+                    "g": 0.07,
+                    "tau_s": 2.0
+                  },
+                  {
+                    "g": 0.07,
+                    "tau_s": 20.0
+                  },
+                  {
+                    "g": 0.07,
+                    "tau_s": 200.0
+                  },
+                  {
+                    "g": 0.33,
+                    "tau_s": 20000.0
+                  }
+                ]
+              },
+              "q": "D",
+              "src": "the Fung spectrum is flat per decade: weight per decade C ln(10) / (1 + C ln(tau2/tau1)) = 0.523 x 2.303 / 8.26 = 0.146, spread about one term per decade (rounded), the remainder lumped at 20000 s; for an impact (< 1 s) everything beyond 2 s acts as g_inf ~0.8. Approximate; integrate the continuous G when exact"
+            },
+            "alternative_prony_GRIG17": {
+              "v": "deform.viscoelastic.prony.heel_fat_pad (g_inf 0.15; 1, 10, 100 ms) from cadaveric drop tests to ~150 /s relaxes far more at impact rates than LEDOUX05's slow-ramp set; for a slap or heel strike the GRIG17 set is the rate-appropriate one, LEDOUX05 for holds and standing",
+              "q": "D",
+              "src": "compared here 11-08"
+            }
+          },
+          "valid_range": {
+            "v": {
+              "strain": [
+                0,
+                0.55
+              ],
+              "ramp_s": 0.1,
+              "hold_s": 300,
+              "cyclic_Hz": [
+                0.005,
+                10
+              ]
+            },
+            "q": "M",
+            "src": "LEDOUX05 (0.1 s ramp, 300 s hold, target from gait loads); LEDOUX07 / PAI10 triangles 0.005-10 Hz to ~50 % strain"
+          },
+          "test_condition": {
+            "v": "ex vivo, fresh-frozen non-diabetic cadaveric feet, plantar tissue blocks without skin, 35 C, ~100 % humidity, 0.5 N preload, 10 x 1 Hz preconditioning",
+            "q": "M",
+            "src": "LEDOUX05 Methods; PAI10 same lab and rig"
+          },
+          "energy_loss_ex_vivo": {
+            "v": {
+              "subcalcaneal_LB07": 0.445,
+              "calcaneus_PAI10": 0.633,
+              "all_sites_1Hz": 0.619,
+              "all_sites_10Hz": 0.749
+            },
+            "q": "M",
+            "src": "LEDOUX07 (via PAI10 discussion); PAI10 Tables 3, 6 (triangle waves, ~50 % strain)"
+          }
+        },
+        "qlv_check": {
+          "finger_monotonic_tap_loss": {
+            "v": {
+              "half_sine_5ms_1mm": 0.19,
+              "half_sine_10ms_2mm": 0.35,
+              "half_sine_20ms_2mm": 0.37,
+              "half_sine_100ms_2mm": 0.14,
+              "load_4ms_unload_100ms_2mm": 0.19
+            },
+            "q": "D",
+            "src": "computed here (scratch qlv_loss.py / qlv_asym.py, imposed displacement, Ein and Eout as JINDRICH03 defines them): the Jindrich set peaks at ~0.37 loss (e ~0.79); its 81 % comes from a voluntary 80-170 ms tap with an impact transient and continued muscle-driven loading, not one elastic bounce. JINDRICH03: the pulp absorbs ~60 % of the finger's kinetic energy, the rest goes to proximal musculoskeletal elements"
+          },
+          "heel_monotonic_loss": {
+            "v": {
+              "cycle_10ms": 0.05,
+              "cycle_100ms": 0.24,
+              "cycle_200ms": 0.31,
+              "cycle_1s": 0.41
+            },
+            "q": "D",
+            "src": "computed here with LEDOUX05 G and B 9 at 40 % strain, half-sine imposed displacement"
+          },
+          "consequence": {
+            "v": "QLV of the pad alone bounds a free bounce at e ~0.77-0.9; the measured 0.23-0.73 band at body level needs the striking limb's own losses (finger, hand and arm soft tissue and joints; KINOSHITA93's shank tissue) in the contact, as a second QLV body or the limb's soft-tissue stack, not a larger pad damping",
+            "q": "D",
+            "src": "from finger_monotonic_tap_loss / heel_monotonic_loss vs contact.solver.impact.energy_loss_fraction"
+          }
+        }
+      },
+      "loss_vs_freq_measured": {
+        "v": {
+          "100Hz": 0.91,
+          "300Hz": 2.74,
+          "1000Hz": 9.1,
+          "cases": {
+            "index_pad_medial_lateral_mean": {
+              "100Hz": 0.91,
+              "300Hz": 2.74,
+              "1000Hz": 9.1
+            },
+            "index_pad_medial_lateral_subject_range": {
+              "100Hz": [
+                0.67,
+                1.07
+              ],
+              "300Hz": [
+                2.0,
+                3.2
+              ],
+              "1000Hz": [
+                6.7,
+                10.7
+              ]
+            },
+            "index_pad_proximal_distal_mean": {
+              "100Hz": 0.65,
+              "300Hz": 1.96,
+              "1000Hz": 6.5
+            }
+          },
+          "kelvin_voigt_lumped": {
+            "medial_lateral": {
+              "k_N_per_mm": 0.91,
+              "b_N_s_per_m": 1.33,
+              "mass_g": 0.13,
+              "corner_Hz": 111
+            },
+            "proximal_distal": {
+              "k_N_per_mm": 1.43,
+              "b_N_s_per_m": 1.49,
+              "mass_g": 0.17,
+              "corner_Hz": 152
+            },
+            "normal_force_power_law_exponent": {
+              "k": 0.35,
+              "b": 0.35,
+              "mass": 0.26
+            }
+          }
+        },
+        "q": "D",
+        "src": "WIERT12 Table 1 (7 adults, index fingertip, tangential sinusoidal sweep 20-500 Hz, 0.5 N normal load, no slip, small amplitude, nail free): Kelvin-Voigt k and b per subject (M); tan delta = 2 pi f b / k computed here (D). 100 and 300 Hz inside the measured band; 1000 Hz is the Kelvin-Voigt fit run past 500 Hz (extrapolated). Corner (tan delta = 1) ~100 Hz: elastic below, viscous above, inertia negligible to 500 Hz. k and b scale ~ (normal force)^0.35 (Table 2), so a pad pressed harder keeps tan delta about the same. This is the whole pad as a lumped tangential load (skin + pulp + contact), not a bulk material; it agrees with Nakazawa 2000 (b 2.0 N s/m, quoted in WIERT12)",
+        "method": "fingertip mechanical impedance (high-mobility voice-coil probe, closed-loop, WIERT12RSI), Kelvin-Voigt fit, tangential direction"
+      },
+      "G_storage_loss_vs_freq_measured_kPa": {
+        "v": {
+          "medial_lateral": {
+            "E_storage": 111,
+            "E_loss": {
+              "100Hz": 102,
+              "300Hz": 305,
+              "1000Hz": 1016
+            },
+            "G_storage": 37,
+            "G_loss": {
+              "100Hz": 34,
+              "300Hz": 102,
+              "1000Hz": 339
+            },
+            "eta_Pa_s": 162
+          },
+          "proximal_distal": {
+            "E_storage": 124,
+            "E_loss": {
+              "100Hz": 83,
+              "300Hz": 248,
+              "1000Hz": 827
+            },
+            "G_storage": 41,
+            "G_loss": {
+              "100Hz": 28,
+              "300Hz": 83,
+              "1000Hz": 276
+            },
+            "eta_Pa_s": 132
+          }
+        },
+        "q": "D",
+        "src": "WIERT12 Table 1 effective complex Young's modulus from the contact stiffness (Cerruti, K = 8 a G / (2 - nu), nu 0.5): E and eta per subject (M), means here; E'' = 2 pi f eta and G = E / 3 computed here (D); 1000 Hz extrapolated. An effective bulk value of the pad seen through its contact (~4.5-6.5 mm contact radius), not of the skin alone (skin E is MPa-scale)"
+      },
+      "loss_vs_freq_normal_measured": {
+        "_": "NORMAL-direction (indentation) small-amplitude loss of the index fingertip pad, 11-08 (library lane, for the contact solver). tan delta = omega b / k of the lumped spring-damper (mass excluded: it stores, it does not lose). Answer: the normal loss is of the same order as the tangential (tan delta ~1 near 100-150 Hz, ~2 at 250 Hz, rising ~ f above); both directions are viscous-dominated above ~100 Hz. The big gap is between these vibration impedances and the slow-tap QLV set (Jindrich 2003), not between directions.",
+        "best_estimate": {
+          "v": {
+            "100Hz": 0.8,
+            "250Hz": 2.0,
+            "500Hz": 4.0,
+            "1000Hz": 8.0
+          },
+          "q": "D",
+          "src": "KERN23 ch. 3.1.6.2/3.1.6.3 (orig. KERN08): index finger, normal excitation by a plate, 1-6 N, contactors 2-15 mm dia, 20-2000 Hz, 8 subjects, 192 sweeps: |Z| falls 20 dB/decade (elastic) up to an anti-resonance at ~100-150 Hz, then is flat ('pure damping'); 'well balanced elasticity and damping' to ~150 Hz. Taken here: corner f_c = k/(2 pi b) ~ 125 Hz (100-150), so tan delta = f / f_c. The anti-resonance read as the elastic-viscous corner is an approximation (D)."
+        },
+        "range": {
+          "v": {
+            "100Hz": [
+              0.67,
+              2.9
+            ],
+            "250Hz": [
+              1.7,
+              7.4
+            ],
+            "500Hz": [
+              3.3,
+              15
+            ],
+            "1000Hz": [
+              6.7,
+              29
+            ]
+          },
+          "q": "D",
+          "src": "low end KERN23 f_c 150 Hz; high end the LUNDSTROM84 lumped fit below (f_c ~34 Hz). Above 500 Hz both are model extensions (KERN23 shape is measured to 2 kHz; the k-b values are not)."
+        },
+        "cases": {
+          "kern_plate_normal": {
+            "v": {
+              "corner_Hz": [
+                100,
+                150
+              ],
+              "tan_delta": {
+                "100Hz": [
+                  0.67,
+                  1.0
+                ],
+                "250Hz": [
+                  1.7,
+                  2.5
+                ],
+                "500Hz": [
+                  3.3,
+                  5.0
+                ],
+                "1000Hz": [
+                  6.7,
+                  10
+                ]
+              },
+              "impedance_level_dB_re_1Ns_per_m": [
+                10,
+                20
+              ],
+              "force_effect_dB": [
+                4,
+                10
+              ]
+            },
+            "q": "D",
+            "src": "KERN23 / KERN08 (M: corner/anti-resonance 100-150 Hz, level 10-20 dB, 20 dB/decade elastic slope, flat above; tan delta D here). Large 15 mm plate: resonance moves 150 -> 80 Hz with force; smaller contactor -> higher anti-resonance. dB reference assumed 1 N s/m (E); the parameter table is in the book's appendix, not read. 2 N excitation amplitude, sweep high to low"
+          },
+          "lundstrom_point_impedance": {
+            "v": {
+              "natural_freq_Hz": 200,
+              "Z_mag_Ns_per_m": {
+                "40Hz": [
+                  25,
+                  30
+                ],
+                "100Hz": 22
+              },
+              "fit": {
+                "mass_g": 2.88,
+                "k_N_per_mm": 4.55,
+                "b_N_s_per_m": 21.3,
+                "corner_Hz": 34.0
+              },
+              "tan_delta": {
+                "100Hz": 2.9,
+                "250Hz": 7.4,
+                "500Hz": 14.7,
+                "1000Hz": 29.5
+              }
+            },
+            "q": "D",
+            "src": "LUNDSTROM84 abstract (M: 20-10000 Hz, 6 subjects, 10 hand sites; |Z| falls to a minimum at the skin natural frequency, ~200 Hz at the distal finger, then rises ~ f) + SOFTRAT thesis review of LUNDSTROM84 (M, secondary: distal finger points ~22 N s/m at 100 Hz, 25-30 N s/m at 40 Hz, 'governed by the resistance'; contactors 0.5-1 cm2). Fit here (D): Z = b + i(omega m - k/omega) with natural freq 200 Hz through |Z|(40 Hz)=27.5 and |Z|(100 Hz)=22. Sensitive to the secondary |Z| values (indicative, upper bound); static force not retrieved"
+          },
+          "hajian_howe_whole_finger": {
+            "v": "whole finger about the MCP joint (2-20 N extension), second-order fit to ~20 ms transients: mass, damping, stiffness per subject; numbers not retrieved (abstract only). Not a pad property; damping ratio extension ~1.7x abduction",
+            "q": "M",
+            "src": "HAJIAN97 abstract"
+          }
+        },
+        "retardation_time_ms": {
+          "v": {
+            "best": 1.3,
+            "range": [
+              1.1,
+              4.7
+            ]
+          },
+          "q": "D",
+          "src": "tau_v = b / k = 1 / (2 pi f_c): KERN23 f_c 100-150 Hz -> 1.1-1.6 ms; LUNDSTROM84 fit -> 4.7 ms. For the solver: a Kelvin-Voigt dashpot b = tau_v k in parallel with the pad's elastic law gives tan delta = omega tau_v (rises ~ f), which no finite Prony set with g_inf 0.82 reproduces"
+        },
+        "compare_tangential": {
+          "v": {
+            "WIERT12_medial_lateral_250Hz": 2.28,
+            "WIERT12_proximal_distal_250Hz": 1.63,
+            "normal_best_250Hz": 2.0,
+            "JINDRICH03_qlv_linear_100Hz": 0.062
+          },
+          "q": "D",
+          "src": "WIERT12 tan delta at 250 Hz = 0.91 x 2.5 and 0.65 x 2.5 (from loss_vs_freq_measured); JINDRICH03 from loss_factor_vs_freq"
+        },
+        "conditions_and_caveats": {
+          "v": "Small amplitude (um to tens of um) vibration on a pre-loaded pad (KERN 1-6 N, 2-15 mm discs; WIERT12 0.5 N flat, tangential). The lumped b includes energy carried away as waves into the finger (radiation) as well as local tissue viscosity; in a slap both leave the rebound. At mm-scale slap strains the exponential stiffness raises k; WIERT12 shows k and b scale together (~F^0.35) and KERN 4-10 dB global rise with force, so tan delta is roughly held, but large-strain normal dynamic loss at 100-500 Hz was not found measured.",
+          "q": "M",
+          "src": "KERN23; WIERT12; LUNDSTROM84"
+        },
+        "method": "mechanical point/plate impedance (force and velocity under sinusoidal sweep), lumped spring-damper(-mass) reading, normal direction"
+      }
+    },
+    "fracture": {
+      "toughness_J_m2": {
+        "v": [
+          1000,
+          20000
+        ],
+        "q": "E",
+        "src": "skin range (YANG15); glabrous not separated"
+      }
+    }
+  },
+  "thermal": {
+    "conductivity_W_mK": {
+      "v": 0.37,
+      "q": "M",
+      "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 0.372 W/mK (SD 0.059, 8 studies, range 0.322-0.498); 0.37 kept"
+    },
+    "heat_capacity_J_kgK": {
+      "v": 3391,
+      "q": "M",
+      "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 3390.5 J/kgK (SD 233, 4 studies, 3150-3662)"
+    },
+    "density_kg_m3": {
+      "v": 1109,
+      "q": "M",
+      "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 1109 kg/m3 (SD 38, n 10, 1100-1125); ICRU44 ~1090: recalled, not re-read"
+    },
+    "effusivity": {
+      "v": 1180,
+      "q": "D",
+      "src": "sqrt(k rho c) from the three ITIS values above, J m-2 K-1 s-1/2 (the 'feels warm/cold' number)"
+    },
+    "emissivity": {
+      "v": 0.98,
+      "q": "M",
+      "src": "STEKETEE73 abstract re-read 11-08 (paper paywalled; abstract text via a reproduction): skin 0.98 +/- 0.01, independent of wavelength over the measured 1-14 um; white, black and burnt skin measured (normal = burnt); separate per-pigment values are not given in the abstract"
+    }
+  },
+  "states": {
+    "dry": {
+      "set": {},
+      "_": "the base (washed and dried)"
+    },
+    "moist_optimal": {
+      "set": {
+        "contact.friction.kinetic.v.dry": 1.6
+      },
+      "q": "D",
+      "src": "the friction peak at intermediate moisture (ANDRE10; ADAMS13 Table 3)"
+    },
+    "sweaty_stress": {
+      "set": {
+        "contact.friction.kinetic.v.dry": 1.6
+      },
+      "q": "E",
+      "src": "palm sweat basal 0.21 -> peak 0.70 mg/cm2/min under mental stress (MOIST M2); moves the pad toward the moisture peak"
+    },
+    "wet": {
+      "set": {
+        "contact.friction.kinetic.v.dry": 0.5,
+        "surface.coat": {
+          "n": 1.333,
+          "alpha": 0.02
+        }
+      },
+      "q": "M",
+      "src": "free water: glass 0.50 (ADAMS13 Table 3); water film coat"
+    },
+    "oily": {
+      "set": {
+        "contact.friction.kinetic.v.dry": 0.28
+      },
+      "q": "M",
+      "src": "BOBJER93 paraffin oil on polycarbonate"
+    }
+  },
+  "sources": {
+    "ADAMS13": {
+      "cite": "Adams MJ, Johnson SA, Lefevre P, Levesque V, Hayward V, Andre T, Thonnard J-L. Finger pad friction and its role in grip and touch. J R Soc Interface 10:20120467 (2013); its Tables 1 and 3 carry Pasumarty et al. 2011 (Tribol Lett 44:117) fits",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3565724",
+      "lic": "(c) The Authors, Royal Society; PMC copyright notice; numbers used as facts, text studied only"
+    },
+    "AERTS95": {
+      "cite": "Aerts P, Ker RF, De Clercq D, Ilsley DW, Alexander RMcN. The mechanical properties of the human heel pad: a paradox resolved. J Biomech 28:1299-1308 (1995)",
+      "url": "https://doi.org/10.1016/0021-9290(95)00009-7",
+      "lic": "abstract read; numbers used as facts, text studied only"
+    },
+    "ALPHALAB09": {
+      "cite": "AlphaLab Inc. (W. Lee). The TriboElectric Series, charge affinity in nC/J, 72 F, 35 % RH (2009)",
+      "url": "https://www.trifield.com/content/tribo-electric-series/",
+      "lic": "(c) AlphaLab 2009; two entries used as facts, table not copied"
+    },
+    "ANDRE10": {
+      "cite": "Andre T, Lefevre P, Thonnard J-L. Fingertip moisture is optimally modulated during object manipulation. J Neurophysiol 103:402-408 (2010); Andre T et al., J Neurosci Methods (2009)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19906876",
+      "lic": "abstract read; numbers used as facts, text studied only"
+    },
+    "BOBJER93": {
+      "cite": "Bobjer O, Johansson SE, Piguet S. Friction between hand and handle: effects of oil and lard on textured and non-textured surfaces; perception of discomfort. Appl Ergon 24(3):190-202 (1993); Bobjer 2004 thesis (Loughborough)",
+      "url": "https://doi.org/10.1016/0003-6870(93)90007-V",
+      "lic": "abstract read; numbers used as facts, text studied only"
+    },
+    "DERLER09": {
+      "cite": "Derler S, Gerhardt L-C, Lenz A, Bertaux E, Hadad M. Friction of human skin against smooth and rough glass as a function of the contact pressure. Tribol Int 42:1565-1574 (2009)",
+      "url": "https://doi.org/10.1016/j.triboint.2008.11.009",
+      "lic": "paywalled; abstract read; numbers used as facts, text studied only"
+    },
+    "FENG22": {
+      "cite": "Feng X, Li GY, Ramier A, Eltony AM, Yun SH. In vivo stiffness measurement of epidermis, dermis, and hypodermis using broadband Rayleigh-wave OCE. Acta Biomater (2022); arXiv:2201.12258 (via params/skin_layers.json)",
+      "url": "https://arxiv.org/abs/2201.12258",
+      "lic": "arXiv; numbers used as facts, text studied only"
+    },
+    "FOOTMD": {
+      "cite": "the project's research note foot.md (R18-R25 heel and forefoot pad, R43 plantar skin, R45/R46 plantar skin modulus)",
+      "url": "the project's research note foot.md",
+      "lic": "project file"
+    },
+    "GABRIEL96": {
+      "cite": "Gabriel S, Lau RW, Gabriel C. The dielectric properties of biological tissues II/III. Phys Med Biol 41:2251-2293 (1996); low-frequency values as compiled in a Frontiers supplementary table (article id 1094968, Table 1)",
+      "url": "https://www.frontiersin.org/api/v4/articles/1094968/file/Table_1.DOCX/1094968_supplementary-materials_tables_1_docx/1",
+      "lic": "the Frontiers table CC BY 4.0; the 1996 paper paywalled; numbers used as facts, text studied only"
+    },
+    "HANDMD": {
+      "cite": "the project's research note hand.md (Jones 2025 fingertip OCT, Bauer / Lee palm epidermis, ridge density, Serina 1997 / Pawluk 1999 pulp)",
+      "url": "the project's research note hand.md",
+      "lic": "project file"
+    },
+    "ICRU44": {
+      "cite": "ICRU Report 44 (1989), densities as listed by NIST X-Ray Mass Attenuation Coefficients Table 2",
+      "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/tab2.html",
+      "lic": "NIST page, US government work"
+    },
+    "ITIS": {
+      "cite": "Baumgartner C, Hasgall PA, Di Gennaro F, Neufeld E, Lloyd B, Gosselin MC, Payne D, Klingenboeck A, Kuster N. IT'IS Database for thermal and electromagnetic parameters of biological tissues, Version 5.0, Aug 21 2025, DOI 10.13099/VIP21000-05-0 (average values; the live tables re-read 11-08: the 2024-06-04 and 2025-08-21 table files give the same skin, fat and muscle rows)",
+      "url": "https://itis.swiss/virtual-population/tissue-properties/database",
+      "lic": "IT'IS legal notice (read 11-08): web pages and documents may be copied only for private, scientific and noncommercial use; storing them on other servers or data carriers needs written consent: STUDY ONLY (P13). Individual averages used as facts with this citation; the table is never copied in bulk"
+    },
+    "JS001": {
+      "cite": "ANSI/ESDA/JEDEC JS-001 human-body model: 100 pF through 1500 ohm (the standard ESD body model)",
+      "url": "https://www.esda.org",
+      "lic": "standard; model constants used as facts"
+    },
+    "KER96": {
+      "cite": "Ker RF. The time-dependent mechanical properties of the human heel pad in the context of locomotion. J Exp Biol 199:1501-1508 (1996)",
+      "url": "https://cob.silverchair.com/jeb/article-pdf/199/7/1501/3391090/jexbio_199_7_1501.pdf",
+      "lic": "(c) Company of Biologists, free archive; numbers used as facts, text studied only"
+    },
+    "LAYERS": {
+      "cite": "the project's parameter file skin_layers.json (per-region epidermis and dermis thickness, OCE moduli)",
+      "url": "the project's parameter file skin_layers.json",
+      "lic": "project file"
+    },
+    "MAVON97": {
+      "cite": "Mavon A, Zahouani H, Redoules D, Agache P, Gall Y, Humbert P. Sebum and stratum corneum lipids increase human skin surface free energy as determined from contact angle measurements. Colloids Surf B 8:147-155 (1997); CST values via US patent 6846490 (secondary)",
+      "url": "https://doi.org/10.1016/S0927-7765(96)01317-5",
+      "lic": "paywalled; numbers used as facts, text studied only"
+    },
+    "MOIST": {
+      "cite": "the project's research note skin_moisture.md (E sweat rates, O sebum, W lips)",
+      "url": "the project's research note skin_moisture.md",
+      "lic": "project file"
+    },
+    "SEO09": {
+      "cite": "Seo NJ, Armstrong TJ. Friction coefficients in a longitudinal direction between the finger pad and selected materials for different normal forces and curvatures. Ergonomics 52(5):609-616 (2009)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6756432",
+      "lic": "NIH author manuscript, PMC copyright notice; numbers used as facts, text studied only"
+    },
+    "SOFTTISSUE": {
+      "cite": "the project's research note soft_tissue.md (project research file; its R-keys name the primary papers: R20 Boyer 2012, R21, R25, R31 gluteal ultrasound + compression, R32/R33 seated MRI + FE, R42 Korean biopsies, R43 skin US, R44 fat/muscle US, M31 drop landing)",
+      "url": "the project's research note soft_tissue.md",
+      "lic": "project file; primary licences as listed there"
+    },
+    "SRL": {
+      "cite": "the project's research note skin_regions_and_layers.md (F1 SC layers, F2 RCM, F5 dermis US, F11 sweat glands, skin types section 2)",
+      "url": "the project's research note skin_regions_and_layers.md",
+      "lic": "project file"
+    },
+    "STEKETEE73": {
+      "cite": "Steketee J. Spectral emissivity of skin and pericardium. Phys Med Biol 18:686-694 (1973)",
+      "url": "https://doi.org/10.1088/0031-9155/18/5/307",
+      "lic": "paywalled; abstract re-read 11-08 via a reproduction (Europe PMC has no abstract); numbers used as facts, text studied only"
+    },
+    "YAMAMOTO76": {
+      "cite": "Yamamoto T, Yamamoto Y. Electrical properties of the epidermal stratum corneum. Med Biol Eng 14:151-158 (1976); Dielectric constant and resistivity of epidermal stratum corneum, ibid. 494-500",
+      "url": "https://doi.org/10.1007/BF02478741",
+      "lic": "paywalled; not read (numbers not retrieved)"
+    },
+    "YANG15": {
+      "cite": "Yang W, Sherman VR, Gludovatz B, Schaible E, Stewart P, Ritchie RO, Meyers MA. On the tear resistance of skin. Nat Commun 6:6649 (2015); quotes Comley & Fleck 2010 (pig skin trouser tear J 17 +/- 4 kJ/m2) and Ashby 1995 (skin 1-20 kJ/m2)",
+      "url": "https://www.nature.com/articles/ncomms7649",
+      "lic": "CC BY 4.0"
+    },
+    "ZHANGMAK99": {
+      "cite": "Zhang M, Mak AFT. In vivo friction properties of human skin. Prosthet Orthot Int 23:135-141 (1999); it quotes Taylor & Lenderman (fingertip on aluminium ~0.6, down >= 75 % with soap)",
+      "url": "https://doi.org/10.3109/03093649909071625",
+      "lic": "abstract and search summary read; numbers used as facts, text studied only"
+    },
+    "JINDRICH03": {
+      "cite": "Jindrich DL, Zhou Y, Becker T, Dennerlein JT. Non-linear viscoelastic models predict fingertip pulp force-displacement characteristics during voluntary tapping. J Biomech 36:497-503 (2003). doi 10.1016/s0021-9290(02)00438-4; 8 subjects, 4 tapping conditions, Tables 1-2",
+      "url": "https://stacks.cdc.gov/view/cdc/214532/cdc_214532_DS1.pdf",
+      "lic": "(c) Elsevier; author copy on CDC Stacks, full text read 11-08; numbers used as facts, text studied only"
+    },
+    "PAWLUK99": {
+      "cite": "Pawluk DT, Howe RD. Dynamic lumped element response of the human fingerpad. J Biomech Eng 121:178-183 (1999). doi 10.1115/1.2835100",
+      "url": "https://doi.org/10.1115/1.2835100",
+      "lic": "paywalled; abstract and JINDRICH03's quotation of it read; numbers used as facts"
+    },
+    "GRIG17": {
+      "cite": "Grigoriadis G, Newell N, Carpanen D, Christou A, Bull AMJ, Masouros SD. Material properties of the heel fat pad across strain rates. J Mech Behav Biomed Mater 65:398-407 (2017). doi 10.1016/j.jmbbm.2016.09.003; 5 male cadaveric limbs 40-57 y, drop tests 0.6-3.4 m/s, rates to ~150 /s, 20-25 C",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5161234/",
+      "lic": "CC BY 4.0"
+    },
+    "GEFEN01": {
+      "cite": "Gefen A, Megido-Ravid M, Itzchak Y. In vivo biomechanical behavior of the human heel pad during the stance phase of gait. J Biomech 34:1661-1665 (2001). PMID 11716870; cine-radiography + pressure",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11716870",
+      "lic": "paywalled; abstract read via index; numbers used as facts"
+    },
+    "KINOSHITA93": {
+      "cite": "Kinoshita H, et al. In vivo examination of the dynamic properties of the human heel pad. Int J Sports Med 14(6):312-319 (1993). doi 10.1055/s-2007-1021184; in vivo drop-impact tester (5 kg) on the heel at 0.72 and 0.93 m/s (corrected 11-08 from \"pendulum\")",
+      "url": "https://www.thieme-connect.com/products/ejournals/abstract/10.1055/s-2007-1021184",
+      "lic": "paywalled; abstract numbers (via search index) used as facts"
+    },
+    "WEARING11": {
+      "cite": "Wearing SC, Smeathers JE. The heel fat pad: mechanical properties and clinical applications. J Foot Ankle Res 4(Suppl 1):I14 (2011). doi 10.1186/1757-1146-4-S1-I14; fluoroscopy + pressure platform in gait",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3102920/",
+      "lic": "CC BY 2.0"
+    },
+    "LEDOUX05": {
+      "cite": "Ledoux WR, Blevins JJ, Sangeorzan BJ. Quasi-linear viscoelastic properties of the plantar soft tissue in compression. ISB XXth Congress / ASB 29th Annual Meeting, Cleveland, abstract 766, Table 1 (2005); 10 fresh-frozen feet of 7 non-diabetic donors (36 +/- 8.7 y), 2x2 cm blocks without skin, 35 C ~100 % RH, 0.1 s ramp, 300 s hold",
+      "url": "https://media.isbweb.org/images/conf/2005/abstracts/0766.pdf",
+      "lic": "conference abstract, licence not stated; full text read 11-08; numbers used as facts, text studied only"
+    },
+    "LEDOUX07": {
+      "cite": "Ledoux WR, Blevins JJ. The compressive material properties of the plantar soft tissue. J Biomech 40:2975-2981 (2007). doi 10.1016/j.jbiomech.2007.02.009",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17433335",
+      "lic": "paywalled; abstract and PAI10's quotation read (subcalcaneal ~750 kPa, ~100 kPa peak, 44.5 % loss at ~50 % strain); numbers used as facts"
+    },
+    "PAI10": {
+      "cite": "Pai S, Ledoux WR. The compressive mechanical properties of diabetic and non-diabetic plantar soft tissue. J Biomech 43:1754-1760 (2010). PMC2882497; 8 cadaveric feet, triangle waves 1-10 Hz to ~50 % strain, 35 C",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2882497",
+      "lic": "NIH author manuscript on PMC, publisher copyright (Elsevier); numbers used as facts, text studied only"
+    },
+    "FUNG93": {
+      "cite": "Fung YC. Biomechanics: Mechanical Properties of Living Tissues, 2nd ed., ch. 7 (QLV), Springer (1993)",
+      "url": "https://doi.org/10.1007/978-1-4757-2257-4",
+      "lic": "book, (c) Springer; the QLV form (an equation) used, text studied only"
+    },
+    "WIERT12": {
+      "cite": "Wiertlewski M, Hayward V. Mechanical behavior of the fingertip in the range of frequencies and displacements relevant to touch. J Biomech 45(11):1869-1874 (2012)",
+      "url": "https://mwiertlewski.github.io/pdf/pub/2012-MW-VH-JBM.pdf (author's copy)",
+      "lic": "(c) Elsevier; author's copy read in full; Table 1 numbers used as facts, text studied only"
+    },
+    "WIERT12RSI": {
+      "cite": "Wiertlewski M, Hayward V. Transducer for mechanical impedance testing over a wide frequency range through active feedback. Rev Sci Instrum 83:025001 (2012)",
+      "url": "https://mwiertlewski.github.io/pdf/pub/2012-MW-VH-RSI.pdf",
+      "lic": "(c) AIP; author's copy read; qualitative statements only"
+    },
+    "LUNDSTROM84": {
+      "cite": "Lundstrom R. Local vibrations - mechanical impedance of the human hand's glabrous skin. J Biomech 17(2):137-144 (1984)",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=AUTH:%22Lundstrom%20R%22%20AND%20PUB_YEAR:1984 (abstract)",
+      "lic": "(c) Elsevier; abstract read; numbers used as facts, full text not retrieved"
+    },
+    "SOFTRAT": {
+      "cite": "Bogazici University MSc thesis, mechanical impedance of rat glabrous skin and skin morphometry (review section quoting Lundstrom 1984 and Mann & Griffin)",
+      "url": "https://digitalarchive.library.bogazici.edu.tr/bitstreams/cd2c10e6-367e-4fff-9375-6ec3210bd275/download",
+      "lic": "university repository, licence not stated; quoted human numbers used as facts (secondary), text studied only"
+    },
+    "KERN23": {
+      "cite": "Kern TA, Hatzfeld C, Youssef F. The user's role in haptic system design. Ch. 3 in Kern TA, Hatzfeld C, Abbasimoshaei A (eds) Engineering Haptic Devices, 3rd ed., Springer (2023), doi 10.1007/978-3-031-04536-3_3; sections 3.1.4-3.1.7",
+      "url": "https://tore.tuhh.de/bitstreams/f5d56798-83cb-4840-a72a-2bd2d5f83b89/download",
+      "lic": "open access book chapter (repository copy; licence as stated by Springer, not checked); numbers and curve features used as facts, text studied only"
+    },
+    "KERN08": {
+      "cite": "Kern TA, Werthschutzky R. Studies of the mechanical impedance of the index finger in multiple dimensions. EuroHaptics 2008, LNCS 5024:175-180, doi 10.1007/978-3-540-69057-3_21 (8 subjects, 192 measurements)",
+      "url": "https://doi.org/10.1007/978-3-540-69057-3_21",
+      "lic": "(c) Springer; not read, results via KERN23"
+    },
+    "HAJIAN97": {
+      "cite": "Hajian AZ, Howe RD. Identification of the mechanical impedance at the human finger tip. J Biomech Eng 119(1):109-114 (1997), doi 10.1115/1.2796052",
+      "url": "https://doi.org/10.1115/1.2796052",
+      "lic": "(c) ASME; abstract only"
+    },
+    "AERTS96": {
+      "cite": "Aerts P, Ker RF, De Clercq D, Ilsley DW. The effects of isolation on the mechanics of the human heel pad. J Anat 188:417-423 (1996). PMID 8621341, PMC1167578",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1167578/",
+      "lic": "(c) Anatomical Society; abstract read (PMC scan not retrievable); numbers used as facts"
+    },
+    "AERTS93": {
+      "cite": "Aerts P, De Clercq D. Deformation characteristics of the heel region of the shod foot during a simulated heel strike: the effect of varying midsole hardness. J Sports Sci 11:449-461 (1993). PMID 8301705",
+      "url": "https://doi.org/10.1080/02640419308730011",
+      "lic": "paywalled; abstract read; numbers used as facts"
+    },
+    "BIOMIM25": {
+      "cite": "Zhuang Z et al. Materials and structures inspired by human heel pads for advanced biomechanical function. Biomimetics 10:267 (2025). PMC12109304; review table of heel-pad energy loss",
+      "url": "https://doi.org/10.3390/biomimetics10050267",
+      "lic": "MDPI open access (CC BY 4.0 per publisher, not checked on the page); secondary numbers used as facts"
+    },
+    "BENNETT90": {
+      "cite": "Bennett MB, Ker RF. The mechanical properties of the human subcalcaneal fat pad in compression. J Anat 171:131-138 (1990). PMID 2081699",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1257133/",
+      "lic": "(c) Anatomical Society; abstract read; numbers used as facts"
+    },
+    "KINOSHITA96": {
+      "cite": "Kinoshita H, Francis PR, Murase T, Kawai S, Ogawa T. The mechanical properties of the heel pad in elderly adults. Eur J Appl Physiol 73:404-409 (1996). PMID 8803499",
+      "url": "https://doi.org/10.1007/BF00334416",
+      "lic": "paywalled; abstract read; numbers used as facts"
+    },
+    "WEIJERS05": {
+      "cite": "Weijers RE, Kessels AG, Kemerink GJ. The damping properties of the venous plexus of the heel region of the foot during simulated heelstrike. J Biomech 38:2423-2430 (2005). PMID 16214490",
+      "url": "https://doi.org/10.1016/j.jbiomech.2004.10.006",
+      "lic": "paywalled; abstract read; numbers used as facts"
+    },
+    "PAIN01": {
+      "cite": "Pain MT, Challis JH. The role of the heel pad and shank soft tissue during impacts: a further resolution of a paradox. J Biomech 34:327-333 (2001). PMID 11182123",
+      "url": "https://doi.org/10.1016/s0021-9290(00)00199-8",
+      "lic": "paywalled; abstract read"
+    },
+    "SUZUKI17": {
+      "cite": "Suzuki R, Ito K, Lee T, Ogihara N. In-vivo viscous properties of the heel pad by stress-relaxation experiment based on a spherical indentation. Med Eng Phys 50:83-88 (2017). PMID 29079047",
+      "url": "https://doi.org/10.1016/j.medengphy.2017.10.010",
+      "lic": "paywalled; abstract read"
+    },
+    "NEGISHI20": {
+      "cite": "Negishi T, Ito K, Kamono A, Lee T, Ogihara N. Strain-rate dependence of viscous properties of the plantar soft tissue identified by a spherical indentation test. J Mech Behav Biomed Mater 102:103470 (2020). PMID 31605932",
+      "url": "https://doi.org/10.1016/j.jmbbm.2019.103470",
+      "lic": "paywalled; abstract read"
+    },
+    "SERINA97": {
+      "cite": "Serina ER, Mote CD Jr, Rempel D. Force response of the fingertip pulp to repeated compression: effects of loading rate, loading angle and anthropometry. J Biomech 30:1035-1040 (1997). PMID 9391870",
+      "url": "https://doi.org/10.1016/s0021-9290(97)00065-1",
+      "lic": "paywalled; abstract read; energy absorbed 1.27-2.67 N mm quoted via JINDRICH03"
+    },
+    "WU06": {
+      "cite": "Wu JZ, Dong RG, Welcome DE. Analysis of the point mechanical impedance of fingerpad in vibration. Med Eng Phys 28:816-826 (2006). PMID 16426886; FE model: probe mass explains inconsistent impedance data",
+      "url": "https://doi.org/10.1016/j.medengphy.2005.11.013",
+      "lic": "paywalled; abstract read"
+    },
+    "QIAN23": {
+      "cite": "Qian Z, Zhuang Z, Liu X, Bai H, Ren L, Ren L. Effects of extreme cyclic loading on the cushioning performance of human heel pads under engineering test condition. Front Bioeng Biotechnol 11 (2023). doi 10.3389/fbioe.2023.1229976",
+      "url": "https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2023.1229976/full",
+      "lic": "CC BY 4.0"
+    },
+    "CHALLIS05": {
+      "cite": "Challis JH, Murdock C. Mechanical properties of the human heel pad: a comparison between populations. ISB XXth Congress / ASB 29th, Cleveland, abstract 0780 (2005)",
+      "url": "https://media.isbweb.org/images/conf/2005/abstracts/0780.pdf",
+      "lic": "conference abstract, licence not stated; numbers used as facts"
+    }
+  }
+}

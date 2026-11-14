@@ -299,7 +299,7 @@ The layer stays on the card per groom version and key radius and is freed when t
 repaired once per grid (§5); an out-of-memory error frees the layer and retries after 60 s, the splat meanwhile. Order:
 build or reuse the layer → set the key light → skin under the hair × lean occlusion (§6) → layer → TT-spread composite.
 Two causes found and fixed first: the unrepaired lattice made the body shadow read nearly everywhere (hair at 0.53–0.60×
-the review's radiance), and unshadowed skin under translucent fibres read as "ghostly" hair; with both fixed the layer
+the review's radiance), and unshadowed skin under translucent fibres read as ghostly hair; with both fixed the layer
 measured 0.93–1.11× the review's radiance at the review's own camera and light.
 
 **Measured in the real window:** lands 9.9 s (three-quarter view) / 11.7 s (side) after the view stops; first layer

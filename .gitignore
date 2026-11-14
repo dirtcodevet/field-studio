@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+tests/out/
+engine/fieldstudio/screens/
+engine/fieldstudio/session_logs/
+engine/fieldstudio/fieldstudio_last_run.log
+*.fsproj/

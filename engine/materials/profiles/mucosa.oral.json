@@ -1,0 +1,421 @@
+{
+ "id": "mucosa.oral",
+ "kind": "layered_tissue",
+ "family": "human_soft",
+ "_": "Lining oral mucosa of the cheek (buccal) and inner lip (labial): non-keratinised stratified squamous epithelium over a loose lamina propria and submucosa, always wet with a saliva film in life. Mechanics are for adult tissue; the tensile values come from Thiel-embalmed elderly donors (stiffer, high-strain region), the in vivo indentation value is the low-strain figure a contact solver should use. The hard palate (masticatory mucosa) is given as a variant inside the values. Materials research lane, mouth group, 2026-11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.25,
+   "q": "E",
+   "src": "JACQ13 not a gloss source: a moist non-keratinised epithelium is smoother than skin (skin.body 0.35, Donner 2008); 0.25 E for the tissue under its film; in life the saliva coat (states.wet, the default) sets the highlight"
+  },
+  "n": {
+   "v": 1.39,
+   "q": "E",
+   "src": "JACQ13 soft tissue 1.36-1.40; no keratin layer (stratum corneum 1.47-1.55 absent)"
+  },
+  "F0": {
+   "v": 0.0266,
+   "q": "D",
+   "src": "((n-1)/(n+1))^2 from n 1.39"
+  },
+  "coat_default": {
+   "n": {
+    "v": 1.335,
+    "q": "E",
+    "src": "WATER saliva variant (99.5 % water)"
+   },
+   "alpha": {
+    "v": 0.02,
+    "q": "E",
+    "src": "free liquid surface, near-smooth"
+   },
+   "thickness_um": {
+    "v": {
+     "cheek": 44.0,
+     "lip_inner": 44.0
+    },
+    "q": "M",
+    "src": "ASSY23 median film inside cheek 44.0 (IQR 34.8-58.5) um (via MTT D19); inner lip not measured, cheek value used (E for the lip)"
+   }
+  }
+ },
+ "optics_summary": {
+  "n": {
+   "v": 1.39,
+   "q": "E",
+   "src": "JACQ13 soft tissue range"
+  },
+  "g": {
+   "v": 0.85,
+   "q": "E",
+   "src": "JACQ13 soft tissue 0.8-0.95"
+  },
+  "translucency": {
+   "v": "high: no keratin or melanin layer to speak of, so the lamina propria's blood shows; redder than skin",
+   "q": "E",
+   "src": "JACQ13 general tissue optics; colour values not found"
+  },
+  "colour_Lab": {
+   "v": null,
+   "q": "E",
+   "src": "not found: no instrument L*a*b* for buccal or labial mucosa retrieved (MTT section 11 lists it missing too); gingiva HO15 L* 52.9 a* 23.3 b* 14.9 is keratinised and paler, so mucosa is expected redder"
+  },
+  "wet_gloss": {
+   "v": "sharp specular from the saliva film (n 1.335) over a soft diffuse red base; the film is 30-70 um, thick enough to smooth fine relief",
+   "q": "D",
+   "src": "from ASSY23 film thickness and WATER n"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": null,
+    "q": "E",
+    "src": "not found: no in vivo human buccal mucosa coefficient retrieved"
+   },
+   "kinetic": {
+    "v": {
+     "saliva": [
+      0.02,
+      0.35
+     ],
+     "dried_saliva": [
+      2.0,
+      3.0
+     ]
+    },
+    "q": "E",
+    "src": "BONGAERTS07 PDMS with whole saliva boundary mu ~0.02 and dried saliva 2-3 (model surfaces); porcine tongue with artificial saliva minimum ~0.35 (thesis, via search); RANC06 a salivary layer lowers mucosal friction x1.6; PRINZ07 mucosa-on-mucosa mu falls with load (0.34-2.2 N) and speed. The bracket is the spread of model systems, not a measured buccal value"
+   },
+   "counterface": "PDMS model surfaces and porcine/piglet tongue; see pairs/mouth.json"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": null,
+    "q": "E",
+    "src": "not found for human buccal mucosa; RANC06 tongue mucosa weakly polar and hydrophobic-leaning without saliva, hydrophilic once coated"
+   },
+   "tack": {
+    "v": "mucoadhesive: mucin (MUC5B) layer bonds to hydrophilic polymers; wet tissue against itself shows little tack because the saliva film lubricates (work of adhesion is reported per formulation in uJ/cm2, not as a tissue constant)",
+    "q": "E",
+    "src": "mucoadhesion literature (tensile detachment on porcine buccal mucosa) gives formulation-dependent values only; ASSY23 MUC5B at all intra-oral sites"
+   }
+  },
+  "restitution": {
+   "v": null,
+   "q": "E",
+   "src": "not found; a hydrated viscoelastic soft tissue: treat as heavily damped (deform.viscoelastic)"
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": {
+     "uncoated": 77,
+     "saliva_coated": "lower (more hydrophilic)"
+    },
+    "q": "E",
+    "src": "ANDABLO20 pig tongue static ~77 deg as a mucosal proxy; RANC06 the salivary layer makes the mucosa more hydrophilic (values not retrieved)"
+   }
+  },
+  "water_absorption": {
+   "v": "saturated in life; the epithelium is permeable (non-keratinised)",
+   "q": "E",
+   "src": "histology: no stratum corneum barrier"
+  },
+  "solver": {
+   "phase": "soft_solid",
+   "collision_thickness_mm": {
+    "v": 0.044,
+    "q": "M",
+    "src": "ASSY23 saliva film inside the cheek 44 um: the gap a solver keeps is the film"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 26.7,
+     "q": "D",
+     "src": "E / thickness: in vivo 80 kPa (SAWADA11) over ~3 mm epithelium + lamina propria + submucosa (thickness E)"
+    },
+    "ramp": "hertz",
+    "contact_damping_ratio": {
+     "v": 0.3,
+     "q": "E",
+     "src": "hydrated soft tissue contacts are heavily damped; muscle 0.14-0.42 (MUSCLE damping_ratio); 0.3 a middle value"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": null,
+     "q": "E",
+     "src": "not found; heavily damped"
+    },
+    "response_time_ms": {
+     "v": [
+      5,
+      20
+     ],
+     "q": "E",
+     "src": "soft-tissue contact pulse: a few shear-wave transits of the 3 mm layer (D ~1.2 ms each at 5 m/s) lengthened by damping"
+    },
+    "wave_speed_m_s": {
+     "v": 5.04,
+     "q": "D",
+     "src": "shear sqrt(G/rho), G = 26.7 kPa, rho 1050"
+    },
+    "damping_ratio": {
+     "v": 0.3,
+     "q": "E",
+     "src": "hydrated soft tissue contacts are heavily damped; muscle 0.14-0.42 (MUSCLE damping_ratio); 0.3 a middle value"
+    }
+   },
+   "compliance_layers": [
+    {
+     "name": "epithelium (non-keratinised)",
+     "thickness_mm": {
+      "v": 0.55,
+      "q": "E",
+      "src": "textbook 0.5-0.6 mm (recalled)"
+     },
+     "E_kPa": {
+      "v": 80,
+      "q": "E",
+      "src": "not separated from the whole; in vivo whole value SAWADA11 used"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "hydrated"
+     },
+     "compressible_to_fraction": {
+      "v": 0.95,
+      "q": "E",
+      "src": "near-incompressible (hydrated epithelium): a layer thins only by flowing sideways; 0.95 of thickness under ordinary contact, more under sustained load"
+     }
+    },
+    {
+     "name": "lamina propria + submucosa",
+     "thickness_mm": {
+      "v": 2.5,
+      "q": "E",
+      "src": "not measured; cheek wall total ~10 mm with muscle and fat"
+     },
+     "E_kPa": {
+      "v": 80,
+      "q": "M",
+      "src": "SAWADA11 in vivo initial modulus"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "hydrated"
+     },
+     "compressible_to_fraction": {
+      "v": 0.95,
+      "q": "E",
+      "src": "near-incompressible (loose connective tissue): a layer thins only by flowing sideways; 0.95 of thickness under ordinary contact, more under sustained load"
+     }
+    },
+    {
+     "name": "buccinator muscle (free wall: no bone behind the cheek; the inner lip lies on teeth)",
+     "thickness_mm": {
+      "v": 5,
+      "q": "E",
+      "src": "not measured"
+     },
+     "E_kPa": {
+      "v": 12,
+      "q": "D",
+      "src": "3 x relaxed muscle shear 4.0 kPa (MUSCLE)"
+     },
+     "poisson": {
+      "v": 0.499,
+      "q": "E",
+      "src": "muscle"
+     },
+     "compressible_to_fraction": {
+      "v": 0.95,
+      "q": "E",
+      "src": "near-incompressible (muscle): a layer thins only by flowing sideways; 0.95 of thickness under ordinary contact, more under sustained load"
+     }
+    }
+   ]
+  }
+ },
+ "deform": {
+  "model": "viscoelastic",
+  "model_note": "neo-Hookean base with a long relaxation; incompressible",
+  "density_kg_m3": {
+   "v": 1050,
+   "q": "E",
+   "src": "soft tissue; MUSCLE 1060, skin 1090 bracket it; not measured for mucosa"
+  },
+  "E_kPa": {
+   "v": {
+    "in_vivo_initial": 80.0,
+    "tensile_high_strain_buccal": 8330.0,
+    "tensile_high_strain_hard_palate": 18130.0
+   },
+   "q": "M",
+   "src": "SAWADA11 in vivo initial modulus 8.0e-5 GPa (= 80 kPa); CHOI20 Thiel buccal 8.33 +- 5.78 MPa, hard palate 18.13 +- 4.51 MPa (uniaxial tension, high-strain region). The in vivo value is the low-strain contact stiffness"
+  },
+  "E_kPa_literature_range": {
+   "v": [
+    880,
+    11120
+   ],
+   "q": "M",
+   "src": "KYDD67 tensile moduli 0.91-11.12 MPa; other studies 0.37-5.80 MPa (Tanaka 1973, Inoue 1985, Nakashima 1975 as quoted in CHOI20)"
+  },
+  "poisson": {
+   "v": 0.49,
+   "q": "E",
+   "src": "hydrated soft tissue, near-incompressible"
+  },
+  "shear_kPa": {
+   "v": 26.7,
+   "q": "D",
+   "src": "G = E/(2(1+nu)) ~ E/3 from SAWADA11 80 kPa, nu ~0.5"
+  },
+  "viscoelastic": {
+   "relaxation_s": {
+    "v": 494,
+    "q": "M",
+    "src": "SAWADA11 in vivo relaxation time 494 s (FE fit)"
+   }
+  },
+  "fracture": {
+   "strength_kPa": {
+    "v": {
+     "buccal": 1540,
+     "hard_palate": 1700
+    },
+    "q": "M",
+    "src": "CHOI20 tensile strength 1.54 +- 0.52 / 1.70 +- 0.87 MPa (Thiel)"
+   }
+  },
+  "thickness_mm": {
+   "v": {
+    "epithelium": [
+     0.5,
+     0.6
+    ]
+   },
+   "q": "E",
+   "src": "textbook buccal epithelium ~500-600 um (recalled, unverified)"
+  },
+  "sim": {
+   "xpbd_compliance_per_Pa": {
+    "v": 1.25e-05,
+    "q": "D",
+    "src": "1/E with E = 80 kPa (in vivo)"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.5,
+   "q": "E",
+   "src": "hydrated soft tissue ~0.5 (skin/muscle class); not measured for mucosa"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 3600,
+   "q": "E",
+   "src": "hydrated soft tissue class"
+  },
+  "effusivity": {
+   "v": 1375,
+   "q": "D",
+   "src": "sqrt(k rho c) from the E values above"
+  }
+ },
+ "states": {
+  "wet": {
+   "set": {},
+   "_": "the base: saliva-coated (surface.coat_default)",
+   "q": "M",
+   "src": "ASSY23 film present at all intra-oral sites"
+  },
+  "dry": {
+   "set": {
+    "surface.coat_default.thickness_um": 0.0,
+    "contact.friction.kinetic": [
+     2.0,
+     3.0
+    ]
+   },
+   "q": "E",
+   "src": "dry mouth / air-dried surface: BONGAERTS07 dried saliva mu 2-3 on model surfaces; tissue gloss drops to its own alpha"
+  },
+  "pressed": {
+   "set": {},
+   "q": "E",
+   "src": "blanching under pressure as skin (skin.body pressed); threshold not measured for mucosa"
+  }
+ },
+ "sources": {
+  "ASSY23": {
+   "cite": "Assy Z, Jager DHJ, Brand HS, Bikker FJ. Salivary film thickness and MUC5B levels at various intra-oral surfaces. Clin Oral Investig 27:859-869 (2023)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/35941397/",
+   "lic": "open access, licence not checked; numbers used as facts (via MTT R22)"
+  },
+  "CHOI20": {
+   "cite": "Choi JJE, Zwirner J, Ramani RS, et al. Mechanical properties of human oral mucosa tissues are site dependent. Clin Exp Dent Res 6:602-611 (2020); Thiel-embalmed, 2 male donors 69/81 y, uniaxial tension 20 mm/min, 22 C",
+   "url": "https://doi.org/10.1002/cre2.305",
+   "lic": "CC BY 4.0"
+  },
+  "SAWADA11": {
+   "cite": "Sawada A, Wakabayashi N, Ona M, Suzuki T. Viscoelasticity of human oral mucosa: implications for masticatory biomechanics. J Dent Res 90:590-595 (2011); in vivo indentation + FE fit",
+   "url": "https://doi.org/10.1177/0022034510396881",
+   "lic": "paywalled; abstract numbers used as facts"
+  },
+  "KYDD67": {
+   "cite": "Kydd WL, Mandley J. The stiffness of palatal mucoperiosteum. J Prosthet Dent 18:116-121 (1967), as quoted in CHOI20",
+   "url": "https://doi.org/10.1002/cre2.305",
+   "lic": "quoted via CHOI20 (CC BY 4.0)"
+  },
+  "BONGAERTS07": {
+   "cite": "Bongaerts JHH, Rossetti D, Stokes JR. The lubricating properties of human whole saliva. Tribol Lett 27:277-287 (2007); PDMS ball-on-disc",
+   "url": "https://doi.org/10.1007/s11249-007-9232-y",
+   "lic": "paywalled; abstract numbers used as facts"
+  },
+  "RANC06": {
+   "cite": "Ranc H, Elkhyat A, Servais C, et al. Friction coefficient and wettability of oral mucosal tissue: changes induced by a salivary layer. Colloids Surf A 276:155-161 (2006); piglet tongue",
+   "url": "https://doi.org/10.1016/j.colsurfa.2005.10.033",
+   "lic": "paywalled; abstract results used"
+  },
+  "PRINZ07": {
+   "cite": "Prinz JF, de Wijk RA, Huntjens L. Load dependency of the coefficient of friction of oral mucosa. Food Hydrocolloids 21:402-408 (2007); mucosa-on-mucosa, 0.34-2.20 N, 0.1-700 mm/s",
+   "url": "https://research.wur.nl/en/publications/load-dependency-of-the-coefficient-of-friction-of-oral-mucosa/",
+   "lic": "paywalled; abstract trends only (values not retrieved)"
+  },
+  "ANDABLO20": {
+   "cite": "Andablo-Reyes E, Bryant M, Neville A, et al. 3D biomimetic tongue-emulating surfaces for tribological applications. ACS Appl Mater Interfaces 12:49371-49385 (2020); PVS/alginate impressions of 15 adults' tongues",
+   "url": "https://doi.org/10.1021/acsami.0c12925",
+   "lic": "CC BY"
+  },
+  "HO15": {
+   "cite": "Ho DK, Ghinea R, Herrera LJ, Angelov N, Paravina RD. Color range and color distribution of healthy human gingiva. Sci Rep 5:18498 (2015)",
+   "url": "https://doi.org/10.1038/srep18498",
+   "lic": "CC BY 4.0"
+  },
+  "JACQ13": {
+   "cite": "Jacques SL. Optical properties of biological tissues: a review. Phys Med Biol 58:R37-R61 (2013): soft tissue n 1.36-1.40, g 0.8-0.95",
+   "url": "https://doi.org/10.1088/0031-9155/58/11/R37",
+   "lic": "paywalled; numbers used as facts (via skin.body / chromophores.json)"
+  },
+  "WATER": {
+   "cite": "engine/materials/profiles/water.json (saliva variant: SCHIPPER07 viscosity, ERMPS18 surface tension, n 1.335 E)",
+   "url": "local",
+   "lic": "project file"
+  },
+  "MUSCLE": {
+   "cite": "engine/materials/profiles/muscle.skeletal.json (MENDEZ60 density, MORROW10 anisotropy)",
+   "url": "local",
+   "lic": "project file"
+  },
+  "MTT": {
+   "cite": "the project's research note mouth_teeth_tongue.md (project research file, 2026-10-19; its R-numbers name the primary papers)",
+   "url": "local",
+   "lic": "project file; the numbers it carries are facts from the cited papers"
+  }
+ }
+}

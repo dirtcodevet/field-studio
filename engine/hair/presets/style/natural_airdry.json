@@ -1,0 +1,49 @@
+{
+ "name": "natural_airdry",
+ "notes": "Field Studio's generic preset (fs-hair, 11-11): the resolved values of the hair lane's natural base layers, sourced in the hair lane's NATURAL_BASE_SOURCES and engine/hair/kinds.py; no person's data. Field Studio's Hair panel sets density, length, thickness and pigment on top.",
+ "part": {
+  "type": "side",
+  "offset_mm": 15.0,
+  "depth_mm": 80.0,
+  "cross_frac": 0.4,
+  "cross_mm": 8.0,
+  "cross_front_mm": 50.0
+ },
+ "flow": {
+  "away_from_part": 1.0,
+  "back": 0.3,
+  "face_back": 1.0
+ },
+ "dry": {
+  "method": "air",
+  "set": 0.4,
+  "lift_deg": 0.0,
+  "over_mm": 700.0,
+  "when": "with_hands"
+ },
+ "oil": {
+  "product": 0.0
+ },
+ "brush": {
+  "strokes": 1,
+  "strength": 1.5,
+  "part_section": true,
+  "down_sides": 0.5,
+  "fingers_face": true,
+  "fingers_ears": false,
+  "fingers_shoulders": false,
+  "over_shoulder": false
+ },
+ "tuck": {
+  "on": false
+ },
+ "hand": {
+  "on": false
+ },
+ "tousle": {
+  "strokes": 0
+ },
+ "corridor": {
+  "eyes_only": false
+ }
+}

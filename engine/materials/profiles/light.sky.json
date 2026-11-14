@@ -1,0 +1,206 @@
+{
+ "id": "light.sky",
+ "kind": "light_source",
+ "family": "light",
+ "_": "Skylight: the hemisphere of scattered daylight (blue clear sky, white overcast). Values are luminances and illuminances on the ground plane; the angular distribution comes from a model (CIE standard skies, Perez, Preetham, Hosek-Wilkie, Prague). World lane 2026-11-07.",
+ "emission": {
+  "clear_sky_zenith_luminance_kcd_m2": {
+   "v": [
+    2,
+    8
+   ],
+   "q": "E",
+   "src": "E: recalled from IESNA / CIE lighting practice (CIE_LIGHTING), not re-read: CIE_LIGHTING: rises with sun elevation and turbidity; ~3-5 kcd/m2 at mid sun elevations (recalled)"
+  },
+  "clear_sky_horizon_vs_zenith": {
+   "v": "clear skies brighten toward the horizon (except opposite the sun) and around the sun (circumsolar aureole); darkest ~90 deg from the sun",
+   "q": "M",
+   "src": "PEREZ93 / CIE_S011"
+  },
+  "overcast_luminance_kcd_m2": {
+   "v": {
+    "bright_overcast_zenith": [
+     5,
+     10
+    ],
+    "dark_overcast_zenith": [
+     1,
+     3
+    ]
+   },
+   "q": "E",
+   "src": "E: recalled from IESNA / CIE lighting practice (CIE_LIGHTING), not re-read: CIE_LIGHTING (recalled ranges)"
+  },
+  "cie_overcast_distribution": {
+   "v": "L(theta) = L_z (1 + 2 cos theta) / 3: zenith 3x the horizon (theta from zenith)",
+   "q": "M",
+   "src": "CIE_S011 (Moon & Spencer)"
+  },
+  "diffuse_horizontal_illuminance_klx": {
+   "v": {
+    "clear_sky_only": [
+     10,
+     25
+    ],
+    "bright_overcast": [
+     15,
+     40
+    ],
+    "dull_overcast": [
+     2,
+     10
+    ]
+   },
+   "q": "E",
+   "src": "E: recalled from IESNA / CIE lighting practice (CIE_LIGHTING), not re-read: CIE_LIGHTING typical daylight values (recalled)"
+  },
+  "cct_K": {
+   "v": {
+    "clear_blue_zenith": [
+     10000,
+     25000
+    ],
+    "overcast": [
+     6000,
+     7500
+    ],
+    "north_skylight_photography": [
+     7500,
+     10000
+    ]
+   },
+   "q": "E",
+   "src": "E: recalled from IESNA / CIE lighting practice (CIE_LIGHTING), not re-read: CIE_LIGHTING (photographic practice; recalled)"
+  },
+  "spectrum_reference": {
+   "v": "CIE D65 (and D50/D75 family) for daylight composites; clear blue sky ~ Rayleigh lambda^-4 shaped; full-spectral models: Hosek-Wilkie 2012 (BSD-3 code), Prague 2021 (colour-science BSD-3); see light.sun spectral_table for D65",
+   "q": "M",
+   "src": "CIE_D65; HOSEK12; WILKIE21"
+  },
+  "models": {
+   "v": {
+    "CIE_standard_general_sky": "15 types (overcast to clear), luminance ratios only (CIE_S011)",
+    "Perez_all_weather": "5-parameter luminance distribution from clearness and brightness (PEREZ93)",
+    "Preetham": "analytic, turbidity T 2-10; known too-bright/saturated at low sun",
+    "Hosek_Wilkie": "fitted spectral radiance, turbidity 1-10, ground albedo; code BSD-3",
+    "Prague": "full atmosphere incl. altitude and low sun; colour-science BSD-3"
+   },
+   "q": "M",
+   "src": "PEREZ93, PREETHAM99, HOSEK12, WILKIE21"
+  }
+ },
+ "surface": {
+  "note": {
+   "v": "a light source: no material surface",
+   "q": "D",
+   "src": "definition"
+  }
+ },
+ "states": {
+  "clear": {
+   "set": {
+    "emission.model": "Hosek_Wilkie",
+    "emission.turbidity": [
+     2,
+     3
+    ]
+   },
+   "q": "E",
+   "src": "ANON_E: clean clear day T 2-3"
+  },
+  "overcast": {
+   "set": {
+    "emission.model": "CIE_overcast",
+    "emission.cct_K": 6500
+   },
+   "q": "M",
+   "src": "CIE_S011; CCT E"
+  },
+  "golden_hour": {
+   "set": {
+    "emission.cct_K": [
+     3000,
+     4500
+    ]
+   },
+   "q": "E",
+   "src": "ANON_E: warm sun + blue sky shadows"
+  }
+ },
+ "sources": {
+  "CIE_D65": {
+   "cite": "CIE (2019) CIE standard illuminant D65. International Commission on Illumination, Vienna. doi:10.25039/CIE.DS.hjfjmt59 (ISO/CIE 11664-2:2022 Table B.1). Fetched 11-07 from files.cie.co.at/Publications-datasets/CIE_std_illum_D65.csv",
+   "url": "https://doi.org/10.25039/CIE.DS.hjfjmt59",
+   "lic": "CC BY-SA 4.0 (dataset metadata, 11-07): attribution given here; the 33-value excerpt is ShareAlike - keep this attribution with it. Re-checked 11-08: the D65 data page now shows only 'Copyright CIE' and its metadata JSON is not reachable (404); a CIE CSV metadata record (another dataset) states CC BY-SA 4.0. BY-SA permits commercial use with attribution and ShareAlike, so not STUDY ONLY under P13; the ShareAlike duty travels with the excerpt"
+  },
+  "ASTMG173": {
+   "cite": "ASTM G173-03 (reapproved 2020) Standard Tables for Reference Solar Spectral Irradiances: Direct Normal and Hemispherical on 37 deg Tilted Surface (AM1.5; SMARTS 2.9.2). Global integrates to 1000.4 W/m2, direct 900.1 W/m2. Point values read 11-07 from the NREL-distributed table as copied in pvlib-python (pvlib/data/ASTMG173.csv)",
+   "url": "https://github.com/pvlib/pvlib-python/blob/main/pvlib/data/ASTMG173.csv",
+   "lic": "ASTM copyright on the standard document; the data are distributed free by NREL (US government) and pvlib (BSD-3-Clause); 33 point values used as facts"
+  },
+  "KOPP11": {
+   "cite": "Kopp G, Lean JL. A new, lower value of total solar irradiance: evidence and climate significance. Geophys Res Lett 38:L01706 (2011): TSI 1360.8 +/- 0.5 W/m2",
+   "url": "https://doi.org/10.1029/2010GL045777",
+   "lic": "AGU; number used as fact"
+  },
+  "DARULA05": {
+   "cite": "Darula S, Kittler R, Gueymard CA. Reference luminous solar constant and solar luminance for illuminance calculations. Solar Energy 79:559-565 (2005): luminous solar constant 133.8 klx. Recalled",
+   "url": "https://doi.org/10.1016/j.solener.2005.01.004",
+   "lic": "paywalled; number used as fact"
+  },
+  "CIE_S011": {
+   "cite": "CIE S 011/E:2003 (ISO 15469:2004) Spatial distribution of daylight - CIE standard general sky (15 sky types); CIE standard overcast sky L(theta) = Lz (1 + 2 cos theta)/3 (Moon & Spencer 1942)",
+   "url": "https://cie.co.at/publications/spatial-distribution-daylight-cie-standard-general-sky",
+   "lic": "CIE standard, copyright; the formulas used as facts"
+  },
+  "PEREZ93": {
+   "cite": "Perez R, Seals R, Michalsky J. All-weather model for sky luminance distribution: preliminary configuration and validation. Solar Energy 50:235-245 (1993)",
+   "url": "https://doi.org/10.1016/0038-092X(93)90017-I",
+   "lic": "paywalled; model form used"
+  },
+  "PREETHAM99": {
+   "cite": "Preetham AJ, Shirley P, Smits B. A practical analytic model for daylight. SIGGRAPH 1999",
+   "url": "https://doi.org/10.1145/311535.311545",
+   "lic": "ACM; model form used"
+  },
+  "HOSEK12": {
+   "cite": "Hosek L, Wilkie A. An analytic model for full spectral sky-dome radiance. ACM TOG 31(4) (SIGGRAPH 2012); reference code ArHosekSkyModel (as shipped in Blender intern/sky and OSPRay)",
+   "url": "https://cgg.mff.cuni.cz/projects/SkylightModelling/",
+   "lic": "code BSD-3-Clause (Blender/OSPRay SPDX headers; checked by search 11-07): usable commercially with attribution"
+  },
+  "WILKIE21": {
+   "cite": "Wilkie A, Vevoda P, Bashford-Rogers T, et al. A fitted radiance and attenuation model for realistic atmospheres (Prague Sky Model). ACM TOG 40(4) (2021); implementation in colour-science (BSD-3-Clause)",
+   "url": "https://cgg.mff.cuni.cz/publications/prague-sky-model/",
+   "lic": "colour-science implementation BSD-3-Clause"
+  },
+  "CIE_LIGHTING": {
+   "cite": "General daylight / lighting-engineering figures (IESNA Lighting Handbook 10th ed.; CIE 085 / CIE 13.3-1995 colour rendering; EBU Tech 3355 TLCI-2012): sky luminances, illuminances, CCTs. Recalled typical ranges",
+   "url": "https://tech.ebu.ch/publications/tech3355",
+   "lic": "EBU Tech 3355 free; IES handbook copyright; typical numbers used as facts"
+  },
+  "ANON_E": {
+   "cite": "Estimate made in this lane; the reason is given in each src",
+   "url": "-",
+   "lic": "own work"
+  }
+ },
+ "contact": {
+  "solver": {
+   "phase": {
+    "v": "non_colliding",
+    "q": "D",
+    "src": "SCHEMA: gas and light are non_colliding; light passes through transparent media and reflects from surfaces; it carries no mass"
+   },
+   "collision_thickness_mm": {
+    "v": null,
+    "q": "D",
+    "src": "not applicable"
+   },
+   "radiation_pressure_uN_m2": {
+    "v": 4.54,
+    "q": "D",
+    "src": "full sun absorbed: solar constant / c (KOPP11); negligible on bodies"
+   }
+  }
+ }
+}

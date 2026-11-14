@@ -1,0 +1,493 @@
+{
+ "id": "fabric.wool",
+ "kind": "fabric",
+ "family": "fabric",
+ "_": "Worsted wool suiting (2/2 twill or plain, ~230-280 g/m2), finished; conditioned 20 C 65 % RH. No single measured KES set for a named worsted was retrieved: the values are the magnitudes of Kawabata's men's-suiting population (recalled) and are marked E. Wool is the reference fabric for KES, so a measured fabric should replace these first.",
+ "surface": {
+  "alpha": {
+   "v": 0.8,
+   "q": "E",
+   "src": "matte, scaly fibres with a light nap; no BRDF fit retrieved"
+  },
+  "n": {
+   "v": 1.548,
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 mean"
+  },
+  "F0": {
+   "v": 0.0462,
+   "q": "D",
+   "src": "((n - 1) / (n + 1))^2 at n = mean 1.547"
+  },
+  "sheen": {
+   "v": "low; worsted twill shows a faint diagonal ridge highlight",
+   "q": "E",
+   "src": "qualitative"
+  }
+ },
+ "optics_summary": {
+  "fibre_n": {
+   "v": {
+    "parallel": 1.553,
+    "perpendicular": 1.542
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 wool 1.553 / 1.542 (recalled; the brief says 1.55)"
+  },
+  "wet_darkening": {
+   "v": "A_wet = (1 - r_e) A (1 - r_i) / (1 - r_i A), r_e = 0.066 (water, diffuse external), r_i = 1 - (1 - r_e) / 1.333^2 = 0.474; A 0.8 -> 0.63, 0.5 -> 0.32, 0.2 -> 0.11",
+   "q": "D",
+   "src": "LEKNER88 / Angstrom film model, diffuse light; the index-matching effect inside the yarn (ZHANG06) darkens further and is not in this formula; white thin fabric also turns translucent (fibre/water index ratio ~1.16 instead of ~1.55 in air)"
+  },
+  "albedo": {
+   "v": "dyed suiting dark; undyed ecru ~0.6-0.7",
+   "q": "E",
+   "src": "qualitative"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": 0.45,
+     "wet": 0.55
+    },
+    "q": "E",
+    "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: fabric-on-fabric 0.2-0.6 band (search summaries); wool's scales give a directional difference (against-scale higher, MORTON08 recalled)"
+   },
+   "kinetic": {
+    "v": {
+     "dry": 0.38,
+     "wet": 0.47
+    },
+    "q": "E",
+    "src": "x ~0.85 of static"
+   },
+   "kes_MIU": {
+    "v": [
+     0.18,
+     0.25
+    ],
+    "q": "E",
+    "src": "E: recalled from Kawabata 1980 (KAWABATA80), not re-read: KAWABATA80 suiting population magnitude (recalled)"
+   },
+   "counterface": "fabric-on-fabric (E)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": [
+     25,
+     35
+    ],
+    "q": "E",
+    "src": "hydrophobic 18-MEA lipid surface (WOOLWET advancing 103 deg implies a low polar part); value not retrieved"
+   }
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": {
+     "advancing": 103,
+     "receding_with_18MEA": 60,
+     "advancing_18MEA_removed": 88,
+     "receding_18MEA_removed": 3
+    },
+    "q": "M",
+    "src": "WOOLWET single-fibre Wilhelmy, hair as wool's model; the surface repels liquid water while the core absorbs vapour"
+   }
+  },
+  "moisture_regain_pct": {
+   "v": 13.6,
+   "q": "M",
+   "src": "ASTMD1909 (worsted tops; ~16 % for some wool classes is E: recalled, not re-read)"
+  },
+  "water_absorption": {
+   "v": {
+    "vapour_max_pct": [
+     30,
+     35
+    ],
+    "drip_saturated_pct": [
+     100,
+     200
+    ]
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: wool's high vapour uptake (MORTON08, recalled); liquid uptake of a finished suiting is slow at first (hydrophobic surface)"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "position": "positive (charges + against PES, PTFE, PVC)",
+     "affinity_nC_J": 0
+    },
+    "q": "M",
+    "src": "ALPHALAB wool 0 nC/J on its scale (zero = mean conductor), still positive against polyester; ordinal series place wool positive"
+   },
+   "surface_resistivity_ohm_sq": {
+    "v": {
+     "rh35": 10000000000000.0,
+     "rh65": 100000000000.0
+    },
+    "q": "E",
+    "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: wool sits ~1-2 decades above cotton at the same RH (MORTON08, recalled)"
+   }
+  },
+  "abrasion": {
+   "v": {
+    "martindale_rubs": [
+     20000,
+     40000
+    ]
+   },
+   "q": "E",
+   "src": "TYPICAL suiting band"
+  },
+  "pilling": {
+   "v": "moderate (worsted less than woollen)",
+   "q": "E",
+   "src": "TYPICAL"
+  },
+  "felting": {
+   "v": "wet + agitation + heat: irreversible shrink (directional scale friction)",
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 (recalled)"
+  },
+  "solver": {
+   "phase": "cloth",
+   "collision_thickness_mm": {
+    "v": 0.31,
+    "q": "D",
+    "src": "half of T0 0.62 mm at 0.5 gf/cm2 (KAWABATA80 suiting magnitudes, recalled (LC ~0.37, RC ~50 %); inputs E)"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 24.3,
+     "q": "D",
+     "src": "KES-FB3 secant: (4.903 - 0.049) kPa / (T0 0.62 - Tm 0.42) mm (KAWABATA80 suiting magnitudes, recalled (LC ~0.37, RC ~50 %); inputs E)"
+    },
+    "initial_stiffness_kPa_per_mm": {
+     "v": 9.0,
+     "q": "D",
+     "src": "secant x LC 0.37: LC < 1 means the pile is soft first then stiffens as fibres pack"
+    },
+    "compressible_to_fraction": {
+     "v": 0.68,
+     "q": "D",
+     "src": "Tm / T0 at 50 gf/cm2 (~5 kPa, a firm press or sitting); beyond it the fibres themselves resist (fibre modulus, GPa)"
+    },
+    "ramp": "barrier_log",
+    "ramp_note": "stiffening ramp (LC < 1): IPC log barrier starting at collision_thickness, or a two-slope ramp initial -> secant",
+    "contact_damping_ratio": {
+     "v": 0.04,
+     "q": "D",
+     "src": "(1 - RC 50 %) / (4 pi): energy lost per press-release cycle; RC from KAWABATA80 suiting magnitudes, recalled (LC ~0.37, RC ~50 %)"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.05,
+     "q": "E",
+     "src": "a cloth layer dropped or slapped on a rigid flat does not bounce: energy goes into bending and fibre friction (no measurement found)"
+    },
+    "response_time_ms": {
+     "v": [
+      2,
+      10
+     ],
+     "q": "E",
+     "src": "a cloth flap / slap reads as a short damped crack; set by the in-plane wave crossing a ~0.3 m panel at the speeds below plus bending"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "longitudinal_warp": 209,
+      "shear": 13.0
+     },
+     "q": "D",
+     "src": "sqrt(stretch_N_m 10896 / mass 0.25 kg/m2) and sqrt(shear_N_m_rad 42.1 / mass); transverse (flutter) speed is sqrt(tension / mass) and depends on load"
+    },
+    "damping_ratio": {
+     "v": 0.028,
+     "q": "D",
+     "src": "(1 - RT 65 %) / (4 pi) tensile loss"
+    }
+   },
+   "self_contact": {
+    "friction_static": {
+     "v": 0.45,
+     "q": "E",
+     "src": "= contact.friction.static dry (fabric-on-fabric, same fabric)"
+    },
+    "friction_kinetic": {
+     "v": 0.38,
+     "q": "E",
+     "src": "= contact.friction.kinetic dry"
+    },
+    "min_separation_mm": {
+     "v": 0.62,
+     "q": "D",
+     "src": "two half-thicknesses: folded layers rest T0 apart at light pressure, Tm under ~5 kPa"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": "cloth",
+  "density_kg_m3": {
+   "v": 400,
+   "q": "D",
+   "src": "apparent: 250 g/m2 / ~0.62 mm (both E)"
+  },
+  "fibre_density_kg_m3": {
+   "v": 1310,
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 wool 1.31 g/cm3 (recalled)"
+  },
+  "areal_density_g_m2": {
+   "v": 250,
+   "q": "E",
+   "src": "E: recalled from Kawabata 1980 (KAWABATA80), not re-read: KAWABATA80 winter suiting W ~24-25 mg/cm2 (recalled); summer 180-220"
+  },
+  "thickness_mm": {
+   "v": 0.62,
+   "q": "E",
+   "src": "typical worsted suiting at 0.5 gf/cm2"
+  },
+  "tensile": {
+   "EMT_pct": {
+    "v": {
+     "warp": 4.5,
+     "weft": 6.0
+    },
+    "q": "E",
+    "src": "E: recalled from Kawabata 1980 (KAWABATA80), not re-read: KAWABATA80 suiting magnitudes (recalled)"
+   },
+   "LT": {
+    "v": 0.62,
+    "q": "E",
+    "src": "E: recalled from Kawabata 1980 (KAWABATA80), not re-read: KAWABATA80 (recalled)"
+   },
+   "WT_gfcm_cm2": {
+    "v": 10,
+    "q": "E",
+    "src": "E: recalled from Kawabata 1980 (KAWABATA80), not re-read: KAWABATA80 (recalled)"
+   },
+   "RT_pct": {
+    "v": 65,
+    "q": "E",
+    "src": "E: recalled from Kawabata 1980 (KAWABATA80), not re-read: KAWABATA80 (recalled): wool recovers far better than cotton (RT ~20-25) and linen"
+   }
+  },
+  "bending_rigidity_gfcm2_cm": {
+   "v": {
+    "warp": 0.1,
+    "weft": 0.08
+   },
+   "q": "E",
+   "src": "E: recalled from Kawabata 1980 (KAWABATA80), not re-read: KAWABATA80 suiting ~0.08-0.12 (recalled)"
+  },
+  "bending_rigidity_uNm": {
+   "v": {
+    "warp": 9.81,
+    "weft": 7.85
+   },
+   "q": "D",
+   "src": "UNITS x 98.07"
+  },
+  "bending_hysteresis_2HB_gfcm_cm": {
+   "v": 0.035,
+   "q": "E",
+   "src": "E: recalled from Kawabata 1980 (KAWABATA80), not re-read: KAWABATA80 (recalled)"
+  },
+  "shear_rigidity_N_m_deg": {
+   "v": {
+    "G_gf_cm_deg": 0.75,
+    "2HG_gf_cm": 0.9,
+    "2HG5_gf_cm": 2.0
+   },
+   "q": "E",
+   "src": "E: recalled from Kawabata 1980 (KAWABATA80), not re-read: a KES guide (via search) puts suiting G at 0.6-0.9; 2HG/2HG5 KAWABATA80 magnitudes (recalled)"
+  },
+  "drape_coefficient_pct": {
+   "v": [
+    45,
+    65
+   ],
+   "q": "E",
+   "src": "mid-scale (SANAD16 scale); not measured"
+  },
+  "poisson": {
+   "v": {
+    "small_strain": [
+     0.15,
+     0.4
+    ]
+   },
+   "q": "E",
+   "src": "Penava group measured wool plain weave (2017), numbers not retrieved"
+  },
+  "recovery": {
+   "v": "good: creases fall out after hanging, faster in steam",
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: high RT and fibre crimp (MORTON08, recalled)"
+  },
+  "sim": {
+   "_": "Per unit width / area; for a triangle mesh with edge length h, spring k_edge ~ k_membrane (square cells) and XPBD compliance alpha = 1/k. Secant to the KES maximum load: the real curve is soft-then-stiff (toe region), so use these as the stiff branch and ~1/3 of it below 1 % strain unless a curve is fitted",
+   "stretch_N_m": {
+    "v": {
+     "warp": 10896,
+     "weft": 8172
+    },
+    "q": "D",
+    "src": "UNITS 490.3 N/m / EMT (4.5 / 6.0 %) from KAWABATA80 (E)"
+   },
+   "stretch_compliance_m_N": {
+    "v": {
+     "warp": 9.18e-05,
+     "weft": 0.000122
+    },
+    "q": "D",
+    "src": "1 / stretch_N_m"
+   },
+   "bend_uNm": {
+    "v": {
+     "warp": 9.81,
+     "weft": 7.85
+    },
+    "q": "D",
+    "src": "UNITS B x 98.07 from KAWABATA80 (E)"
+   },
+   "bend_compliance_1_per_Nm": {
+    "v": {
+     "warp": 102000.0,
+     "weft": 127000.0
+    },
+    "q": "D",
+    "src": "1 / bend (N m per unit width); a dihedral constraint's compliance scales with edge length / area of the hinge"
+   },
+   "shear_N_m_rad": {
+    "v": 42.1,
+    "q": "D",
+    "src": "UNITS G x 56.19 from KES guide G 0.75 (E)"
+   },
+   "shear_compliance_m_N": {
+    "v": 0.0237,
+    "q": "D",
+    "src": "1 / shear_N_m_rad"
+   },
+   "bending_length_cm": {
+    "v": {
+     "warp": 1.59,
+     "weft": 1.47
+    },
+    "q": "D",
+    "src": "c = (B / W)^(1/3), B gf cm2/cm, W gf/cm2 (Peirce cantilever relation): the cantilever check a sim should reproduce"
+   },
+   "mass_per_area_kg_m2": {
+    "v": 0.25,
+    "q": "D",
+    "src": "areal_density_g_m2 / 1000"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.045,
+   "q": "E",
+   "src": "TYPICAL; air-dominated"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1360,
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 (recalled)"
+  },
+  "effusivity": {
+   "v": 156,
+   "q": "D",
+   "src": "sqrt(0.045 x 400 x 1360)"
+  },
+  "emissivity": {
+   "v": 0.9,
+   "q": "E",
+   "src": "TYPICAL"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {},
+   "_": "65 % RH"
+  },
+  "wet": {
+   "set": {
+    "deform.areal_density_g_m2": 500,
+    "deform.bending_rigidity_gfcm2_cm": {
+     "warp": 0.11,
+     "weft": 0.09
+    }
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: KIM85: wool fabric bending rigidity RISES slightly with water and its bending hysteresis rises steeply up to the fibre's maximum regain (direction M, size E ~+10 %); the fibre itself softens (wet modulus roughly a third of dry, MORTON08 recalled) and loses ~10-20 % strength; mass doubles soaked (E)"
+  },
+  "steamed": {
+   "set": {},
+   "q": "E",
+   "src": "hot-wet wool sets into a new shape (permanent set); recovery of creases is fastest here"
+  }
+ },
+ "sources": {
+  "ASTMD1909": {
+   "cite": "ASTM D1909-13(2020)e1 Standard tables of commercial moisture regains for textile fibres (cotton 8.5, wool 13.6, silk 11, flax 12, nylon 4.5, polyester 0.4 %); read through a CC BY review table citing it (Bioresour Bioprocess 2020, 10.1186/s40643-020-00339-1 Table 10) and the ASTM catalogue abstracts. Commercial (agreed) regains, close to equilibrium at 65 % RH, 21 C",
+   "url": "https://store.astm.org/d1909-13.html",
+   "lic": "paywalled standard; the numbers are facts"
+  },
+  "KIM85": {
+   "cite": "Kim S-G. Effect of water on the bending properties of wool, polyester and wool-polyester blended fabrics. Textile Science and Engineering (Korea) 22(3):43-52 (1985). Abstract only: bending rigidity of wool and blends rises slightly with water content; polyester falls; bending hysteresis of wool rises steeply up to wool's maximum regain then levels",
+   "url": "https://koreascience.kr/article/JAKO198511919981408.page",
+   "lic": "abstract read; full text not opened; direction of the effect used"
+  },
+  "WOOLWET": {
+   "cite": "J Cosmet Sci 61(2) (2010), single-fibre Wilhelmy wetting of wool / human hair as its model (library.scconline.org v061n02): scoured fibre advancing ~103 deg; removing 18-MEA: advancing 103 -> 88, receding 60 -> 3 deg (search summary)",
+   "url": "https://library.scconline.org/v061n02/87",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "LEKNER88": {
+   "cite": "Lekner J, Dorf MC. Why some things are darker when wet. Appl Opt 27(7):1278-1280 (1988): a water film's total internal reflection returns diffuse light to an absorbing surface for another chance of absorption (Angstrom), plus a lower relative index inside",
+   "url": "https://www.wgtn.ac.nz/scps/staff/pdf/darkerwhenwet.pdf",
+   "lic": "paywalled journal; author copy; formula used, text studied only"
+  },
+  "ZHANG06": {
+   "cite": "Zhang H, Voss KJ. Bidirectional reflectance study on dry, wet and submerged particulate layers: effects of pore liquid refractive index and translucent particle concentrations. Appl Opt 45 (2006): index matching lets light go deeper and be absorbed; neither model alone sufficient",
+   "url": "https://web3.physics.miami.edu/~voss/ken/RefPapers/056_ZV_AO_2006.pdf",
+   "lic": "paywalled journal; author copy; studied only"
+  },
+  "SANAD16": {
+   "cite": "Sanad RA, Cassidy T. Fabric objective measurement and drape. Textile Progress 47(4):317-406 (2016): Cusick drape, 18 cm disc / 30 cm sample gives DC 30-98 % from limp to stiff; specimen 24 cm when DC < 30 %, 36 cm when > 85 %",
+   "url": "https://eprints.whiterose.ac.uk/93388/",
+   "lic": "accepted version, all rights reserved; studied, ranges used as facts"
+  },
+  "MORTON08": {
+   "cite": "Morton WE, Hearle JWS. Physical Properties of Textile Fibres, 4th ed. Woodhead (2008): fibre densities, refractive indices, moduli, wet/dry strength, electrical resistance. Recalled; not re-opened in this session",
+   "url": "https://doi.org/10.1533/9781845694425",
+   "lic": "copyrighted book; individual numbers as facts; recalled, so marked E"
+  },
+  "KAWABATA80": {
+   "cite": "Kawabata S. The Standardization and Analysis of Hand Evaluation, 2nd ed. Textile Machinery Society of Japan (1980): KES-FB conditions (tensile max 500 gf/cm, shear to 8 deg, bending to K = +/-2.5 cm-1) and the men's suiting populations. Recalled, not re-opened",
+   "url": "https://www.tmsj.or.jp/",
+   "lic": "copyrighted book; conditions and typical magnitudes recalled, marked E"
+  },
+  "ALPHALAB": {
+   "cite": "AlphaLab Inc. (W. Lee) triboelectric table, charge affinity nC/J at ~22 C, 35 % RH (2009); cotton +5, wool 0 read from secondary copies (blog / Scribd); nylon listed with dry skin at +30",
+   "url": "https://storiesinfabric.blogspot.com/2013/11/taken-from-httpwwwtrifieldcomcontenttri.html",
+   "lic": "(c) AlphaLab, may be reproduced only whole; single numbers used as facts, table not copied"
+  },
+  "UNITS": {
+   "cite": "Unit conversions done here: 1 gf = 9.80665 mN; KES B gf cm2/cm x 98.07 = uN m per unit width; KES G gf/(cm deg) x 56.19 = N/m per rad; KES-FB1 standard max load 500 gf/cm = 490.3 N/m; 1 oz/yd2 = 33.906 g/m2; 1 momme = 4.306 g/m2; 1 ft3/ft2/min (ASTM D737, 125 Pa) = 5.08 mm/s",
+   "url": "",
+   "lic": "definitions"
+  },
+  "TYPICAL": {
+   "cite": "Trade and textbook typical values (fabric weight classes, Martindale rating bands such as EN 14465 upholstery 'heavy domestic' >= 25 000 rubs, fabric emissivity ~0.9, effective fabric conductivity dominated by trapped air 0.03-0.06 W/mK). Used only where no measured value was retrieved; each use says why",
+   "url": "",
+   "lic": "general knowledge; marked E"
+  }
+ }
+}

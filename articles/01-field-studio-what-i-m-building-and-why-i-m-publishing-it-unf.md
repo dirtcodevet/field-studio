@@ -11,7 +11,7 @@ The aim is realism that holds at any zoom, on one ordinary desktop: 32 GB of RAM
 a person can finish work in by hand, quickly.
 
 It isn't finished. The first test I set for it is plain: turn a sphere into a rough head in under five minutes.
-It doesn't pass yet. The first scripted run made what the notes call "a lumpy egg with a flat face", and when I
+It doesn't pass yet. The first scripted run made a lumpy egg with a flat face, and when I
 sat down to sculpt on November 12 I couldn't block out a head with the tools as they were. That sent the whole
 toolkit back for a rethink, which is article 3.
 

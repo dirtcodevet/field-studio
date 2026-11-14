@@ -1,0 +1,437 @@
+{
+ "id": "tongue",
+ "kind": "bulk_tissue",
+ "family": "human_soft",
+ "_": "The tongue: a muscular hydrostat (intrinsic longitudinal, transverse and vertical fibres plus extrinsic genioglossus etc.) covered on the dorsum by a papillated mucosa (filiform, fungiform, circumvallate, foliate) and a saliva film. Stiffness values are for the relaxed tongue at rest, awake; active contraction stiffens it. Adult. Materials research lane, mouth group, 2026-11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.6,
+   "q": "E",
+   "src": "the dorsum's filiform papillae (195 um high, 160 per cm2, ANDABLO20) make a velvety, diffuse surface; GGX cannot hold that relief, so a high alpha stands in at the pixel scale while the papillae are geometry/displacement"
+  },
+  "n": {
+   "v": 1.39,
+   "q": "E",
+   "src": "JACQ13 soft tissue"
+  },
+  "F0": {
+   "v": 0.0266,
+   "q": "D",
+   "src": "((n-1)/(n+1))^2"
+  },
+  "coat_default": {
+   "n": {
+    "v": 1.335,
+    "q": "E",
+    "src": "saliva (WATER)"
+   },
+   "alpha": {
+    "v": 0.05,
+    "q": "E",
+    "src": "liquid film draped over papillae (not flat)"
+   },
+   "thickness_um": {
+    "v": {
+     "anterior_tongue": 68.9,
+     "iqr": [
+      57.6,
+      77.4
+     ]
+    },
+    "q": "M",
+    "src": "ASSY23 median (via MTT D19)"
+   }
+  },
+  "relief": {
+   "filiform": {
+    "v": {
+     "diameter_um": 355,
+     "height_um": 195,
+     "per_cm2": 160
+    },
+    "q": "M",
+    "src": "ANDABLO20 Table 1 (PVS impressions, mid-tongue; +-40 / 6.5 / 30)"
+   },
+   "fungiform": {
+    "v": {
+     "diameter_um": 878,
+     "height_um": 390,
+     "per_cm2": 13.5
+    },
+    "q": "M",
+    "src": "ANDABLO20 Table 1 (+-97 / 72 / 1.5)"
+   },
+   "Sa_um": {
+    "v": [
+     83,
+     142
+    ],
+    "q": "M",
+    "src": "ANDABLO20 impressions (alginate 83-118, PVS 119-142)"
+   },
+   "circumvallate": {
+    "v": {
+     "count": [
+      8,
+      12
+     ],
+     "diameter_mm": [
+      1,
+      2
+     ]
+    },
+    "q": "M",
+    "src": "encyclopaedia citing Gray 2008 (via MTT section 6, weak)"
+   }
+  }
+ },
+ "optics_summary": {
+  "n": {
+   "v": 1.39,
+   "q": "E",
+   "src": "JACQ13"
+  },
+  "g": {
+   "v": 0.85,
+   "q": "E",
+   "src": "JACQ13"
+  },
+  "colour_Lab": {
+   "v": null,
+   "q": "E",
+   "src": "not found: no instrument tongue-dorsum colour retrieved (MTT section 11)"
+  },
+  "translucency": {
+   "v": "the filiform papillae's keratinised tips scatter (whitish tint, thicker coating = whiter); fungiform papillae look as red dots (thin epithelium over vessels)",
+   "q": "E",
+   "src": "anatomy; no optical coefficients found"
+  }
+ },
+ "contact": {
+  "friction": {
+   "kinetic": {
+    "v": {
+     "saliva": [
+      0.02,
+      0.35
+     ],
+     "uncoated": "x1.6 the saliva value"
+    },
+    "q": "E",
+    "src": "RANC06 piglet tongue: saliva layer lowers dynamic friction x1.6; porcine tongue minimum ~0.35 with artificial saliva (thesis via search); BONGAERTS07 PDMS + saliva ~0.02; ANDABLO20 tongue-replica surfaces 0.1-0.5 with xanthan / whey lubricants (no saliva). No in vivo human value"
+   },
+   "counterface": "tongue replicas, pig tongue; see pairs/mouth.json"
+  },
+  "adhesion": {
+   "tack": {
+    "v": "saliva mucins give a lubricating, slightly mucoadhesive layer; tongue-palate seal during swallowing is by pressure, not adhesion",
+    "q": "E",
+    "src": "RANC06, ASSY23 (qualitative)"
+   }
+  },
+  "restitution": {
+   "v": null,
+   "q": "E",
+   "src": "not found; damped active muscle"
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": {
+     "pig_tongue_static": 77
+    },
+    "q": "M",
+    "src": "ANDABLO20 pig tongue ~77 deg (proxy); RANC06 hydrophobic-leaning without saliva, hydrophilic with it"
+   }
+  },
+  "solver": {
+   "phase": "soft_solid",
+   "collision_thickness_mm": {
+    "v": 0.069,
+    "q": "M",
+    "src": "ASSY23 anterior tongue saliva film 68.9 um"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 0.227,
+     "q": "D",
+     "src": "whole-tongue E 8.94 kPa (3 x BROWN15 G) over its 39.4 mm thickness (MTT R21); local indentation is better done Hertzian"
+    },
+    "ramp": "hertz",
+    "contact_damping_ratio": {
+     "v": 0.3,
+     "q": "E",
+     "src": "hydrated soft tissue contacts are heavily damped; muscle 0.14-0.42 (MUSCLE damping_ratio); 0.3 a middle value"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": null,
+     "q": "E",
+     "src": "not found; damped active muscle"
+    },
+    "response_time_ms": {
+     "v": [
+      20,
+      60
+     ],
+     "q": "E",
+     "src": "a slow, soft body: shear waves cross 40 mm at ~1.7 m/s in ~24 ms"
+    },
+    "wave_speed_m_s": {
+     "v": 1.68,
+     "q": "D",
+     "src": "sqrt(G/rho), G = 2.98 kPa (BROWN15), rho 1060"
+    },
+    "damping_ratio": {
+     "v": 0.3,
+     "q": "E",
+     "src": "hydrated soft tissue contacts are heavily damped; muscle 0.14-0.42 (MUSCLE damping_ratio); 0.3 a middle value"
+    }
+   },
+   "compliance_layers": [
+    {
+     "name": "dorsal mucosa with papillae",
+     "thickness_mm": {
+      "v": 1.0,
+      "q": "E",
+      "src": "not measured; filiform papillae alone 0.2 mm high (ANDABLO20)"
+     },
+     "E_kPa": {
+      "v": 80,
+      "q": "E",
+      "src": "as lining mucosa in vivo (SAWADA11)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "hydrated"
+     },
+     "compressible_to_fraction": {
+      "v": 0.8,
+      "q": "E",
+      "src": "papillae bend and flatten under load (ANDABLO20 surfaces)"
+     }
+    },
+    {
+     "name": "intrinsic + extrinsic muscle",
+     "thickness_mm": {
+      "v": 38.4,
+      "q": "D",
+      "src": "MTT R21 thickness 39.4 mm minus mucosa"
+     },
+     "E_kPa": {
+      "v": 8.94,
+      "q": "D",
+      "src": "3 x BROWN15 G"
+     },
+     "poisson": {
+      "v": 0.499,
+      "q": "E",
+      "src": "muscular hydrostat"
+     },
+     "compressible_to_fraction": {
+      "v": 0.95,
+      "q": "E",
+      "src": "near-incompressible (muscular hydrostat: shape changes, volume does not): a layer thins only by flowing sideways; 0.95 of thickness under ordinary contact, more under sustained load"
+     }
+    },
+    {
+     "name": "hyoid / mandible attachments",
+     "thickness_mm": {
+      "v": null,
+      "q": "E",
+      "src": "the base of the tongue: muscle insertions, not a flat bone"
+     },
+     "E_kPa": {
+      "v": null,
+      "q": "E",
+      "src": "bone (another profile)"
+     },
+     "poisson": {
+      "v": 0.3,
+      "q": "E",
+      "src": "bone"
+     },
+     "compressible_to_fraction": {
+      "v": 1.0,
+      "q": "E",
+      "src": "rigid"
+     }
+    }
+   ]
+  }
+ },
+ "deform": {
+  "model": "transversely_isotropic",
+  "model_note": "muscle body with fibre directions per region (DTI); viscoelastic; incompressible (a muscular hydrostat keeps its volume while changing shape)",
+  "density_kg_m3": {
+   "v": 1060,
+   "q": "M",
+   "src": "MUSCLE (MENDEZ60 fresh mammalian muscle 1.0597)"
+  },
+  "shear_kPa": {
+   "v": {
+    "MRE_storage_80Hz_controls": 2.98,
+    "MRE_storage_healthy": 2.67,
+    "SWE_reported_modulus": 21.5
+   },
+   "q": "M",
+   "src": "BROWN15 controls 2.98 +- 0.44 kPa (80 Hz MRE); CHENG11 2.67 +- 0.29 kPa (7 volunteers); SWE_TW 21.5 +- 8.1 kPa (ultrasound, whole tongue, regional 18-25). MRE and SWE differ ~7x by method and frequency"
+  },
+  "E_kPa": {
+   "v": 8.9,
+   "q": "D",
+   "src": "E = 3G from BROWN15 MRE storage modulus (incompressible); SWE implies ~20 kPa or more"
+  },
+  "anisotropy": {
+   "v": {
+    "G_parallel_over_perpendicular": [
+     0.94,
+     1.08
+    ]
+   },
+   "q": "M",
+   "src": "BROWN15 OSA tongues 0.94 +- 0.19 (no CPAP) and 1.08 +- 0.10 (CPAP); control ratio in Table 3 not retrieved. At rest the tongue is near-isotropic in shear; along-fibre stiffness rises with activation (MUSCLE: passive skeletal muscle ~20:1 in tension)"
+  },
+  "poisson": {
+   "v": 0.499,
+   "q": "E",
+   "src": "muscular hydrostat, incompressible"
+  },
+  "volume_mL": {
+   "v": {
+    "F": 68.9,
+    "M": 89.9
+   },
+   "q": "M",
+   "src": "MTT D12 (R19 MRI, 70 adults)"
+  },
+  "viscoelastic": {
+   "loss_modulus": {
+    "v": null,
+    "q": "E",
+    "src": "not retrieved: BROWN15 Table 3; loss modulus correlates with BMI (R 0.53)"
+   }
+  },
+  "active": {
+   "v": "contraction stiffens the muscle (cf. MUSCLE shear 4.0 relaxed -> 9.5 kPa at 20 % MVC)",
+   "q": "E",
+   "src": "by analogy with skeletal muscle"
+  },
+  "sim": {
+   "xpbd_compliance_per_Pa": {
+    "v": 0.00011186,
+    "q": "D",
+    "src": "1/E with E = 3 x 2.98 kPa (BROWN15)"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.5,
+   "q": "E",
+   "src": "muscle class ~0.5"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 3500,
+   "q": "E",
+   "src": "muscle class"
+  },
+  "effusivity": {
+   "v": 1362,
+   "q": "D",
+   "src": "sqrt(k rho c)"
+  }
+ },
+ "states": {
+  "wet": {
+   "set": {},
+   "_": "the base: saliva film",
+   "q": "M",
+   "src": "ASSY23 68.9 um anterior tongue"
+  },
+  "dry": {
+   "set": {
+    "surface.coat_default.thickness_um": 0.0
+   },
+   "q": "E",
+   "src": "dry mouth: friction rises (RANC06 x1.6 without saliva; BONGAERTS07 dried saliva mu 2-3 on model surfaces)"
+  },
+  "coated": {
+   "set": {
+    "surface.alpha": 0.7
+   },
+   "q": "E",
+   "src": "a whitish coat of desquamated cells and debris between the filiform papillae (clinical description); no numbers"
+  },
+  "contracted": {
+   "set": {
+    "deform.shear_kPa.MRE_storage_80Hz_controls": 9.0
+   },
+   "q": "E",
+   "src": "x3 by analogy with skeletal muscle at moderate activation (MUSCLE 4.0 -> 9.5 kPa at 20 % MVC)"
+  }
+ },
+ "sources": {
+  "ANDABLO20": {
+   "cite": "Andablo-Reyes E, Bryant M, Neville A, et al. 3D biomimetic tongue-emulating surfaces for tribological applications. ACS Appl Mater Interfaces 12:49371-49385 (2020); PVS/alginate impressions of 15 adults' tongues",
+   "url": "https://doi.org/10.1021/acsami.0c12925",
+   "lic": "CC BY"
+  },
+  "RANC06": {
+   "cite": "Ranc H, Elkhyat A, Servais C, et al. Friction coefficient and wettability of oral mucosal tissue: changes induced by a salivary layer. Colloids Surf A 276:155-161 (2006); piglet tongue",
+   "url": "https://doi.org/10.1016/j.colsurfa.2005.10.033",
+   "lic": "paywalled; abstract results used"
+  },
+  "BONGAERTS07": {
+   "cite": "Bongaerts JHH, Rossetti D, Stokes JR. The lubricating properties of human whole saliva. Tribol Lett 27:277-287 (2007); PDMS ball-on-disc",
+   "url": "https://doi.org/10.1007/s11249-007-9232-y",
+   "lic": "paywalled; abstract numbers used as facts"
+  },
+  "BROWN15": {
+   "cite": "Brown EC, Cheng S, McKenzie DK, Butler JE, Gandevia SC, Bilston LE. Tongue stiffness is lower in patients with obstructive sleep apnea during wakefulness compared with matched control subjects. Sleep 38:537-544 (2015); MRE 80 Hz with DTI fibre directions",
+   "url": "https://doi.org/10.5665/sleep.4566",
+   "lic": "copyright APSS, no open licence stated; numbers used as facts"
+  },
+  "CHENG11": {
+   "cite": "Cheng S, Gandevia SC, Green M, Sinkus R, Bilston LE. Viscoelastic properties of the tongue and soft palate using MR elastography. J Biomech 44:450-454 (2011); 7 healthy volunteers",
+   "url": "https://researchers.mq.edu.au/en/publications/viscoelastic-properties-of-the-tongue-and-soft-palate-using-mr-el/",
+   "lic": "paywalled; abstract numbers used as facts"
+  },
+  "SWE_TW": {
+   "cite": "Ultrasound shear-wave elastography of the tongue, 20 healthy adults without snoring/OSA, submental probe (record airitilibrary 10196102-201812-201904090003; authors not captured)",
+   "url": "https://www.airitilibrary.com/Publication/Index/10196102-201812-201904090003-201904090003-135-141",
+   "lic": "terms not stated; numbers used as facts"
+  },
+  "ASSY23": {
+   "cite": "Assy Z, Jager DHJ, Brand HS, Bikker FJ. Salivary film thickness and MUC5B levels at various intra-oral surfaces. Clin Oral Investig 27:859-869 (2023)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/35941397/",
+   "lic": "open access, licence not checked; numbers used as facts (via MTT R22)"
+  },
+  "JACQ13": {
+   "cite": "Jacques SL. Optical properties of biological tissues: a review. Phys Med Biol 58:R37-R61 (2013): soft tissue n 1.36-1.40, g 0.8-0.95",
+   "url": "https://doi.org/10.1088/0031-9155/58/11/R37",
+   "lic": "paywalled; numbers used as facts (via skin.body / chromophores.json)"
+  },
+  "WATER": {
+   "cite": "engine/materials/profiles/water.json (saliva variant: SCHIPPER07 viscosity, ERMPS18 surface tension, n 1.335 E)",
+   "url": "local",
+   "lic": "project file"
+  },
+  "MUSCLE": {
+   "cite": "engine/materials/profiles/muscle.skeletal.json (MENDEZ60 density, MORROW10 anisotropy)",
+   "url": "local",
+   "lic": "project file"
+  },
+  "MTT": {
+   "cite": "the project's research note mouth_teeth_tongue.md (project research file, 2026-10-19; its R-numbers name the primary papers)",
+   "url": "local",
+   "lic": "project file; the numbers it carries are facts from the cited papers"
+  },
+  "SAWADA11": {
+   "cite": "Sawada A, Wakabayashi N, Ona M, Suzuki T. Viscoelasticity of human oral mucosa: implications for masticatory biomechanics. J Dent Res 90:590-595 (2011); in vivo indentation + FE fit",
+   "url": "https://doi.org/10.1177/0022034510396881",
+   "lic": "paywalled; abstract numbers used as facts"
+  }
+ }
+}

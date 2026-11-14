@@ -1,0 +1,317 @@
+{
+ "id": "tooth.dentin",
+ "kind": "hard_tissue",
+ "family": "human_hard",
+ "_": "Human coronal dentin: ~70 % mineral by weight in a collagen matrix pierced by tubules (density and diameter rising toward the pulp); yellower and less translucent than enamel; the bulk of the tooth under the enamel and in the root. Values for hydrated permanent dentin at room or body temperature. Materials research lane, mouth group, 2026-11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.2,
+   "q": "E",
+   "src": "exposed dentin (worn or at the cervix) is less glossy than enamel; not measured"
+  },
+  "n": {
+   "v": 1.54,
+   "q": "M",
+   "src": "MENG09 OCT 1.540 +- 0.013 (another 1.534) (via MTT D17)"
+  },
+  "F0": {
+   "v": 0.0452,
+   "q": "D",
+   "src": "((n-1)/(n+1))^2"
+  }
+ },
+ "optics_summary": {
+  "n": {
+   "v": 1.54,
+   "q": "M",
+   "src": "MENG09"
+  },
+  "mu_s_per_cm": {
+   "v": 260,
+   "q": "M",
+   "src": "FRIED95 dentin ~260 cm-1 in the visible and near IR (tubules scatter)"
+  },
+  "mu_a_per_cm": {
+   "v": 4,
+   "q": "M",
+   "src": "FRIED95 ~4 cm-1"
+  },
+  "g": {
+   "v": 0.93,
+   "q": "M",
+   "src": "FRIED95 HG g 0.93, isotropic part ~2 %"
+  },
+  "translucency_parameter_1mm": {
+   "v": {
+    "3mm_aperture": 16.4,
+    "3x8mm_aperture": 21.7
+   },
+   "q": "M",
+   "src": "YU09 (via MTT D16)"
+  },
+  "colour_Lab_with_enamel_3mm": {
+   "v": {
+    "over_white": [
+     79.0,
+     3.9,
+     20.4
+    ],
+    "over_black": [
+     74.9,
+     1.8,
+     16.7
+    ],
+    "contrast_ratio": 87.4
+   },
+   "q": "M",
+   "src": "ARDU10 enamel + dentin 3 mm in vivo (via MTT section 4); dentin alone not measured there"
+  },
+  "translucency": {
+   "v": "lower than enamel: scatters strongly, absorbs weakly in the yellow (organic matrix): the source of tooth body colour",
+   "q": "M",
+   "src": "FRIED95; MTT section A"
+  }
+ },
+ "contact": {
+  "friction": {
+   "kinetic": {
+    "v": null,
+    "q": "E",
+    "src": "not found as a clean value; Zheng 2003 (dentin vs titanium in artificial saliva) higher than enamel - numbers not retrieved"
+   },
+   "counterface": "-"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": null,
+    "q": "E",
+    "src": "not found"
+   },
+   "tack": {
+    "v": "none",
+    "q": "E",
+    "src": "rigid solid"
+   }
+  },
+  "restitution": {
+   "v": 0.6,
+   "q": "E",
+   "src": "not found; tougher, less stiff and more damped than enamel (collagen), so a lower rebound than enamel's 0.85 E"
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": null,
+    "q": "E",
+    "src": "not found; hydrophilic, tubule fluid wets the cut surface"
+   }
+  },
+  "hardness": {
+   "v": {
+    "HV": [
+     64,
+     67
+    ]
+   },
+   "q": "M",
+   "src": "HV_MR dentin HV 64-67 (stored teeth)"
+  },
+  "porosity": {
+   "v": "tubules ~1-2.5 um diameter, ~20-45 % area near the pulp falling to a few % near the DEJ",
+   "q": "E",
+   "src": "recalled histology (unverified)"
+  },
+  "solver": {
+   "phase": "solid",
+   "collision_thickness_mm": {
+    "v": 0.001,
+    "q": "E",
+    "src": "numerical skin for a rigid solid"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": null,
+     "q": "E",
+     "src": "rigid relative to soft tissue: Hertz with E 22.5 GPa"
+    },
+    "ramp": "hertz",
+    "contact_damping_ratio": {
+     "v": 0.05,
+     "q": "E",
+     "src": "collagen gives some damping, more than enamel (not measured)"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.6,
+     "q": "E",
+     "src": "as contact.restitution"
+    },
+    "response_time_ms": {
+     "v": [
+      0.05,
+      0.5
+     ],
+     "q": "E",
+     "src": "hard-on-hard Hertz impact"
+    },
+    "wave_speed_m_s": {
+     "v": 1992.98,
+     "q": "D",
+     "src": "sqrt(G/rho), G 8.5 GPa (KINNEY03), rho 2140"
+    },
+    "damping_ratio": {
+     "v": 0.05,
+     "q": "E",
+     "src": "collagen gives some damping, more than enamel (not measured)"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": "linear_elastic",
+  "model_note": "tough, slightly viscoelastic composite; fails with some plasticity",
+  "density_kg_m3": {
+   "v": 2140,
+   "q": "E",
+   "src": "dentin ~2.1 g/cm3 (recalled textbook value, unverified)"
+  },
+  "E_GPa": {
+   "v": [
+    20,
+    25
+   ],
+   "q": "M",
+   "src": "KINNEY03 critical review: E 20-25 GPa (older literature uncertain by 3x); TOOTHREV 12-20"
+  },
+  "shear_GPa": {
+   "v": [
+    7,
+    10
+   ],
+   "q": "M",
+   "src": "KINNEY03"
+  },
+  "poisson": {
+   "v": 0.32,
+   "q": "D",
+   "src": "nu = E/(2G) - 1 with E 22.5, G 8.5 (KINNEY03 mid values); sensitive to both"
+  },
+  "fracture": {
+   "toughness_MPa_m05": {
+    "v": {
+     "perpendicular_to_tubules": 1.79,
+     "review_range": [
+      1.5,
+      2.1
+     ]
+    },
+    "q": "M",
+    "src": "KINNEY03 citing Iwamoto: K_c 1.79 (worst case); TOOTHREV 1.5-2.1; toughness falls with age"
+   }
+  },
+  "viscoelastic": {
+   "v": "measurable creep and stress relaxation from the collagen and tubule fluid (ZHANG14 reviews it)",
+   "q": "E",
+   "src": "ZHANG14"
+  },
+  "sim": {
+   "xpbd_compliance_per_Pa": {
+    "v": 4.4444e-11,
+    "q": "D",
+    "src": "1/E with E = 22.5 GPa"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.57,
+   "q": "M",
+   "src": "THERM_T dentin 0.11-0.96 W/mK (older studies; 0.57 a commonly quoted middle value, E within the range)"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1170,
+   "q": "E",
+   "src": "dentin ~1170 J/kgK (recalled textbook value, unverified)"
+  },
+  "effusivity": {
+   "v": 1195,
+   "q": "D",
+   "src": "sqrt(k rho c)"
+  }
+ },
+ "states": {
+  "hydrated": {
+   "set": {},
+   "_": "the base",
+   "q": "M",
+   "src": "KINNEY03 properties for hydrated dentin"
+  },
+  "dehydrated": {
+   "set": {
+    "deform.E_GPa": [
+     25,
+     30
+    ]
+   },
+   "q": "E",
+   "src": "drying stiffens dentin (KINNEY03 discusses the effect); the size here is an estimate"
+  },
+  "aged_transparent": {
+   "set": {},
+   "q": "E",
+   "src": "tubules fill with mineral with age: more translucent, more brittle (lower toughness), little change in E (literature summary, values not retrieved)"
+  }
+ },
+ "sources": {
+  "MENG09": {
+   "cite": "Meng Z, Yao XS, Yao H, et al. Measurement of the refractive index of human teeth by optical coherence tomography. J Biomed Opt 14:034010 (2009)",
+   "url": "https://doi.org/10.1117/1.3130322",
+   "lic": "paywalled; numbers used as facts (via MTT R17)"
+  },
+  "FRIED95": {
+   "cite": "Fried D, Glena RE, Featherstone JDB, Seka W. Nature of light scattering in dental enamel and dentin at visible and near-infrared wavelengths. Appl Opt 34:1278-1285 (1995)",
+   "url": "https://doi.org/10.1364/AO.34.001278",
+   "lic": "paywalled; abstract numbers used as facts"
+  },
+  "YU09": {
+   "cite": "Yu B, Ahn J-S, Lee Y-K. Measurement of translucency of tooth enamel and dentin. Acta Odontol Scand 67:57-64 (2009)",
+   "url": "https://doi.org/10.1080/00016350802577818",
+   "lic": "paywalled; numbers used as facts (via MTT R15)"
+  },
+  "ARDU10": {
+   "cite": "Ardu S, Feilzer AJ, Braut V, et al. Pilot in vivo image spectrophotometric evaluation of optical properties of pure enamel and enamel-dentin complex. Dent Mater 26:e205-10 (2010)",
+   "url": "https://doi.org/10.1016/j.dental.2010.03.006",
+   "lic": "paywalled; numbers used as facts (via MTT R12)"
+  },
+  "KINNEY03": {
+   "cite": "Kinney JH, Marshall SJ, Marshall GW. The mechanical properties of human dentin: a critical review and re-evaluation of the dental literature. Crit Rev Oral Biol Med 14:13-29 (2003)",
+   "url": "https://escholarship.org/content/qt76z8h6zk/qt76z8h6zk.pdf",
+   "lic": "eScholarship open copy, licence not stated; numbers used as facts"
+  },
+  "TOOTHREV": {
+   "cite": "Review table of tooth tissue properties (E dentin 12-20 / enamel 70-110 GPa; K_c dentin 1.5-2.1 / enamel 0.7-2.1 MPa m^0.5) as quoted in search results; paper identity not verified",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2885799",
+   "lic": "PMC open access; numbers used as facts; weak (not opened)"
+  },
+  "HV_MR": {
+   "cite": "Microhardness of human enamel and dentin after 2 months' storage in different media, Materials Research (SciELO): enamel HV 315-357, dentin 64-67",
+   "url": "https://scielo.br/j/mr/a/twps4YywFJ8y9Lxm5CprnQt/",
+   "lic": "SciELO open access (journal CC BY), not checked"
+  },
+  "ZHANG14": {
+   "cite": "Zhang Y-R, Du W, Zhou X-D, Yu H-Y. Review of research on the mechanical properties of the human tooth. Int J Oral Sci 6:61-69 (2014)",
+   "url": "https://doi.org/10.1038/ijos.2014.21",
+   "lic": "open access (Nature), licence not checked; numbers used as facts"
+  },
+  "THERM_T": {
+   "cite": "Thesis review table, Izmir Institute of Technology (openaccess.iyte.edu.tr 11147/4388): enamel k 0.45-0.93, dentin 0.11-0.96 W/mK from older studies",
+   "url": "https://openaccess.iyte.edu.tr/bitstream/11147/4388/1/4388.pdf",
+   "lic": "open access thesis; numbers used as facts"
+  },
+  "MTT": {
+   "cite": "the project's research note mouth_teeth_tongue.md (project research file, 2026-10-19; its R-numbers name the primary papers)",
+   "url": "local",
+   "lic": "project file; the numbers it carries are facts from the cited papers"
+  }
+ }
+}

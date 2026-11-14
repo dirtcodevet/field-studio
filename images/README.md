@@ -31,3 +31,26 @@ known flaws. They are not comparisons against any other tool. No image contains 
 | `17_hand_back_skin.png` | The back of the hand: skin colour with faint veins. |
 | `18_forearm_skin.png` | Forearm skin close-up: freckles, a faint vein, generated relief. |
 
+
+## Release 0.2.0 (`v0.2.0/`): the tool on 2026-11-14
+
+All twelve are Field Studio's own renders and window captures on the same machine, made by the scripted runs described
+in the [status review](../docs/STATUS_2026-11-14.md). No test model appears in them.
+
+| File | What it shows |
+|---|---|
+| `01_window_1920.png` | The window at 1920 x 1080 after the approved interface was built: the four tool categories on the left (Add Objects, Manipulate, Building Tools, Corrective), the tool strip with Transform's settings, the view bar (Clay / Look / Silhouette, X-ray), the Quick keys card, the Scene panel docked on the right and the edge tabs. "Blend" is greyed and marked "coming". |
+| `02_milestone_sheet.png` | The milestone session on the card, step by step: open; a sphere from the Shapes row; Swell held and dragged; Settle and Flatten; a Mask stroke and a region Transform; a line Cut through the top; sandstone from the Materials panel; the cut cap swung open 30 degrees and closed again (Transform frames: there is no rig or keyframe system yet); Merge; saved and reopened with the same state hash. |
+| `03_milestone_cap_open.png` | One frame of that limited motion in the full window: the sandstone cap open 30 degrees above the body. |
+| `04_milestone_reopened.png` | The merged form after save and reopen (its state hash equal to the saved one). This run predates the fix that seals a Merge's contact (status review, section 5.4). |
+| `05_brick_whole.png` | Tier 1 of the acceptance ladder: a 215 x 102.5 x 65 mm sandstone brick, its weight (3.30 kg) from the material's density. |
+| `06_brick_10cm.png` | The same brick at about 10 cm: grain and the laminae on the side. |
+| `07_brick_1cm_grains.png` | At about 1 cm: the grains as relief built at render time from the material, not a texture. |
+| `08_brick_arris.png` | The arris (the edge) at about 3 cm. |
+| `09_five_bricks_vary.png` | Tier 2: five bricks of one stone made by Array with Vary, each with its own seed (colour, grain, chips). |
+| `10_brick_crack.png` | A crack added to one brick (50 % through, 0.7 mm at the mouth): a cavity in the field, visible in section. |
+| `11_brick_rougher.png` | One brick with 2.5 times the relief, beside a standard one. |
+| `12_materials_panel.png` | The Materials & Generators panel: the library's families and stones, the selected stone's measured properties, the object's size and weight, and the seeded generators (surface, crack, vary across copies). |
+
+Known short-falls, visible here and stated in the review: the stones read cooler and more uniform than reference
+photographs of the same stones; chip bites are too smooth up close.

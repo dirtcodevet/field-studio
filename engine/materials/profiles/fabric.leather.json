@@ -1,0 +1,473 @@
+{
+ "id": "fabric.leather",
+ "kind": "fabric",
+ "family": "fabric",
+ "_": "Chrome-tanned bovine / ovine leather as a thick fibrous sheet: garment nappa (0.6-1.0 mm, soft, aniline or lightly pigmented) and upholstery (0.9-1.4 mm, pigmented, top-coated). A collagen fibre network densest at the grain (outer) layer; bends like a thick plate with a soft core, stretches 30-80 % before break. No measured leather data was retrieved this session: E throughout, which is the group's biggest gap.",
+ "variants_note": "suede / nubuck: the flesh side or buffed grain, matte (alpha ~0.9), absorbs water and oil readily, darkens strongly wet.",
+ "surface": {
+  "alpha": {
+   "v": {
+    "nappa_aniline": 0.45,
+    "upholstery_topcoat": 0.3,
+    "patent": 0.05
+   },
+   "q": "E",
+   "src": "finish-dependent; no BRDF fit retrieved"
+  },
+  "n": {
+   "v": 1.5,
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: polyurethane / acrylic topcoat ~1.48-1.52 (recalled); collagen ~1.5"
+  },
+  "F0": {
+   "v": 0.04,
+   "q": "D",
+   "src": "((1.5 - 1) / (1.5 + 1))^2"
+  },
+  "sheen": {
+   "v": "soft broad gloss on the grain; follows the grain pattern (pores, creases); creased elbows / seat folds break the highlight",
+   "q": "E",
+   "src": "qualitative"
+  }
+ },
+ "optics_summary": {
+  "n": {
+   "v": 1.5,
+   "q": "E",
+   "src": "as surface"
+  },
+  "wet_darkening": {
+   "v": "aniline and suede darken strongly and stain (water lines); top-coated leather beads water and barely changes",
+   "q": "E",
+   "src": "qualitative; same film physics as LEKNER88 where the surface is open"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": 0.5,
+     "wet": 0.7
+    },
+    "q": "E",
+    "src": "E: recalled from Marks' Handbook (MARKS), not re-read: finished leather on itself / on cloth; not measured. Against oak see the pairs file (MARKS)"
+   },
+   "kinetic": {
+    "v": {
+     "dry": 0.42,
+     "wet": 0.6
+    },
+    "q": "E",
+    "src": "x ~0.85"
+   },
+   "counterface": "leather on leather or cloth (E)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": [
+     35,
+     45
+    ],
+    "q": "E",
+    "src": "E: recalled from textbook / trade ranges, not re-read: PU / acrylic topcoat (recalled)"
+   },
+   "tack": {
+    "v": "smooth finished leather sticks to sweaty skin (the 'leather seat in summer' peel)",
+    "q": "E",
+    "src": "qualitative: occlusive surface + sweat film, see pairs"
+   }
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": {
+     "topcoated": [
+      80,
+      100
+     ],
+     "aniline": [
+      40,
+      80
+     ],
+     "suede": "absorbs"
+    },
+    "q": "E",
+    "src": "E: recalled from textbook / trade ranges, not re-read: finish-dependent (recalled)"
+   }
+  },
+  "moisture_regain_pct": {
+   "v": 20.4,
+   "q": "D",
+   "src": "linear between FLOWERS15 measured 13.4 +/- 2.4 % at ~45 % RH and 24.2 +/- 5.0 % at 76 % RH (chrome leather, dry basis) -> 65 % RH; replaced 11-07 ~23:25 the recalled [14, 18] (E) after proof T4a"
+  },
+  "water_absorption": {
+   "v": {
+    "2h_static_pct": [
+     20,
+     60
+    ],
+    "after_24h_pct": [
+     60,
+     120
+    ]
+   },
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: uncoated vs coated; recalled ranges"
+  },
+  "air_permeability": {
+   "v": "water-vapour permeable through the grain unless heavily coated",
+   "q": "E",
+   "src": "qualitative"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "position": "positive, near skin and nylon in most ordinal series"
+    },
+    "q": "E",
+    "src": "ordinal (Wikipedia / Beaty copies); one older scale disagrees (RF Cafe), so the sign is uncertain"
+   },
+   "surface_resistivity_ohm_sq": {
+    "v": {
+     "rh50": [
+      1000000000.0,
+      1000000000000.0
+     ]
+    },
+    "q": "E",
+    "src": "order of magnitude"
+   }
+  },
+  "hardness": {
+   "v": {
+    "shore_A_stack": [
+     50,
+     80
+    ]
+   },
+   "q": "E",
+   "src": "not measured; soft garment leather low end"
+  },
+  "abrasion": {
+   "v": {
+    "martindale_rubs_upholstery": [
+     50000,
+     100000
+    ]
+   },
+   "q": "E",
+   "src": "TYPICAL upholstery leather rating band; garment nappa far lower"
+  },
+  "solver": {
+   "phase": "cloth",
+   "collision_thickness_mm": {
+    "v": {
+     "garment": 0.4,
+     "upholstery": 0.6
+    },
+    "q": "D",
+    "src": "half of 0.8 / 1.2 mm (thickness E)"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": {
+      "garment": 1250,
+      "upholstery": 1670
+     },
+     "q": "D",
+     "src": "through-thickness modulus ~1 / 2 MPa (E: compact collagen network, far stiffer than cloth pile) / thickness"
+    },
+    "compressible_to_fraction": {
+     "v": 0.85,
+     "q": "E",
+     "src": "leather compresses little under a seated load; upholstery foam beneath takes the deflection"
+    },
+    "ramp": "barrier_log",
+    "contact_damping_ratio": {
+     "v": 0.1,
+     "q": "E",
+     "src": "viscoelastic collagen; not measured"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.1,
+     "q": "E",
+     "src": "thick sheet: a little rebound, mostly damped (not measured)"
+    },
+    "response_time_ms": {
+     "v": [
+      1,
+      5
+     ],
+     "q": "E",
+     "src": "a slap on leather is a sharper crack than on cloth (stiffer, heavier sheet)"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "longitudinal": 108,
+      "shear": 65
+     },
+     "q": "D",
+     "src": "sqrt(stretch / mass), sqrt(shear / mass) for garment leather (sim block)"
+    },
+    "damping_ratio": {
+     "v": 0.1,
+     "q": "E",
+     "src": "as contact damping"
+    }
+   },
+   "self_contact": {
+    "friction_static": {
+     "v": 0.5,
+     "q": "E",
+     "src": "= contact.friction.static dry"
+    },
+    "friction_kinetic": {
+     "v": 0.42,
+     "q": "E",
+     "src": "= contact.friction.kinetic dry"
+    },
+    "min_separation_mm": {
+     "v": {
+      "garment": 0.8,
+      "upholstery": 1.2
+     },
+     "q": "D",
+     "src": "two half-thicknesses"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": "cloth",
+  "model_note": "a thick shell: membrane + plate bending with a soft core; for sims use cloth with the bending from E t^3/12 and reduce it by the soft-core factor below",
+  "density_kg_m3": {
+   "v": 850,
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: apparent density of finished leather ~0.8-1.0 g/cm3 (recalled; a search summary gives the same unverified range)"
+  },
+  "areal_density_g_m2": {
+   "v": {
+    "garment_0.8mm": 680,
+    "upholstery_1.2mm": 1020
+   },
+   "q": "D",
+   "src": "850 kg/m3 x thickness"
+  },
+  "thickness_mm": {
+   "v": {
+    "garment": [
+     0.6,
+     1.0
+    ],
+    "upholstery": [
+     0.9,
+     1.4
+    ]
+   },
+   "q": "E",
+   "src": "trade classes"
+  },
+  "E_MPa": {
+   "v": {
+    "low_strain": [
+     5,
+     30
+    ]
+   },
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: recalled order of magnitude; strongly sample- and direction-dependent (the cited search confirms the dependence on animal, site and direction)"
+  },
+  "anisotropy": {
+   "v": "stiffer along the backbone; 1.2-2x",
+   "q": "E",
+   "src": "qualitative"
+  },
+  "fracture": {
+   "strength_kPa": {
+    "v": [
+     15000,
+     30000
+    ],
+    "q": "E",
+    "src": "E: recalled from textbook / trade ranges, not re-read: tensile strength 15-30 N/mm2 (recalled typical spec band, ISO 3376 method)"
+   },
+   "elongation_at_break_pct": {
+    "v": [
+     40,
+     80
+    ],
+    "q": "E",
+    "src": "E: recalled from textbook / trade ranges, not re-read: recalled"
+   },
+   "tear_N": {
+    "v": {
+     "garment": [
+      20,
+      40
+     ],
+     "upholstery": [
+      40,
+      80
+     ]
+    },
+    "q": "E",
+    "src": "E: recalled from textbook / trade ranges, not re-read: recalled spec bands"
+   }
+  },
+  "bending_rigidity_uNm": {
+   "v": {
+    "garment": 213,
+    "upholstery": 1440
+   },
+   "q": "D",
+   "src": "E t^3 / 12 with E 10 / 20 MPa, t 0.8 / 1.2 mm, x 0.5 soft-core factor (E): 427 x 0.5, 2880 x 0.5; ~40x the cotton shirting, ~2-15x denim"
+  },
+  "drape_coefficient_pct": {
+   "v": {
+    "garment": [
+     70,
+     85
+    ],
+    "upholstery": [
+     90,
+     98
+    ]
+   },
+   "q": "E",
+   "src": "stiff end of the Cusick scale"
+  },
+  "poisson": {
+   "v": 0.4,
+   "q": "E",
+   "src": "fibrous sheet, not measured"
+  },
+  "recovery": {
+   "v": "viscoelastic; creases at flex points (elbows, seat) become permanent 'break' lines; stretch-in-use (bagging) is permanent",
+   "q": "E",
+   "src": "qualitative"
+  },
+  "sim": {
+   "_": "Shell: stretch from E t; bending from the soft-core plate value; damp heavily (leather creaks, little rebound).",
+   "stretch_N_m": {
+    "v": {
+     "garment": 8000,
+     "upholstery": 24000
+    },
+    "q": "D",
+    "src": "E t: 10 MPa x 0.8 mm, 20 MPa x 1.2 mm (both E)"
+   },
+   "stretch_compliance_m_N": {
+    "v": {
+     "garment": 0.000125,
+     "upholstery": 4.17e-05
+    },
+    "q": "D",
+    "src": "1 / stretch"
+   },
+   "bend_uNm": {
+    "v": {
+     "garment": 213,
+     "upholstery": 1440
+    },
+    "q": "D",
+    "src": "deform.bending_rigidity_uNm"
+   },
+   "bend_compliance_1_per_Nm": {
+    "v": {
+     "garment": 4690,
+     "upholstery": 694
+    },
+    "q": "D",
+    "src": "1 / bend"
+   },
+   "shear_N_m_rad": {
+    "v": {
+     "garment": 2860,
+     "upholstery": 8570
+    },
+    "q": "D",
+    "src": "G t with G = E / (2 (1 + 0.4))"
+   },
+   "mass_per_area_kg_m2": {
+    "v": {
+     "garment": 0.68,
+     "upholstery": 1.02
+    },
+    "q": "D",
+    "src": "areal density"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.15,
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: leather ~0.12-0.18 (recalled)"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1500,
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: recalled"
+  },
+  "effusivity": {
+   "v": 437,
+   "q": "D",
+   "src": "sqrt(0.15 x 850 x 1500): warmer to touch than metal, cooler than wool cloth"
+  },
+  "emissivity": {
+   "v": 0.9,
+   "q": "E",
+   "src": "TYPICAL"
+  },
+  "shrink_temperature_C": {
+   "v": [
+    100,
+    120
+   ],
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: chrome-tanned leather shrinks above ~100 C wet (recalled)"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {}
+  },
+  "wet": {
+   "set": {
+    "contact.friction.static": 0.7
+   },
+   "q": "E",
+   "src": "wet leather is softer and stretches more; dried without oiling it stiffens and can crack (fat-liquor washed out)"
+  },
+  "oiled_conditioned": {
+   "set": {
+    "surface.alpha": 0.35
+   },
+   "q": "E",
+   "src": "conditioner softens and adds gloss"
+  },
+  "warm_body_contact": {
+   "set": {},
+   "q": "E",
+   "src": "upholstery under skin warms and the sweat film raises friction and tack (pairs)"
+  }
+ },
+ "sources": {
+  "LEKNER88": {
+   "cite": "Lekner J, Dorf MC. Why some things are darker when wet. Appl Opt 27(7):1278-1280 (1988): a water film's total internal reflection returns diffuse light to an absorbing surface for another chance of absorption (Angstrom), plus a lower relative index inside",
+   "url": "https://www.wgtn.ac.nz/scps/staff/pdf/darkerwhenwet.pdf",
+   "lic": "paywalled journal; author copy; formula used, text studied only"
+  },
+  "MARKS": {
+   "cite": "Marks' Standard Handbook for Mechanical Engineers, friction table: leather on oak static 0.61, sliding 0.52 (parallel to grain). Recalled, not re-opened",
+   "url": "https://www.accessengineeringlibrary.com/",
+   "lic": "copyrighted handbook; recalled, marked E"
+  },
+  "TYPICAL": {
+   "cite": "Trade and textbook typical values (fabric weight classes, Martindale rating bands such as EN 14465 upholstery 'heavy domestic' >= 25 000 rubs, fabric emissivity ~0.9, effective fabric conductivity dominated by trapped air 0.03-0.06 W/mK). Used only where no measured value was retrieved; each use says why",
+   "url": "",
+   "lic": "general knowledge; marked E"
+  }
+ }
+}

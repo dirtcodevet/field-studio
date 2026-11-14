@@ -10,8 +10,8 @@ What our review flagged, and what we did about each. These are flags, not conclu
 
 - Our first contact solver, a barrier energy minimised with Newton steps: NVIDIA US 12,216,969 was flagged in our
   review. The solver is held out of the code pending redesign. A constraint-based replacement is underway.
-- Our light cache used a distance switch: near hits lit exactly, far hits read from a cache. An outside review
-  pointed out a claim in NVIDIA US 11,790,594 that our own check had missed. We redesigned it the same morning:
+- Our light cache used a distance switch: near hits lit exactly, far hits read from a cache. A second check
+  found a claim in NVIDIA US 11,790,594 that our first check had missed. We redesigned it the same morning:
   one rule at every hit, no switch.
 - A prototype "elastic grab" brush: Pixar US 10,586,401 was flagged in our review. An earlier note of ours had
   treated the brush as unaffected; that note was withdrawn. The brush was never merged and won't ship.

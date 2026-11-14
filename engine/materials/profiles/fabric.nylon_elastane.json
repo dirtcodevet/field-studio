@@ -1,0 +1,544 @@
+{
+ "id": "fabric.nylon_elastane",
+ "kind": "fabric",
+ "family": "fabric",
+ "_": "Stretch weft knit, nylon (polyamide) with elastane ~80/20 by mass: leggings, swimwear, shapewear, sports bras. Two-way stretch to 2-4x before break; the mechanical numbers are JOVANOVIC22's plated PA/elastane knits WE16-WE17 (16-17 % wrapped elastane, 260-280 g/m2), the measured fabrics nearest 80/20. Forces are per test strip; the strip width is not in the summary read and 50 mm (ISO 13934-1) is assumed for per-width values.",
+ "surface": {
+  "alpha": {
+   "v": 0.4,
+   "q": "E",
+   "src": "smooth filament knit with a soft sheen; no BRDF fit retrieved"
+  },
+  "n": {
+   "v": 1.55,
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: nylon mean 1.551 (MORTON08 recalled)"
+  },
+  "F0": {
+   "v": 0.0466,
+   "q": "D",
+   "src": "((n - 1) / (n + 1))^2 at n = mean 1.550"
+  },
+  "sheen": {
+   "v": "noticeable, follows the wale direction; stretched areas thin out and let the colour beneath show (lighter / more transparent over curves)",
+   "q": "E",
+   "src": "qualitative: knit opens under strain"
+  }
+ },
+ "optics_summary": {
+  "fibre_n": {
+   "v": {
+    "parallel": 1.582,
+    "perpendicular": 1.519
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 nylon 6,6 1.582 / 1.519 (recalled; the brief's 1.53 / 1.58); elastane ~1.5 nearly isotropic (E)"
+  },
+  "stretch_whitening": {
+   "v": "opacity falls with strain: areal cover ~1/(1+e_x)(1+e_y)",
+   "q": "D",
+   "src": "mass conservation of the knit (fibre area constant while the cell grows)"
+  },
+  "wet_darkening": {
+   "v": "A_wet = (1 - r_e) A (1 - r_i) / (1 - r_i A), r_e = 0.066 (water, diffuse external), r_i = 1 - (1 - r_e) / 1.333^2 = 0.474; A 0.8 -> 0.63, 0.5 -> 0.32, 0.2 -> 0.11",
+   "q": "D",
+   "src": "LEKNER88 / Angstrom film model, diffuse light; the index-matching effect inside the yarn (ZHANG06) darkens further and is not in this formula; white thin fabric also turns translucent (fibre/water index ratio ~1.16 instead of ~1.55 in air)"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": 0.5,
+     "wet": 0.55
+    },
+    "q": "E",
+    "src": "compliant knit, high real contact area; fabric band 0.2-0.6"
+   },
+   "kinetic": {
+    "v": {
+     "dry": 0.42,
+     "wet": 0.47
+    },
+    "q": "E",
+    "src": "x ~0.85"
+   },
+   "counterface": "fabric-on-fabric (E)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": [
+     40,
+     47
+    ],
+    "q": "E",
+    "src": "E: recalled from textbook / trade ranges, not re-read: nylon 6,6 ~46 (recalled)"
+   }
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": 76.6,
+    "q": "M",
+    "src": "KRUSS228 nylon 6,6 single fibre +/- 4.1"
+   }
+  },
+  "moisture_regain_pct": {
+   "v": {
+    "nylon": 4.5,
+    "elastane": 1.3,
+    "blend_80_20": 3.9
+   },
+   "q": "D",
+   "src": "ASTMD1909 nylon 4.5 (M); elastane 1.3 (E, not retrieved); mass-weighted 0.8 x 4.5 + 0.2 x 1.3"
+  },
+  "water_absorption": {
+   "v": {
+    "drip_saturated_pct": [
+     40,
+     80
+    ]
+   },
+   "q": "E",
+   "src": "thin knit; spins nearly dry"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "position": "positive (nylon among the most positive fabrics)",
+     "affinity_nC_J": 30
+    },
+    "q": "M",
+    "src": "ALPHALAB 'nylon, dry skin' +30 nC/J (secondary copy)"
+   },
+   "surface_resistivity_ohm_sq": {
+    "v": {
+     "rh35": 10000000000000.0,
+     "rh65": 100000000000.0
+    },
+    "q": "E",
+    "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 order; nylon varies widely with history and additives (lecture copy of Hearle, via search)"
+   }
+  },
+  "abrasion": {
+   "v": {
+    "martindale_rubs": [
+     30000,
+     60000
+    ]
+   },
+   "q": "E",
+   "src": "TYPICAL: nylon is the most abrasion-resistant common fibre; elastane is attacked by chlorine and body oils over time"
+  },
+  "pilling": {
+   "v": "low-moderate",
+   "q": "E",
+   "src": "TYPICAL"
+  },
+  "solver": {
+   "phase": "cloth",
+   "collision_thickness_mm": {
+    "v": 0.615,
+    "q": "D",
+    "src": "half of T0 1.23 mm at 0.5 gf/cm2 (T0 1.23 mm M (JOVANOVIC22 WE17); Tm, LC, RC typical knit, E; RT taken as 1 - HYI wale 0.477; inputs E)"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 12.8,
+     "q": "D",
+     "src": "KES-FB3 secant: (4.903 - 0.049) kPa / (T0 1.23 - Tm 0.85) mm (T0 1.23 mm M (JOVANOVIC22 WE17); Tm, LC, RC typical knit, E; RT taken as 1 - HYI wale 0.477; inputs E)"
+    },
+    "initial_stiffness_kPa_per_mm": {
+     "v": 4.5,
+     "q": "D",
+     "src": "secant x LC 0.35: LC < 1 means the pile is soft first then stiffens as fibres pack"
+    },
+    "compressible_to_fraction": {
+     "v": 0.69,
+     "q": "D",
+     "src": "Tm / T0 at 50 gf/cm2 (~5 kPa, a firm press or sitting); beyond it the fibres themselves resist (fibre modulus, GPa)"
+    },
+    "ramp": "barrier_log",
+    "ramp_note": "stiffening ramp (LC < 1): IPC log barrier starting at collision_thickness, or a two-slope ramp initial -> secant",
+    "contact_damping_ratio": {
+     "v": 0.044,
+     "q": "D",
+     "src": "(1 - RC 45 %) / (4 pi): energy lost per press-release cycle; RC from T0 1.23 mm M (JOVANOVIC22 WE17); Tm, LC, RC typical knit, E; RT taken as 1 - HYI wale 0.477"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.05,
+     "q": "E",
+     "src": "a cloth layer dropped or slapped on a rigid flat does not bounce: energy goes into bending and fibre friction (no measurement found)"
+    },
+    "response_time_ms": {
+     "v": [
+      2,
+      10
+     ],
+     "q": "E",
+     "src": "a cloth flap / slap reads as a short damped crack; set by the in-plane wave crossing a ~0.3 m panel at the speeds below plus bending"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "longitudinal_warp": 25,
+      "shear": 9.0
+     },
+     "q": "D",
+     "src": "sqrt(stretch_N_m 175 / mass 0.28 kg/m2) and sqrt(shear_N_m_rad 22.5 / mass); transverse (flutter) speed is sqrt(tension / mass) and depends on load"
+    },
+    "damping_ratio": {
+     "v": 0.038,
+     "q": "D",
+     "src": "(1 - RT 52 %) / (4 pi) tensile loss"
+    }
+   },
+   "self_contact": {
+    "friction_static": {
+     "v": 0.5,
+     "q": "E",
+     "src": "= contact.friction.static dry (fabric-on-fabric, same fabric)"
+    },
+    "friction_kinetic": {
+     "v": 0.42,
+     "q": "E",
+     "src": "= contact.friction.kinetic dry"
+    },
+    "min_separation_mm": {
+     "v": 1.23,
+     "q": "D",
+     "src": "two half-thicknesses: folded layers rest T0 apart at light pressure, Tm under ~5 kPa"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": "cloth",
+  "density_kg_m3": {
+   "v": 228,
+   "q": "D",
+   "src": "apparent: 280 g/m2 / 1.23 mm (JOVANOVIC22 WE17)"
+  },
+  "fibre_density_kg_m3": {
+   "v": {
+    "nylon": 1140,
+    "elastane": 1210
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 (recalled)"
+  },
+  "areal_density_g_m2": {
+   "v": {
+    "WE16": 260,
+    "WE17": 280,
+    "CE32": 310
+   },
+   "q": "M",
+   "src": "JOVANOVIC22 fabric table"
+  },
+  "thickness_mm": {
+   "v": {
+    "WE16": 1.18,
+    "WE17": 1.23,
+    "CE32": 1.21
+   },
+   "q": "M",
+   "src": "JOVANOVIC22"
+  },
+  "large_strain": {
+   "elastic_limit_pct": {
+    "v": {
+     "wale": 105.24,
+     "course": 73.4
+    },
+    "q": "M",
+    "src": "JOVANOVIC22 WE17 point T (above it the knit takes permanent set)"
+   },
+   "elastic_limit_force_N": {
+    "v": {
+     "wale": 9.2,
+     "course": 6.57
+    },
+    "q": "M",
+    "src": "JOVANOVIC22 WE17, per strip"
+   },
+   "elastic_limit_force_N_m": {
+    "v": {
+     "wale": 184,
+     "course": 131
+    },
+    "q": "D",
+    "src": "per 50 mm strip (width assumed, ISO 13934-1)"
+   },
+   "secant_stiffness_N_m": {
+    "v": {
+     "wale": 175,
+     "course": 179
+    },
+    "q": "D",
+    "src": "elastic_limit_force_N_m / elastic_limit strain: ~100x softer than woven cotton"
+   },
+   "break_pct": {
+    "v": {
+     "wale": 364.5,
+     "course": 334.4
+    },
+    "q": "M",
+    "src": "JOVANOVIC22 WE17"
+   },
+   "break_force_N": {
+    "v": {
+     "wale": 302.0,
+     "course": 287.8
+    },
+    "q": "M",
+    "src": "JOVANOVIC22 WE17 per strip"
+   },
+   "curve": {
+    "v": "J-shaped: soft loop-straightening to ~the elastic limit, then yarn extension stiffens it ~10-30x toward break",
+    "q": "D",
+    "src": "break force / elastic-limit force ~33-44x over ~3.5x the strain (JOVANOVIC22)"
+   },
+   "unrecovered_after_5_cycles_pct": {
+    "v": {
+     "wale": 17.8,
+     "course": 6.3
+    },
+    "q": "M",
+    "src": "JOVANOVIC22 WE17 epsilon_ue"
+   },
+   "hysteresis_index": {
+    "v": {
+     "wale": 0.477,
+     "course": 0.653
+    },
+    "q": "M",
+    "src": "JOVANOVIC22 WE17 HYI (energy lost / loading energy)"
+   },
+   "nylon_only_elastic_limit_pct": {
+    "v": {
+     "wale": 21.76,
+     "course": 32.32
+    },
+    "q": "M",
+    "src": "JOVANOVIC22 NE (0 % elastane): elastane is what extends the elastic range"
+   }
+  },
+  "bending_rigidity_gfcm2_cm": {
+   "v": 0.02,
+   "q": "E",
+   "src": "fine-gauge knit; knit B ranges 0.002-0.05 (cotton-knit patent via search)"
+  },
+  "bending_rigidity_uNm": {
+   "v": 1.96,
+   "q": "D",
+   "src": "UNITS x 98.07"
+  },
+  "shear_rigidity_N_m_deg": {
+   "v": {
+    "G_gf_cm_deg": 0.4
+   },
+   "q": "E",
+   "src": "knit low end (0.3-1.2 cotton knit range via search)"
+  },
+  "drape_coefficient_pct": {
+   "v": [
+    25,
+    40
+   ],
+   "q": "E",
+   "src": "limp knit"
+  },
+  "poisson": {
+   "v": {
+    "small_strain": [
+     0.5,
+     0.9
+    ]
+   },
+   "q": "E",
+   "src": "knits neck down strongly when stretched one way (loop geometry); not measured here"
+  },
+  "recovery": {
+   "v": "elastic snap-back below the elastic limit; slow creep recovery of the rest over minutes to hours; repeated over-stretch bags out (knees)",
+   "q": "D",
+   "src": "JOVANOVIC22 epsilon_ue and HYI"
+  },
+  "sim": {
+   "_": "Large-strain stretch knit: use a strain-stiffening (two-branch) membrane, not a single stiffness. Below the elastic limit ~175 N/m; above it stiffen ~10-30x; damping from the hysteresis index (~half the loading energy lost per cycle).",
+   "stretch_N_m": {
+    "v": {
+     "wale_low": 175,
+     "course_low": 179,
+     "high_branch_x": 15
+    },
+    "q": "D",
+    "src": "secant to JOVANOVIC22 WE17 elastic limit (50 mm strip assumed); high branch from break / elastic-limit force ratio, E within it"
+   },
+   "stretch_compliance_m_N": {
+    "v": {
+     "wale_low": 0.00571,
+     "course_low": 0.00559
+    },
+    "q": "D",
+    "src": "1 / stretch"
+   },
+   "bend_uNm": {
+    "v": 1.96,
+    "q": "D",
+    "src": "E bending x 98.07"
+   },
+   "bend_compliance_1_per_Nm": {
+    "v": 510000.0,
+    "q": "D",
+    "src": "1 / bend"
+   },
+   "shear_N_m_rad": {
+    "v": 22.5,
+    "q": "D",
+    "src": "E G x 56.19"
+   },
+   "damping_energy_loss_per_cycle": {
+    "v": {
+     "wale": 0.48,
+     "course": 0.65
+    },
+    "q": "M",
+    "src": "JOVANOVIC22 HYI"
+   },
+   "mass_per_area_kg_m2": {
+    "v": 0.28,
+    "q": "D",
+    "src": "WE17"
+   },
+   "compression_garment_pressure_kPa": {
+    "v": "P = T / r (Laplace): T 100 N/m over a 50 mm-radius thigh -> 2 kPa (15 mmHg)",
+    "q": "D",
+    "src": "a check a sim of leggings on skin should reproduce"
+   }
+  },
+  "fracture": {
+   "wet_strength_ratio": {
+    "v": 1.0,
+    "q": "D",
+    "src": "by definition: wet / dry strength ratio, the conditioned dry strength (20 C, 65 % RH) is the reference"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.05,
+   "q": "E",
+   "src": "TYPICAL"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1650,
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: nylon ~1.7 kJ/kgK (recalled)"
+  },
+  "effusivity": {
+   "v": 137,
+   "q": "D",
+   "src": "sqrt(0.05 x 228 x 1650)"
+  },
+  "emissivity": {
+   "v": 0.9,
+   "q": "E",
+   "src": "TYPICAL"
+  },
+  "melt_C": {
+   "v": {
+    "nylon66": 260,
+    "elastane_degrades": 230
+   },
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: recalled"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {}
+  },
+  "stretched_on_body": {
+   "set": {},
+   "q": "D",
+   "src": "a worn legging sits at 20-60 % strain: inside the low branch, opacity reduced (optics_summary.stretch_whitening)"
+  },
+  "wet": {
+   "set": {
+    "deform.areal_density_g_m2": {
+     "WE16": 360,
+     "WE17": 390,
+     "CE32": 430
+    },
+    "deform.fracture.wet_strength_ratio": {
+     "v": [
+      0.8,
+      0.9
+     ],
+     "q": "D",
+     "src": "nylon carries the load: COTTONINC13 nylon dry 2.3-5.0, wet 1.8-4.0 gf/den (0.78-0.80; row checked by density 1.14 / regain 4.5) and NYLON2 80-90 %; spandex dry 0.5-1.5 = wet 0.5-1.5 (ratio ~1.0, COTTONINC13) so the elastane share does not lower it"
+    }
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: ~40 % water; nylon loses ~10-15 % strength wet (MORTON08 recalled); wet swimwear clings and darkens"
+  }
+ },
+ "sources": {
+  "JOVANOVIC22": {
+   "cite": "Jovanovic T, Penava Z, Vrljicak Z. Impact of the elastane percentage on the elastic properties of knitted fabrics under cyclic loading. Materials 15(19):6512 (2022). doi:10.3390/ma15196512. Plated weft knits, 156 dtex polyamide ground + wrapped (WE) or bare (CE) elastane",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9570736",
+   "lic": "CC BY 4.0"
+  },
+  "ASTMD1909": {
+   "cite": "ASTM D1909-13(2020)e1 Standard tables of commercial moisture regains for textile fibres (cotton 8.5, wool 13.6, silk 11, flax 12, nylon 4.5, polyester 0.4 %); read through a CC BY review table citing it (Bioresour Bioprocess 2020, 10.1186/s40643-020-00339-1 Table 10) and the ASTM catalogue abstracts. Commercial (agreed) regains, close to equilibrium at 65 % RH, 21 C",
+   "url": "https://store.astm.org/d1909-13.html",
+   "lic": "paywalled standard; the numbers are facts"
+  },
+  "KRUSS228": {
+   "cite": "KRUSS application report AR228: single-fibre Wilhelmy contact angle, nylon 6.6 in water 76.6 +/- 4.1 deg",
+   "url": "https://www.kruss-scientific.com/files/kruss-ar228-en.pdf",
+   "lic": "free application note, (c) KRUSS; number used as a fact"
+  },
+  "LEKNER88": {
+   "cite": "Lekner J, Dorf MC. Why some things are darker when wet. Appl Opt 27(7):1278-1280 (1988): a water film's total internal reflection returns diffuse light to an absorbing surface for another chance of absorption (Angstrom), plus a lower relative index inside",
+   "url": "https://www.wgtn.ac.nz/scps/staff/pdf/darkerwhenwet.pdf",
+   "lic": "paywalled journal; author copy; formula used, text studied only"
+  },
+  "ZHANG06": {
+   "cite": "Zhang H, Voss KJ. Bidirectional reflectance study on dry, wet and submerged particulate layers: effects of pore liquid refractive index and translucent particle concentrations. Appl Opt 45 (2006): index matching lets light go deeper and be absorbed; neither model alone sufficient",
+   "url": "https://web3.physics.miami.edu/~voss/ken/RefPapers/056_ZV_AO_2006.pdf",
+   "lic": "paywalled journal; author copy; studied only"
+  },
+  "MORTON08": {
+   "cite": "Morton WE, Hearle JWS. Physical Properties of Textile Fibres, 4th ed. Woodhead (2008): fibre densities, refractive indices, moduli, wet/dry strength, electrical resistance. Recalled; not re-opened in this session",
+   "url": "https://doi.org/10.1533/9781845694425",
+   "lic": "copyrighted book; individual numbers as facts; recalled, so marked E"
+  },
+  "ALPHALAB": {
+   "cite": "AlphaLab Inc. (W. Lee) triboelectric table, charge affinity nC/J at ~22 C, 35 % RH (2009); cotton +5, wool 0 read from secondary copies (blog / Scribd); nylon listed with dry skin at +30",
+   "url": "https://storiesinfabric.blogspot.com/2013/11/taken-from-httpwwwtrifieldcomcontenttri.html",
+   "lic": "(c) AlphaLab, may be reproduced only whole; single numbers used as facts, table not copied"
+  },
+  "UNITS": {
+   "cite": "Unit conversions done here: 1 gf = 9.80665 mN; KES B gf cm2/cm x 98.07 = uN m per unit width; KES G gf/(cm deg) x 56.19 = N/m per rad; KES-FB1 standard max load 500 gf/cm = 490.3 N/m; 1 oz/yd2 = 33.906 g/m2; 1 momme = 4.306 g/m2; 1 ft3/ft2/min (ASTM D737, 125 Pa) = 5.08 mm/s",
+   "url": "",
+   "lic": "definitions"
+  },
+  "TYPICAL": {
+   "cite": "Trade and textbook typical values (fabric weight classes, Martindale rating bands such as EN 14465 upholstery 'heavy domestic' >= 25 000 rubs, fabric emissivity ~0.9, effective fabric conductivity dominated by trapped air 0.03-0.06 W/mK). Used only where no measured value was retrieved; each use says why",
+   "url": "",
+   "lic": "general knowledge; marked E"
+  },
+  "COTTONINC13": {
+   "cite": "Textile Fibers (2013), Cotton Incorporated: cotton is 10-20 % stronger when wet (dry 3.0-4.9, wet 3.3-6.7 gf/den in the text); appendix 'Comparison of fiber properties' dry / wet tenacity gf/den: cotton 3.0-5.0 / 3.3-6.0, flax 5.5-6.5 / 6.0-7.8, silk 2.4-5.1 / 2.0-4.3, nylon 2.3-5.0 / 1.8-4.0, spandex 0.5-1.5 / 0.5-1.5 (rows identified by density and regain: the PDF text layer shifts the row labels by one)",
+   "url": "https://cottonworks.com/wp-content/uploads/2017/11/Fibers_Booklet_edited-1.pdf",
+   "lic": "(c) 2013 Cotton Incorporated, all rights reserved: text STUDY ONLY (P13); a few numbers used as facts"
+  },
+  "NYLON2": {
+   "cite": "Secondary textile notes (Scribd 'Nylon 6,6' manufacturing notes; mytextilenotes): nylon wet strength 80-90 % of dry, elongation +5-30 % wet; no primary source named",
+   "url": "https://www.scribd.com/document/483394977/6-6-Nyl-docx",
+   "lic": "unverified secondary; used as a supporting range only"
+  }
+ }
+}

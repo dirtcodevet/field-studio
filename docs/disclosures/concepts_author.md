@@ -14,7 +14,7 @@ its integration with the others, and the measured tradeoffs. It is not legal adv
 ---
 
 ## 1. Contact read from each body's own distance field, with a short-range barrier
-**First stated:** 2026-11-12, ~15:30 PT (the author's "magnetic field" idea: a repulsion between surfaces that reaches
+**First stated:** 2026-11-12, ~15:30 PT (the author's idea of contact that acts like a magnetic field: a repulsion between surfaces that reaches
 its limit where they touch). **Status:** built in two forms and measured on synthetic cases; promising on the tested
 soft-on-soft cases, not established as generally better.
 

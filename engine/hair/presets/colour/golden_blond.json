@@ -1,0 +1,20 @@
+{
+ "name": "golden_blond",
+ "notes": "Field Studio's generic preset (fs-hair, 11-11): the resolved values of the hair lane's natural base layers, sourced in the hair lane's NATURAL_BASE_SOURCES and engine/hair/kinds.py; no person's data. Field Studio's Hair panel sets density, length, thickness and pigment on top.",
+ "colour": {
+  "melanin": 0.45,
+  "redness": 0.045,
+  "ash": 0.05,
+  "lock_sd": 0.12,
+  "lengths_lighter": 0.28,
+  "balayage_amount": [
+   0.2,
+   0.35
+  ],
+  "edge_lighter": 0,
+  "strand_sd": 0.15
+ },
+ "material": {
+  "roughness": 0.29
+ }
+}

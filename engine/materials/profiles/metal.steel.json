@@ -1,0 +1,509 @@
+{
+ "id": "metal.steel",
+ "kind": "rigid_solid",
+ "family": "metal",
+ "_": "Austenitic stainless steel AISI 304 (18Cr-8Ni, UNS S30400), annealed, at room temperature, brushed (No. 4) finish unless a state says otherwise: railings, sinks, appliances, cutlery, tools, fittings. A carbon / structural steel state (S235 / A36) changes density, conductivity and adds rust. Partners research lane 11-07 (the project's materials research note PARTNERS.md).",
+ "surface": {
+  "alpha": {
+   "v": {
+    "brushed_No4": 0.2,
+    "mirror_No8": 0.02,
+    "bead_blasted": 0.45
+   },
+   "q": "E",
+   "src": "brushed Ra 0.4-1 um with directional grooves (anisotropic: alpha ~0.08 along, ~0.3 across the brush lines); mirror Ra < 0.05 um; bead-blast Ra 1-3 um; practice, no measured BRDF fit found"
+  },
+  "n": {
+   "v": {
+    "n": 2.95,
+    "k": 2.93
+   },
+   "q": "M",
+   "src": "JC74_FE data file re-read 11-08 (refractiveindex.info database main/Fe/nk/Johnson.yml, CC0): 0.549 um n 2.95 k 2.93, 0.582 um n 2.94 k 2.99, so n 2.95, k 2.93 at 550 nm (iron; 304 is Fe-Cr-Ni, its n,k within ~10 %); corrected from n 2.87, k 3.35"
+  },
+  "F0": {
+   "v": 0.512,
+   "q": "D",
+   "src": "((n-1)^2 + k^2)/((n+1)^2 + k^2) at 550 nm with n 2.95, k 2.93 (recomputed 11-08 after the n,k correction; was 0.562): a conductor, the specular colour IS the base colour, no diffuse"
+  },
+  "F0_rgb": {
+   "v": [
+    0.55,
+    0.556,
+    0.554
+   ],
+   "q": "E",
+   "src": "stainless steel reflectance near-neutral, a hair warmer than aluminium (PBR practice tables, consistent with the n,k above)"
+  },
+  "anisotropy": {
+   "v": "brushed finish: highlight stretched across the brush direction",
+   "q": "E",
+   "src": "observation"
+  }
+ },
+ "optics_summary": {
+  "n_k_550nm": {
+   "v": {
+    "n": 2.95,
+    "k": 2.93
+   },
+   "q": "M",
+   "src": "JC74_FE data file re-read 11-08 (refractiveindex.info database main/Fe/nk/Johnson.yml, CC0): 0.549 um n 2.95 k 2.93, 0.582 um n 2.94 k 2.99, so n 2.95, k 2.93 at 550 nm (iron; 304 is Fe-Cr-Ni, its n,k within ~10 %); corrected from n 2.87, k 3.35"
+  },
+  "absorption": {
+   "v": "opaque metal: light absorbed within ~15 nm (skin depth lambda/(4 pi k)); no subsurface scattering",
+   "q": "D",
+   "src": "lambda/(4 pi k) = 550 nm/(4 pi 2.93) = 15 nm (recomputed 11-08 with the re-read k)"
+  },
+  "translucency": {
+   "v": "none",
+   "q": "D",
+   "src": "conductor"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry_clean": [
+      0.5,
+      0.8
+     ],
+     "dry_air_exposed": [
+      0.4,
+      0.6
+     ],
+     "lubricated": [
+      0.1,
+      0.16
+     ]
+    },
+    "q": "M",
+    "src": "ETB friction table re-read 11-08: steel on steel clean and dry 0.5-0.8, grease 0.16, lard 0.11, graphite 0.058; dry_air_exposed [0.4, 0.6] and the lubricated 0.1 E; MARKS mild steel 0.74 E: recalled from Marks' Handbook, not re-read; stainless on stainless galls (adhesive wear) when clean and loaded"
+   },
+   "kinetic": {
+    "v": {
+     "dry_clean": [
+      0.42,
+      0.57
+     ],
+     "lubricated": [
+      0.05,
+      0.1
+     ]
+    },
+    "q": "M",
+    "src": "ETB friction table re-read 11-08: steel on steel clean and dry 0.42, castor oil 0.081, lard 0.084 (lubricated 0.05-0.1 E around them); MARKS mild steel 0.57 E: recalled from Marks' Handbook, not re-read"
+   },
+   "counterface": "steel on steel (pairs/partners.json holds aluminium, rubber.sole, plastic.comb, wood, glass, ice; pairs/skin.json holds skin)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": {
+     "clean_oxide": [
+      500,
+      1000
+     ],
+     "air_aged": [
+      35,
+      50
+     ]
+    },
+    "q": "E",
+    "src": "MANTEL94: the surface energy of 304 foil decays with the hydrocarbon overlayer thickness, not the oxide type; a clean oxide is high-energy (water spreads); within hours in air it reads like a polymer"
+   },
+   "tack": {
+    "v": "none dry; flat oiled or wet plates hold by capillarity (Laplace pressure ~ 2 gamma / gap)",
+    "q": "E",
+    "src": "observation"
+   }
+  },
+  "restitution": {
+   "v": 0.9,
+   "q": "E",
+   "src": "E: recalled from Goldsmith 1960 (GOLDSMITH60), not re-read: GOLDSMITH60 steel on steel 0.9-0.95 low speed; ARYAEI10 e falls as the ball grows and the sheet softens"
+  },
+  "solver": {
+   "phase": "solid",
+   "collision_thickness_mm": {
+    "v": 0.1,
+    "q": "E",
+    "src": "numerical offset only: a rigid solid has no compliant surface layer; 0.1 mm as the glass/stone profiles (below screen-readable gap, above field step resolution)"
+   },
+   "penetration_response": {
+    "ramp": "hertz",
+    "E_star_GPa": {
+     "v": 211.0,
+     "q": "D",
+     "src": "E / (1 - nu^2) from E 193 GPa, nu 0.29 (half-space modulus; the soft partner's own E* combines in series)"
+    },
+    "contact_stiffness_kPa_per_mm": {
+     "v": 2680000.0,
+     "q": "D",
+     "src": "flat punch k = 2 E* a over area pi a^2, a 50 mm (hand-sized patch): an unyielding barrier next to any soft partner"
+    },
+    "hertz_constant_N_per_m1_5_R25mm": {
+     "v": 44400000000.0,
+     "q": "D",
+     "src": "F = (4/3) E* sqrt(R) d^1.5, rigid sphere R 25 mm"
+    },
+    "contact_damping_ratio": {
+     "v": 0.0335,
+     "q": "D",
+     "src": "zeta = -ln e / sqrt(pi^2 + ln^2 e) from restitution 0.9"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.9,
+     "q": "E",
+     "src": "E: recalled from Goldsmith 1960 (GOLDSMITH60), not re-read: GOLDSMITH60 hardened steel spheres on steel blocks e ~0.9-0.95 at low speed (drops with size and speed as plasticity starts; ARYAEI10)"
+    },
+    "response_time_ms": {
+     "v": 0.177,
+     "q": "D",
+     "src": "Hertz contact time t = 2.87 (m^2/(R E*^2 v))^0.2, rigid 1 kg sphere, R 25 mm, 1 m/s: sub-millisecond; in a slap or a step the soft partner sets the pulse"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "bar_longitudinal": 4912,
+      "shear": 3058
+     },
+     "q": "D",
+     "src": "sqrt(E/rho), sqrt(G/rho), G = E/(2(1+nu)), rho 8000"
+    },
+    "damping_ratio": {
+     "v": 0.0335,
+     "q": "D",
+     "src": "as contact_damping_ratio (energy lost per impact, from restitution)"
+    }
+   },
+   "_": "Rigid next to any body tissue; it dents (yields at 215 MPa) only under point loads far above anything a body applies. Sheet and tube ring when struck: the ring is the bar/plate modes at these wave speeds with very low damping (zeta ~1e-4 internal; the 0.034 here is the contact loss)."
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": {
+     "clean_plasma": [
+      0,
+      10
+     ],
+     "as_received": [
+      60,
+      80
+     ],
+     "measured_SS": 62.6
+    },
+    "q": "M",
+    "src": "US8453425 bare stainless steel 62.6 deg (66.3 after a fuel wipe); FORREST15: on real metal surfaces the angle is set by a ~5 nm hydrocarbon overlayer"
+   },
+   "_": "Water beads on handled steel (fingerprint sebum raises the angle to 80-90) and sheets on freshly cleaned steel."
+  },
+  "porosity": {
+   "v": 0.0,
+   "q": "M",
+   "src": "wrought steel is non-porous"
+  },
+  "water_absorption": {
+   "v": 0.0,
+   "q": "M",
+   "src": "none"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "charge_affinity_nC_J": 0,
+     "position": "conductor: the zero of the scale; it takes charge from hair (+45), skin (+30), nylon (+30) and gives it to rubber (SBR -35, NR -105), PP (-90), PTFE (-190); grounded steel bleeds any charge at once"
+    },
+    "q": "M",
+    "src": "ALPHALAB: all conductors about the same affinity (the table's zero); metal rubbing is pressure-dependent and can reverse"
+   },
+   "resistivity_ohm_m": {
+    "v": 7.2e-07,
+    "q": "M",
+    "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): electrical resistivity 7.2e-005 ohm-cm (72 uohm cm)"
+   },
+   "charge_decay_s": {
+    "v": {
+     "grounded": 0,
+     "isolated_object": "holds charge on its capacitance (a few pF for a hand tool) until it touches a conductor: the spark from a door handle is the body's charge, not the steel's"
+    },
+    "q": "D",
+    "src": "conductor"
+   },
+   "permittivity_rel": {
+    "v": null,
+    "q": "E",
+    "src": "not defined for a conductor (fully screening)"
+   }
+  },
+  "hardness": {
+   "v": {
+    "brinell_HB": 123,
+    "rockwell_HRB": 70,
+    "vickers_HV": 129,
+    "mohs": [
+     5.5,
+     6.3
+    ]
+   },
+   "q": "M",
+   "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): HB 123, HRB 70, HV 129 (HB and HV converted from Rockwell B by the sheet); Mohs E from practice"
+  },
+  "abrasion": {
+   "v": "scratched by quartz sand (Mohs 7) in grit; brushed finishes hide wear, mirror finishes show swirl marks; galling between clean stainless pairs",
+   "q": "E",
+   "src": "observation"
+  }
+ },
+ "deform": {
+  "model": "elastoplastic",
+  "density_kg_m3": {
+   "v": 8000,
+   "q": "M",
+   "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): 8 g/cc (MIF 7.8-8.0)"
+  },
+  "E_GPa": {
+   "v": 193,
+   "q": "M",
+   "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): 193-200 GPa; 193 kept (MIF 200)"
+  },
+  "poisson": {
+   "v": 0.29,
+   "q": "M",
+   "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): 0.29 (MIF 0.28)"
+  },
+  "shear_GPa": {
+   "v": 74.8,
+   "q": "D",
+   "src": "E / (2 (1 + nu))"
+  },
+  "bulk_GPa": {
+   "v": 153.0,
+   "q": "D",
+   "src": "E / (3 (1 - 2 nu))"
+  },
+  "plastic": {
+   "yield_MPa": {
+    "v": 215,
+    "q": "M",
+    "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): 0.2 % offset yield 215 MPa; ASTM A240 min 205 and cold work 500-1000 E: recalled, not re-read"
+   },
+   "ultimate_MPa": {
+    "v": 505,
+    "q": "M",
+    "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): 505 MPa"
+   },
+   "elongation_pct": {
+    "v": 70,
+    "q": "M",
+    "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): 70 % in 50 mm (annealed): bends and dents, does not snap"
+   },
+   "hardening": {
+    "v": "strong work hardening (austenitic): a bent sheet stiffens at the bend",
+    "q": "E",
+    "src": "metallurgy practice"
+   }
+  },
+  "fracture": {
+   "toughness_KIC_MPa_m05": {
+    "v": [
+     100,
+     200
+    ],
+    "q": "E",
+    "src": "austenitic stainless fails by ductile tearing; K_IC is not valid-measurable at room temperature in thin sections; J-integral equivalents > 100 MPa m^0.5 (fracture mechanics practice)"
+   }
+  },
+  "thermal_expansion_1_K": {
+   "v": 1.73e-05,
+   "q": "M",
+   "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): CTE 17.3 um/m-C at 20 C (0-100 C); 17.8 at 250 C, 18.7 at 500 C"
+  },
+  "sim": {
+   "_": "Rigid for every body contact; elastoplastic only for props that bend (thin sheet, wire).",
+   "xpbd_compliance_1_Pa": {
+    "v": 5.18e-12,
+    "q": "D",
+    "src": "1 / E"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 16.2,
+   "q": "M",
+   "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): 16.2 W/m-K at 0-100 C (21.5 at 500 C; the src said 'at 100 C') (MIF 16)"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 500,
+   "q": "M",
+   "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): 0.5 J/g-C (MIF 480 J/kgK)"
+  },
+  "effusivity": {
+   "v": 8050,
+   "q": "D",
+   "src": "sqrt(k rho c) = sqrt(16.2 x 8000 x 500) W s^0.5 m^-2 K^-1"
+  },
+  "contact_temp_with_skin_C": {
+   "v": 21.7,
+   "q": "D",
+   "src": "SKINTH: T = (e_skin 33 + e 20)/(e_skin + e), skin 33 C on material 20 C, e_skin 1188; lower = feels colder"
+  },
+  "emissivity": {
+   "v": {
+    "mirror": 0.07,
+    "brushed": [
+     0.1,
+     0.2
+    ],
+    "oxidised_heated": [
+     0.8,
+     0.85
+    ]
+   },
+   "q": "M",
+   "src": "EMIS_ETB re-read 11-08: stainless polished 0.075, weathered 0.85, type 301 0.54-0.63; mirror 0.07 kept; brushed 0.1-0.2 E between; the oxidised lower bound 0.8 E (the table's 0.85 row says weathered, not oxidised)"
+  },
+  "thermal_expansion_1_K": {
+   "v": 1.73e-05,
+   "q": "M",
+   "src": "ASM_304 datasheet re-read 11-08 (ASM / MatWeb sheet MQ304A, PDF at aerospacemetals.com): 17.3 um/m-C (0-100 C)"
+  }
+ },
+ "states": {
+  "clean": {
+   "set": {},
+   "_": "the base: brushed 304, dry, air-aged (handled)"
+  },
+  "wet": {
+   "set": {
+    "contact.friction.static.v.dry_clean": [
+     0.3,
+     0.5
+    ]
+   },
+   "q": "E",
+   "src": "a water film on steel: steel-steel between dry and lubricated; skin on wet steel grips MORE (pairs/skin.json, skin hydration), rubber soles grip less (pairs/partners.json)"
+  },
+  "oily": {
+   "set": {
+    "contact.friction.static.v.dry_clean": [
+     0.1,
+     0.16
+    ],
+    "contact.wetting.water_contact_angle_deg.v.as_received": [
+     85,
+     100
+    ]
+   },
+   "q": "M",
+   "src": "ETB friction table re-read 11-08: steel on steel grease 0.16 (MARKS greasy 0.16, recalled, agrees); an oil film raises the water angle (beads, E)"
+  },
+  "polished_mirror": {
+   "set": {
+    "surface.alpha": 0.02,
+    "thermal.emissivity": 0.07
+   },
+   "q": "E",
+   "src": "mirror No. 8 finish; low emissivity (EMIS_ETB); EMIS_ETB re-read 11-08: stainless polished 0.075"
+  },
+  "carbon_steel": {
+   "set": {
+    "deform.density_kg_m3": 7850,
+    "deform.E_GPa": 200,
+    "deform.plastic.yield_MPa": 250,
+    "thermal.conductivity_W_mK": 50,
+    "thermal.heat_capacity_J_kgK": 490,
+    "thermal.effusivity": 13868,
+    "contact.electrostatic.resistivity_ohm_m": 1.7e-07
+   },
+   "q": "E",
+   "src": "E: recalled from ASM / EN 10025 typical values, not re-read: structural steel S235 / ASTM A36: density 7850, E 200 GPa, yield 235-250 MPa, k ~50 W/mK, c ~490 (ASM / EN 10025 typical); effusivity D sqrt(k rho c), feels colder than stainless (contact ~20.4 C)"
+  },
+  "rusted": {
+   "set": {
+    "surface.alpha": 0.7,
+    "surface.F0": 0.04,
+    "contact.friction.static.v.dry_clean": [
+     0.6,
+     0.9
+    ],
+    "thermal.emissivity": 0.85
+   },
+   "q": "E",
+   "src": "carbon steel only: iron oxide-hydroxide (rust) is a porous rough dielectric (orange-brown diffuse albedo, n ~2.0-2.3), not a metal; friction and emissivity rise (EMIS_ETB oxidised iron 0.6-0.9); the EMIS_ETB iron rows were not re-read 11-08"
+  },
+  "cold": {
+   "set": {},
+   "q": "D",
+   "src": "at -10 C the contact temperature with skin is about -4.5 C (effusivity 8050 vs skin 1188): wet skin can freeze to it (stuck-tongue effect) because heat is pulled from the contact faster than skin supplies it"
+  }
+ },
+ "sources": {
+  "ETB": {
+   "cite": "The Engineering ToolBox, Friction and friction coefficients for some common materials",
+   "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+   "lic": "free web reference; numbers used as facts (friction table re-read 11-08)"
+  },
+  "MARKS": {
+   "cite": "Marks' Standard Handbook for Mechanical Engineers, friction coefficient table (static/kinetic, dry and greasy, metals on metals)",
+   "url": "",
+   "lic": "paywalled handbook; numbers used as facts (recalled from the source, not re-read 11-07)"
+  },
+  "ALPHALAB": {
+   "cite": "Lee B / AlphaLab Inc. (TriField) triboelectric table, charge affinity nC/J (positive = charges +); zero = the average conductor (all metals about equal); read via the storiesinfabric.blogspot.com reprint 11-07",
+   "url": "https://storiesinfabric.blogspot.com/2013/11/taken-from-httpwwwtrifieldcomcontenttri.html",
+   "lic": "free web table, reproduction only in whole: single numbers used as facts, table not copied STUDY ONLY (P13)"
+  },
+  "SKINTH": {
+   "cite": "skin thermal inputs for contact temperature: k 0.37 W/mK, c 3500 J/kgK (Duck 1990 tissue tables, typical), rho 1090 from skin.body",
+   "url": "",
+   "lic": "numbers used as facts"
+  },
+  "ASM_304": {
+   "cite": "ASM Aerospace Specification Metals / MatWeb, AISI Type 304 Stainless Steel datasheet (annealed): density 8.00, E 193 GPa, nu 0.29, yield 215 MPa, UTS 505 MPa, elongation 70 %, HB 123, k 16.2 W/mK, c 500 J/kgK, CTE 17.3e-6/K, resistivity 72 uohm cm",
+   "url": "https://asm.matweb.com/search/SpecificMaterial.asp?bassnum=MQ304A (re-read 11-08 as the PDF print at https://www.aerospacemetals.com/wp-content/uploads/2023/07/AISI-Type-304-Stainless-Steel.pdf)",
+   "lic": "MatWeb terms forbid redistributing the data compilation: single numbers used as facts, STUDY ONLY (P13); re-read 11-08: every number above matches; the sheet also lists shear modulus 86 GPa (its own E and nu give 74.8)"
+  },
+  "MIF": {
+   "cite": "MakeItFrom.com, AISI 304 (S30400) Stainless Steel: density 7.8 g/cm3, E 200 GPa, nu 0.28, c 480 J/kgK, k 16 W/mK",
+   "url": "https://www.makeitfrom.com/material-properties/AISI-304-S30400-Stainless-Steel",
+   "lic": "copyrighted web compilation: numbers used as facts, table not copied STUDY ONLY (P13)"
+  },
+  "JC74_FE": {
+   "cite": "Johnson PB, Christy RW. Optical constants of transition metals: Ti, V, Cr, Mn, Fe, Co, Ni, and Pd. Phys Rev B 9:5056 (1974), via refractiveindex.info; data file re-read 11-08 (refractiveindex.info-database main/Fe/nk/Johnson.yml)",
+   "url": "https://refractiveindex.info/?shelf=main&book=Fe&page=Johnson",
+   "lic": "refractiveindex.info CC0; numbers used as facts"
+  },
+  "GOLDSMITH60": {
+   "cite": "Goldsmith W. Impact: the theory and physical behaviour of colliding solids. Edward Arnold (1960): restitution tables for steel spheres",
+   "url": "",
+   "lic": "book; numbers used as facts (recalled from the source, not re-read 11-07)"
+  },
+  "ARYAEI10": {
+   "cite": "Aryaei A, Hashemnia K, Jafarpur K. Experimental and numerical study of ball size effect on restitution coefficient in low velocity impacts. Int J Impact Eng 37:1037-1044 (2010)",
+   "url": "https://doi.org/10.1016/j.ijimpeng.2010.04.005",
+   "lic": "paywalled; finding (e falls with ball size, rises with sheet hardness) used"
+  },
+  "US8453425": {
+   "cite": "US Patent 8,453,425, Soot reduction by combustor conditioning: example water contact angle on bare stainless steel 62.6 deg, 66.3 deg after a Jet A wipe",
+   "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8453425",
+   "lic": "US patent, public domain text; number used as a fact"
+  },
+  "MANTEL94": {
+   "cite": "Mantel M, Wightman JP. Influence of the surface chemistry on the wettability of stainless steel. Surf Interface Anal 21:595-605 (1994)",
+   "url": "https://doi.org/10.1002/sia.740210902",
+   "lic": "paywalled; abstract finding used"
+  },
+  "FORREST15": {
+   "cite": "Forrest E et al. / Sandia: Influence of surface contamination on the wettability of heat transfer surfaces (2015): water angle on cleaned metal set by a ~5 nm hydrocarbon overlayer",
+   "url": "https://www.osti.gov/pages/biblio/1184597-influence-surface-contamination-wettability-heat-transfer-surfaces",
+   "lic": "US government report (OSTI), open"
+  },
+  "EMIS_ETB": {
+   "cite": "The Engineering ToolBox, Emissivity coefficients of common products (re-read 11-08: stainless polished 0.075, weathered 0.85, type 301 0.54-0.63; aluminum highly polished 0.039-0.057, commercial sheet 0.09, rough 0.07, anodized 0.77; rubber hard glossy plate 0.94, natural hard 0.91, natural soft 0.86; plastics 0.90-0.97; no nylon row)",
+   "url": "https://www.engineeringtoolbox.com/emissivity-coefficients-d_447.html",
+   "lic": "free web reference; numbers used as facts (re-read 11-08)"
+  }
+ }
+}

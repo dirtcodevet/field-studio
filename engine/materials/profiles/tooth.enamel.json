@@ -1,0 +1,416 @@
+{
+ "id": "tooth.enamel",
+ "kind": "hard_tissue",
+ "family": "human_hard",
+ "_": "Human tooth enamel: ~96 % mineral (carbonated hydroxyapatite in rods 4-8 um wide), translucent, the outer layer of the crown up to ~2.5 mm thick at the cusps and thin at the cervix. Values for permanent adult teeth at room or body temperature, hydrated (in vivo enamel is always wet with saliva and a protein pellicle). Stiffness and hardness fall from the outer surface toward the dentin-enamel junction (DEJ). Materials research lane, mouth group, 2026-11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.08,
+   "q": "E",
+   "src": "polished-looking natural enamel with perikymata (fine growth lines) - a glossy dielectric, not a mirror; not measured"
+  },
+  "n": {
+   "v": 1.631,
+   "q": "M",
+   "src": "MENG09 OCT 1.631 +- 0.007 (another 1.625 +- 0.024) (via MTT D17)"
+  },
+  "F0": {
+   "v": 0.0575,
+   "q": "D",
+   "src": "((n-1)/(n+1))^2 from n 1.631"
+  },
+  "coat_default": {
+   "n": {
+    "v": 1.335,
+    "q": "E",
+    "src": "saliva (WATER)"
+   },
+   "alpha": {
+    "v": 0.02,
+    "q": "E",
+    "src": "liquid film"
+   },
+   "thickness_um": {
+    "v": null,
+    "q": "E",
+    "src": "not found on teeth (MTT section 10); palate 11-30 um (ASSY23) is the nearest"
+   }
+  }
+ },
+ "optics_summary": {
+  "n": {
+   "v": 1.631,
+   "q": "M",
+   "src": "MENG09"
+  },
+  "mu_s_per_cm": {
+   "v": [
+    15,
+    105
+   ],
+   "q": "M",
+   "src": "FRIED95 enamel 15-105 cm-1 from 1.06 um down to 543 nm (more scattering at shorter wavelength)"
+  },
+  "mu_a_per_cm": {
+   "v": "negligible in the visible",
+   "q": "M",
+   "src": "FRIED95"
+  },
+  "g": {
+   "v": 0.96,
+   "q": "M",
+   "src": "FRIED95 HG g 0.96 plus a 30-60 % isotropic component"
+  },
+  "isotropic_fraction": {
+   "v": [
+    0.3,
+    0.6
+   ],
+   "q": "M",
+   "src": "FRIED95 (36 % at 1053 nm, Darling 2006 via search)"
+  },
+  "translucency_parameter_1mm": {
+   "v": 18.7,
+   "q": "M",
+   "src": "YU09 TP 18.7 for 1 mm human enamel (via MTT D16); TP falls with thickness, rises with wavelength"
+  },
+  "colour_Lab_2mm": {
+   "v": {
+    "over_white": [
+     76.3,
+     3.4,
+     17.2
+    ],
+    "over_black": [
+     63.5,
+     0.8,
+     10.7
+    ],
+    "contrast_ratio": 64.4
+   },
+   "q": "M",
+   "src": "ARDU10 in vivo enamel 2 mm (via MTT section 4)"
+  },
+  "translucency": {
+   "v": "high: enamel transmits and forward-scatters; the colour of a tooth is mostly the dentin seen through it; incisal edges with no dentin behind look bluish-grey (opalescence: short wavelengths scattered more)",
+   "q": "D",
+   "src": "FRIED95 mu_s rising toward blue; MTT section 4"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": null,
+    "q": "E",
+    "src": "not found separately"
+   },
+   "kinetic": {
+    "v": {
+     "wet_vs_enamel": [
+      0.1,
+      0.42
+     ]
+    },
+    "q": "M",
+    "src": "DOUGLAS85 enamel on enamel in an artificial mouth 0.10-0.42; fluid type had little effect, surface roughness a large one"
+   },
+   "counterface": "enamel (artificial mouth); see pairs/mouth.json"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": {
+     "polished": 88,
+     "saliva_coated": 103
+    },
+    "q": "M",
+    "src": "SFE_CPC from contact angles: ground/polished 88 +- 8, saliva-coated 103 +- 4 (a 1983 study found the pellicle lowers it; methods differ)"
+   },
+   "tack": {
+    "v": "none (rigid, hydrophilic)",
+    "q": "E",
+    "src": "rigid hard solid"
+   }
+  },
+  "restitution": {
+   "v": 0.85,
+   "q": "E",
+   "src": "not found for teeth; a stiff brittle mineral solid against a rigid flat at ~1 m/s rebounds strongly (ceramics 0.8-0.95); impact on a tooth is mostly governed by the soft periodontal ligament behind it"
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": [
+     40,
+     60
+    ],
+    "q": "E",
+    "src": "porcine enamel 50 +- 18 deg (search result); human polished enamel 'consistent with literature' not retrieved; saliva pellicle makes it more hydrophilic"
+   }
+  },
+  "hardness": {
+   "v": {
+    "HV": [
+     315,
+     357
+    ],
+    "nano_H_GPa": [
+     2.8,
+     6.2
+    ],
+    "Mohs": 5
+   },
+   "q": "M",
+   "src": "HV_MR enamel HV 315-357 (stored teeth); CUY02 nanoindentation 5.35 GPa occlusal surface -> 2.83 near DEJ (buccal up to 6.17); ZHANG14 surface max ~3.5 GPa; Mohs 5 = apatite by definition (MOHS; enamel D from its mineral)"
+  },
+  "abrasion": {
+   "v": {
+    "in_vivo_wear_um_per_year": {
+     "molar": 29,
+     "premolar": 15
+    }
+   },
+   "q": "M",
+   "src": "LAMB89 steady-state occlusal contact wear over 4 years"
+  },
+  "porosity": {
+   "v": [
+    0.001,
+    0.01
+   ],
+   "q": "E",
+   "src": "enamel is ~96 % mineral with ~1 % water by weight in its pores (recalled textbook); not measured here"
+  },
+  "solver": {
+   "phase": "solid",
+   "collision_thickness_mm": {
+    "v": 0.001,
+    "q": "E",
+    "src": "numerical skin for a rigid solid; the salivary pellicle is ~0.1-1 um (not measured here), so 1 um holds it"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": null,
+     "q": "E",
+     "src": "rigid relative to every soft tissue: use Hertz with E 90 GPa, nu 0.3 rather than a linear ramp"
+    },
+    "ramp": "hertz",
+    "contact_damping_ratio": {
+     "v": 0.02,
+     "q": "E",
+     "src": "ceramic-like solid, almost no internal damping"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.85,
+     "q": "E",
+     "src": "as contact.restitution (not measured)"
+    },
+    "response_time_ms": {
+     "v": [
+      0.05,
+      0.5
+     ],
+     "q": "E",
+     "src": "hard-on-hard Hertz impacts last tens to hundreds of microseconds (depends on mass and radius)"
+    },
+    "wave_speed_m_s": {
+     "v": 3413.94,
+     "q": "D",
+     "src": "sqrt(G/rho), G = E/(2(1+nu)) = 34.6 GPa, rho 2970"
+    },
+    "damping_ratio": {
+     "v": 0.02,
+     "q": "E",
+     "src": "ceramic-like solid, almost no internal damping"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": "brittle",
+  "model_note": "linear elastic until fracture; graded (stiffer at the surface); the rods make it mildly anisotropic and the DEJ arrests cracks",
+  "density_kg_m3": {
+   "v": 2970,
+   "q": "E",
+   "src": "enamel ~2.9-3.0 g/cm3 (recalled textbook value, unverified)"
+  },
+  "E_GPa": {
+   "v": {
+    "surface_occlusal": 98.1,
+    "near_DEJ": 71.4,
+    "range": [
+     70,
+     120
+    ]
+   },
+   "q": "M",
+   "src": "CUY02 nanoindentation mapping 98.1 -> 71.4 GPa (buccal up to 142); TOOTHREV 70-110 GPa"
+  },
+  "poisson": {
+   "v": 0.3,
+   "q": "E",
+   "src": "commonly used value for enamel in FE studies (recalled, unverified)"
+  },
+  "shear_GPa": {
+   "v": 34.6,
+   "q": "D",
+   "src": "G = E/(2(1+nu)) with E 90, nu 0.3"
+  },
+  "fracture": {
+   "toughness_MPa_m05": {
+    "v": {
+     "young": [
+      0.74,
+      0.92
+     ],
+     "old": [
+      0.67,
+      0.88
+     ],
+     "review_range": [
+      0.7,
+      2.1
+     ]
+    },
+    "q": "M",
+    "src": "PARK08 apparent indentation K_c young / old enamel; TOOTHREV 0.7-2.1 (direction-dependent, higher across the rods)"
+   }
+  },
+  "viscoelastic": {
+   "v": "very small creep from the ~4 % organic and water fraction (ZHANG14 reviews it); treat as elastic",
+   "q": "E",
+   "src": "ZHANG14"
+  },
+  "sim": {
+   "xpbd_compliance_per_Pa": {
+    "v": 1.1111e-11,
+    "q": "D",
+    "src": "1/E with E = 90 GPa; effectively rigid in a body sim"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.93,
+   "q": "M",
+   "src": "THERM_T enamel 0.45-0.93; upper value used"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 750,
+   "q": "E",
+   "src": "enamel ~750 J/kgK (recalled textbook value, unverified)"
+  },
+  "effusivity": {
+   "v": 1439,
+   "q": "D",
+   "src": "sqrt(k rho c) with k 0.93, rho 2970, c 750"
+  }
+ },
+ "states": {
+  "wet": {
+   "set": {},
+   "_": "the base: saliva and pellicle",
+   "q": "M",
+   "src": "in vivo enamel is always coated"
+  },
+  "dehydrated": {
+   "set": {
+    "surface.coat_default.thickness_um": 0.0
+   },
+   "q": "E",
+   "src": "air-dried enamel looks whiter and more opaque (water in the pores replaced by air raises scattering), reversible within minutes to hours of rewetting (clinical shade-matching guidance; numbers not retrieved)"
+  },
+  "aged": {
+   "set": {},
+   "q": "M",
+   "src": "MTT R14: teeth darken and gain chroma with age to ~46 y; older enamel K_c slightly lower (PARK08)"
+  }
+ },
+ "sources": {
+  "MENG09": {
+   "cite": "Meng Z, Yao XS, Yao H, et al. Measurement of the refractive index of human teeth by optical coherence tomography. J Biomed Opt 14:034010 (2009)",
+   "url": "https://doi.org/10.1117/1.3130322",
+   "lic": "paywalled; numbers used as facts (via MTT R17)"
+  },
+  "YU09": {
+   "cite": "Yu B, Ahn J-S, Lee Y-K. Measurement of translucency of tooth enamel and dentin. Acta Odontol Scand 67:57-64 (2009)",
+   "url": "https://doi.org/10.1080/00016350802577818",
+   "lic": "paywalled; numbers used as facts (via MTT R15)"
+  },
+  "ARDU10": {
+   "cite": "Ardu S, Feilzer AJ, Braut V, et al. Pilot in vivo image spectrophotometric evaluation of optical properties of pure enamel and enamel-dentin complex. Dent Mater 26:e205-10 (2010)",
+   "url": "https://doi.org/10.1016/j.dental.2010.03.006",
+   "lic": "paywalled; numbers used as facts (via MTT R12)"
+  },
+  "FRIED95": {
+   "cite": "Fried D, Glena RE, Featherstone JDB, Seka W. Nature of light scattering in dental enamel and dentin at visible and near-infrared wavelengths. Appl Opt 34:1278-1285 (1995)",
+   "url": "https://doi.org/10.1364/AO.34.001278",
+   "lic": "paywalled; abstract numbers used as facts"
+  },
+  "DOUGLAS85": {
+   "cite": "Douglas WH, Sakaguchi RL, DeLong R. Frictional effects between natural teeth in an artificial mouth. Dent Mater 1:115-119 (1985)",
+   "url": "https://experts.umn.edu/en/publications/frictional-effects-between-natural-teeth-in-an-artificial-mouth/",
+   "lic": "paywalled; abstract numbers used as facts"
+  },
+  "SFE_CPC": {
+   "cite": "Cetylpyridinium chloride adsorption on enamel study: surface free energy from contact angles, ground/polished enamel 88 +- 8, saliva-coated 103 +- 4 mJ/m2 (core.ac.uk 153241338; authors not captured)",
+   "url": "https://core.ac.uk/works/153241338",
+   "lic": "repository, terms not stated; numbers used as facts"
+  },
+  "HV_MR": {
+   "cite": "Microhardness of human enamel and dentin after 2 months' storage in different media, Materials Research (SciELO): enamel HV 315-357, dentin 64-67",
+   "url": "https://scielo.br/j/mr/a/twps4YywFJ8y9Lxm5CprnQt/",
+   "lic": "SciELO open access (journal CC BY), not checked"
+  },
+  "CUY02": {
+   "cite": "Enamel nanoindentation mapping (occlusal 5.35 +- 0.19 GPa H / 98.1 +- 1.5 GPa E falling to 2.83 / 71.4 near the DEJ; buccal 6.17 / 142), values as retrieved by search from the reviews above (primary paper not opened)",
+   "url": "https://journal.hep.com.cn/ijos/EN/1160236136423547174",
+   "lic": "numbers used as facts; primary not read"
+  },
+  "ZHANG14": {
+   "cite": "Zhang Y-R, Du W, Zhou X-D, Yu H-Y. Review of research on the mechanical properties of the human tooth. Int J Oral Sci 6:61-69 (2014)",
+   "url": "https://doi.org/10.1038/ijos.2014.21",
+   "lic": "open access (Nature), licence not checked; numbers used as facts"
+  },
+  "MOHS": {
+   "cite": "Mohs scale: apatite is the reference mineral for hardness 5 (definition of the scale)",
+   "url": "https://en.wikipedia.org/wiki/Mohs_scale",
+   "lic": "CC BY-SA (text); a definitional fact"
+  },
+  "LAMB89": {
+   "cite": "Lambrechts P, Braem M, Vuylsteke-Wauters M, Vanherle G. Quantitative in vivo wear of human enamel. J Dent Res 68:1752-1754 (1989); 4 y, 3-D measuring",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/2600255/",
+   "lic": "paywalled; abstract numbers used as facts"
+  },
+  "TOOTHREV": {
+   "cite": "Review table of tooth tissue properties (E dentin 12-20 / enamel 70-110 GPa; K_c dentin 1.5-2.1 / enamel 0.7-2.1 MPa m^0.5) as quoted in search results; paper identity not verified",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2885799",
+   "lic": "PMC open access; numbers used as facts; weak (not opened)"
+  },
+  "PARK08": {
+   "cite": "Park S, Quinn JB, Romberg E, Arola D. Mechanical properties of human tooth enamel: patient age and spatial distribution (UMBC repository); indentation fracture toughness",
+   "url": "https://mdsoar.org/handle/11603/566",
+   "lic": "repository, terms not stated; numbers used as facts"
+  },
+  "THERM_T": {
+   "cite": "Thesis review table, Izmir Institute of Technology (openaccess.iyte.edu.tr 11147/4388): enamel k 0.45-0.93, dentin 0.11-0.96 W/mK from older studies",
+   "url": "https://openaccess.iyte.edu.tr/bitstream/11147/4388/1/4388.pdf",
+   "lic": "open access thesis; numbers used as facts"
+  },
+  "ASSY23": {
+   "cite": "Assy Z, Jager DHJ, Brand HS, Bikker FJ. Salivary film thickness and MUC5B levels at various intra-oral surfaces. Clin Oral Investig 27:859-869 (2023)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/35941397/",
+   "lic": "open access, licence not checked; numbers used as facts (via MTT R22)"
+  },
+  "WATER": {
+   "cite": "engine/materials/profiles/water.json (saliva variant: SCHIPPER07 viscosity, ERMPS18 surface tension, n 1.335 E)",
+   "url": "local",
+   "lic": "project file"
+  },
+  "MTT": {
+   "cite": "the project's research note mouth_teeth_tongue.md (project research file, 2026-10-19; its R-numbers name the primary papers)",
+   "url": "local",
+   "lic": "project file; the numbers it carries are facts from the cited papers"
+  }
+ }
+}

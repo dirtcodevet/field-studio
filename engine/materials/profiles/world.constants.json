@@ -1,0 +1,213 @@
+{
+ "id": "world.constants",
+ "kind": "constants",
+ "family": "world",
+ "_": "Physical constants and reference conditions for the world the body lives in (gravity, air, temperatures, light, radiation, body temperatures). World lane 2026-11-07.",
+ "gravity": {
+  "g_standard_m_s2": {
+   "v": 9.80665,
+   "q": "M",
+   "src": "CODATA18 (CGPM 1901 definition)"
+  },
+  "g_local_range_m_s2": {
+   "v": {
+    "equator_sea_level": 9.7803,
+    "pole_sea_level": 9.8322,
+    "lat45": 9.8062
+   },
+   "q": "M",
+   "src": "WGS84 normal gravity (lat 45 D from the Somigliana formula)"
+  },
+  "free_air_gradient_per_m": {
+   "v": -3.086e-06,
+   "q": "M",
+   "src": "WGS84 (per metre of height, in m/s2 per m)"
+  }
+ },
+ "air": {
+  "pressure_sea_level_Pa": {
+   "v": 101325,
+   "q": "M",
+   "src": "ISA / CODATA18"
+  },
+  "temperature_ISA_K": {
+   "v": 288.15,
+   "q": "M",
+   "src": "ISA"
+  },
+  "density_ISA_kg_m3": {
+   "v": 1.225,
+   "q": "M",
+   "src": "ISA"
+  },
+  "scale_height_km": {
+   "v": 8.4,
+   "q": "D",
+   "src": "R T / (M g) at 288 K"
+  }
+ },
+ "temperature_refs": {
+  "zero_C_K": {
+   "v": 273.15,
+   "q": "M",
+   "src": "SI_REFS SI kelvin definition"
+  },
+  "room_C": {
+   "v": 20,
+   "q": "M",
+   "src": "SI_REFS ISO 554 (20-23 C room)"
+  },
+  "NTP_C": {
+   "v": 20,
+   "q": "M",
+   "src": "SI_REFS NIST NTP 20 C, 1 atm"
+  },
+  "STP_C": {
+   "v": 0,
+   "q": "M",
+   "src": "SI_REFS IUPAC STP (0 C, 100 kPa since 1982)"
+  }
+ },
+ "light_sound": {
+  "c_m_s": {
+   "v": 299792458,
+   "q": "M",
+   "src": "CODATA18 exact"
+  },
+  "sound_air_20C_m_s": {
+   "v": 343.2,
+   "q": "D",
+   "src": "sqrt(1.4*287.05*293.15)"
+  },
+  "sound_water_37C_m_s": {
+   "v": 1524,
+   "q": "M",
+   "src": "NISTWB (NIST Chemistry WebBook, IAPWS-95, 0.101325 MPa), re-read 11-08 in water.json: 1523.66 m/s at 37 C; 1524 holds (the src had cited CRC, recalled)"
+  }
+ },
+ "radiation": {
+  "stefan_boltzmann_W_m2K4": {
+   "v": 5.670374419e-08,
+   "q": "M",
+   "src": "CODATA18 exact"
+  },
+  "boltzmann_J_K": {
+   "v": 1.380649e-23,
+   "q": "M",
+   "src": "CODATA18 exact"
+  },
+  "planck_J_s": {
+   "v": 6.62607015e-34,
+   "q": "M",
+   "src": "CODATA18 exact"
+  },
+  "solar_constant_W_m2": {
+   "v": 1361,
+   "q": "M",
+   "src": "KOPP11"
+  }
+ },
+ "body": {
+  "core_temperature_C": {
+   "v": {
+    "textbook": 37.0,
+    "measured_mean_oral": 36.8,
+    "normal_range": [
+     35.6,
+     38.2
+    ]
+   },
+   "q": "M",
+   "src": "MACKOWIAK92"
+  },
+  "skin_surface_temperature_C": {
+   "v": {
+    "mean_thermoneutral": [
+     33,
+     34
+    ],
+    "hands_feet_cool_room": [
+     25,
+     32
+    ],
+    "forehead": [
+     34,
+     35
+    ]
+   },
+   "q": "E",
+   "src": "E: recalled from SKIN_TEMP (Ramanathan 1964 weighting / ISO 9886), not re-read: mean thermoneutral 33-34, hands/feet in a cool room 25-32, forehead 34-35 C"
+  },
+  "skin_emissivity": {
+   "v": 0.98,
+   "q": "M",
+   "src": "STEKETEE73 abstract re-read 11-08 (skin.body.json): 0.98 +/- 0.01, wavelength-independent over 1-14 um; Sanchez-Marin 2009 (SKIN_TEMP) not re-read"
+  }
+ },
+ "sources": {
+  "CODATA18": {
+   "cite": "CODATA 2018 recommended values (NIST): c = 299792458 m/s exact, sigma = 5.670374419e-8 W m-2 K-4 exact, k_B, standard atmosphere 101325 Pa, g_n = 9.80665 m/s2 (CGPM 1901)",
+   "url": "https://physics.nist.gov/cuu/Constants/",
+   "lic": "NIST, US government work, public domain"
+  },
+  "WGS84": {
+   "cite": "NIMA TR8350.2 World Geodetic System 1984 (3rd ed.): normal gravity 9.7803253359 m/s2 at the equator, 9.8321849378 at the poles; free-air gradient ~-3.086e-6 s-2",
+   "url": "https://earth-info.nga.mil/",
+   "lic": "US government work, public domain"
+  },
+  "ISA": {
+   "cite": "ICAO Doc 7488 / ISO 2533:1975 International Standard Atmosphere: sea level 101325 Pa, 288.15 K, 1.225 kg/m3, 1.7894e-5 Pa s, 340.29 m/s",
+   "url": "https://www.iso.org/standard/7472.html",
+   "lic": "standard copyright; defining constants used as facts"
+  },
+  "CRC": {
+   "cite": "CRC Handbook of Chemistry and Physics (any recent edition): standard property tables for water, ice, air, oils. Values recalled as standard table values, not re-checked line by line this session",
+   "url": "https://hbcp.chemnetbase.com",
+   "lic": "copyright, paywalled; individual physical constants used as facts, no table copied"
+  },
+  "KOPP11": {
+   "cite": "Kopp G, Lean JL. A new, lower value of total solar irradiance: evidence and climate significance. Geophys Res Lett 38:L01706 (2011): TSI 1360.8 +/- 0.5 W/m2",
+   "url": "https://doi.org/10.1029/2010GL045777",
+   "lic": "AGU; number used as fact"
+  },
+  "MACKOWIAK92": {
+   "cite": "Mackowiak PA, Wasserman SS, Levine MM. A critical appraisal of 98.6 F... JAMA 268:1578-1580 (1992): mean oral 36.8 C (range 35.6-38.2); Wunderlich's 37.0 C",
+   "url": "https://doi.org/10.1001/jama.1992.03490120092034",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "SKIN_TEMP": {
+   "cite": "Mean skin temperature at thermoneutral rest ~33-34 C (Ramanathan NL, J Appl Physiol 19:531, 1964 weighting; ISO 9886:2004); skin emissivity ~0.98 (Sanchez-Marin FJ et al., Phys Med Biol 54:4423, 2009). Recalled",
+   "url": "https://doi.org/10.1152/jappl.1964.19.3.531",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "SI_REFS": {
+   "cite": "Reference conditions: SI brochure (BIPM, 9th ed. 2019) kelvin; IUPAC STP 0 C / 100 kPa; NIST NTP 20 C / 1 atm; ISO 554 standard atmospheres for conditioning (20-23 C)",
+   "url": "https://www.bipm.org/en/publications/si-brochure",
+   "lic": "BIPM CC BY 3.0 IGO; others standard definitions used as facts"
+  },
+  "NISTWB": {
+   "cite": "NIST Chemistry WebBook, SRD 69: thermophysical properties of fluid systems (water: IAPWS-95 equation of state); 37 C, 0.101325 MPa sound speed 1523.66 m/s, re-read 11-08 (water.json)",
+   "url": "https://webbook.nist.gov/chemistry/fluid/",
+   "lic": "US government work (NIST Standard Reference Data); numbers used as facts"
+  },
+  "STEKETEE73": {
+   "cite": "Steketee J. Spectral emissivity of skin and pericardium. Phys Med Biol 18:686-694 (1973): skin 0.98 +/- 0.01 over 1-14 um (abstract re-read 11-08, skin.body.json)",
+   "url": "https://doi.org/10.1088/0031-9155/18/5/307",
+   "lic": "paywalled; abstract numbers used as facts"
+  }
+ },
+ "contact": {
+  "solver": {
+   "phase": {
+    "v": "non_colliding",
+    "q": "D",
+    "src": "SCHEMA: gas and light are non_colliding; constants: not a material; listed so every profile carries a solver phase"
+   },
+   "collision_thickness_mm": {
+    "v": null,
+    "q": "D",
+    "src": "not applicable"
+   }
+  }
+ }
+}

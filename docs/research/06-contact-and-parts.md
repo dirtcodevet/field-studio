@@ -95,17 +95,17 @@ sheets for that pose (entry id = part and sheet); that part is designed, not mea
 **Failures and corrections.** (a) Field Studio first read each part as a dense lattice box; estimated for a whole body
 of about 90 parts that is 3-6 GB of RAM, over budget. Parts were changed to sparse stores read from the band rows
 (11-11 19:38): about 16 MB of program data per lip measured; the whole-body figure (about +1.6 GB RAM, about 1.6 GB of
-card memory) is an estimate, not a measurement. (b) A record that the lips "rest closed" was corrected: on the current
+card memory) is an estimate, not a measurement. (b) A record that the lips rest closed was corrected: on the current
 model they rest 0.3-1.2 mm apart across the middle and touch only near the corners; closed is a state, not the rest.
 (c) The leaf writer ran out of memory on a 34-part mouth and was rebuilt to work in bounded batches (2.49 GB peak).
 
 ### B.2 Solid by default, with designed cavities
 
-**Evidence state:** measured on named cases (the human model's store). **Date:** stated by the author 11-12 00:32;
+**Evidence state:** measured on named cases (the human model's store). **Date:** first stated 11-12 00:32;
 built and published into the working model 11-12 07:50.
 
-The rule, in the author's words: objects are solid; "designed cavities are never filled ... made deliberately with the
-cut tool or as a labelled part, so the tool knows it's meant. Tests must show zero unintended pockets."
+The rule: objects are solid; a designed cavity is never filled, and is made deliberately, with the cut tool or as a
+labelled part, so the tool knows it is meant. Tests must show zero unintended pockets.
 
 As built: the model's interior, which an earlier surface-band store left unknown beyond its band, is given the inside
 sign at the coarsest level; enclosed air pockets of 0.01 mL or more that no design accounts for are found on a 1 mm
@@ -196,7 +196,7 @@ over-wide search margin).
 
 ### B.5 The patent finding on the IPC-style solver
 
-**Date:** 11-12 08:22 (the reading); 11-12 about 09:00 (a wider search); an outside review of our checks the same
+**Date:** 11-12 08:22 (the reading); 11-12 about 09:00 (a wider search); a further check of our readings the same
 morning. **This is our own reading, not legal advice; no clearance is claimed.**
 
 **The patent.** US 12,216,969 B2, "Methods of contact for simulation", NVIDIA Corporation, filed 2020-09-04, granted
@@ -208,8 +208,8 @@ determine constraints, a preconditioner is applied to a gradient descent, and an
 primal formulation. Our first solver (B.3) is a barrier energy minimised by Newton steps, so it was
 flagged in our review; held out of the code pending redesign. We publish no conclusion on whether any claim is or is not met;
 that is a question for counsel, and so is the effect of earlier published work (IPC itself was published by other
-authors before this patent's filing date). An outside review of our checks added two cautions: a rewrite was "not
-yet proven necessary", and a replacement "not yet proven clear". The author's decision (11-12 about 08:35): build
+authors before this patent's filing date). Two cautions were recorded: a rewrite was not yet
+proven necessary, and a replacement was not yet proven free of the claims. Decision (11-12 about 08:35): build
 around it. Direction of the design-around: the constraint solver of B.6, which solves the contact conditions as
 equations with multipliers and minimises no energy. The same search also flagged US 7,616,204 (position based
 dynamics, to about 2027-08) for any position-level loop.
@@ -292,7 +292,7 @@ the dropped plane (11 pairs, 294 um), so it was reverted: where skins meet nearl
 hold. The friction check's landing step sits near a convergence boundary and needs one step halving. Speed against the
 baseline's interactive bench and the full proof suite are not run.
 
-### B.7 The author's "magnetic field" contact
+### B.7 The magnetic-field contact concept
 
 **Evidence state:** measured on named cases (synthetic scenes). **Date:** first stated 11-12 about 15:30; patent
 reading of the options 15:31; built 15:50-17:15 (in a working copy of the contact code).
@@ -344,13 +344,13 @@ not evaluating an energy value, or renaming the search objective, does not by it
 explicit, with no minimisation, and is flagged under the pending continuation's force-based wording. Rules kept for
 both because of other patents the search found: bound the time step rather than clamp points (US 7,616,204), and
 stay synchronous (US 9,020,787 concerns a divergent barrier together with kinetic data structures and asynchronous
-variational integrators, none of which are used). The author accepted these flags for testing. Neither form is in the public code.
+variational integrators, none of which are used). These flags were accepted for testing. Neither form is in the public code.
 
 ### B.8 A field through the environment as the contact sensor
 
 **Evidence state:** proposed; not built. **Date:** first stated 11-12 about 15:55; prior-art check 19:56.
 
-The idea (the author's touch-screen analogy): a value held in the space between bodies reports where anything
+The idea (a touch-screen analogy): a value held in the space between bodies reports where anything
 approaches anything, so candidate pairs are found without pair searches. It is a sensor only; the response stays with
 a contact law (B.6, B.7). The planned build-out: one value per node of the *existing* sparse lattice in the air region,
 for example the distance to the nearest other body, read from the bodies' own distance fields and refreshed only in
@@ -422,7 +422,7 @@ parts of the solver, so that is not yet a diagnosis.
 After d1 and d4 the one lever measured to move the stall is cell size at the crease, so the leading candidate is the
 crease's discretisation: a 4 mm trilinear cell cannot fold into a crease a few mm deep. It remains a candidate.
 
-**On the real arm ("E2").** At the author's direction (11-12 about 19:50) the test moves from the stand-in to an
+**On the real arm ("E2").** By decision (11-12 about 19:50) the test moves from the stand-in to an
 isolated elbow region of the human model's own field, with bones placed from anatomy (committed 19:56). Measured since (commits at 20:13 and 20:17): with the
 stand-in's simple bones and skin rows, the baseline converged every state from rest to 90 degrees from rest (about
 112 degrees anatomical), but with Newton at its iteration cap from 67.5 degrees from rest, four substeps a step from
@@ -448,10 +448,10 @@ them), and only then from older rules: 0 wrong-way flips in the same test; engin
 **Evidence state:** proposed. **Date:** first stated 11-12 about 16:50; scoped 11-12 about 19:50.
 
 The larger idea (state such as temperature or moisture held in the environment and advanced when its dependencies
-require it) is described in Part 2, section 3. In contact it appears only as the sensor of B.8, and the author's
-scoping is recorded here as given: the form is left open (no commitment to an air mesh, nor to static or moving
-fields), and it is not to be expanded "too far incidentally right now ... We have to build the base before anything
-else is possible."
+require it) is described in Part 2, section 3. In contact it appears only as the sensor of B.8, and its
+scope is recorded as decided: the form is left open (no commitment to an air mesh, nor to static or moving
+fields), and it is not to be expanded further for now, because the base has to be built before anything else is
+possible.
 
 ### B.12 Summary of states
 

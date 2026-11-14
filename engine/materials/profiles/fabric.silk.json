@@ -1,0 +1,467 @@
+{
+ "id": "fabric.silk",
+ "kind": "fabric",
+ "family": "fabric",
+ "_": "Silk charmeuse (satin weave, ~16-19 momme, the lustrous face) and habotai (plain, 8-12 momme). Numbers are for charmeuse unless named. Very limp, light, smooth; the satin face carries a strong anisotropic sheen along the floats. No measured KES set for charmeuse or habotai was retrieved; the one measured silk point is a crisper Korean hanbok silk.",
+ "surface": {
+  "alpha": {
+   "v": {
+    "along_floats": 0.12,
+    "across": 0.35
+   },
+   "q": "E",
+   "src": "anisotropic GGX for the satin face; Sadeghi 2013 / Irawan 2012 fit silk charmeuse with microcylinder models (values not retrieved); back (crepe) face ~0.7"
+  },
+  "n": {
+   "v": 1.565,
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 mean"
+  },
+  "F0": {
+   "v": 0.0485,
+   "q": "D",
+   "src": "((n - 1) / (n + 1))^2 at n = mean 1.565"
+  },
+  "sheen": {
+   "v": "strong, anisotropic, coloured by the dye (smooth triangular filaments act as small prisms)",
+   "q": "E",
+   "src": "qualitative; continuous filaments, no hairiness"
+  }
+ },
+ "optics_summary": {
+  "fibre_n": {
+   "v": {
+    "parallel": 1.591,
+    "perpendicular": 1.538
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 silk 1.591 / 1.538 (recalled; brief 1.54-1.59)"
+  },
+  "wet_darkening": {
+   "v": "A_wet = (1 - r_e) A (1 - r_i) / (1 - r_i A), r_e = 0.066 (water, diffuse external), r_i = 1 - (1 - r_e) / 1.333^2 = 0.474; A 0.8 -> 0.63, 0.5 -> 0.32, 0.2 -> 0.11",
+   "q": "D",
+   "src": "LEKNER88 / Angstrom film model, diffuse light; the index-matching effect inside the yarn (ZHANG06) darkens further and is not in this formula; white thin fabric also turns translucent (fibre/water index ratio ~1.16 instead of ~1.55 in air)"
+  },
+  "translucency": {
+   "v": "habotai thin and translucent; charmeuse semi-opaque",
+   "q": "E",
+   "src": "qualitative"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": 0.3,
+     "wet": 0.4
+    },
+    "q": "E",
+    "src": "smooth filament fabric: low end of the 0.2-0.6 fabric band (search summaries)"
+   },
+   "kinetic": {
+    "v": {
+     "dry": 0.25,
+     "wet": 0.34
+    },
+    "q": "E",
+    "src": "x ~0.85"
+   },
+   "counterface": "fabric-on-fabric (E)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": [
+     40,
+     50
+    ],
+    "q": "E",
+    "src": "fibroin; not retrieved"
+   }
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": [
+     60,
+     75
+    ],
+    "q": "E",
+    "src": "degummed fibroin surfaces; not retrieved here"
+   }
+  },
+  "moisture_regain_pct": {
+   "v": 11,
+   "q": "M",
+   "src": "ASTMD1909"
+  },
+  "water_absorption": {
+   "v": {
+    "drip_saturated_pct": [
+     80,
+     150
+    ]
+   },
+   "q": "E",
+   "src": "thin filament fabric; not measured"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "position": "positive, between wool and cotton"
+    },
+    "q": "E",
+    "src": "ordinal triboelectric series (Wikipedia / Beaty copies); no AlphaLab number retrieved"
+   },
+   "surface_resistivity_ohm_sq": {
+    "v": {
+     "rh35": 10000000000000.0,
+     "rh65": 100000000000.0
+    },
+    "q": "E",
+    "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 order (recalled)"
+   }
+  },
+  "abrasion": {
+   "v": {
+    "martindale_rubs": [
+     5000,
+     15000
+    ]
+   },
+   "q": "E",
+   "src": "TYPICAL: silk satins snag and abrade easily"
+  },
+  "pilling": {
+   "v": "very low (filament)",
+   "q": "E",
+   "src": "TYPICAL"
+  },
+  "solver": {
+   "phase": "cloth",
+   "collision_thickness_mm": {
+    "v": 0.1,
+    "q": "D",
+    "src": "half of T0 0.2 mm at 0.5 gf/cm2 (typical thin filament fabric, not measured; inputs E)"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 80.9,
+     "q": "D",
+     "src": "KES-FB3 secant: (4.903 - 0.049) kPa / (T0 0.2 - Tm 0.14) mm (typical thin filament fabric, not measured; inputs E)"
+    },
+    "initial_stiffness_kPa_per_mm": {
+     "v": 28.3,
+     "q": "D",
+     "src": "secant x LC 0.35: LC < 1 means the pile is soft first then stiffens as fibres pack"
+    },
+    "compressible_to_fraction": {
+     "v": 0.7,
+     "q": "D",
+     "src": "Tm / T0 at 50 gf/cm2 (~5 kPa, a firm press or sitting); beyond it the fibres themselves resist (fibre modulus, GPa)"
+    },
+    "ramp": "barrier_log",
+    "ramp_note": "stiffening ramp (LC < 1): IPC log barrier starting at collision_thickness, or a two-slope ramp initial -> secant",
+    "contact_damping_ratio": {
+     "v": 0.044,
+     "q": "D",
+     "src": "(1 - RC 45 %) / (4 pi): energy lost per press-release cycle; RC from typical thin filament fabric, not measured"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.05,
+     "q": "E",
+     "src": "a cloth layer dropped or slapped on a rigid flat does not bounce: energy goes into bending and fibre friction (no measurement found)"
+    },
+    "response_time_ms": {
+     "v": [
+      2,
+      10
+     ],
+     "q": "E",
+     "src": "a cloth flap / slap reads as a short damped crack; set by the in-plane wave crossing a ~0.3 m panel at the speeds below plus bending"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "longitudinal_warp": 346,
+      "shear": 14.4
+     },
+     "q": "D",
+     "src": "sqrt(stretch_N_m 9806 / mass 0.082 kg/m2) and sqrt(shear_N_m_rad 16.9 / mass); transverse (flutter) speed is sqrt(tension / mass) and depends on load"
+    },
+    "damping_ratio": {
+     "v": 0.04,
+     "q": "D",
+     "src": "(1 - RT 50 %) / (4 pi) tensile loss"
+    }
+   },
+   "self_contact": {
+    "friction_static": {
+     "v": 0.3,
+     "q": "E",
+     "src": "= contact.friction.static dry (fabric-on-fabric, same fabric)"
+    },
+    "friction_kinetic": {
+     "v": 0.25,
+     "q": "E",
+     "src": "= contact.friction.kinetic dry"
+    },
+    "min_separation_mm": {
+     "v": 0.2,
+     "q": "D",
+     "src": "two half-thicknesses: folded layers rest T0 apart at light pressure, Tm under ~5 kPa"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": "cloth",
+  "density_kg_m3": {
+   "v": 400,
+   "q": "D",
+   "src": "apparent: 82 g/m2 / ~0.2 mm (E)"
+  },
+  "fibre_density_kg_m3": {
+   "v": 1340,
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 degummed silk 1.33-1.35 (recalled)"
+  },
+  "areal_density_g_m2": {
+   "v": {
+    "charmeuse_19mm": 82,
+    "habotai_10mm": 43
+   },
+   "q": "D",
+   "src": "UNITS: 19 momme x 4.306, 10 momme x 4.306 (trade weights, E)"
+  },
+  "thickness_mm": {
+   "v": {
+    "charmeuse": 0.2,
+    "habotai": 0.08
+   },
+   "q": "E",
+   "src": "typical"
+  },
+  "tensile": {
+   "EMT_pct": {
+    "v": {
+     "warp": 5,
+     "weft": 9
+    },
+    "q": "E",
+    "src": "satin floats extend more across; not measured"
+   }
+  },
+  "bending_rigidity_gfcm2_cm": {
+   "v": {
+    "warp": 0.018,
+    "weft": 0.012
+   },
+   "q": "E",
+   "src": "limp drapey silk; no charmeuse KES found. Measured reference: Korean hanbok silk top grade B 0.089 at 66.5 g/m2, 0.233 mm (Fashion and Textiles 2024, 10.1186/s40691-024-00388-6 Table 8, via search) is a crisp taffeta-like silk, 5x stiffer"
+  },
+  "bending_rigidity_uNm": {
+   "v": {
+    "warp": 1.77,
+    "weft": 1.18
+   },
+   "q": "D",
+   "src": "UNITS x 98.07"
+  },
+  "shear_rigidity_N_m_deg": {
+   "v": {
+    "G_gf_cm_deg": 0.3
+   },
+   "q": "E",
+   "src": "woven silks' shear stiffness and hysteresis are 'extremely small' at small strain (fibre2fashion silk KES review, via search); 0.3 from the low end of woven PES/cotton (IJFTR44)"
+  },
+  "drape_coefficient_pct": {
+   "v": [
+    20,
+    35
+   ],
+   "q": "E",
+   "src": "limp fabrics fall below 30 % on the 30 cm sample (SANAD16 scale)"
+  },
+  "poisson": {
+   "v": {
+    "small_strain": [
+     0.2,
+     0.4
+    ]
+   },
+   "q": "E",
+   "src": "not found"
+  },
+  "recovery": {
+   "v": "creases fairly easily; recovers better than cotton, worse than wool",
+   "q": "E",
+   "src": "qualitative"
+  },
+  "sim": {
+   "_": "Per unit width / area; for a triangle mesh with edge length h, spring k_edge ~ k_membrane (square cells) and XPBD compliance alpha = 1/k. Secant to the KES maximum load: the real curve is soft-then-stiff (toe region), so use these as the stiff branch and ~1/3 of it below 1 % strain unless a curve is fitted",
+   "stretch_N_m": {
+    "v": {
+     "warp": 9807,
+     "weft": 5448
+    },
+    "q": "D",
+    "src": "UNITS 490.3 N/m / EMT (5 / 9 %) from E EMT"
+   },
+   "stretch_compliance_m_N": {
+    "v": {
+     "warp": 0.000102,
+     "weft": 0.000184
+    },
+    "q": "D",
+    "src": "1 / stretch_N_m"
+   },
+   "bend_uNm": {
+    "v": {
+     "warp": 1.77,
+     "weft": 1.18
+    },
+    "q": "D",
+    "src": "UNITS B x 98.07 from E B"
+   },
+   "bend_compliance_1_per_Nm": {
+    "v": {
+     "warp": 567000.0,
+     "weft": 850000.0
+    },
+    "q": "D",
+    "src": "1 / bend (N m per unit width); a dihedral constraint's compliance scales with edge length / area of the hinge"
+   },
+   "shear_N_m_rad": {
+    "v": 16.9,
+    "q": "D",
+    "src": "UNITS G x 56.19 from E G"
+   },
+   "shear_compliance_m_N": {
+    "v": 0.0593,
+    "q": "D",
+    "src": "1 / shear_N_m_rad"
+   },
+   "bending_length_cm": {
+    "v": {
+     "warp": 1.3,
+     "weft": 1.14
+    },
+    "q": "D",
+    "src": "c = (B / W)^(1/3), B gf cm2/cm, W gf/cm2 (Peirce cantilever relation): the cantilever check a sim should reproduce"
+   },
+   "mass_per_area_kg_m2": {
+    "v": 0.082,
+    "q": "D",
+    "src": "areal_density_g_m2 / 1000"
+   }
+  },
+  "fracture": {
+   "wet_strength_ratio": {
+    "v": 1.0,
+    "q": "D",
+    "src": "by definition: wet / dry strength ratio, the conditioned dry strength (20 C, 65 % RH) is the reference"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.05,
+   "q": "E",
+   "src": "TYPICAL"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1380,
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 (recalled)"
+  },
+  "effusivity": {
+   "v": 166,
+   "q": "D",
+   "src": "sqrt(0.05 x 400 x 1380); thin and smooth: feels cool on first touch"
+  },
+  "emissivity": {
+   "v": 0.9,
+   "q": "E",
+   "src": "TYPICAL"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {}
+  },
+  "wet": {
+   "set": {
+    "deform.areal_density_g_m2": {
+     "charmeuse_19mm": 180,
+     "habotai_10mm": 95
+    },
+    "surface.coat": {
+     "n": 1.333,
+     "alpha": 0.08
+    },
+    "deform.fracture.wet_strength_ratio": {
+     "v": [
+      0.8,
+      0.84
+     ],
+     "q": "D",
+     "src": "COTTONINC13 silk dry 2.4-5.1, wet 2.0-4.3 gf/den: 0.83-0.84 (row checked by regain 11.0); WIKISILK: a loss of up to about 20 % sets the 0.80 floor"
+    }
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: silk loses ~15-25 % strength wet (MORTON08, recalled); water spots dry as visible rings on charmeuse; wet habotai turns near-transparent and clings"
+  }
+ },
+ "sources": {
+  "IJFTR44": {
+   "cite": "Plain-woven 100 % cotton, 100 % polyester and 50:50 blend fabrics (15 samples), KES-FB bending and shear. Indian J Fibre Text Res 44(1):9-15 (2019); read through a search summary only (B 0.018-0.119 gf cm2/cm, G 0.31-4.15 gf/cm deg; 100 % PET 30 Ne: B 0.018-0.019, G 0.31-0.33)",
+   "url": "https://www.scribd.com/document/447021025/IJFTR-44-1-9-15",
+   "lic": "open access journal; full text not opened here; numbers used as facts"
+  },
+  "ASTMD1909": {
+   "cite": "ASTM D1909-13(2020)e1 Standard tables of commercial moisture regains for textile fibres (cotton 8.5, wool 13.6, silk 11, flax 12, nylon 4.5, polyester 0.4 %); read through a CC BY review table citing it (Bioresour Bioprocess 2020, 10.1186/s40643-020-00339-1 Table 10) and the ASTM catalogue abstracts. Commercial (agreed) regains, close to equilibrium at 65 % RH, 21 C",
+   "url": "https://store.astm.org/d1909-13.html",
+   "lic": "paywalled standard; the numbers are facts"
+  },
+  "LEKNER88": {
+   "cite": "Lekner J, Dorf MC. Why some things are darker when wet. Appl Opt 27(7):1278-1280 (1988): a water film's total internal reflection returns diffuse light to an absorbing surface for another chance of absorption (Angstrom), plus a lower relative index inside",
+   "url": "https://www.wgtn.ac.nz/scps/staff/pdf/darkerwhenwet.pdf",
+   "lic": "paywalled journal; author copy; formula used, text studied only"
+  },
+  "ZHANG06": {
+   "cite": "Zhang H, Voss KJ. Bidirectional reflectance study on dry, wet and submerged particulate layers: effects of pore liquid refractive index and translucent particle concentrations. Appl Opt 45 (2006): index matching lets light go deeper and be absorbed; neither model alone sufficient",
+   "url": "https://web3.physics.miami.edu/~voss/ken/RefPapers/056_ZV_AO_2006.pdf",
+   "lic": "paywalled journal; author copy; studied only"
+  },
+  "SANAD16": {
+   "cite": "Sanad RA, Cassidy T. Fabric objective measurement and drape. Textile Progress 47(4):317-406 (2016): Cusick drape, 18 cm disc / 30 cm sample gives DC 30-98 % from limp to stiff; specimen 24 cm when DC < 30 %, 36 cm when > 85 %",
+   "url": "https://eprints.whiterose.ac.uk/93388/",
+   "lic": "accepted version, all rights reserved; studied, ranges used as facts"
+  },
+  "MORTON08": {
+   "cite": "Morton WE, Hearle JWS. Physical Properties of Textile Fibres, 4th ed. Woodhead (2008): fibre densities, refractive indices, moduli, wet/dry strength, electrical resistance. Recalled; not re-opened in this session",
+   "url": "https://doi.org/10.1533/9781845694425",
+   "lic": "copyrighted book; individual numbers as facts; recalled, so marked E"
+  },
+  "UNITS": {
+   "cite": "Unit conversions done here: 1 gf = 9.80665 mN; KES B gf cm2/cm x 98.07 = uN m per unit width; KES G gf/(cm deg) x 56.19 = N/m per rad; KES-FB1 standard max load 500 gf/cm = 490.3 N/m; 1 oz/yd2 = 33.906 g/m2; 1 momme = 4.306 g/m2; 1 ft3/ft2/min (ASTM D737, 125 Pa) = 5.08 mm/s",
+   "url": "",
+   "lic": "definitions"
+  },
+  "TYPICAL": {
+   "cite": "Trade and textbook typical values (fabric weight classes, Martindale rating bands such as EN 14465 upholstery 'heavy domestic' >= 25 000 rubs, fabric emissivity ~0.9, effective fabric conductivity dominated by trapped air 0.03-0.06 W/mK). Used only where no measured value was retrieved; each use says why",
+   "url": "",
+   "lic": "general knowledge; marked E"
+  },
+  "COTTONINC13": {
+   "cite": "Textile Fibers (2013), Cotton Incorporated: cotton is 10-20 % stronger when wet (dry 3.0-4.9, wet 3.3-6.7 gf/den in the text); appendix 'Comparison of fiber properties' dry / wet tenacity gf/den: cotton 3.0-5.0 / 3.3-6.0, flax 5.5-6.5 / 6.0-7.8, silk 2.4-5.1 / 2.0-4.3, nylon 2.3-5.0 / 1.8-4.0, spandex 0.5-1.5 / 0.5-1.5 (rows identified by density and regain: the PDF text layer shifts the row labels by one)",
+   "url": "https://cottonworks.com/wp-content/uploads/2017/11/Fibers_Booklet_edited-1.pdf",
+   "lic": "(c) 2013 Cotton Incorporated, all rights reserved: text STUDY ONLY (P13); a few numbers used as facts"
+  },
+  "WIKISILK": {
+   "cite": "Wikipedia, 'Silk' (an uncited statement that silk can lose up to about a fifth of its strength when wet; a supporting fact only)",
+   "url": "https://en.wikipedia.org/wiki/Silk",
+   "lic": "a fact only; no text used"
+  }
+ }
+}

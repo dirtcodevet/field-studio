@@ -1,0 +1,810 @@
+{
+  "id": "fat.subcutaneous",
+  "kind": "bulk_tissue",
+  "family": "human_soft",
+  "_": "Subcutaneous adipose tissue (hypodermis): lobules of fat cells in fibrous septa, in two layers split by the fascia superficialis. Optics as a 'generic' layer: lipid + water + capillary blood + carotenoids (spectra: engine/materials/spectra.json and params/chromophores.json). Sources: the project's materials research note GAPS_RESEARCH.md (keys in caps). Materials foundation lane 2026-11-07. v2 (SKIN lane 11-07): mechanics moved into deform; contact, thermal added (fat is internal: its contact is with fascia, skin and muscle).",
+  "layers": [
+    {
+      "name": "fat",
+      "thickness_mm": {
+        "v": null,
+        "q": "E",
+        "src": "bulk: per site in params/tissue_depths.json; a sample's own size"
+      },
+      "optics": {
+        "model": {
+          "v": "generic",
+          "q": "D",
+          "src": "engine/materials/optics.py layer_optics"
+        },
+        "absorbers": {
+          "f_lipid": {
+            "v": 0.8,
+            "q": "E",
+            "src": "THOMAS62: E: recalled from Thomas 1962 (adipose ~70-85 % lipid by mass), not re-read; the lipid spectrum is pure lard (VANVEEN)"
+          },
+          "f_water": {
+            "v": 0.15,
+            "q": "E",
+            "src": "THOMAS62: E: recalled from Thomas 1962 (adipose water ~10-30 %), not re-read"
+          },
+          "f_blood": {
+            "v": 0.0076,
+            "q": "M",
+            "src": "JACQ13 Table 3 (Weaver 1989): subcutaneous fat B 0.76 % - sheep / horse, not human"
+          },
+          "sat": {
+            "v": 0.75,
+            "q": "E",
+            "src": "as skin dermis (mixed arterial / venous)"
+          },
+          "carotene_M": {
+            "v": 3.6e-06,
+            "q": "D",
+            "src": "PARKER88: total carotenoids 0.34-13.5 ug/g between people (40-fold, diet); geometric middle 2.1 ug/g x 0.92 g/mL / 537 g/mol = 3.6 uM, beta-carotene's spectrum standing for all (E). PER PERSON: the dial that makes fat white or deep yellow"
+          },
+          "vessel_radius_um": {
+            "v": 12.0,
+            "q": "E",
+            "src": "blood in fat sits in capillaries and venules in the septa, not spread evenly: the pigment-packaging factor C = (1 - exp(-2 mu_a,bl r)) / (2 mu_a,bl r) (Svaasand 1995 / van Veen 2005) on the blood term; r 12 um E inside LOOK_TARGETS' 10-25 um (no measured mean). The blood fraction 0.76 % itself is confirmed by living human abdomen 0.43-1.87 % (Lanka 2020, LOOK_TARGETS 2)"
+          }
+        },
+        "scatter": {
+          "a_per_cm": {
+            "v": 18.4,
+            "q": "M",
+            "src": "JACQ13 Table 2, fatty tissue mean of 6 datasets (SD 9.0): mu_s' = a (lambda / 500)^-b"
+          },
+          "b": {
+            "v": 0.672,
+            "q": "M",
+            "src": "JACQ13 Table 2 (SD 0.242)"
+          }
+        },
+        "g": {
+          "v": 0.9,
+          "q": "E",
+          "src": "soft-tissue typical 0.8-0.95 (JACQ13 general); no adipose-specific value found"
+        },
+        "n": {
+          "v": 1.466,
+          "q": "M",
+          "src": "MATIATOU21 human fat n = 1.44933 + 4908.37 / lambda^2 at 550 nm (1.474 at 450, 1.461 at 650); dn/dT -3.5e-4 /K (YANINA18)"
+        }
+      }
+    }
+  ],
+  "structure": {
+    "superficial_layer": {
+      "v": "small, tightly packed lobules in dense vertical septa (retinacula cutis), elongated perpendicular to the skin; tethered to the dermis",
+      "q": "M",
+      "src": "MARKMAN87, PANDEY15 (qualitative)"
+    },
+    "deep_layer": {
+      "v": "looser, oblique, widely spaced septa; slides on the deep fascia",
+      "q": "M",
+      "src": "MARKMAN87, CAPPELLANO18"
+    },
+    "lobule_mm": {
+      "v": {
+        "superficial": [
+          6.0,
+          7.4
+        ],
+        "deep": [
+          7.7,
+          10.1
+        ]
+      },
+      "q": "M",
+      "src": "PANDEY15 female abdomen cadaver (7 F); the 3 largest lobules per site, biased high; CAPPELLANO18 disagrees on which layer's lobules are larger"
+    },
+    "membrane": {
+      "v": "fascia superficialis (Scarpa's fascia in the abdomen) between the layers",
+      "q": "M",
+      "src": "MARKMAN87"
+    },
+    "septa": {
+      "thickness_um": {
+        "v": [
+          57,
+          145
+        ],
+        "q": "M",
+        "src": "deep septa 57-145 um (LOOK_TARGETS 2)"
+      },
+      "lobule_mm": {
+        "v": [
+          6,
+          10
+        ],
+        "q": "M",
+        "src": "Pandey 2015 (GAPS_RESEARCH; biased high)"
+      },
+      "septa_medium": {
+        "v": "dermis-like collagen (mu_s' 46 /cm at 500 nm) with 3 % blood",
+        "q": "E",
+        "src": "septa are dense connective tissue carrying the vessels; blood share E"
+      }
+    }
+  },
+  "surface": {
+    "alpha": {
+      "v": 0.2,
+      "q": "E",
+      "src": "only seen in a cut section sample: a wet, lobulated cut face"
+    },
+    "n": {
+      "v": 1.466,
+      "q": "M",
+      "src": "as the layer"
+    }
+  },
+  "contact": {
+    "friction": {
+      "kinetic": {
+        "v": null,
+        "q": "E",
+        "src": "not found: the deep layer slides on the deep fascia over a lubricated loose areolar plane (MARKMAN87, qualitative)"
+      },
+      "counterface": "deep fascia (internal sliding plane)"
+    },
+    "restitution": {
+      "v": 0.6,
+      "q": "D",
+      "src": "isolated heel pad (a fat pad in septa) energy loss 46.5-65.5 % (AERTS95) -> e = sqrt(1 - loss) 0.59-0.73; low end"
+    },
+    "electrostatic": {
+      "resistivity_ohm_m": {
+        "v": null,
+        "q": "E",
+        "src": "not retrieved (GABRIEL96 fat low-frequency values not in the table read)"
+      }
+    },
+    "solver": {
+      "phase": "soft_solid",
+      "collision_thickness_mm": {
+        "v": 0.5,
+        "q": "E",
+        "src": "an internal layer: a small offset so fat lobules and septa resolve against fascia (E)"
+      },
+      "impact": {
+        "restitution": {
+          "v": 0.6,
+          "q": "D",
+          "src": "as contact.restitution"
+        },
+        "response_time_ms": {
+          "v": {
+            "power_law": "no single time (GEERLIGS08)",
+            "breast_ring_down_s": [
+              0.3,
+              0.9
+            ]
+          },
+          "q": "M",
+          "src": "GEERLIGS08; SOFTTISSUE M17/M18 breast 2-7 Hz zeta 0.07-0.22 (a fat-dominated mass)"
+        },
+        "wave_speed_m_s": {
+          "v": {
+            "shear": 0.93
+          },
+          "q": "D",
+          "src": "sqrt(G / rho) = sqrt(820 Pa / 950)"
+        },
+        "damping_ratio": {
+          "v": [
+            0.07,
+            0.22
+          ],
+          "q": "M",
+          "src": "SOFTTISSUE M17/M18 breast (fat-dominated) damping"
+        },
+        "loss_factor_impact": {
+          "v": {
+            "tan_delta_10Hz": 0.91,
+            "tan_delta_100Hz": 0.16,
+            "tan_delta_1000Hz": 0.022,
+            "zeta_pulse_2ms_250Hz": 0.04,
+            "zeta_pulse_10ms_50Hz": 0.14,
+            "zeta_pulse_20ms_25Hz": 0.25
+          },
+          "q": "E",
+          "src": "from deform.viscoelastic.loss_factor_vs_freq (GRIG17 heel-fat Prony, computed); zeta_pulse = tan_delta(f) / 2 at f = 1 / (2 x contact time): tan delta 0.078 at 250 Hz, 0.275 at 50 Hz, 0.50 at 25 Hz (computed). how a solver uses it: integrate the Prony set (deform.viscoelastic.prony) as internal variables in an implicit step (one exponential update per term per step; stable at any dt) on top of the hyperelastic stress, so a 1-10 ms slap sees the short-time stiffness and loses energy in the 1-10 ms terms; do not use Rayleigh damping fitted to the ~15 Hz wobble: beta-damping gives zeta = beta * omega / 2, so a beta set for zeta 0.15 at 15 Hz (beta 3.2 ms) gives zeta ~5 at 250-500 Hz (a 1-2 ms pulse): over-damped, the slap goes dead. Where only one number fits, use the loss factor at the pulse's frequency f ~ 1 / (2 x contact time), zeta = tan_delta / 2."
+        }
+      },
+      "penetration_response": {
+        "contact_stiffness_kPa_per_mm": {
+          "v": null,
+          "q": "E",
+          "src": "per region: set by the stack in the skin profile (compliance_layers)"
+        },
+        "ramp": {
+          "v": "barrier_log",
+          "q": "E",
+          "src": "as skin"
+        },
+        "strain_stiffening": {
+          "v": {
+            "E0_kPa": 26.1,
+            "k": 26
+          },
+          "q": "D",
+          "src": "SOFTTISSUE section 3: E_t = E0 exp(k eps) from R31's two gluteal fat points (upper bound past eps 0.33)"
+        }
+      }
+    }
+  },
+  "deform": {
+    "model": {
+      "v": "ogden",
+      "q": "M",
+      "src": "one-term Ogden is adequate for subcutaneous adipose at any one strain rate (search summary of the dynamic-loading study; LEG19 uses it)"
+    },
+    "density_kg_m3": {
+      "v": 950,
+      "q": "M",
+      "src": "ICRU44 via NIST (nominal adipose); pure lipid 900 (SIRI, standard constant)"
+    },
+    "E_kPa_quasistatic": {
+      "v": 1.0,
+      "q": "M",
+      "src": "COMLEY10 porcine ~1 kPa (1.15 at 10 % strain); small-amplitude storage modulus 1.8 kPa to 100 Hz (COMLEY)"
+    },
+    "E_kPa_tension_human": {
+      "v": [
+        1.6,
+        11.7
+      ],
+      "q": "M",
+      "src": "ALKHOULI13 human subcutaneous, initial / at 30 % strain (strain-stiffening)"
+    },
+    "E_kPa_in_vivo_compression": {
+      "v": {
+        "gluteal_eps_0.16": 26.1,
+        "gluteal_eps_0.33": 2199
+      },
+      "q": "M",
+      "src": "SOFTTISSUE R31 (16 men, ultrasound + compression; tangent)"
+    },
+    "shear_kPa": {
+      "v": 0.82,
+      "q": "M",
+      "src": "params/soft_tissue_constants.json g_fat_kpa (breast fat MRE in vivo, 43 women); GEERLIGS08 porcine 7.5 kPa at 10 rad/s, 37 C (higher frequency)"
+    },
+    "bulk_kPa": {
+      "v": 2000000.0,
+      "q": "D",
+      "src": "K = rho c^2 = 950 x 1450^2 (DUCK90 sound speed; GAPS_RESEARCH.md 2)"
+    },
+    "poisson": {
+      "v": 0.4999,
+      "q": "D",
+      "src": "bulk modulus ~2.0 GPa (rho c^2, c ~1450 m/s, DUCK90) over shear ~1 kPa"
+    },
+    "strain_limit": {
+      "v": 0.33,
+      "q": "M",
+      "src": "soft_tissue_constants.json fat_strain_limit (R31: compression stiffens past it)"
+    },
+    "hyperelastic": {
+      "ogden_one_term": {
+        "v": {
+          "mu_kPa": 1.7,
+          "alpha": 26
+        },
+        "q": "M",
+        "src": "LEG19 Table 1 fat (first-order Ogden adapted from Payne et al. on COMLEY10's porcine compression)"
+      },
+      "neo_hookean_C10_kPa": {
+        "v": 0.41,
+        "q": "D",
+        "src": "C10 = G / 2, G 0.82 kPa (breast fat MRE in vivo, TISSUE)"
+      }
+    },
+    "viscoelastic": {
+      "relaxation": {
+        "v": "power law in time and frequency, no single time constant; phase angle independent of frequency and temperature",
+        "q": "M",
+        "src": "GEERLIGS08"
+      },
+      "prony": {
+        "v": [
+          {
+            "g": 0.06,
+            "tau_s": 0.001
+          },
+          {
+            "g": 0.77,
+            "tau_s": 0.01
+          },
+          {
+            "g": 0.02,
+            "tau_s": 0.1
+          }
+        ],
+        "q": "E",
+        "src": "GRIG17 Table 1 average QLV fit (R2 0.84), human cadaveric HEEL fat pad, drop impacts to ~150 /s: the only human adipose impact-rate Prony set found; heel fat is septate and stiffer (C10 0.1 MPa) than trunk fat, so applied here as E; g_inf = 1 - sum g = 0.15; the abstract prints tau3 10 s, Table 1 0.1 s (Table used). Normalised: multiplies the instantaneous hyperelastic stress"
+      },
+      "loss_factor_vs_freq": {
+        "v": {
+          "1Hz": 0.36,
+          "10Hz": 0.91,
+          "100Hz": 0.16,
+          "1000Hz": 0.022
+        },
+        "q": "E",
+        "src": "computed here from the GRIG17 Prony set (tan delta = G''/G' of the normalised relaxation function, linear, small amplitude); E because the set is heel fat. GEERLIGS08 (porcine subcutaneous, shear, <0.1 % strain) instead finds a power law with a phase angle constant over frequency and temperature (value not retrieved): the peak near 10 Hz is the Prony fit's shape, not a measured peak"
+      },
+      "high_rate_E_kPa": {
+        "v": {
+          "0": 18,
+          "10": 24,
+          "20": 32,
+          "50": 73,
+          "100": 296,
+          "150": 1200
+        },
+        "q": "E",
+        "src": "keys: strain rate per s. GRIG17 Yeoh C10(rate) = 0.003 exp(0.028 rate) MPa (R2 0.49), E = 6 C10 (initial, incompressible); heel fat, tested to ~150 /s (failures at 1.7-3.4 m/s drops); E for trunk fat"
+      },
+      "rate_dependence": {
+        "v": "porcine subcutaneous fat in compression: rate-independent up to ~10 /s, strongly rate-dependent above; stress-strain shape the same at every rate, its level scales with the initial modulus; lock-up near 25 % strain; tested 0.002-5700 /s (numbers not retrieved)",
+        "q": "M",
+        "src": "COMLEY12 (abstract; LANZL22 quotation)"
+      },
+      "loading_history": {
+        "v": {
+          "shear_modulus_rise_x": 10,
+          "loading_time_s": [
+            250,
+            1250
+          ],
+          "recovery_h": 3
+        },
+        "q": "M",
+        "src": "GEERLIGS10 via LANZL22: the shear modulus rose ~10x for loading times 250-1250 s, reversible after ~3 h (sitting-scale, not impact)"
+      },
+      "loss_vs_freq_measured": {
+        "v": {
+          "100Hz": 0.23,
+          "300Hz": 0.23,
+          "1000Hz": 0.23,
+          "measured_band_tan_delta": {
+            "human_male_abdomen": 0.227,
+            "human_female_abdomen": 0.233
+          },
+          "power_law_G_storage": {
+            "human_male_abdomen": {
+              "G_at_1_rad_s_kPa": 5.21,
+              "p": 0.142
+            },
+            "human_female_abdomen": {
+              "G_at_1_rad_s_kPa": 4.28,
+              "p": 0.146
+            }
+          }
+        },
+        "q": "D",
+        "src": "MITRA24 Table 1: human abdominal subcutaneous tissue (explants, male and female), shear rheometer, 0.5 % strain (linear), 0.04-40 rad/s (0.006-6.4 Hz): G' = G(1) omega^p, R2 > 0.985, G' > G'' throughout (M). tan delta = tan(p pi / 2) for a power-law (constant phase) solid, computed here (D). GEERLIGS08 (porcine subcutaneous, 0.1 % strain) found the phase angle independent of frequency and temperature with a power law, which is what lets the constant carry upward; still, 100-1000 Hz is 2-3 decades past the measured band (extrapolated). NO direct fat measurement at 100-1000 Hz was found (MRE / ultrasound dispersion of fat not retrieved). Replaces nothing: the GRIG17 heel-fat Prony estimate (loss_factor_vs_freq: 0.16 at 100 Hz, 0.022 at 1000 Hz, E) falls off because a 3-term Prony set has no modes faster than 1 ms; the measured trunk fat behaves as a constant-loss solid",
+        "method": "small-strain oscillatory shear rheometry, power-law fit, extrapolated by the constant-phase law"
+      },
+      "G_storage_loss_vs_freq_measured_kPa": {
+        "v": {
+          "human_male_abdomen": {
+            "G_storage": {
+              "1Hz": 6.8,
+              "100Hz": 13.0,
+              "300Hz": 15.2,
+              "1000Hz": 18.0
+            },
+            "G_loss": {
+              "1Hz": 1.5,
+              "100Hz": 2.95,
+              "300Hz": 3.45,
+              "1000Hz": 4.1
+            }
+          },
+          "human_female_abdomen": {
+            "G_storage": {
+              "1Hz": 5.6,
+              "100Hz": 11.0,
+              "300Hz": 12.9,
+              "1000Hz": 15.4
+            },
+            "G_loss": {
+              "1Hz": 1.3,
+              "100Hz": 2.56,
+              "300Hz": 3.0,
+              "1000Hz": 3.6
+            }
+          }
+        },
+        "q": "D",
+        "src": "MITRA24 Table 1 power law G' = G(1) omega^p run to these frequencies, G'' = G' tan(p pi / 2), computed here; 1 Hz inside the measured band, 100-1000 Hz extrapolated. Small-strain (0.5 %) values: at impact strains fat stiffens (deform.stiffening, stiffening_large_strain) and strain-stiffens / shear-thins in LAOS (MITRA24)"
+      }
+    },
+    "layer_stiffness": {
+      "v": "superficial stiffer and tethered, deep sliding (from the structure); no measured split",
+      "q": "E",
+      "src": "GAPS_RESEARCH.md 2 note"
+    },
+    "fracture": {
+      "toughness_J_m2": {
+        "v": null,
+        "q": "E",
+        "src": "not retrieved: Comley & Fleck measured adipose toughness (2009/2010, GAPS COMLEY) - numbers not in hand"
+      }
+    },
+    "sim": {
+      "v": {
+        "xpbd_deviatoric_compliance_1_per_Pa": 0.00122,
+        "xpbd_volume_compliance_1_per_Pa": 5e-10
+      },
+      "q": "D",
+      "src": "1 / G and 1 / K"
+    },
+    "stiffening": {
+      "law": "exponential_tangent",
+      "form": "E_t(eps) = E0 * exp(k * (eps - eps_ref)): tangent compressive modulus at engineering strain eps, quasi-static, in vivo, whole layer in place",
+      "E0_kPa": {
+        "v": 26.1,
+        "q": "M",
+        "src": "ISOGAI22 (SOFTTISSUE R31) gluteal fat in vivo, E at 1 N (strain 0.16) 26.1 +/- 19.0 kPa; reads as a tangent (secant would be ~11)"
+      },
+      "k": {
+        "v": 26.1,
+        "q": "D",
+        "src": "ISOGAI22 two points: ln(2199 / 26.1) / (0.33 - 0.16); SOFTTISSUE section 3 (integrates to 1.25-1.65x the measured stress rise: an upper bound)"
+      },
+      "eps_ref": {
+        "v": 0.16,
+        "q": "M",
+        "src": "ISOGAI22 strain at the 26.1 kPa point"
+      },
+      "valid_eps": {
+        "v": [
+          0.16,
+          0.33
+        ],
+        "q": "M",
+        "src": "ISOGAI22 measured span (2199 +/- 1355 kPa at 0.33, 30 N); no support beyond 0.33"
+      },
+      "E_at_eps0_kPa": {
+        "v": 0.4,
+        "q": "D",
+        "src": "the law run back to eps 0: 26.1 * exp(-26.1 * 0.16) = 0.40 kPa; an extrapolation, but it lands inside the 0.4-3 kPa small-strain values (COMLEY10, ALKHOULI13, breast MRE), so the rest and the loaded values are one curve"
+      },
+      "q": "D",
+      "src": "ISOGAI22 via SOFTTISSUE R31 / section 3; quasi-static (rate effects: deform.viscoelastic)"
+    },
+    "stiffening_large_strain": {
+      "law": "ogden_one_term_incompressible",
+      "form": "Psi = (mu/alpha)(l1^a + l2^a + l3^a - 3) (Calvo-Gallego's normalisation); uniaxial Cauchy stress sigma = mu (l^a - l^(-a/2)), l = 1 - eps (eps = nominal compressive strain); small-strain E = 1.5 mu alpha, G = mu alpha / 2. Elastic response at the loading-ramp rate (0.5-0.7 /s, the rate of a mm/s probe on a cm layer): relaxation during the ramp is already in it, so do not also apply the Prony set to it",
+      "mu_kPa": {
+        "v": 0.16,
+        "q": "D",
+        "src": "CALVO18 Fig 6 (60 %/s ramp to 40 %, one representative specimen), digitised here and fitted (relative least squares, 11 points 0.06-0.40): mu 0.171, alpha 15.0, worst point -20 % at eps 0.06, within 12 % above 0.12; the same curve as replotted in NASERI22 Fig 13 fits mu 0.149, alpha 15.6; adopted 0.16 / 15. Human abdominal SAT, ex vivo"
+      },
+      "alpha": {
+        "v": 15.0,
+        "q": "D",
+        "src": "CALVO18 Fig 6 fit as for mu_kPa. CALVO18's own medians (138 specimens, Tables 3/5) give alpha 8.4-8.5 (QLV) / 8.5-9.4 (IVV), but those sit inside a viscoelastic model whose 0.01-0.1 s modes relax ~85 % of the stress during the ramp; as a purely elastic law the ramp curve needs alpha ~15 (alpha fixed at 8.4 misfits it by -53 % at eps 0.40)"
+      },
+      "sigma_kPa_check": {
+        "v": {
+          "0.1": 0.32,
+          "0.16": 0.58,
+          "0.2": 0.85,
+          "0.3": 2.3,
+          "0.33": 3.2,
+          "0.4": 7.4,
+          "0.5": 29,
+          "0.6": 154
+        },
+        "q": "D",
+        "src": "the law above evaluated (Cauchy, compression magnitude); measured CALVO18 Fig 6 ramp: 0.25 (0.06) / 0.40 (0.12) / 0.65 (0.18) / 1.4 (0.24) / 2.85 (0.30) / 3.75 (0.33) / 7.85 (0.403) kPa; 0.5 and 0.6 are the law extrapolated"
+      },
+      "tangent_kPa_check": {
+        "v": {
+          "0": 3.6,
+          "0.16": 5.5,
+          "0.33": 36,
+          "0.4": 92,
+          "0.5": 434,
+          "0.6": 2900
+        },
+        "q": "D",
+        "src": "d sigma / d eps of the law (the gluteal exponential tangent for comparison: 26 / 2206 / 13711 / 186000 / 2.5e6 kPa at 0.16 / 0.33 / 0.4 / 0.5 / 0.6)"
+      },
+      "valid_strain": {
+        "v": [
+          0.0,
+          0.4
+        ],
+        "q": "M",
+        "src": "CALVO18: the fitted ramp reaches 40 % (Fig 6, strain level 40 %); the protocol ramps to 50 % (section 2.1.2). 0.4-0.6 is the Ogden law extrapolated (D): a power law in stretch, it stiffens ~5x per 0.1 strain there, not the exponential's ~14x"
+      },
+      "rate_s": {
+        "v": [
+          0.5,
+          0.7
+        ],
+        "q": "M",
+        "src": "CALVO18 ramps at 50, 60, 70 %/s; constants independent of rate across that span (their non-parametric MANOVA)"
+      },
+      "site": {
+        "v": "human abdomen, deep subcutaneous fat (skin and the top ~5 mm of fat removed), one woman 57 y (DIEAP flap), ex vivo, frozen up to 1 day at -20 C, tested in 37 C saline, unconfined compression between platens, specimens 19 mm across, 5-10 mm tall",
+        "q": "M",
+        "src": "CALVO18 section 2.1"
+      },
+      "equilibrium": {
+        "mu_kPa": {
+          "v": 0.15,
+          "q": "M",
+          "src": "CALVO18 Table 5 IVV long-term Ogden mu, medians 0.102 / 0.197 / 0.169 kPa at 50 / 60 / 70 %/s (IQR 0.066-0.162 at 50 %/s); same normalisation"
+        },
+        "alpha": {
+          "v": 8.5,
+          "q": "M",
+          "src": "CALVO18 Table 5 IVV alpha medians 8.47 / 9.42 / 9.29; QLV Table 3 alpha 8.49 / 8.36 / 8.44"
+        },
+        "use": "slow or held loads (seconds to minutes: lying, sitting): CALVO18 report ~70 % of the peak relaxed within seconds and >90 % in 15 min; this law gives sigma 0.9-2.2 kPa at 0.4 and 5-15 kPa at 0.6 (extrapolated)",
+        "q": "M",
+        "src": "CALVO18"
+      },
+      "instantaneous_qlv": {
+        "v": {
+          "mu_kPa": 4.8,
+          "alpha": 8.4,
+          "g": [
+            0.654,
+            0.222,
+            0.049,
+            0.024,
+            0.023
+          ],
+          "tau_s": [
+            0.01,
+            0.1,
+            1,
+            10,
+            100
+          ],
+          "g_inf": 0.018
+        },
+        "q": "M",
+        "src": "CALVO18 Table 3 QLV medians at 50 %/s (mu 4.78 kPa, IQR 3.26-9.31; 60 %/s 6.53; 70 %/s 4.55), tau fixed in decades by the authors. For a solver that runs QLV (instantaneous hyperelastic x normalised relaxation): this set replaces the ramp-apparent law, never added to it"
+      },
+      "spread": {
+        "v": "between specimens of the one donor the fitted mu spans an IQR of ~3x (CV of Q3 230-320 %, some abnormally rigid specimens); one donor only, so the spread between people is not measured",
+        "q": "M",
+        "src": "CALVO18 Tables 3 and 5"
+      },
+      "q": "D",
+      "src": "CALVO18 (human abdominal SAT compression to 40-50 %); NASERI22 replot. Other candidates weighed: COMLEY12 porcine (locks up near 25 %; porcine stiffer than human, Sun 2020), SOMMER13 human abdominal (biaxial tension and triaxial shear, no compression; parameters not retrieved), SUN21 human abdominal dynamic compression/shear Ogden-QLV (paywalled, parameters not retrieved), ALKHOULI13 tension to 30 % only"
+    },
+    "stiffening_which": {
+      "v": "Two compression laws for this fat. (1) deform.stiffening (exponential tangent, ISOGAI22): in vivo, gluteal, whole layer in place, measured 0.16-0.33 strain; use it there for the buttock / sitting layer. (2) deform.stiffening_large_strain (one-term Ogden, CALVO18): ex vivo human abdominal fat, measured 0-0.40, extrapolated to 0.6; use it beyond 0.33 at any site, and across the whole range for the abdomen (and other trunk fat without in vivo data). Never run the exponential past 0.33: at 0.5 it gives ~7 MPa where the Ogden law gives 29 kPa. Where both apply (gluteal, 0.16-0.33) the in vivo law is ~4-60x stiffer in tangent (layer in place: septa, fascia, probe) but within 2x in stress at 0.16 (1.0 vs 0.58 kPa); a join that keeps the gluteal law to 0.33 and continues past it with the Ogden tangent scaled to match there is a D choice for the solver, not measured. Rate: the Ogden ramp law already holds the ramp-rate relaxation (0.5-0.7 /s); for held loads use stiffening_large_strain.equilibrium; a QLV solver uses instantaneous_qlv with its own Prony set",
+      "q": "D",
+      "src": "compiled from ISOGAI22 and CALVO18 (large-strain lane 11-08); the REMUS24 abdomen indents (relaxed: 3.33 N at 10 mm, 8.40 N at 20 mm, ratio 2.5) are the in vivo check, not yet rerun with this law"
+    },
+    "stiffness_which": {
+      "v": {
+        "E_0.4_kPa_rest_in_vivo_extrapolated": "deform.stiffening E_at_eps0: the in vivo law at zero strain; use as the rest tangent of the layer",
+        "E_1_kPa_COMLEY10": "porcine, ex vivo, quasi-static (0.002-0.25 /s), small strain (tangent ~10 %): the material at rest; slow loading; deform.E_kPa_quasistatic",
+        "E_1.6_to_11.7_kPa_ALKHOULI13": "human, ex vivo tension: initial (rest) and tangent at 30 % strain",
+        "G_0.82_kPa_breast_MRE": "human breast fat in vivo, MRE (tens of Hz, micrometre amplitude), no precompression: a small-strain DYNAMIC shear modulus at rest, E ~ 3G = 2.5 kPa; deform.shear_kPa",
+        "G_7.5_kPa_GEERLIGS08": "porcine, ex vivo, shear at 10 rad/s, 37 C, < 0.1 % strain: small-strain dynamic, higher (method, lipid state)",
+        "E_26.1_kPa_ISOGAI22": "human gluteal fat in vivo: the TANGENT at 16 % compressive strain (1 N on 576 mm2, ~1.7 kPa), whole layer in place (septa, fascia, probe): a loaded value, not a rest modulus; deform.stiffening E0",
+        "E_2199_kPa_ISOGAI22": "the same, tangent at 33 % strain (30 N): near lock-up",
+        "E_18_to_1200_kPa_GRIG17": "human heel fat, initial modulus vs strain rate 0-150 /s: rate, not strain (deform.viscoelastic.high_rate_E_kPa)"
+      },
+      "q": "D",
+      "src": "compiled from the cited entries: a solver reads rest modulus x stiffening(eps) x rate factor; mixing a tangent-at-strain with a rest modulus double-counts the stiffening"
+    }
+  },
+  "thermal": {
+    "conductivity_W_mK": {
+      "v": 0.21,
+      "q": "M",
+      "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Fat average 0.211 W/mK (SD 0.021, 8 studies, 0.18-0.24); 0.21 kept"
+    },
+    "heat_capacity_J_kgK": {
+      "v": 2348,
+      "q": "M",
+      "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Fat average 2348 J/kgK (SD 372, 6 studies, 1806-2973)"
+    },
+    "density_kg_m3": {
+      "v": 911,
+      "q": "M",
+      "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Fat average 911 kg/m3 (SD 51, n 23, 812-961); ICRU44 nominal 950: recalled, not re-read"
+    },
+    "effusivity": {
+      "v": 670,
+      "q": "D",
+      "src": "sqrt(k rho c) from the ITIS values"
+    }
+  },
+  "states": {
+    "base": {
+      "set": {}
+    },
+    "carotene_low": {
+      "set": {
+        "layers.fat.optics.absorbers.carotene_M": 5.8e-07
+      },
+      "q": "D",
+      "src": "PARKER88 low end 0.34 ug/g"
+    },
+    "carotene_high": {
+      "set": {
+        "layers.fat.optics.absorbers.carotene_M": 2.3e-05
+      },
+      "q": "D",
+      "src": "PARKER88 high end 13.5 ug/g"
+    }
+  },
+  "sources": {
+    "AERTS95": {
+      "cite": "Aerts P, Ker RF, De Clercq D, Ilsley DW, Alexander RMcN. The mechanical properties of the human heel pad: a paradox resolved. J Biomech 28:1299-1308 (1995)",
+      "url": "https://doi.org/10.1016/0021-9290(95)00009-7",
+      "lic": "abstract read; numbers used as facts, text studied only"
+    },
+    "ALKHOULI13": {
+      "cite": "ALKHOULI13: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "CAPPELLANO18": {
+      "cite": "CAPPELLANO18: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "COMLEY": {
+      "cite": "COMLEY: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "COMLEY10": {
+      "cite": "COMLEY10: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "DUCK90": {
+      "cite": "Duck FA. Physical Properties of Tissue. Academic Press (1990); standard ranges",
+      "url": "https://doi.org/10.1016/C2009-0-02649-4",
+      "lic": "book, copyright; numbers used as facts, text studied only"
+    },
+    "GABRIEL96": {
+      "cite": "Gabriel S, Lau RW, Gabriel C. The dielectric properties of biological tissues II/III. Phys Med Biol 41:2251-2293 (1996); low-frequency values as compiled in a Frontiers supplementary table (article id 1094968, Table 1)",
+      "url": "https://www.frontiersin.org/api/v4/articles/1094968/file/Table_1.DOCX/1094968_supplementary-materials_tables_1_docx/1",
+      "lic": "the Frontiers table CC BY 4.0; the 1996 paper paywalled; numbers used as facts, text studied only"
+    },
+    "GAPS": {
+      "cite": "the project's materials research note GAPS_RESEARCH.md (materials foundation lane, 11-07): keys COMLEY10, ALKHOULI13, GEERLIGS08, MORROW10, MENDEZ60, WARD05, PANDEY15, MARKMAN87, CAPPELLANO18, JACQ13, VANVEEN, MATIATOU21, PARKER88, THOMAS62, YANINA18, SIRI",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "project file; primary licences listed there"
+    },
+    "GEERLIGS08": {
+      "cite": "GEERLIGS08: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "ICRU44": {
+      "cite": "ICRU Report 44 (1989), densities as listed by NIST X-Ray Mass Attenuation Coefficients Table 2",
+      "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/tab2.html",
+      "lic": "NIST page, US government work"
+    },
+    "ITIS": {
+      "cite": "Baumgartner C, Hasgall PA, Di Gennaro F, Neufeld E, Lloyd B, Gosselin MC, Payne D, Klingenboeck A, Kuster N. IT'IS Database for thermal and electromagnetic parameters of biological tissues, Version 5.0, Aug 21 2025, DOI 10.13099/VIP21000-05-0 (average values; the live tables re-read 11-08: the 2024-06-04 and 2025-08-21 table files give the same skin, fat and muscle rows)",
+      "url": "https://itis.swiss/virtual-population/tissue-properties/database",
+      "lic": "IT'IS legal notice (read 11-08): web pages and documents may be copied only for private, scientific and noncommercial use; storing them on other servers or data carriers needs written consent: STUDY ONLY (P13). Individual averages used as facts with this citation; the table is never copied in bulk"
+    },
+    "JACQ13": {
+      "cite": "JACQ13: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "LEG19": {
+      "cite": "Comparison of mechanical conditions in a lower leg model with 5 or 6 tissue types while exposed to prosthetic sockets applying finite element analysis (2019), Table 1: fat first-order Ogden adapted from Payne et al. / Comley & Fleck",
+      "url": "https://arxiv.org/abs/1907.13340",
+      "lic": "arXiv; numbers used as facts, text studied only"
+    },
+    "MARKMAN87": {
+      "cite": "MARKMAN87: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "MATIATOU21": {
+      "cite": "MATIATOU21: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "PANDEY15": {
+      "cite": "PANDEY15: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "PARKER88": {
+      "cite": "PARKER88: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "SIRI": {
+      "cite": "SIRI: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "SOFTTISSUE": {
+      "cite": "the project's research note soft_tissue.md (project research file; its R-keys name the primary papers: R20 Boyer 2012, R21, R25, R31 gluteal ultrasound + compression, R32/R33 seated MRI + FE, R42 Korean biopsies, R43 skin US, R44 fat/muscle US, M31 drop landing)",
+      "url": "the project's research note soft_tissue.md",
+      "lic": "project file; primary licences as listed there"
+    },
+    "THOMAS62": {
+      "cite": "THOMAS62: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "TISSUE": {
+      "cite": "the project's parameter file soft_tissue_constants.json and tissue_depths.json",
+      "url": "the project's parameter file ",
+      "lic": "project file"
+    },
+    "VANVEEN": {
+      "cite": "VANVEEN: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "YANINA18": {
+      "cite": "YANINA18: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "GRIG17": {
+      "cite": "Grigoriadis G, Newell N, Carpanen D, Christou A, Bull AMJ, Masouros SD. Material properties of the heel fat pad across strain rates. J Mech Behav Biomed Mater 65:398-407 (2017). doi 10.1016/j.jmbbm.2016.09.003; 5 male cadaveric limbs 40-57 y, drop tests 0.6-3.4 m/s, rates to ~150 /s, 20-25 C",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5161234/",
+      "lic": "CC BY 4.0"
+    },
+    "COMLEY12": {
+      "cite": "Comley K, Fleck NA. The compressive response of porcine adipose tissue from low to high strain rate. Int J Impact Eng 46:1-10 (2012). doi 10.1016/j.ijimpeng.2011.12.009; 0.002-5700 /s",
+      "url": "https://doi.org/10.1016/j.ijimpeng.2011.12.009",
+      "lic": "paywalled; abstract and LANZL22's quotation read; qualitative findings used"
+    },
+    "LANZL22": {
+      "cite": "Lanzl F, Duddeck F, Willuweit S, Peldschus S. Experimental characterisation of porcine subcutaneous adipose tissue under blunt impact up to irreversible deformation. Int J Legal Med 136:897-910 (2022). doi 10.1007/s00414-021-02755-0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9005403",
+      "lic": "CC BY 4.0"
+    },
+    "GEERLIGS10": {
+      "cite": "Geerligs M, Peters GWM, Ackermans PAJ, Oomens CWJ, Baaijens FPT. Does subcutaneous adipose tissue behave as an (anti-)thixotropic material? J Biomech 43:1153-1159 (2010) (as quoted by LANZL22)",
+      "url": "https://doi.org/10.1016/j.jbiomech.2009.11.039",
+      "lic": "paywalled; read via LANZL22 (DOI not verified); numbers used as facts"
+    },
+    "ISOGAI22": {
+      "cite": "Isogai K, et al. J Phys Ther Sci 34:777-783 (2022). doi 10.1589/jpts.34.777 (SOFTTISSUE R31): gluteal fat and muscle in vivo, ultrasound + compression, 16 men 20-22 y, 576 mm2 probe",
+      "url": "https://doi.org/10.1589/jpts.34.777",
+      "lic": "open access, journal licence CC BY-NC-ND 4.0 (not re-checked 11-08): the text and figures STUDY ONLY (P13); four numbers used as facts"
+    },
+    "CALVO18": {
+      "cite": "Calvo-Gallego JL, Dominguez J, Gomez Cia T, Gomez Ciriza G, Martinez-Reina J. Comparison of different constitutive models to characterize the viscoelastic properties of human abdominal adipose tissue. A pilot study. J Mech Behav Biomed Mater 80:293-302 (2018), doi:10.1016/j.jmbbm.2018.02.013",
+      "url": "https://idus.us.es/bitstream/handle/11441/133783/JMBBM_2018_CalvoGallego_Accepted_JMechBehBiomedMat2018_Comparison%20of%20different%20constitutive.pdf?sequence=3",
+      "lic": "accepted manuscript in the University of Seville repository (Elsevier accepted-manuscript terms, usually CC BY-NC-ND; the record page refused automated reads, so not confirmed): STUDY ONLY (P13) for text and figures; table constants and one digitised curve used as facts"
+    },
+    "NASERI22": {
+      "cite": "Naseri H. Calibration of adipose tissue material properties in LS-DYNA. Chalmers University of Technology, Dept of Mechanics and Maritime Sciences, Report 2022:03 (OSCCAR project)",
+      "url": "https://research.chalmers.se/publication/523470/file/523470_Fulltext.pdf",
+      "lic": "institutional report, licence not stated: STUDY ONLY (P13); its Fig 13 replot of CALVO18 read as a second digitisation"
+    },
+    "REMUS24": {
+      "cite": "Remus et al. 2024, in vivo abdominal indentation (10 men; hemispherical 10 mm-radius indenter, 5 mm/s): full citation in the project's materials research note PROOF_REFERENCES.md",
+      "url": "the project's materials research note PROOF_REFERENCES.md",
+      "lic": "CC BY (per PROOF_REFERENCES.md); numbers used as facts"
+    },
+    "MITRA24": {
+      "cite": "Mitra H, Schipper EN, Corder RD, Solorio L, Ardekani AM. Rheological and lipid characterization of minipig and human skin tissue. bioRxiv 2024.02.25.581953 (2024); Ann Biomed Eng (2024) doi:10.1007/s10439-024-03620-y",
+      "url": "https://doi.org/10.1101/2024.02.25.581953",
+      "lic": "preprint CC BY-ND 4.0: Table 1 numbers used as facts, text and figures not adapted"
+    }
+  }
+}

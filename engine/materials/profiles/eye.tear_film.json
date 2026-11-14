@@ -1,0 +1,344 @@
+{
+ "id": "eye.tear_film",
+ "kind": "fluid",
+ "family": "eye",
+ "_": "The precorneal tear film AS A STRUCTURE on the eye: ~50 nm lipid over ~3.3 um aqueous-mucin over the glycocalyx, with menisci at the lid margins. It is the lubricant of the lid wiper and the optical front surface. Fluid properties are those of `tears` (fluids lane); this profile holds the film's own geometry, lubrication and dynamics. Eye-and-hair materials lane, 2026-11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.003,
+   "q": "E",
+   "src": "as tears.json (smooth free surface)"
+  },
+  "n": {
+   "v": {
+    "aqueous": 1.337,
+    "lipid": 1.482
+   },
+   "q": "M",
+   "src": "EYEMD G1, F3"
+  },
+  "F0": {
+   "v": 0.021,
+   "q": "D",
+   "src": "EYEMD G2 air-tear"
+  }
+ },
+ "optics_summary": {
+  "thin_film": {
+   "v": "lipid 52.7 nm x 1.48 = 78 nm optical path: weak interference colour; 100-150 nm patches tint",
+   "q": "D",
+   "src": "EYEMD G2"
+  },
+  "n": {
+   "v": 1.337,
+   "q": "M",
+   "src": "EYEMD G1"
+  }
+ },
+ "contact": {
+  "friction": {
+   "kinetic": {
+    "v": {
+     "lid_on_cornea": 0.05,
+     "human_cornea_mucin_glass": [
+      0.006,
+      0.015
+     ]
+    },
+    "q": "M",
+    "src": "CHEN26 porcine lid-eyeball; WILSON15 via CHEN26"
+   },
+   "static": {
+    "v": {
+     "lid_on_cornea": 0.16
+    },
+    "q": "M",
+    "src": "CHEN26"
+   },
+   "counterface": "what the film lubricates (lid wiper on cornea/conjunctiva)",
+   "regime": {
+    "v": "boundary to (elasto)hydrodynamic along the Stribeck curve: boundary at blink start/end (low speed), mixed/EHL mid-blink (~100+ mm/s)",
+    "q": "M",
+    "src": "CHEN26 / LIEVENS22 reviews; Jones 2008 EHL of the lid wiper (via CHEN26)"
+   }
+  },
+  "surface_tension_mN_m": {
+   "v": [
+    42,
+    46
+   ],
+   "q": "M",
+   "src": "TEARS (Nagyova & Tiffany 1999)"
+  },
+  "viscosity_mPa_s": {
+   "v": {
+    "low_shear": [
+     3,
+     6
+    ],
+    "blink_shear": [
+     1.0,
+     1.5
+    ]
+   },
+   "q": "M",
+   "src": "TEARS (Tiffany 1991, shear-thinning)"
+  },
+  "density_kg_m3": {
+   "v": 1003,
+   "q": "E",
+   "src": "as tears.json"
+  },
+  "film_thickness_um": {
+   "v": {
+    "aqueous_mucin": 3.3,
+    "lipid": 0.0527,
+    "range": [
+     0,
+     6.9
+    ]
+   },
+   "q": "M",
+   "src": "EYEMD F1"
+  },
+  "thinning_rate_nm_s": {
+   "v": -63,
+   "q": "M",
+   "src": "EYEMD F1 (inter-blink)"
+  },
+  "meniscus": {
+   "v": {
+    "radius_mm": 0.365,
+    "height_mm": 0.46
+   },
+   "q": "M",
+   "src": "EYEMD F2 (controls)"
+  },
+  "breakup_time_s": {
+   "v": ">10 normal",
+   "q": "M",
+   "src": "TEARS"
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": 0,
+    "q": "D",
+    "src": "aqueous on its own mucin glycocalyx spreads (film forms)"
+   }
+  },
+  "solver": {
+   "phase": {
+    "v": "fluid",
+    "q": "D",
+    "src": "a liquid film; in a rigid-body/cloth solver represent it as the lubricated interface (pair friction 0.05), not as particles"
+   },
+   "collision_thickness_mm": {
+    "v": 0.0033,
+    "q": "M",
+    "src": "EYEMD F1"
+   },
+   "penetration_response": {
+    "model": {
+     "v": "incompressible thin film: squeezed to the lid-wiper gap (sub-micron) under 1-10 kPa; carries load hydrodynamically mid-blink",
+     "q": "D",
+     "src": "Reynolds lubrication with the values above"
+    },
+    "ramp": {
+     "v": "pressure_projection",
+     "q": "D",
+     "src": "liquid"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.0,
+     "q": "D",
+     "src": "a wetting liquid film absorbs (tears.json)"
+    },
+    "response_time_ms": {
+     "v": {
+      "blink_closing": 76,
+      "blink_opening": 438
+     },
+     "q": "M",
+     "src": "EYEMD I3"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "capillary_wave_1mm": 0.53
+     },
+     "q": "D",
+     "src": "sqrt(2 pi gamma/(rho lambda)) with gamma 0.044 N/m, lambda 1 mm"
+    },
+    "damping_ratio": {
+     "v": "viscous (viscosity)",
+     "q": "D",
+     "src": "liquid"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "non_newtonian_fluid",
+   "q": "M",
+   "src": "TEARS (shear-thinning)"
+  },
+  "density_kg_m3": {
+   "v": 1003,
+   "q": "E",
+   "src": "as tears.json"
+  },
+  "volume_uL": {
+   "v": 7,
+   "q": "E",
+   "src": "MISHIMA66 via tears.json: E: recalled from Mishima 1966 (~7 uL), not re-read"
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.6,
+   "q": "E",
+   "src": "water-like"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 4100,
+   "q": "E",
+   "src": "water-like"
+  },
+  "effusivity": {
+   "v": 1570.0,
+   "q": "D",
+   "src": "sqrt(k rho c)"
+  },
+  "emissivity": {
+   "v": 0.975,
+   "q": "M",
+   "src": "SCOTT88 (anterior eye surface)"
+  },
+  "evaporative_loss_W_m2": {
+   "v": [
+    40,
+    100
+   ],
+   "q": "M",
+   "src": "SCOTT88"
+  }
+ },
+ "states": {
+  "intact": {
+   "set": {},
+   "q": "M",
+   "src": "base"
+  },
+  "breakup": {
+   "set": {
+    "contact.film_thickness_um.aqueous_mucin": 0.5,
+    "surface.alpha": 0.03,
+    "contact.friction.kinetic.lid_on_cornea": 0.15
+   },
+   "q": "E",
+   "src": "dry spots: highlight breaks up; friction toward unlubricated values (SCHMIDT13 saline 0.24-0.31)"
+  },
+  "tearing": {
+   "set": {
+    "contact.film_thickness_um.aqueous_mucin": 10.0,
+    "contact.meniscus.radius_mm": 0.7
+   },
+   "q": "E",
+   "src": "reflex tearing floods the film and menisci (tears.json overflow); values E"
+  }
+ },
+ "sources": {
+  "EYEMD": {
+   "cite": "The project's research note eye.md (2026-10-19): A-I tables, G1 refractive indices, F1-F3 tear film, E1/E3/G5 sclera, C2 iris, D1-D3 lens, I3 blink",
+   "url": "local",
+   "lic": "project record; papers as cited there (R1-R69)"
+  },
+  "CHEN26": {
+   "cite": "Chen Y, Kaper HJ, de Jong E, van Kooten TG, Sharma PK. Importance of tribo-pairs to mimic blinking in vitro for dry eye disease research. Friction 14(8):9441241 (2026): porcine eyelid on eyeball, 30 mN, 8 mm/s: mu_s 0.16 +/- 0.04, mu_k 0.05 +/- 0.01; bare glass mu_s 2.10 +/- 0.60, mucin glass 0.59 +/- 0.19; tarsal plate 0.4 +/- 0.2 MPa, eyeball 0.1 +/- 0.08 MPa; Table 1 of literature values",
+   "url": "https://doi.org/10.26599/FRICT.2026.9441241",
+   "lic": "CC BY 4.0"
+  },
+  "WILSON15": {
+   "cite": "Wilson T, Aeschlimann R, Tosatti S et al. Coefficient of friction of human corneal tissue. Cornea 34(9):1179 (2015) (via CHEN26 Table 1): mucin-coated glass vs human cornea, 3.5-8.8 kPa, mean CoF 0.006-0.015 in tear-mimicking solutions",
+   "url": "https://doi.org/10.1097/ICO.0000000000000546",
+   "lic": "paywalled; numbers via CHEN26 used as facts"
+  },
+  "SCHMIDT13": {
+   "cite": "Schmidt TA, Sullivan DA et al. JAMA Ophthalmol 131:766 (2013) (via CHEN26): human eyelid vs rabbit cornea, 15-20 kPa: saline mu_s 0.27-0.51, mu_k 0.24-0.31; PRG4 mu_s 0.14-0.29, mu_k 0.12-0.17",
+   "url": "https://doi.org/10.1001/jamaophthalmol.2013.2385",
+   "lic": "paywalled; numbers via CHEN26"
+  },
+  "MORRISON12": {
+   "cite": "Morrison S, Sullivan DA, Sullivan BD, Sheardown H, Schmidt TA. Eye Contact Lens 38:27 (2012) (via CHEN26): PDMS vs human cornea 16.7 kPa, saline mu_s 0.29-0.37, mu_k 0.28-0.32",
+   "url": "https://doi.org/10.1097/ICL.0b013e31823f7041",
+   "lic": "paywalled; numbers via CHEN26"
+  },
+  "SHAW10": {
+   "cite": "Shaw AJ, Collins MJ, Davis BA, Carney LG. Eyelid pressure and contact with the ocular surface. IOVS 51:1911 (2010) (via CHEN26 Table 1: in vivo blink 1-10 kPa)",
+   "url": "https://doi.org/10.1167/iovs.09-4090",
+   "lic": "IOVS (CC BY-NC-ND for recent issues; this one not checked): number used as fact"
+  },
+  "LIEVENS22": {
+   "cite": "Lievens CW, Rayborn E. Tribology and the ocular surface. Clin Ophthalmol 16:973 (2022): blink contact pressure 3.5-4.0 kPa (lens wearer), average blink speed 12 cm/s",
+   "url": "https://doi.org/10.2147/OPTH.S360293",
+   "lic": "CC BY-NC 3.0: numbers used as facts, text studied only (P13)"
+  },
+  "LOMBARDO14": {
+   "cite": "Lombardo M et al. Analysis of the viscoelastic properties of the human cornea using Scheimpflug imaging in inflation experiment of eye globes. PLoS One 9:e112169 (2014): anterior E 2.28 +/- 0.87 MPa (epithelium on) / 3.30 +/- 0.90 (off); posterior 0.21 +/- 0.09 / 0.17 +/- 0.06 MPa; IOP 18-42 mmHg; Zener creep tau_load 5.50 min, tau_unload 1.10 min (anterior, epithelium on)",
+   "url": "https://doi.org/10.1371/journal.pone.0112169",
+   "lic": "CC BY 4.0"
+  },
+  "QIN21": {
+   "cite": "Exploring the biomechanical properties of the human cornea in vivo based on Corvis ST. Front Bioeng Biotechnol (2021) 10.3389/fbioe.2021.771763: Ogden mu 0.42-0.74 MPa, alpha 32.76-55.63 (inverse FE, in vivo)",
+   "url": "https://doi.org/10.3389/fbioe.2021.771763",
+   "lic": "CC BY 4.0 (numbers read via search summary)"
+  },
+  "SCOTT88": {
+   "cite": "Scott JA. A finite element model of heat transport in the human eye. Phys Med Biol 33:227 (1988), Table 1: cornea k 0.58, c 4178, rho 1050; aqueous 0.58 / 3997 / 1000; lens 0.40 / 3000 / 1050; vitreous 0.603 / 4178 / 1000; iris and ciliary as aqueous; corneal emissivity 0.975; tear evaporation 40-100 W/m2; h_air 10, h_blood 65 W/m2K",
+   "url": "https://doi.org/10.1088/0031-9155/33/2/003",
+   "lic": "IOP paywalled; numbers used as facts"
+  },
+  "WILDE12": {
+   "cite": "Wilde GS, Burd HJ, Judge SJ. Shear modulus data for the human lens determined from a spinning lens test. Exp Eye Res 97:36 (2012), PMC3405528: Model D nucleus/cortex G at 33 y 0.19/0.93, 43 y 1.28/1.41, 50 y 7.35/1.16 kPa; age-stiffness fits GN (A* 27.5, b1 0.00562, b2 0.0767, c 68.8 Pa), GC (43.0, 0.0235, -0.00932, 1340 Pa); nucleus stiffer than cortex from ~45 y",
+   "url": "https://doi.org/10.1016/j.exer.2012.01.011",
+   "lic": "CC BY (Europe PMC record)"
+  },
+  "HEYS04": {
+   "cite": "Heys KR, Cram SL, Truscott RJW. Massive increase in the stiffness of the human lens nucleus with age: the basis for presbyopia? Mol Vis 10:956 (2004): nucleus ~450x, cortex ~20x stiffer over life; young nucleus softer than cortex",
+   "url": "http://www.molvis.org/molvis/v10/a114/",
+   "lic": "Mol Vis open access (CC BY-NC-ND per journal; ratios used as facts, P13)"
+  },
+  "TRAM18": {
+   "cite": "Tram NK, Swindle-Reilly KE. Rheological properties and age-related changes of the human vitreous humor. Front Bioeng Biotechnol 6:199 (2018) and erratum PMC6428972: human G' 6.5 +/- 3.0 Pa, G'' 0.96 +/- 0.47 Pa (n 23); porcine 5.0/0.65; literature table (Shafaie, Filas, Nickerson, Swindle E 57.3 Pa...)",
+   "url": "https://doi.org/10.3389/fbioe.2018.00199",
+   "lic": "CC BY 4.0"
+  },
+  "GERAGHTY12": {
+   "cite": "Geraghty B, Jones SW, Rama P, Akhtar R, Elsheikh A. Age-related variations in the biomechanical properties of human sclera. J Mech Behav Biomed Mater 16:181 (2012): tangent modulus at 1 MPa / at 0.05 MPa = 11.2 / 12.0 / 12.4 (anterior / equator / posterior); stiffening with age; stiffness falls anterior to posterior",
+   "url": "https://doi.org/10.1016/j.jmbbm.2012.10.011",
+   "lic": "paywalled; ratios read in a search summary; used as facts"
+  },
+  "RECALL": {
+   "cite": "Values recalled from the ophthalmic literature this lane did not reopen (named in each src): Friberg & Lace 1988 Exp Eye Res 47:429; Hamilton & Pye 2008 Optom Vis Sci 85:445; Fisher 1969/1971 J Physiol; Colton & Ederer 1980 (IOP distribution); Friedenwald 1937 ocular rigidity; Mishima 1966; Boettner & Wolter 1962",
+   "url": "various",
+   "lic": "numbers used as facts; marked E until reopened"
+  },
+  "TEARS": {
+   "cite": "Library profile engine/materials/profiles/tears.json (fluids lane, 11-07): surface tension 42-46 mN/m, viscosity, volume, breakup",
+   "url": "local",
+   "lic": "project record"
+  },
+  "ANON_E": {
+   "cite": "This lane's estimate (reason given in each src)",
+   "url": "local",
+   "lic": "own"
+  },
+  "PHYS": {
+   "cite": "Standard mechanics: EI = E pi d^4/64 (ellipse I = pi a b^3/4 at equal area), J = pi d^4/32, gravity length (EI/(rho A g))^(1/3), cantilever first mode f1 = 1.875^2/(2 pi L^2) sqrt(EI/(rho A)), wave speeds sqrt(E/rho), sqrt(G/rho), capillary bridge between crossed cylinders F = 4 pi R gamma cos theta",
+   "url": "textbook",
+   "lic": "physics; used to derive"
+  }
+ }
+}

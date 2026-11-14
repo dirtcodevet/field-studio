@@ -1,0 +1,612 @@
+{
+ "id": "plastic.comb",
+ "kind": "rigid_solid",
+ "family": "polymer",
+ "_": "A typical comb plastic, taken as polyamide 6,6 (nylon: moulded combs, brush pins and bristles; matching the hair-comb pair values in pairs/eye_hair.json, measured on polyamide), at 23 C / 50 % RH (conditioned, ~2 % water). States switch it to cellulose acetate (sawn-and-polished premium combs), ABS and polypropylene (cheap moulded combs) and hard rubber (ebonite). The triboelectric position is what decides hair static: nylon sits close to hair and charges it little; PP and hard rubber charge it strongly. Partners research lane 11-07 (PARTNERS.md).",
+ "surface": {
+  "alpha": {
+   "v": {
+    "moulded_gloss": 0.06,
+    "sawn_polished_acetate": 0.03,
+    "matte_moulded": 0.2
+   },
+   "q": "E",
+   "src": "injection-moulded gloss Ra ~0.05-0.2 um; hand-polished acetate smoother; tooth flanks of cheap moulded combs carry a parting-line seam that snags hair"
+  },
+  "n": {
+   "v": 1.53,
+   "q": "E",
+   "src": "E: recalled from the Polymer Handbook (POLYHB), not re-read: nylon 6,6 nD ~1.53 (1.53-1.565 with crystallinity)"
+  },
+  "F0": {
+   "v": 0.0439,
+   "q": "D",
+   "src": "((n - 1)/(n + 1))^2"
+  }
+ },
+ "optics_summary": {
+  "n_d": {
+   "v": {
+    "PA66": 1.53,
+    "cellulose_acetate": 1.475,
+    "ABS": 1.54,
+    "PP": 1.49
+   },
+   "q": "E",
+   "src": "E: recalled from the Polymer Handbook (POLYHB), not re-read, for PA66, ABS and PP; CA n20/D 1.475 (ChemicalBook) and Goodfellow 1.49 from CA_DS"
+  },
+  "translucency": {
+   "v": "natural PA66 is milky-translucent (crystallite scattering, ~1-3 mm visible depth); acetate is clear and carries deep marbled dyes (tortoiseshell); ABS opaque; PP translucent-waxy",
+   "q": "E",
+   "src": "observation"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": [
+      0.3,
+      0.5
+     ],
+     "wet": [
+      0.2,
+      0.4
+     ]
+    },
+    "q": "E",
+    "src": "E: recalled from the Polymer Handbook / ETB, not re-read as a range: nylon on steel 0.3-0.5 static; ETB re-read 11-08 lists nylon on steel 0.4 (clean, dry) and nylon on nylon 0.15-0.25, inside or near the band; against hair fibres 0.17 dry (pairs/eye_hair.json)"
+   },
+   "kinetic": {
+    "v": {
+     "dry": [
+      0.25,
+      0.4
+     ],
+     "wet": [
+      0.15,
+      0.3
+     ]
+    },
+    "q": "E",
+    "src": "E: recalled from the Polymer Handbook (POLYHB), not re-read: POLYHB nylon on steel kinetic 0.25-0.4 (rises when it absorbs water and softens)"
+   },
+   "counterface": "polished steel; hair in pairs/eye_hair.json (DEWRI25 polyamide capstan 0.13 dry, 0.25 wet); skin in pairs/partners.json"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": {
+     "PA66": {
+      "total": 46.5,
+      "dispersive": 41,
+      "polar": 5.5
+     },
+     "cellulose_acetate": [
+      40,
+      46
+     ],
+     "ABS": [
+      38,
+      43
+     ],
+     "PP": [
+      29,
+      31
+     ]
+    },
+    "q": "E",
+    "src": "E: recalled from Wu 1982 (WU82) and the Accu Dyne table (ACCUDYNE), not re-read (the Accu Dyne page refused the fetch, 403, 11-08): nylon 6,6 ~46, PP 29-30, ABS ~38-42, cellulose acetate ~42-46"
+   },
+   "tack": {
+    "v": "none",
+    "q": "E",
+    "src": "observation"
+   }
+  },
+  "restitution": {
+   "v": 0.7,
+   "q": "E",
+   "src": "semi-crystalline nylon parts bounce moderately; not measured for combs"
+  },
+  "solver": {
+   "phase": "solid",
+   "collision_thickness_mm": {
+    "v": 0.05,
+    "q": "E",
+    "src": "numerical offset: comb teeth are 0.6-1.5 mm thick with 0.3-0.5 mm round tips; 0.05 mm keeps the tooth gap (0.5-2 mm) true for hair fibres of 50-100 um diameter"
+   },
+   "penetration_response": {
+    "ramp": "hertz",
+    "E_star_GPa": {
+     "v": 3.3,
+     "q": "D",
+     "src": "E / (1 - nu^2) from E 2.8 GPa, nu 0.39 (half-space modulus; the soft partner's own E* combines in series)"
+    },
+    "contact_stiffness_kPa_per_mm": {
+     "v": 42000.0,
+     "q": "D",
+     "src": "flat punch k = 2 E* a over area pi a^2, a 50 mm (hand-sized patch): an unyielding barrier next to any soft partner"
+    },
+    "hertz_constant_N_per_m1_5_R25mm": {
+     "v": 696000000.0,
+     "q": "D",
+     "src": "F = (4/3) E* sqrt(R) d^1.5, rigid sphere R 25 mm"
+    },
+    "contact_damping_ratio": {
+     "v": 0.113,
+     "q": "D",
+     "src": "zeta = -ln e / sqrt(pi^2 + ln^2 e) from restitution 0.7"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.7,
+     "q": "E",
+     "src": "polymer spheres / parts on rigid flats e ~0.6-0.8 at 1 m/s (semi-crystalline nylon, tan delta ~0.03); not measured for combs"
+    },
+    "response_time_ms": {
+     "v": 0.935,
+     "q": "D",
+     "src": "Hertz contact time t = 2.87 (m^2/(R E*^2 v))^0.2, rigid 1 kg sphere, R 25 mm, 1 m/s: sub-millisecond; in a slap or a step the soft partner sets the pulse"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "bar_longitudinal": 1567,
+      "shear": 940
+     },
+     "q": "D",
+     "src": "sqrt(E/rho), sqrt(G/rho), G = E/(2(1+nu)), rho 1140"
+    },
+    "damping_ratio": {
+     "v": 0.113,
+     "q": "D",
+     "src": "as contact_damping_ratio (energy lost per impact, from restitution)"
+    }
+   },
+   "tooth_bending": {
+    "geometry": {
+     "v": {
+      "thickness_mm": 1.0,
+      "width_mm": 1.5,
+      "free_length_mm": 20
+     },
+     "q": "E",
+     "src": "typical moulded comb tooth (fine teeth 0.6 x 1.2 x 15 mm, wide teeth 1.5 x 2 x 30 mm)"
+    },
+    "EI_Nm2": {
+     "v": 0.00035,
+     "q": "D",
+     "src": "E b h^3 / 12 with E 2.8 GPa, b 1.5 mm, h 1.0 mm"
+    },
+    "tip_stiffness_N_m": {
+     "v": 131,
+     "q": "D",
+     "src": "3 EI / L^3 (cantilever), L 20 mm: a snag of a few hundred mN bends a tooth by mm; hair (EI ~1e-11 N m2) bends first"
+    }
+   },
+   "_": "A comb is a rigid body with flexible teeth: each tooth a cantilever (tooth_bending) meeting hair fibres (pairs/eye_hair.json) and the scalp (pairs/partners.json)."
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": {
+     "PA66": [
+      65,
+      72
+     ],
+     "cellulose_acetate": [
+      50,
+      65
+     ],
+     "ABS": [
+      75,
+      85
+     ],
+     "PP": [
+      95,
+      105
+     ]
+    },
+    "q": "E",
+    "src": "E: recalled from the Accu Dyne table (ACCUDYNE), not re-read: ACCUDYNE nylon 6,6 ~68, PP ~102 (recalled); CA and ABS E from their surface energies"
+   },
+   "_": "A wet comb holds water between teeth by capillarity (gap ~1 mm, Laplace ~150 Pa) and drags a water film through hair."
+  },
+  "porosity": {
+   "v": 0.0,
+   "q": "M",
+   "src": "moulded / cast solid"
+  },
+  "water_absorption": {
+   "v": {
+    "PA66_24h_pct": [
+     1.0,
+     1.2
+    ],
+    "PA66_50RH_equilibrium_pct": [
+     1.6,
+     2.5
+    ],
+    "PA66_saturation_pct": [
+     7,
+     8.5
+    ],
+    "cellulose_acetate_24h_pct": [
+     1.9,
+     2.3
+    ],
+    "ABS_24h_pct": [
+     0.2,
+     0.4
+    ],
+    "PP_24h_pct": 0.01
+   },
+   "q": "M",
+   "src": "NYLON_DS SUSTAMID 66 24 h 1 %, saturation 8.5 %; RS PA66 24 h 1.2 %, sat 7 %; Unitika 50 % RH 1.6 %; CA_DS 24 h 2.3 % (MakeItFrom), 1.9-7 % (Goodfellow); ABS / PP POLYHB; ABS / PP E: recalled from the Polymer Handbook, not re-read"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "charge_affinity_nC_J": {
+      "PA66_nylon": 30,
+      "ABS": -5,
+      "PP": -90,
+      "cellulose_acetate": null,
+      "hard_rubber": null,
+      "hair_for_reference": 45
+     },
+     "position": "hair +45 vs nylon +30: a nylon comb takes a little negative charge and leaves hair slightly + (little flyaway); ABS (-5) more; PP (-90) and hard rubber (classic series: negative) strongly. Cellulose acetate not in the nC/J table: classic series place acetate on the negative side, but its water uptake (~2 % at 50 % RH) bleeds charge fast, which is why acetate combs are sold as 'anti-static'"
+    },
+    "q": "M",
+    "src": "ALPHALAB nylon (row 'nylon, dry skin') +30, ABS -5, olefins incl. PP -90, hair +45; cellulose acetate and hard rubber not listed (EESEMI: 'acetate, rayon' and 'hard rubber' negative side)"
+   },
+   "resistivity_ohm_m": {
+    "v": {
+     "PA66_dry": 10000000000000.0,
+     "PA66_conditioned": [
+      10000000000.0,
+      1000000000000.0
+     ],
+     "cellulose_acetate": [
+      10000000000.0,
+      1000000000000.0
+     ],
+     "ABS": [
+      10000000000000.0,
+      100000000000000.0
+     ],
+     "PP": [
+      100000000000000.0,
+      1e+16
+     ]
+    },
+    "q": "E",
+    "src": "E: recalled from the Polymer Handbook (POLYHB), not re-read: POLYHB / datasheet ranges: absorbed water lowers nylon and acetate by 2-3 decades"
+   },
+   "surface_resistivity_ohm_sq": {
+    "v": {
+     "PA66_RH50": [
+      100000000000.0,
+      10000000000000.0
+     ],
+     "PP_RH50": [
+      100000000000000.0,
+      1e+16
+     ]
+    },
+    "q": "E",
+    "src": "datasheet ranges; humidity-dependent"
+   },
+   "permittivity_rel": {
+    "v": {
+     "PA66_dry": 3.6,
+     "PA66_conditioned": [
+      4,
+      7
+     ],
+     "PP": 2.25
+    },
+    "q": "E",
+    "src": "E: recalled from the Polymer Handbook (POLYHB), not re-read: POLYHB"
+   },
+   "charge_decay_s": {
+    "v": {
+     "PA66_RH50": "seconds-minutes",
+     "PP_any_RH": "hours",
+     "cellulose_acetate_RH50": "seconds"
+    },
+    "q": "E",
+    "src": "follows surface resistivity; flyaway hair after PP combing in dry winter air"
+   }
+  },
+  "hardness": {
+   "v": {
+    "PA66_rockwell_R": [
+     108,
+     120
+    ],
+    "PA66_shore_D": [
+     75,
+     82
+    ],
+    "cellulose_acetate_rockwell_R": [
+     50,
+     100
+    ],
+    "ABS_rockwell_R": [
+     100,
+     110
+    ]
+   },
+   "q": "E",
+   "src": "E: recalled from the PA66 datasheets (NYLON_DS) / the Polymer Handbook (POLYHB), not re-read"
+  },
+  "abrasion": {
+   "v": "nylon wears very little (bearing grade); acetate polishes; cheap moulded seams wear smooth; teeth chip in PP/ABS at low temperature",
+   "q": "E",
+   "src": "observation"
+  }
+ },
+ "deform": {
+  "model": "viscoelastic",
+  "density_kg_m3": {
+   "v": 1140,
+   "q": "M",
+   "src": "NYLON_DS PA66 1.14 g/cm3 (ISO 1183); CA 1.28-1.30, ABS 1.04-1.06, PP 0.90-0.91 (POLYHB); the CA, ABS and PP densities are E: recalled from the Polymer Handbook, not re-read"
+  },
+  "E_GPa": {
+   "v": {
+    "PA66_dry": [
+     2.8,
+     3.5
+    ],
+    "PA66_conditioned_50RH": [
+     1.4,
+     2.0
+    ]
+   },
+   "q": "M",
+   "src": "NYLON_DS tensile modulus 2.8 GPa (400 ksi, D638), 3.5 GPa (ISO 527 dry); conditioned E from POLYHB; the conditioned E is E: recalled from the Polymer Handbook, not re-read"
+  },
+  "E_GPa_used": {
+   "v": 2.8,
+   "q": "E",
+   "src": "dry-ish value used for the solver numbers (combs are thin and dry out in air); conditioned nylon is ~40 % softer"
+  },
+  "poisson": {
+   "v": 0.39,
+   "q": "E",
+   "src": "E: recalled from the Polymer Handbook (POLYHB), not re-read: POLYHB nylon 0.39-0.41"
+  },
+  "shear_GPa": {
+   "v": 1.01,
+   "q": "D",
+   "src": "E / (2 (1 + nu))"
+  },
+  "plastic": {
+   "yield_MPa": {
+    "v": {
+     "PA66_dry": [
+      80,
+      85
+     ],
+     "PA66_conditioned": [
+      55,
+      60
+     ]
+    },
+    "q": "E",
+    "src": "E: recalled from the Polymer Handbook (POLYHB), not re-read: POLYHB / datasheets"
+   }
+  },
+  "viscoelastic": {
+   "tan_delta_23C": {
+    "v": [
+     0.02,
+     0.06
+    ],
+    "q": "E",
+    "src": "semi-crystalline PA66 below its Tg; acetate (plasticised) ~0.05-0.1"
+   },
+   "Tg_C": {
+    "v": {
+     "PA66_dry": [
+      50,
+      60
+     ],
+     "PA66_wet": [
+      0,
+      10
+     ],
+     "cellulose_acetate": [
+      100,
+      180
+     ],
+     "ABS": 105,
+     "PP": -10
+    },
+    "q": "E",
+    "src": "E: recalled from the Polymer Handbook (POLYHB), not re-read: POLYHB: water plasticises nylon below room temperature, so a wet nylon comb is softer and grips hair more"
+   }
+  },
+  "fracture": {
+   "strength_tensile_MPa": {
+    "v": {
+     "PA66": [
+      80,
+      90
+     ],
+     "cellulose_acetate": [
+      30,
+      37
+     ],
+     "ABS": [
+      40,
+      45
+     ],
+     "PP": [
+      30,
+      35
+     ]
+    },
+    "q": "M",
+    "src": "NYLON_DS / CA_DS (MakeItFrom CA 30-37 MPa) / POLYHB; the ABS / PP values E: recalled from the Polymer Handbook, not re-read"
+   },
+   "toughness": {
+    "v": "PA66 and acetate tough (teeth bend, then whiten); ABS and PP at low temperature snap at the tooth root",
+    "q": "E",
+    "src": "observation"
+   }
+  },
+  "sim": {
+   "_": "Rigid body plus cantilever teeth.",
+   "xpbd_compliance_1_Pa": {
+    "v": 3.57e-10,
+    "q": "D",
+    "src": "1 / E (body); teeth via tooth_bending"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.25,
+   "q": "E",
+   "src": "E: recalled from the Polymer Handbook (POLYHB) / PA66 datasheets (NYLON_DS), not re-read: PA66 0.23-0.29 W/mK"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1700,
+   "q": "E",
+   "src": "E: recalled from the Polymer Handbook (POLYHB), not re-read: PA66 1.67-1.7 J/gK"
+  },
+  "effusivity": {
+   "v": 696,
+   "q": "D",
+   "src": "sqrt(k rho c) = sqrt(0.25 x 1140 x 1700) W s^0.5 m^-2 K^-1"
+  },
+  "contact_temp_with_skin_C": {
+   "v": 28.2,
+   "q": "D",
+   "src": "SKINTH: T = (e_skin 33 + e 20)/(e_skin + e), skin 33 C on material 20 C, e_skin 1188; lower = feels colder"
+  },
+  "emissivity": {
+   "v": 0.9,
+   "q": "E",
+   "src": "E: EMIS_ETB re-read 11-08 lists no nylon row; its 'Plastics' row is 0.90-0.97 (PP 0.97, PVC 0.91-0.93); 0.9 kept as E (the src had said 'nylon ~0.9')"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {},
+   "_": "the base: PA66 at 50 % RH"
+  },
+  "wet": {
+   "set": {
+    "deform.E_GPa_used": 1.2,
+    "contact.friction.kinetic.v.dry": [
+     0.15,
+     0.3
+    ]
+   },
+   "q": "E",
+   "src": "soaked nylon (water ~8 %) softens (Tg below room temperature); pairs/eye_hair.json carries hair-on-comb wet 0.25"
+  },
+  "cellulose_acetate": {
+   "set": {
+    "deform.density_kg_m3": 1300,
+    "deform.E_GPa_used": 1.9,
+    "surface.n": 1.475,
+    "contact.electrostatic.triboelectric.v.charge_affinity_nC_J.cellulose_acetate": null
+   },
+   "q": "M",
+   "src": "CA_DS density 1.3, flexural modulus 1.7-2.1 GPa, n 1.475; sawn and hand-polished premium combs (rounded teeth, no seam); charge leaks via absorbed water"
+  },
+  "abs": {
+   "set": {
+    "deform.density_kg_m3": 1050,
+    "deform.E_GPa_used": 2.3,
+    "surface.n": 1.54
+   },
+   "q": "E",
+   "src": "E: recalled from the Polymer Handbook (POLYHB), not re-read: POLYHB ABS 1.04-1.06, E 2.0-2.6 GPa; opaque moulded comb with parting seams; ALPHALAB -5 nC/J"
+  },
+  "polypropylene": {
+   "set": {
+    "deform.density_kg_m3": 905,
+    "deform.E_GPa_used": 1.4,
+    "surface.n": 1.49
+   },
+   "q": "E",
+   "src": "E: recalled from the Polymer Handbook (POLYHB), not re-read: POLYHB PP 0.90-0.91, E 1.1-1.6 GPa; ALPHALAB -90 nC/J: the strongly charging comb"
+  },
+  "hard_rubber_ebonite": {
+   "set": {
+    "deform.density_kg_m3": 1180,
+    "deform.E_GPa_used": 2.5,
+    "surface.n": 1.6
+   },
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: vulcanite / ebonite (NR + 30-40 % sulphur): density 1.15-1.2, E 2-3 GPa, black gloss; charges hair strongly (the classic 'rubbed comb picks up paper')"
+  },
+  "humid_RH80": {
+   "set": {},
+   "q": "E",
+   "src": "surface water film: static on all comb plastics bleeds in seconds; flyaway mostly gone (charge falls linearly 20-50 % RH, LUNN77 in pairs/eye_hair.json)"
+  }
+ },
+ "sources": {
+  "ETB": {
+   "cite": "The Engineering ToolBox, Friction and friction coefficients for some common materials",
+   "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+   "lic": "free web reference; numbers used as facts (friction table re-read 11-08)"
+  },
+  "ALPHALAB": {
+   "cite": "Lee B / AlphaLab Inc. (TriField) triboelectric table, charge affinity nC/J (positive = charges +); zero = the average conductor (all metals about equal); read via the storiesinfabric.blogspot.com reprint 11-07",
+   "url": "https://storiesinfabric.blogspot.com/2013/11/taken-from-httpwwwtrifieldcomcontenttri.html",
+   "lic": "free web table, reproduction only in whole: single numbers used as facts, table not copied STUDY ONLY (P13)"
+  },
+  "SKINTH": {
+   "cite": "skin thermal inputs for contact temperature: k 0.37 W/mK, c 3500 J/kgK (Duck 1990 tissue tables, typical), rho 1090 from skin.body",
+   "url": "",
+   "lic": "numbers used as facts"
+  },
+  "DERLER12": {
+   "cite": "Derler S, Gerhardt L-C. Tribology of skin: review and analysis of experimental results for the friction coefficient of human skin. Tribol Lett 45:1-27 (2012)",
+   "url": "https://doi.org/10.1007/s11249-011-9854-y",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "NYLON_DS": {
+   "cite": "PA66 datasheets: Sustamid 66 (Port Plastics) density 1.14, water 24 h 1 %, saturation 8.5 %; RS PA66 tensile modulus 400 ksi (2.8 GPa), 24 h 1.2 %, sat 7 %; Ensinger TECAMID 66 E 3.5 GPa (ISO 527); Unitika 50 % RH equilibrium 1.6 %",
+   "url": "https://ensingerplastics.com/en/shapes/pa66-tecamid-66-natural",
+   "lic": "manufacturer datasheets; numbers used as facts"
+  },
+  "CA_DS": {
+   "cite": "Cellulose acetate: MakeItFrom (density 1.3, flexural modulus 1.7-2.1 GPa, UTS 30-37 MPa, water 24 h 2.3 %); Goodfellow (density 1.3, n 1.49, water 1.9-7 %); ChemicalBook n20/D 1.475",
+   "url": "https://makeitfrom.com/material-properties/Cellulose-Acetate-CA",
+   "lic": "copyrighted web compilations / supplier pages: single numbers used as facts STUDY ONLY (P13)"
+  },
+  "ACCUDYNE": {
+   "cite": "Diversified Enterprises (Accu Dyne Test), Critical surface tension and contact angle with water for various polymers (nylon 6,6 ~46 mJ/m2, water ~68 deg; PP ~30, ~102 deg)",
+   "url": "https://www.accudynetest.com/polytable_03.html",
+   "lic": "free web table; numbers used as facts (recalled from the source, not re-read 11-07)"
+  },
+  "EESEMI": {
+   "cite": "EESemi.com triboelectric series (collated qualitative ranking: nylon and human hair positive; acetate/rayon, hard rubber, polypropylene negative)",
+   "url": "https://www.eesemi.com/tribo_series.htm",
+   "lic": "free web table; ranking used"
+  },
+  "POLYHB": {
+   "cite": "Brandrup J, Immergut EH, Grulke EA (eds). Polymer Handbook, 4th ed. (Wiley 1999) / Mark JE (ed). Physical Properties of Polymers Handbook: refractive index, surface energy, thermal values of NR, SBR, PA66, CA, ABS, PP",
+   "url": "",
+   "lic": "paywalled handbooks; single numbers used as facts (recalled from the source, not re-read 11-07)"
+  },
+  "WU82": {
+   "cite": "Wu S. Polymer Interface and Adhesion. Marcel Dekker (1982): polymer surface energies (dispersive / polar)",
+   "url": "",
+   "lic": "book; numbers used as facts (recalled from the source, not re-read 11-07)"
+  },
+  "EMIS_ETB": {
+   "cite": "The Engineering ToolBox, Emissivity coefficients of common products (re-read 11-08: stainless polished 0.075, weathered 0.85, type 301 0.54-0.63; aluminum highly polished 0.039-0.057, commercial sheet 0.09, rough 0.07, anodized 0.77; rubber hard glossy plate 0.94, natural hard 0.91, natural soft 0.86; plastics 0.90-0.97; no nylon row)",
+   "url": "https://www.engineeringtoolbox.com/emissivity-coefficients-d_447.html",
+   "lic": "free web reference; numbers used as facts (re-read 11-08)"
+  }
+ }
+}

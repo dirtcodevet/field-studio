@@ -13,7 +13,7 @@ a 22 mm plug of soft tissue between bone ends that, in the test arm, don't artic
 Measured on anatomical cross-sections, the real flexion axis lies about 36 % of the arm's depth from the back
 skin.
 
-Two tests of single causes have come back "no": bones that articulate at the real axis did not move the stall, and
+Two tests of single causes have come back negative: bones that articulate at the real axis did not move the stall, and
 neither did making fat as soft as the literature says. The lesson from the first: articulation needs sliding. So
 the current plan treats the skin as its own sliding sheet, on the human model's real arm, with a finer 2 mm crease
 as the control. A first run on that real arm reached 90 degrees from its rest pose (about 112 anatomical), with

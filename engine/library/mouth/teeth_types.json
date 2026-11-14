@@ -1,0 +1,1435 @@
+{
+ "_": "fs-mouth (11-11): the permanent teeth's default dimensions for one adult woman, as tunable defaults with their sources (design: varied data -> a tunable per-person target with a cited default). mm. Codes: U = maxillary, L = mandibular; 1 central incisor, 2 lateral, 3 canine, 4 first premolar, 5 second premolar, 6 first molar, 7 second molar. Keys: H anatomical crown length (labial CEJ to edge / buccal cusp tip), L root length, md / md_c mesiodistal width at the contacts / at the cervix, ll / ll_c labiolingual width at its height of contour / at the cervix, cej_m / cej_d the CEJ's rise on the mesial / distal face. Shape keys (cusps, ridges, roots, profile factors) are the form's own description, set by eye against the references (E). q: M measured in the cited source, D derived here (say how), E estimated (say why).",
+ "sources": {
+  "R1": "Rakhshan V et al. BioMed Res Int 2022;8381436 (331 casts, 257 F / 74 M, MD / BL, mean of sides; via engine/packs/human/research/mouth_teeth_tongue.md s.2)",
+  "SAB13": "Saboia 2013 Brazilian women, casts: crown MD and BL (via the project's mouth research notes)",
+  "R5": "Roca-Obis P et al. Acta Odontol Scand 2023;81:73-78: clinical crown heights, 83 women (caliper; worn teeth excluded)",
+  "R7": "Basim A et al. Prog Orthod 2026;27:41: clinical crown heights incl. premolars and first molars at 31 y (mixed sex)",
+  "WHEELER": "Wheeler's Dental Anatomy measurement table (cervical widths, root lengths, CEJ curvature), quoted from memory in mouth_teeth_tongue.md s.2: E",
+  "GING": "the gingival margin lies ~0.5-1 mm coronal to the CEJ in health, so the anatomical crown = clinical + ~0.4 (E)"
+ },
+ "types": {
+  "U1": {
+   "kind": "incisor",
+   "arch": "U",
+   "H": {
+    "v": 10.4,
+    "q": "D",
+    "src": "R5 women 10.07 clinical + GING"
+   },
+   "L": {
+    "v": 12.5,
+    "q": "E",
+    "src": "WHEELER 13.0, women ~4 % shorter"
+   },
+   "md": {
+    "v": 8.67,
+    "q": "M",
+    "src": "SAB13 women 8.67; R1 8.68"
+   },
+   "md_c": {
+    "v": 6.76,
+    "q": "D",
+    "src": "fitted to the extracted U1's labial silhouette (s1_fit_profiles.py), scaled to md"
+   },
+   "ll": {
+    "v": 7.2,
+    "q": "M",
+    "src": "SAB13 7.22; R1 7.39"
+   },
+   "ll_c": {
+    "v": 6.1,
+    "q": "E",
+    "src": "WHEELER 6.0"
+   },
+   "cej_m": {
+    "v": 3.46,
+    "q": "M",
+    "src": "mouth_2026-11-11/numbers.json (CEJ curvature, maxillary anterior)"
+   },
+   "cej_d": {
+    "v": 3.13,
+    "q": "M",
+    "src": "mouth_2026-11-11/numbers.json"
+   },
+   "t_edge": 1.1,
+   "r_mi": 1.34,
+   "r_di": 4.89,
+   "marginal": 0.0,
+   "fossa": 0.55,
+   "labial_dep": 0.07,
+   "t_inc": 1.8,
+   "t_side": 0.945,
+   "pulp_wall": 2.3,
+   "root_md": 1.0,
+   "prof_md": {
+    "s": [
+     0.0,
+     0.15,
+     0.3,
+     0.45,
+     0.6,
+     0.75,
+     0.88,
+     0.96,
+     1.0
+    ],
+    "m": [
+     0.7801584331106258,
+     0.8329836448882977,
+     0.9230662295264513,
+     0.9549359534178644,
+     0.9768587799938989,
+     0.9392901611975855,
+     0.8993528890661829,
+     0.8747761062160891,
+     0.8624877147910421
+    ],
+    "d": [
+     0.7801584331106258,
+     0.8329836448882977,
+     0.9230662295264513,
+     0.9549359534178644,
+     0.9768587799938989,
+     1.001277223800461,
+     0.9492850533466246,
+     0.9172898715288792,
+     0.9012922806200064
+    ]
+   },
+   "prof_ll": {
+    "s": [
+     0.0,
+     0.15,
+     0.3,
+     0.45,
+     0.6,
+     0.75,
+     0.88,
+     0.96,
+     1.0
+    ],
+    "f": [
+     0.4866883980198201,
+     0.5043884287586147,
+     0.4957087196405543,
+     0.4233264653479266,
+     0.35542996138955085,
+     0.2523270250198923,
+     0.11994382892263786,
+     0.02270381124821149,
+     -0.0073
+    ],
+    "l": [
+     -0.4866883980198201,
+     -0.4939447691927422,
+     -0.4160472376877408,
+     -0.2849258810556309,
+     -0.2197237172206466,
+     -0.19818044202282284,
+     -0.19381259545708188,
+     -0.17458621633222754,
+     -0.1296
+    ]
+   },
+   "root_taper": 0.483,
+   "_profiles_src": "fs-mouth s1_fit_profiles.py: tooth_U_central_incisor_labial.jpg, tooth_U_central_incisor_mesial.jpg (Wikimedia Commons; SOURCE.md); scale: the cited md 8.67 / ll 7.20; outlines about the root's centre line (11-11 21:25)",
+   "_enamel_src": "labial thirds 945 / 620 / 410 um (mouth_2026-11-11/numbers.json)",
+   "_ridges_note": "11-11 22:12: the measured proximal outline IS the marginal ridges (a silhouette), so no ridge is added on top (it doubled ~0.45 mm lingually: the 'hook'); the lingual fossa is carved inside it; the edge continued to s = 1 (~0.9 mm thick)",
+   "incisal_thin": 0.5,
+   "_incisal_thin_src": "E: the mid incisal ridge ~0.8-1.0 mm thick 1 mm from the edge (anatomy texts); the measured silhouette (1.42 mm at 0.4 mm from the edge) is the marginal ridges at the corners",
+   "_corners_note": "11-11 23:35: the measured silhouette already narrows into the corners (s 0.96 -> 1.0); the corner radii only add the rest (was 0.6 / 1.0: rounded twice, read as chamfers)",
+   "r_mi_z": 1.04,
+   "r_di_z": 1.86,
+   "edge_curve": 0.0,
+   "_corners_src": "s1_fit_corners.py 11-12: the incisal angles as arcs fitted to tooth_U_central_incisor_labial.jpg (rms 0.06 / 0.09 mm); the section above s 0.76 at the proximal outline"
+  },
+  "U2": {
+   "kind": "incisor",
+   "arch": "U",
+   "H": {
+    "v": 8.9,
+    "q": "D",
+    "src": "R5 women 8.43 + GING"
+   },
+   "L": {
+    "v": 12.5,
+    "q": "E",
+    "src": "WHEELER 13.0"
+   },
+   "md": {
+    "v": 6.85,
+    "q": "M",
+    "src": "SAB13 6.97; R1 6.78 (mean)"
+   },
+   "md_c": {
+    "v": 4.9,
+    "q": "E",
+    "src": "WHEELER 5.0"
+   },
+   "ll": {
+    "v": 6.5,
+    "q": "M",
+    "src": "SAB13 6.5; R1 6.60"
+   },
+   "ll_c": {
+    "v": 5.6,
+    "q": "E",
+    "src": "WHEELER 6.0 -> 5.0 cervix"
+   },
+   "cej_m": {
+    "v": 2.97,
+    "q": "M",
+    "src": "mouth_2026-11-11/numbers.json (CEJ curvature, maxillary anterior)"
+   },
+   "cej_d": {
+    "v": 2.38,
+    "q": "M",
+    "src": "mouth_2026-11-11/numbers.json"
+   },
+   "t_edge": 1.0,
+   "r_mi": 0.8,
+   "r_di": 1.9,
+   "marginal": 0.55,
+   "fossa": 0.35,
+   "labial_dep": 0.05,
+   "edge_curve": 1.6,
+   "t_inc": 1.6,
+   "t_side": 0.925,
+   "pulp_wall": 2.0,
+   "root_md": 0.85,
+   "incisal_thin": 0.4
+  },
+  "U3": {
+   "kind": "canine",
+   "arch": "U",
+   "H": {
+    "v": 10.0,
+    "q": "D",
+    "src": "R5 women 9.67 + GING"
+   },
+   "L": {
+    "v": 16.0,
+    "q": "E",
+    "src": "WHEELER 17.0"
+   },
+   "md": {
+    "v": 7.8,
+    "q": "M",
+    "src": "SAB13 7.95; R1 7.69"
+   },
+   "md_c": {
+    "v": 5.4,
+    "q": "E",
+    "src": "WHEELER 5.5"
+   },
+   "ll": {
+    "v": 8.0,
+    "q": "M",
+    "src": "SAB13 8.0; R1 8.25"
+   },
+   "ll_c": {
+    "v": 7.0,
+    "q": "E",
+    "src": "WHEELER 7.0"
+   },
+   "cej_m": {
+    "v": 2.55,
+    "q": "M",
+    "src": "mouth_2026-11-11/numbers.json (CEJ curvature, maxillary anterior)"
+   },
+   "cej_d": {
+    "v": 1.6,
+    "q": "M",
+    "src": "mouth_2026-11-11/numbers.json"
+   },
+   "cusp_u": -0.08,
+   "slope_m": 2.0,
+   "slope_d": 2.6,
+   "t_edge": 1.6,
+   "lingual_ridge": 0.45,
+   "labial_ridge": 0.12,
+   "marginal": 0.4,
+   "fossa": 0.2,
+   "t_inc": 2.0,
+   "t_side": 1.1,
+   "pulp_wall": 2.5,
+   "root_md": 0.85
+  },
+  "U4": {
+   "kind": "premolar",
+   "arch": "U",
+   "H": {
+    "v": 8.2,
+    "q": "D",
+    "src": "R7 PM1 8.3 clinical (mixed); WHEELER 8.5"
+   },
+   "L": {
+    "v": 13.5,
+    "q": "E",
+    "src": "WHEELER 14.0"
+   },
+   "md": {
+    "v": 7.1,
+    "q": "M",
+    "src": "SAB13 7.33; R1 6.97"
+   },
+   "md_c": {
+    "v": 4.9,
+    "q": "E",
+    "src": "WHEELER 5.0"
+   },
+   "ll": {
+    "v": 9.2,
+    "q": "M",
+    "src": "SAB13 9.0; R1 9.34"
+   },
+   "ll_c": {
+    "v": 8.0,
+    "q": "E",
+    "src": "WHEELER 8.0"
+   },
+   "cej_m": {
+    "v": 1.0,
+    "q": "E",
+    "src": "WHEELER 1.0"
+   },
+   "cej_d": {
+    "v": 0.5,
+    "q": "E",
+    "src": "WHEELER 0.0-1.0"
+   },
+   "cusps": [
+    [
+     0.06,
+     0.48,
+     0.0,
+     0.78
+    ],
+    [
+     -0.1,
+     -0.48,
+     -0.9,
+     0.78
+    ]
+   ],
+   "ridges": [
+    [
+     -0.84,
+     -0.42,
+     -0.84,
+     0.42,
+     -1.5,
+     1.0
+    ],
+    [
+     0.84,
+     -0.42,
+     0.84,
+     0.42,
+     -1.65,
+     1.0
+    ]
+   ],
+   "roots": [
+    [
+     0.0,
+     0.5,
+     13.5,
+     3.4,
+     3.4,
+     0.12,
+     0.35
+    ],
+    [
+     0.0,
+     -0.5,
+     12.5,
+     3.2,
+     3.2,
+     0.12,
+     0.25
+    ]
+   ],
+   "furcation": 6.5,
+   "groove_depth": 0.6,
+   "ltaper": 0.12,
+   "t_cusp": 1.3,
+   "t_side": 1.35,
+   "pulp_wall": 2.4,
+   "_enamel_src": "E: between the incisors' and molars' measured values"
+  },
+  "U5": {
+   "kind": "premolar",
+   "arch": "U",
+   "H": {
+    "v": 7.6,
+    "q": "D",
+    "src": "R7 PM2 7.3 clinical + GING"
+   },
+   "L": {
+    "v": 13.5,
+    "q": "E",
+    "src": "WHEELER 14.0"
+   },
+   "md": {
+    "v": 6.8,
+    "q": "M",
+    "src": "SAB13 6.93; R1 6.68"
+   },
+   "md_c": {
+    "v": 4.8,
+    "q": "E",
+    "src": "WHEELER 5.0"
+   },
+   "ll": {
+    "v": 9.3,
+    "q": "M",
+    "src": "R1 9.47"
+   },
+   "ll_c": {
+    "v": 8.0,
+    "q": "E",
+    "src": "WHEELER 8.0"
+   },
+   "cej_m": {
+    "v": 1.0,
+    "q": "E",
+    "src": "WHEELER 1.0"
+   },
+   "cej_d": {
+    "v": 0.5,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cusps": [
+    [
+     0.0,
+     0.47,
+     0.0,
+     0.78
+    ],
+    [
+     0.0,
+     -0.47,
+     -0.35,
+     0.78
+    ]
+   ],
+   "ridges": [
+    [
+     -0.84,
+     -0.42,
+     -0.84,
+     0.42,
+     -1.4,
+     1.0
+    ],
+    [
+     0.84,
+     -0.42,
+     0.84,
+     0.42,
+     -1.5,
+     1.0
+    ]
+   ],
+   "groove_depth": 0.5,
+   "ltaper": 0.05,
+   "t_cusp": 1.3,
+   "t_side": 1.35,
+   "pulp_wall": 2.4,
+   "root_md": 0.78,
+   "_enamel_src": "E: between the incisors' and molars' measured values"
+  },
+  "U6": {
+   "kind": "molar",
+   "arch": "U",
+   "H": {
+    "v": 7.0,
+    "q": "D",
+    "src": "R7 M1 6.5 clinical + GING"
+   },
+   "L": {
+    "v": 12.5,
+    "q": "E",
+    "src": "WHEELER 12-13"
+   },
+   "md": {
+    "v": 10.2,
+    "q": "M",
+    "src": "R1 10.11; SAB13 10.46"
+   },
+   "md_c": {
+    "v": 7.8,
+    "q": "E",
+    "src": "WHEELER 8.0"
+   },
+   "ll": {
+    "v": 11.3,
+    "q": "M",
+    "src": "R1 11.40"
+   },
+   "ll_c": {
+    "v": 10.0,
+    "q": "E",
+    "src": "WHEELER 10.0"
+   },
+   "cej_m": {
+    "v": 1.0,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cej_d": {
+    "v": 0.5,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cusps": [
+    [
+     -0.48,
+     0.52,
+     0.0,
+     0.72
+    ],
+    [
+     0.45,
+     0.58,
+     -0.35,
+     0.74
+    ],
+    [
+     -0.22,
+     -0.42,
+     0.25,
+     0.68,
+     1.3
+    ],
+    [
+     0.58,
+     -0.55,
+     -1.1,
+     0.8,
+     0.8
+    ]
+   ],
+   "ridges": [
+    [
+     -0.22,
+     -0.42,
+     0.45,
+     0.58,
+     -1.5,
+     1.0
+    ],
+    [
+     -0.86,
+     -0.5,
+     -0.86,
+     0.5,
+     -1.8,
+     1.0
+    ],
+    [
+     0.86,
+     -0.45,
+     0.86,
+     0.45,
+     -2.0,
+     1.0
+    ]
+   ],
+   "roots": [
+    [
+     -0.55,
+     0.5,
+     12.0,
+     4.0,
+     3.0,
+     0.25,
+     0.8
+    ],
+    [
+     0.55,
+     0.5,
+     11.5,
+     3.3,
+     2.8,
+     0.25,
+     0.3
+    ],
+    [
+     0.0,
+     -0.5,
+     13.0,
+     4.2,
+     4.2,
+     0.35,
+     0.0
+    ]
+   ],
+   "furcation": 4.0,
+   "shear": 0.12,
+   "groove_depth": 0.6,
+   "t_cusp": 1.2,
+   "t_side": 1.6,
+   "pulp_wall": 2.6,
+   "r_rim": 0.6,
+   "_enamel_src": "Suwa & Kono 2005 micro-CT (mouth_2026-11-11/numbers.json): cusp tips 0.85-1.53, lateral max 1.47-1.76 mm"
+  },
+  "U7": {
+   "kind": "molar",
+   "arch": "U",
+   "H": {
+    "v": 6.6,
+    "q": "E",
+    "src": "WHEELER 7.0, women"
+   },
+   "L": {
+    "v": 11.5,
+    "q": "E",
+    "src": "WHEELER 11-12"
+   },
+   "md": {
+    "v": 9.6,
+    "q": "M",
+    "src": "R1 9.87; SAB13 9.5"
+   },
+   "md_c": {
+    "v": 7.0,
+    "q": "E",
+    "src": "WHEELER 7.0"
+   },
+   "ll": {
+    "v": 11.0,
+    "q": "M",
+    "src": "R1 11.36"
+   },
+   "ll_c": {
+    "v": 9.8,
+    "q": "E",
+    "src": "WHEELER 10.0"
+   },
+   "cej_m": {
+    "v": 1.0,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cej_d": {
+    "v": 0.5,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cusps": [
+    [
+     -0.48,
+     0.52,
+     0.0,
+     0.72
+    ],
+    [
+     0.45,
+     0.58,
+     -0.6,
+     0.75
+    ],
+    [
+     -0.15,
+     -0.42,
+     0.2,
+     0.68,
+     1.3
+    ],
+    [
+     0.62,
+     -0.5,
+     -1.7,
+     0.8,
+     0.6
+    ]
+   ],
+   "ridges": [
+    [
+     -0.15,
+     -0.42,
+     0.45,
+     0.58,
+     -1.7,
+     1.0
+    ],
+    [
+     -0.86,
+     -0.5,
+     -0.86,
+     0.5,
+     -1.8,
+     1.0
+    ],
+    [
+     0.86,
+     -0.4,
+     0.86,
+     0.4,
+     -2.1,
+     1.0
+    ]
+   ],
+   "roots": [
+    [
+     -0.5,
+     0.5,
+     11.0,
+     3.8,
+     3.0,
+     0.12,
+     0.6
+    ],
+    [
+     0.5,
+     0.5,
+     10.5,
+     3.2,
+     2.8,
+     0.12,
+     0.3
+    ],
+    [
+     0.0,
+     -0.5,
+     12.0,
+     4.0,
+     4.0,
+     0.18,
+     0.0
+    ]
+   ],
+   "furcation": 4.5,
+   "shear": 0.15,
+   "ltaper": 0.08,
+   "groove_depth": 0.55,
+   "t_cusp": 1.5,
+   "t_side": 1.6,
+   "pulp_wall": 2.5,
+   "r_rim": 0.6,
+   "_enamel_src": "Suwa & Kono 2005 micro-CT (mouth_2026-11-11/numbers.json): cusp tips 0.85-1.53, lateral max 1.47-1.76 mm"
+  },
+  "L1": {
+   "kind": "incisor",
+   "arch": "L",
+   "H": {
+    "v": 8.8,
+    "q": "D",
+    "src": "R5 women 8.33 + GING"
+   },
+   "L": {
+    "v": 12.0,
+    "q": "E",
+    "src": "WHEELER 12.5"
+   },
+   "md": {
+    "v": 5.45,
+    "q": "M",
+    "src": "R1 5.40; SAB13 5.54"
+   },
+   "md_c": {
+    "v": 3.5,
+    "q": "E",
+    "src": "WHEELER 3.5"
+   },
+   "ll": {
+    "v": 6.0,
+    "q": "M",
+    "src": "R1 6.26 (SAB13 6.0)"
+   },
+   "ll_c": {
+    "v": 5.3,
+    "q": "E",
+    "src": "WHEELER 5.3"
+   },
+   "cej_m": {
+    "v": 2.8,
+    "q": "E",
+    "src": "WHEELER 3.0"
+   },
+   "cej_d": {
+    "v": 2.8,
+    "q": "E",
+    "src": "WHEELER 3.0"
+   },
+   "t_edge": 1.0,
+   "r_mi": 0.35,
+   "r_di": 0.45,
+   "marginal": 0.18,
+   "fossa": 0.12,
+   "labial_dep": 0.03,
+   "t_inc": 1.5,
+   "t_side": 0.8,
+   "pulp_wall": 1.8,
+   "root_md": 0.9,
+   "incisal_thin": 0.25
+  },
+  "L2": {
+   "kind": "incisor",
+   "arch": "L",
+   "H": {
+    "v": 9.2,
+    "q": "D",
+    "src": "R5 women 8.48 + GING (R6 9.21)"
+   },
+   "L": {
+    "v": 13.5,
+    "q": "E",
+    "src": "WHEELER 14.0"
+   },
+   "md": {
+    "v": 6.0,
+    "q": "M",
+    "src": "R1 5.96; SAB13 6.14"
+   },
+   "md_c": {
+    "v": 3.9,
+    "q": "E",
+    "src": "WHEELER 4.0"
+   },
+   "ll": {
+    "v": 6.4,
+    "q": "M",
+    "src": "R1 6.53"
+   },
+   "ll_c": {
+    "v": 5.8,
+    "q": "E",
+    "src": "WHEELER 5.8"
+   },
+   "cej_m": {
+    "v": 2.8,
+    "q": "E",
+    "src": "WHEELER 3.0"
+   },
+   "cej_d": {
+    "v": 2.6,
+    "q": "E",
+    "src": "WHEELER 2.0-3.0"
+   },
+   "t_edge": 1.0,
+   "r_mi": 0.4,
+   "r_di": 0.8,
+   "marginal": 0.2,
+   "fossa": 0.14,
+   "labial_dep": 0.03,
+   "t_inc": 1.5,
+   "t_side": 0.85,
+   "pulp_wall": 1.9,
+   "root_md": 0.9,
+   "incisal_thin": 0.25
+  },
+  "L3": {
+   "kind": "canine",
+   "arch": "L",
+   "H": {
+    "v": 10.6,
+    "q": "D",
+    "src": "R5 women 9.89 + GING (R6 10.79)"
+   },
+   "L": {
+    "v": 15.5,
+    "q": "E",
+    "src": "WHEELER 16.0"
+   },
+   "md": {
+    "v": 6.8,
+    "q": "M",
+    "src": "R1 6.69; SAB13 6.88"
+   },
+   "md_c": {
+    "v": 5.4,
+    "q": "E",
+    "src": "WHEELER 5.5"
+   },
+   "ll": {
+    "v": 7.5,
+    "q": "M",
+    "src": "R1 7.49"
+   },
+   "ll_c": {
+    "v": 7.0,
+    "q": "E",
+    "src": "WHEELER 7.0"
+   },
+   "cej_m": {
+    "v": 2.4,
+    "q": "E",
+    "src": "WHEELER 2.5"
+   },
+   "cej_d": {
+    "v": 1.0,
+    "q": "E",
+    "src": "WHEELER 1.0"
+   },
+   "cusp_u": -0.15,
+   "slope_m": 1.5,
+   "slope_d": 2.4,
+   "t_edge": 1.4,
+   "lingual_ridge": 0.25,
+   "labial_ridge": 0.1,
+   "marginal": 0.3,
+   "fossa": 0.15,
+   "t_inc": 1.9,
+   "t_side": 1.0,
+   "pulp_wall": 2.3,
+   "root_md": 0.85
+  },
+  "L4": {
+   "kind": "premolar",
+   "arch": "L",
+   "H": {
+    "v": 8.2,
+    "q": "D",
+    "src": "R7 PM1 7.8 + GING"
+   },
+   "L": {
+    "v": 13.5,
+    "q": "E",
+    "src": "WHEELER 14.0"
+   },
+   "md": {
+    "v": 7.1,
+    "q": "M",
+    "src": "R1 7.06; SAB13 7.38"
+   },
+   "md_c": {
+    "v": 5.0,
+    "q": "E",
+    "src": "WHEELER 5.0"
+   },
+   "ll": {
+    "v": 7.8,
+    "q": "M",
+    "src": "R1 8.03"
+   },
+   "ll_c": {
+    "v": 6.5,
+    "q": "E",
+    "src": "WHEELER 6.5"
+   },
+   "cej_m": {
+    "v": 1.0,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cej_d": {
+    "v": 0.5,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cusps": [
+    [
+     0.0,
+     0.3,
+     0.0,
+     0.85,
+     1.1
+    ],
+    [
+     0.0,
+     -0.6,
+     -2.6,
+     0.7,
+     0.6
+    ]
+   ],
+   "ridges": [
+    [
+     0.0,
+     0.3,
+     0.0,
+     -0.55,
+     -1.9,
+     0.8
+    ],
+    [
+     -0.82,
+     -0.4,
+     -0.82,
+     0.3,
+     -2.1,
+     1.0
+    ],
+    [
+     0.82,
+     -0.4,
+     0.82,
+     0.3,
+     -2.3,
+     1.0
+    ]
+   ],
+   "groove_depth": 0.45,
+   "ltaper": 0.15,
+   "t_cusp": 1.2,
+   "t_side": 1.3,
+   "pulp_wall": 2.3,
+   "root_md": 0.8,
+   "_enamel_src": "E: between the incisors' and molars' measured values"
+  },
+  "L5": {
+   "kind": "premolar",
+   "arch": "L",
+   "H": {
+    "v": 7.6,
+    "q": "D",
+    "src": "R7 PM2 7.1 + GING"
+   },
+   "L": {
+    "v": 14.0,
+    "q": "E",
+    "src": "WHEELER 14.5"
+   },
+   "md": {
+    "v": 7.3,
+    "q": "M",
+    "src": "R1 7.12; SAB13 7.49"
+   },
+   "md_c": {
+    "v": 5.0,
+    "q": "E",
+    "src": "WHEELER 5.0"
+   },
+   "ll": {
+    "v": 8.4,
+    "q": "M",
+    "src": "R1 8.73"
+   },
+   "ll_c": {
+    "v": 7.0,
+    "q": "E",
+    "src": "WHEELER 7.0"
+   },
+   "cej_m": {
+    "v": 1.0,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cej_d": {
+    "v": 0.5,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cusps": [
+    [
+     0.0,
+     0.38,
+     0.0,
+     0.8
+    ],
+    [
+     -0.42,
+     -0.5,
+     -0.8,
+     0.78,
+     0.9
+    ],
+    [
+     0.45,
+     -0.5,
+     -1.3,
+     0.78,
+     0.8
+    ]
+   ],
+   "ridges": [
+    [
+     -0.84,
+     -0.4,
+     -0.84,
+     0.35,
+     -1.7,
+     1.0
+    ],
+    [
+     0.84,
+     -0.4,
+     0.84,
+     0.35,
+     -1.9,
+     1.0
+    ]
+   ],
+   "groove_depth": 0.5,
+   "ltaper": 0.05,
+   "t_cusp": 1.2,
+   "t_side": 1.3,
+   "pulp_wall": 2.3,
+   "root_md": 0.8,
+   "_enamel_src": "E: between the incisors' and molars' measured values"
+  },
+  "L6": {
+   "kind": "molar",
+   "arch": "L",
+   "H": {
+    "v": 7.2,
+    "q": "D",
+    "src": "R7 M1 6.4 + GING; WHEELER 7.5"
+   },
+   "L": {
+    "v": 13.5,
+    "q": "E",
+    "src": "WHEELER 14.0"
+   },
+   "md": {
+    "v": 11.0,
+    "q": "M",
+    "src": "R1 10.84; SAB13 11.17"
+   },
+   "md_c": {
+    "v": 9.0,
+    "q": "E",
+    "src": "WHEELER 9.0"
+   },
+   "ll": {
+    "v": 10.5,
+    "q": "M",
+    "src": "R1 10.75"
+   },
+   "ll_c": {
+    "v": 9.0,
+    "q": "E",
+    "src": "WHEELER 9.0"
+   },
+   "cej_m": {
+    "v": 1.0,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cej_d": {
+    "v": 0.5,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cusps": [
+    [
+     -0.55,
+     0.48,
+     -0.45,
+     0.72
+    ],
+    [
+     0.0,
+     0.58,
+     -0.55,
+     0.72
+    ],
+    [
+     0.62,
+     0.38,
+     -0.95,
+     0.75,
+     0.7
+    ],
+    [
+     -0.48,
+     -0.5,
+     0.0,
+     0.7
+    ],
+    [
+     0.38,
+     -0.52,
+     -0.2,
+     0.7
+    ]
+   ],
+   "ridges": [
+    [
+     -0.87,
+     -0.45,
+     -0.87,
+     0.45,
+     -1.8,
+     1.0
+    ],
+    [
+     0.87,
+     -0.4,
+     0.87,
+     0.4,
+     -2.0,
+     1.0
+    ]
+   ],
+   "roots": [
+    [
+     -0.55,
+     0.0,
+     13.5,
+     3.4,
+     8.2,
+     0.12,
+     0.7
+    ],
+    [
+     0.55,
+     0.0,
+     12.5,
+     3.1,
+     7.6,
+     0.12,
+     0.3
+    ]
+   ],
+   "furcation": 3.0,
+   "groove_depth": 0.6,
+   "t_cusp": 1.05,
+   "t_side": 1.55,
+   "pulp_wall": 2.6,
+   "r_rim": 0.6,
+   "_enamel_src": "Suwa & Kono 2005 micro-CT (mouth_2026-11-11/numbers.json): cusp tips 0.85-1.53, lateral max 1.47-1.76 mm"
+  },
+  "L7": {
+   "kind": "molar",
+   "arch": "L",
+   "H": {
+    "v": 6.8,
+    "q": "E",
+    "src": "WHEELER 7.0, women"
+   },
+   "L": {
+    "v": 12.5,
+    "q": "E",
+    "src": "WHEELER 13.0"
+   },
+   "md": {
+    "v": 10.4,
+    "q": "M",
+    "src": "R1 10.30; SAB13 10.3"
+   },
+   "md_c": {
+    "v": 8.0,
+    "q": "E",
+    "src": "WHEELER 8.0"
+   },
+   "ll": {
+    "v": 10.2,
+    "q": "M",
+    "src": "R1 10.56"
+   },
+   "ll_c": {
+    "v": 9.0,
+    "q": "E",
+    "src": "WHEELER 9.0"
+   },
+   "cej_m": {
+    "v": 1.0,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cej_d": {
+    "v": 0.5,
+    "q": "E",
+    "src": "WHEELER"
+   },
+   "cusps": [
+    [
+     -0.48,
+     0.5,
+     -0.4,
+     0.72
+    ],
+    [
+     0.48,
+     0.5,
+     -0.55,
+     0.72
+    ],
+    [
+     -0.45,
+     -0.5,
+     0.0,
+     0.7
+    ],
+    [
+     0.45,
+     -0.5,
+     -0.15,
+     0.7
+    ]
+   ],
+   "ridges": [
+    [
+     -0.87,
+     -0.45,
+     -0.87,
+     0.45,
+     -1.8,
+     1.0
+    ],
+    [
+     0.87,
+     -0.4,
+     0.87,
+     0.4,
+     -2.0,
+     1.0
+    ]
+   ],
+   "roots": [
+    [
+     -0.5,
+     0.0,
+     12.5,
+     3.3,
+     8.0,
+     0.05,
+     0.7
+    ],
+    [
+     0.5,
+     0.0,
+     11.5,
+     3.0,
+     7.4,
+     0.05,
+     0.4
+    ]
+   ],
+   "furcation": 3.5,
+   "groove_depth": 0.55,
+   "t_cusp": 1.45,
+   "t_side": 1.55,
+   "pulp_wall": 2.5,
+   "r_rim": 0.6,
+   "_enamel_src": "Suwa & Kono 2005 micro-CT (mouth_2026-11-11/numbers.json): cusp tips 0.85-1.53, lateral max 1.47-1.76 mm"
+  },
+  "U1_1111": {
+   "kind": "incisor",
+   "arch": "U",
+   "H": {
+    "v": 10.4,
+    "q": "D",
+    "src": "R5 women 10.07 clinical + GING"
+   },
+   "L": {
+    "v": 12.5,
+    "q": "E",
+    "src": "WHEELER 13.0, women ~4 % shorter"
+   },
+   "md": {
+    "v": 8.67,
+    "q": "M",
+    "src": "SAB13 women 8.67; R1 8.68"
+   },
+   "md_c": {
+    "v": 6.76,
+    "q": "D",
+    "src": "fitted to the extracted U1's labial silhouette (s1_fit_profiles.py), scaled to md"
+   },
+   "ll": {
+    "v": 7.2,
+    "q": "M",
+    "src": "SAB13 7.22; R1 7.39"
+   },
+   "ll_c": {
+    "v": 6.1,
+    "q": "E",
+    "src": "WHEELER 6.0"
+   },
+   "cej_m": {
+    "v": 3.46,
+    "q": "M",
+    "src": "mouth_2026-11-11/numbers.json (CEJ curvature, maxillary anterior)"
+   },
+   "cej_d": {
+    "v": 3.13,
+    "q": "M",
+    "src": "mouth_2026-11-11/numbers.json"
+   },
+   "t_edge": 1.1,
+   "r_mi": 0.2,
+   "r_di": 0.6,
+   "marginal": 0.0,
+   "fossa": 0.55,
+   "labial_dep": 0.07,
+   "t_inc": 1.8,
+   "t_side": 0.945,
+   "pulp_wall": 2.3,
+   "root_md": 1.0,
+   "prof_md": {
+    "s": [
+     0.0,
+     0.15,
+     0.3,
+     0.45,
+     0.6,
+     0.75,
+     0.88,
+     0.96,
+     1.0
+    ],
+    "m": [
+     0.7801584331106258,
+     0.8329836448882977,
+     0.9230662295264513,
+     0.9549359534178644,
+     0.9768587799938989,
+     0.9941120382512892,
+     0.9115053643921625,
+     0.749835299196716,
+     0.7198
+    ],
+    "d": [
+     0.7801584331106258,
+     0.8329836448882977,
+     0.9230662295264513,
+     0.9549359534178644,
+     0.9768587799938989,
+     0.9941120382512892,
+     0.9115053643921625,
+     0.749835299196716,
+     0.7198
+    ]
+   },
+   "prof_ll": {
+    "s": [
+     0.0,
+     0.15,
+     0.3,
+     0.45,
+     0.6,
+     0.75,
+     0.88,
+     0.96,
+     1.0
+    ],
+    "f": [
+     0.4866883980198201,
+     0.5043884287586147,
+     0.4957087196405543,
+     0.4233264653479266,
+     0.35542996138955085,
+     0.2523270250198923,
+     0.11994382892263786,
+     0.02270381124821149,
+     -0.0073
+    ],
+    "l": [
+     -0.4866883980198201,
+     -0.4939447691927422,
+     -0.4160472376877408,
+     -0.2849258810556309,
+     -0.2197237172206466,
+     -0.19818044202282284,
+     -0.19381259545708188,
+     -0.17458621633222754,
+     -0.1296
+    ]
+   },
+   "root_taper": 0.483,
+   "_profiles_src": "fs-mouth s1_fit_profiles.py: tooth_U_central_incisor_labial.jpg, tooth_U_central_incisor_mesial.jpg (Wikimedia Commons; SOURCE.md); scale: the cited md 8.67 / ll 7.20; outlines about the root's centre line (11-11 21:25)",
+   "_enamel_src": "labial thirds 945 / 620 / 410 um (mouth_2026-11-11/numbers.json)",
+   "_ridges_note": "11-11 22:12: the measured proximal outline IS the marginal ridges (a silhouette), so no ridge is added on top (it doubled ~0.45 mm lingually: the 'hook'); the lingual fossa is carved inside it; the edge continued to s = 1 (~0.9 mm thick)",
+   "incisal_thin": 0.5,
+   "_incisal_thin_src": "E: the mid incisal ridge ~0.8-1.0 mm thick 1 mm from the edge (anatomy texts); the measured silhouette (1.42 mm at 0.4 mm from the edge) is the marginal ridges at the corners",
+   "_corners_note": "11-11 23:35: the measured silhouette already narrows into the corners (s 0.96 -> 1.0); the corner radii only add the rest (was 0.6 / 1.0: rounded twice, read as chamfers)"
+  }
+ }
+}

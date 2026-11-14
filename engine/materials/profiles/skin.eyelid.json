@@ -1,0 +1,496 @@
+{
+ "id": "skin.eyelid",
+ "kind": "layered_tissue",
+ "family": "human_soft",
+ "_": "Thin eyelid skin (the thinnest skin of the body), over orbicularis oculi with almost no subcutaneous fat. Same format as skin.body; only what differs is changed, each with its source. Materials foundation lane 2026-11-07. v2 (SKIN lane 11-07): mechanics moved into deform; its own compliance from its thin stack (no eyelid-specific in vivo modulus was found).",
+ "layers": [
+  {
+   "name": "epidermis",
+   "thickness_mm": {
+    "v": 0.05,
+    "q": "E",
+    "src": "params/skin_layers.json epidermis_mm.eyelid (0.05, EST: thinnest skin)"
+   },
+   "optics": {
+    "model": {
+     "v": "skin_epidermis",
+     "q": "M",
+     "src": "as skin.body"
+    },
+    "absorbers": {
+     "f_mel": {
+      "v": 0.03,
+      "q": "E",
+      "src": "as skin.body"
+     },
+     "eu_frac": {
+      "v": 0.7,
+      "q": "E",
+      "src": "as skin.body"
+     }
+    },
+    "g": {
+     "v": 0.8,
+     "q": "M",
+     "src": "as skin.body"
+    },
+    "n": {
+     "v": 1.4,
+     "q": "M",
+     "src": "as skin.body"
+    }
+   }
+  },
+  {
+   "name": "dermis",
+   "thickness_mm": {
+    "v": 0.76,
+    "q": "M",
+    "src": "params/skin_layers.json dermis_mm.eyelid (soft_tissue.md R41: eyelid dermis 0.76 mm minimum of sites)"
+   },
+   "optics": {
+    "model": {
+     "v": "skin_dermis",
+     "q": "M",
+     "src": "as skin.body"
+    },
+    "absorbers": {
+     "f_blood": {
+      "v": 0.012,
+      "q": "E",
+      "src": "eyelid skin reads pinker / more violet than the cheek (thin skin over a rich vascular plexus); x2 skin.body, not measured"
+     },
+     "sat": {
+      "v": 0.7,
+      "q": "E",
+      "src": "venous plexus under thin skin shows through; a little under skin.body's 0.75"
+     },
+     "carotene": {
+      "v": 1.0,
+      "q": "E",
+      "src": "as skin.body"
+     }
+    },
+    "g": {
+     "v": 0.8,
+     "q": "M",
+     "src": "as skin.body"
+    },
+    "n": {
+     "v": 1.4,
+     "q": "M",
+     "src": "as skin.body"
+    }
+   }
+  }
+ ],
+ "below": {
+  "v": "muscle.skeletal (orbicularis oculi, ~0.5-1 mm) then the orbital septum; almost no fat in front of the septum",
+  "q": "E",
+  "src": "anatomy (research/head_face.md to cite in pass 2)"
+ },
+ "surface": {
+  "alpha": {
+   "v": 0.263,
+   "q": "M",
+   "src": "params/skin_specular.json regions.eyelid m 0.263 (Weyrich 2006, Fig. 15)"
+  },
+  "n": {
+   "v": 1.42,
+   "q": "D",
+   "src": "skin_specular.json mapping: F0 = 0.0255 x rho_s / 0.25, rho_s 0.292 -> F0 0.0298 -> n = (1 + sqrt F0) / (1 - sqrt F0) = 1.42"
+  },
+  "F0": {
+   "v": 0.0298,
+   "q": "D",
+   "src": "skin_specular.json mapping, eyelid rho_s 0.292"
+  }
+ },
+ "micro_relief": {
+  "_": "Fine, dense, crossing lines; no measured Ra for the eyelid found (research/skin_pores_vellus_relief.md:101 lists periorbital relief as NOT FOUND). Kept open.",
+  "Ra_um": {
+   "v": null,
+   "q": "E",
+   "src": "not found"
+  }
+ },
+ "contact": {
+  "friction": {
+   "kinetic": {
+    "v": {
+     "dry": 0.5,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "E",
+    "src": "as skin.body (no eyelid friction found)"
+   },
+   "static": {
+    "v": {
+     "dry": 0.5,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "E",
+    "src": "as skin.body"
+   },
+   "counterface": "as skin.body"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": null,
+    "q": "E",
+    "src": "not found for the lid"
+   },
+   "tack": {
+    "v": "tear-wetted lid margin; lid-to-lid contact is the blink seal (mucosa at the margin)",
+    "q": "E",
+    "src": "anatomy"
+   }
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": null,
+    "q": "E",
+    "src": "not found"
+   }
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "dry_skin_nC_J": 30,
+     "oily_skin_nC_J": 45,
+     "position": "near the positive end (gives up electrons): above nylon-class, below polyurethane foam"
+    },
+    "q": "M",
+    "src": "ALPHALAB09 rows 'Nylon, dry skin' +30 and 'Hair, oily skin' +45 nC/J (72 F, 35 % RH); skin is conductive, so metal rubbing cannot charge it"
+   }
+  },
+  "solver": {
+   "phase": "soft_solid",
+   "collision_thickness_mm": {
+    "v": 0.05,
+    "q": "E",
+    "src": "the epidermis 50 um"
+   },
+   "compliance_layers": [
+    {
+     "name": "epidermis",
+     "thickness_mm": {
+      "v": 0.05,
+      "q": "M",
+      "src": "LAYERS epidermis_mm.eyelid (EST, thinnest skin)"
+     },
+     "E_kPa": {
+      "v": 4000.0,
+      "q": "M",
+      "src": "FENG22 OCE forearm incl. stratum corneum (small strain)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.9,
+      "q": "E",
+      "src": "a stiff thin shell: thins little under contact (E)"
+     }
+    },
+    {
+     "name": "dermis",
+     "thickness_mm": {
+      "v": 0.52,
+      "q": "D",
+      "src": "HEADFACE F8 upper eyelid skin 0.57 mm total (75 MHz US, 45 women) less the epidermis; histology dermis 0.76 mm upper medial lid (F9)"
+     },
+     "E_kPa": {
+      "v": 40.0,
+      "q": "E",
+      "src": "FENG22 forearm dermis applied: no eyelid modulus found"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.85,
+      "q": "E",
+      "src": "as skin.body"
+     }
+    },
+    {
+     "name": "orbicularis_oculi",
+     "thickness_mm": {
+      "v": 0.75,
+      "q": "E",
+      "src": "below in this profile: 0.5-1 mm (anatomy, E)"
+     },
+     "E_kPa": {
+      "v": 12.0,
+      "q": "D",
+      "src": "3 x G 4 kPa relaxed muscle (TISSUE g_muscle_relaxed; SOFTTISSUE R25)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.6,
+      "q": "E",
+      "src": "thin muscle sheet; E"
+     }
+    },
+    {
+     "name": "septum_and_orbital_fat",
+     "thickness_mm": {
+      "v": 6.0,
+      "q": "E",
+      "src": "pre-aponeurotic fat pad to the globe, a few mm (E, not measured here)"
+     },
+     "E_kPa": {
+      "v": 1.0,
+      "q": "E",
+      "src": "fat.subcutaneous quasi-static ~1 kPa (COMLEY10) for orbital fat (E)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.5,
+      "q": "E",
+      "src": "fat flows round the globe (E)"
+     }
+    }
+   ],
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 0.165,
+     "q": "D",
+     "src": "series stack of compliance_layers: E_eff = T / sum(t_i / E_i) = 1.2 kPa over T 7.32 mm, / T; initial (small-strain) value; each layer stiffens with strain (per-layer stiffening as skin.body)"
+    },
+    "E_eff_kPa": {
+     "v": 1.2,
+     "q": "D",
+     "src": "series stack of compliance_layers (initial)"
+    },
+    "ramp": {
+     "v": "barrier_log",
+     "q": "E",
+     "src": "IPC-style log barrier inside collision_thickness keeps surfaces apart; the tissue's own stiffening (exponential in strain) carries the load beyond it"
+    },
+    "contact_damping_ratio": {
+     "v": 0.3,
+     "q": "E",
+     "src": "between thigh 0.14 and calf 0.42 (no lid value)"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.3,
+     "q": "E",
+     "src": "thin skin over muscle and fat: inside the soft-tissue range of skin.body (0.23-0.64)"
+    },
+    "response_time_ms": {
+     "v": {
+      "elastic_snap_back": [
+       110,
+       190
+      ]
+     },
+     "q": "E",
+     "src": "QU forearm Cutometer value; no lid value"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "dermis_shear": 3.5
+     },
+     "q": "D",
+     "src": "sqrt(13.3 kPa / 1090)"
+    },
+    "damping_ratio": {
+     "v": 0.3,
+     "q": "E",
+     "src": "between thigh 0.14 and calf 0.42 (no lid value)"
+    }
+   },
+   "membrane_stiffness_N_m": {
+    "v": 20.8,
+    "q": "D",
+    "src": "E_dermis x t = 40 kPa x 0.52 mm: about 0.43 x skin.body's 40 x 1.2 (thinner, so it folds and stretches easily: the lid crease and hooding)"
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "neo_hookean",
+   "q": "E",
+   "src": "thin membrane; the GOH fit of skin.body is for back skin"
+  },
+  "density_kg_m3": {
+   "v": 1090,
+   "q": "E",
+   "src": "as skin.body (ICRU44)"
+  },
+  "E_kPa": {
+   "v": {
+    "epidermis": 4000.0,
+    "dermis": 40.0
+   },
+   "q": "E",
+   "src": "skin.body's OCE values applied (no eyelid-specific in vivo set read yet)"
+  },
+  "poisson": {
+   "v": 0.5,
+   "q": "E",
+   "src": "as skin.body"
+  },
+  "stretch": {
+   "v": {
+    "cutometer_R0_mm_face": [
+     0.2,
+     0.33
+    ],
+    "R2": [
+     0.66,
+     0.82
+    ],
+    "R7": [
+     0.37,
+     0.52
+    ]
+   },
+   "q": "M",
+   "src": "JOFA pooled facial areas (Cutometer MPA 580, 72 adults; lid not separated); periorbital R2 / R7 fall with age (Korean lower-lid study, values not retrieved)"
+  },
+  "viscoelastic": {
+   "recovery": {
+    "v": {
+     "R7_immediate_recovery": [
+      0.37,
+      0.52
+     ]
+    },
+    "q": "M",
+    "src": "JOFA pooled face"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.37,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 0.372 W/mK (SD 0.059, 8 studies, range 0.322-0.498); 0.37 kept"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 3391,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 3390.5 J/kgK (SD 233, 4 studies, 3150-3662)"
+  },
+  "density_kg_m3": {
+   "v": 1109,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 1109 kg/m3 (SD 38, n 10, 1100-1125); ICRU44 ~1090: recalled, not re-read"
+  },
+  "effusivity": {
+   "v": 1180,
+   "q": "D",
+   "src": "sqrt(k rho c) from the three ITIS values above, J m-2 K-1 s-1/2 (the 'feels warm/cold' number)"
+  },
+  "emissivity": {
+   "v": 0.98,
+   "q": "M",
+   "src": "STEKETEE73 abstract re-read 11-08 (paper paywalled; abstract text via a reproduction): skin 0.98 +/- 0.01, independent of wavelength over the measured 1-14 um; white, black and burnt skin measured (normal = burnt); separate per-pigment values are not given in the abstract"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {}
+  },
+  "flushed": {
+   "set": {
+    "layers.dermis.optics.absorbers.f_blood": 0.025
+   },
+   "q": "E",
+   "src": "x2 as skin.body"
+  },
+  "pressed": {
+   "set": {
+    "layers.dermis.optics.absorbers.f_blood": 0.003
+   },
+   "q": "E",
+   "src": "as skin.body"
+  },
+  "wet": {
+   "set": {
+    "surface.coat": {
+     "n": 1.337,
+     "alpha": 0.01
+    }
+   },
+   "q": "M",
+   "src": "tear water n ~1.337 (research/eye.md G1)"
+  }
+ },
+ "sources": {
+  "ALPHALAB09": {
+   "cite": "AlphaLab Inc. (W. Lee). The TriboElectric Series, charge affinity in nC/J, 72 F, 35 % RH (2009)",
+   "url": "https://www.trifield.com/content/tribo-electric-series/",
+   "lic": "(c) AlphaLab 2009; two entries used as facts, table not copied"
+  },
+  "COMLEY10": {
+   "cite": "COMLEY10: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+   "url": "the project's materials research note GAPS_RESEARCH.md",
+   "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+  },
+  "FENG22": {
+   "cite": "Feng X, Li GY, Ramier A, Eltony AM, Yun SH. In vivo stiffness measurement of epidermis, dermis, and hypodermis using broadband Rayleigh-wave OCE. Acta Biomater (2022); arXiv:2201.12258 (via params/skin_layers.json)",
+   "url": "https://arxiv.org/abs/2201.12258",
+   "lic": "arXiv; numbers used as facts, text studied only"
+  },
+  "HEADFACE": {
+   "cite": "the project's research note head_face.md (F1 soft-tissue T-table, F8 ultrasound skin thickness 45 women, F9 histology)",
+   "url": "the project's research note head_face.md",
+   "lic": "project file"
+  },
+  "ICRU44": {
+   "cite": "ICRU Report 44 (1989), densities as listed by NIST X-Ray Mass Attenuation Coefficients Table 2",
+   "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/tab2.html",
+   "lic": "NIST page, US government work"
+  },
+  "ITIS": {
+   "cite": "Baumgartner C, Hasgall PA, Di Gennaro F, Neufeld E, Lloyd B, Gosselin MC, Payne D, Klingenboeck A, Kuster N. IT'IS Database for thermal and electromagnetic parameters of biological tissues, Version 5.0, Aug 21 2025, DOI 10.13099/VIP21000-05-0 (average values; the live tables re-read 11-08: the 2024-06-04 and 2025-08-21 table files give the same skin, fat and muscle rows)",
+   "url": "https://itis.swiss/virtual-population/tissue-properties/database",
+   "lic": "IT'IS legal notice (read 11-08): web pages and documents may be copied only for private, scientific and noncommercial use; storing them on other servers or data carriers needs written consent: STUDY ONLY (P13). Individual averages used as facts with this citation; the table is never copied in bulk"
+  },
+  "JOFA": {
+   "cite": "The use of cutometer to evaluate the skin elasticity on the face. J Face Aesthetics (Cutometer Dual MPA 580, 72 adults, pooled facial areas)",
+   "url": "https://jofa.ump.edu.pl/index.php/jofa/article/view/54",
+   "lic": "open access journal, licence not checked; numbers used as facts, text studied only"
+  },
+  "LAYERS": {
+   "cite": "the project's parameter file skin_layers.json (per-region epidermis and dermis thickness, OCE moduli)",
+   "url": "the project's parameter file skin_layers.json",
+   "lic": "project file"
+  },
+  "SOFTTISSUE": {
+   "cite": "the project's research note soft_tissue.md (project research file; its R-keys name the primary papers: R20 Boyer 2012, R21, R25, R31 gluteal ultrasound + compression, R32/R33 seated MRI + FE, R42 Korean biopsies, R43 skin US, R44 fat/muscle US, M31 drop landing)",
+   "url": "the project's research note soft_tissue.md",
+   "lic": "project file; primary licences as listed there"
+  },
+  "STEKETEE73": {
+   "cite": "Steketee J. Spectral emissivity of skin and pericardium. Phys Med Biol 18:686-694 (1973)",
+   "url": "https://doi.org/10.1088/0031-9155/18/5/307",
+   "lic": "paywalled; abstract re-read 11-08 via a reproduction (Europe PMC has no abstract); numbers used as facts, text studied only"
+  },
+  "TISSUE": {
+   "cite": "the project's parameter file soft_tissue_constants.json and tissue_depths.json",
+   "url": "the project's parameter file ",
+   "lic": "project file"
+  }
+ }
+}

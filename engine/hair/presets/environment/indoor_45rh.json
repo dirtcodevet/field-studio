@@ -1,0 +1,10 @@
+{
+ "name": "indoor_45rh",
+ "notes": "Field Studio's generic preset (fs-hair, 11-11): the resolved values of the hair lane's natural base layers, sourced in the hair lane's NATURAL_BASE_SOURCES and engine/hair/kinds.py; no person's data. Field Studio's Hair panel sets density, length, thickness and pigment on top.",
+ "wear": {
+  "rh": 45
+ },
+ "fibre": {
+  "wet": 0.0
+ }
+}

@@ -125,7 +125,7 @@ Mechanism (one-to-one at any drag; closed-form inverse):
   - xa0 = xa otherwise.
 - **Region.** The evaluated region is the ball around the cylinder from P to the fade's end, of radius r.
 
-## 6. "The sheet under the brush": nothing behind the worked surface moves (SHIPPED 2026-11-12 14:40; default on 15:48)
+## 6. The sheet under the brush: nothing behind the worked surface moves (SHIPPED 2026-11-12 14:40; default on 15:48)
 
 For each dab of a surface brush:
 1. **Seeds.** The lattice's surface cells (cells whose nodes change sign) under the dab centre, or, failing that, the

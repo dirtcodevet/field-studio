@@ -1,0 +1,536 @@
+{
+ "id": "skin.face",
+ "kind": "layered_tissue",
+ "family": "human_soft",
+ "_": "Facial skin of the cheek and forehead: sebum-rich (400-900 glands/cm2), thin stratum corneum (~9 layers), many sebaceous follicles; dermis 1.3-2.2 mm. Values for the living adult face at rest, room conditions; 'oily' = a heavy sebum or oil film, distinct from the natural casual sebum level. SKIN lane 11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.27,
+   "q": "M",
+   "src": "SPEC cheek m 0.271, forehead m 0.270 (GGX alpha = Beckmann m)"
+  },
+  "n": {
+   "v": 1.382,
+   "q": "D",
+   "src": "SPEC mapping F0 = 0.0255 rho_s / 0.25: cheek rho_s 0.234 -> n 1.365, forehead 0.272 -> n 1.4; mean"
+  },
+  "regions": {
+   "v": {
+    "cheek": {
+     "alpha": 0.271,
+     "F0": 0.0239
+    },
+    "forehead": {
+     "alpha": 0.27,
+     "F0": 0.0277
+    }
+   },
+   "q": "D",
+   "src": "SPEC (Weyrich 2006)"
+  }
+ },
+ "optics_summary": {
+  "structure": {
+   "v": {
+    "stratum_corneum_layers": 9,
+    "epidermis_um_temple": 61.4,
+    "dermis_mm_forehead": 2.15,
+    "skin_total_mm": {
+     "buccal": 1.37,
+     "zygomatic": 1.3,
+     "upper_forehead": 1.48,
+     "glabella": 1.5
+    }
+   },
+   "q": "M",
+   "src": "SRL (F1 SC layers, F2 RCM epidermis, F5 dermis US); HEADFACE F8 ultrasound totals (45 women)"
+  },
+  "sebum_ug_cm2": {
+   "v": {
+    "forehead": [
+     63,
+     138
+    ],
+    "cheek_women": 103
+   },
+   "q": "M",
+   "src": "MOIST O3 (Sebumeter casual levels)"
+  },
+  "n": {
+   "v": 1.4,
+   "q": "M",
+   "src": "as skin.body (Jacques 2013 soft tissue); sebum film n 1.48-1.50 (MOIST O9)"
+  },
+  "note": "colour layers come from the skin colour model; this block is a summary only"
+ },
+ "contact": {
+  "friction": {
+   "kinetic": {
+    "v": {
+     "dry": 0.8,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "D",
+    "src": "dry: skin.body's 0.5 x the forehead / mean-site ratio on one probe 0.34 / 0.21 (CUA90: forehead highest, with the postauricular site; ascribed to sebum and hydration) = 0.8; wet: as skin.body (DERLER12); oily (flooding oil film): dry-skin x 0.25 (ZHANGMAK99, BOBJER93)"
+   },
+   "static": {
+    "v": {
+     "dry": 0.8,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "E",
+    "src": "static taken equal to kinetic (skin friction is reported almost only as dynamic)"
+   },
+   "counterface": "smooth hard probe as skin.body unless stated",
+   "by_counterface": {
+    "v": {
+     "teflon_probe_forehead": 0.34
+    },
+    "q": "M",
+    "src": "CUA90"
+   }
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": {
+     "total": 43.7,
+     "dispersive": 35.7,
+     "polar": 8.0,
+     "critical_surface_tension": 50.7,
+     "critical_after_sebum_removal": 29.3
+    },
+    "q": "M",
+    "src": "KRUSS non-degreased forehead skin (OWRK); MAVON97 via US patent 6846490: forehead CST 50.7 -> 29.3 mN/m when sebum extracted; forehead a monopolar basic (electron-donor) surface (MAVON97)"
+   },
+   "tack": {
+    "v": "sebum makes the forehead more wettable and higher-friction than the forearm (CUA90, MAVON97)",
+    "q": "M",
+    "src": "CUA90, MAVON97 (qualitative)"
+   }
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": null,
+    "q": "E",
+    "src": "not retrieved as a number; forehead more wettable than the forearm's ~91 deg (MAVON97, higher CST)"
+   }
+  },
+  "restitution": {
+   "v": 0.3,
+   "q": "E",
+   "src": "skin over a thick fat pad on bone: inside skin.body's range"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "oily_skin_nC_J": 45
+    },
+    "q": "M",
+    "src": "ALPHALAB09 'Hair, oily skin' +45 nC/J"
+   },
+   "resistivity_ohm_m": {
+    "v": {
+     "stratum_corneum_low_freq": [
+      500,
+      5000
+     ],
+     "wet_skin_low_freq": 17
+    },
+    "q": "D",
+    "src": "1 / sigma: stratum corneum 2e-4 to 2e-3 S/m and wet skin 0.059 S/m at low frequency (GABRIEL96 via the Frontiers compiled table); DC dry stratum corneum is higher still and falls steeply with depth (YAMAMOTO76, numbers not retrieved)"
+   }
+  },
+  "solver": {
+   "phase": "soft_solid",
+   "collision_thickness_mm": {
+    "v": 0.06,
+    "q": "E",
+    "src": "the epidermis"
+   },
+   "compliance_layers": [
+    {
+     "name": "epidermis",
+     "thickness_mm": {
+      "v": 0.06,
+      "q": "M",
+      "src": "SRL F2 temple 61.4 um"
+     },
+     "E_kPa": {
+      "v": 4000.0,
+      "q": "M",
+      "src": "FENG22 OCE forearm incl. stratum corneum (small strain)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.9,
+      "q": "E",
+      "src": "a stiff thin shell: thins little under contact (E)"
+     }
+    },
+    {
+     "name": "dermis",
+     "thickness_mm": {
+      "v": 1.4,
+      "q": "M",
+      "src": "HEADFACE F8 buccal 1.37 / zygomatic 1.30 mm total (cheek)"
+     },
+     "E_kPa": {
+      "v": 40.0,
+      "q": "E",
+      "src": "FENG22 forearm dermis applied"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.85,
+      "q": "E",
+      "src": "as skin.body"
+     }
+    },
+    {
+     "name": "fat_and_smas",
+     "thickness_mm": {
+      "v": 20.0,
+      "q": "M",
+      "src": "HEADFACE F1 22-26 mm over the molar cheek to bone (soft tissue total less skin, rounded)"
+     },
+     "E_kPa": {
+      "v": 4.0,
+      "q": "M",
+      "src": "TAKEMOTO24 left cheek ~4.0 kPa (right 9.9 kPa) whole-tissue indentation, one man"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.5,
+      "q": "E",
+      "src": "buccal fat flows (E)"
+     }
+    },
+    {
+     "name": "bone",
+     "thickness_mm": {
+      "v": 0.0,
+      "q": "E",
+      "src": "maxilla / zygoma"
+     },
+     "E_kPa": {
+      "v": 17000000.0,
+      "q": "E",
+      "src": "cortical bone (DUCK90)"
+     },
+     "poisson": {
+      "v": 0.3,
+      "q": "E",
+      "src": "typical"
+     },
+     "compressible_to_fraction": {
+      "v": 1.0,
+      "q": "E",
+      "src": "rigid"
+     }
+    }
+   ],
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 0.199,
+     "q": "D",
+     "src": "series stack of compliance_layers: E_eff = T / sum(t_i / E_i) = 4.26 kPa over T 21.46 mm, / T; initial (small-strain) value; each layer stiffens with strain (skin as skin.body; the cheek's fat flows)"
+    },
+    "E_eff_kPa": {
+     "v": 4.26,
+     "q": "D",
+     "src": "series stack of compliance_layers (initial)"
+    },
+    "ramp": {
+     "v": "barrier_log",
+     "q": "E",
+     "src": "IPC-style log barrier inside collision_thickness keeps surfaces apart; the tissue's own stiffening (exponential in strain) carries the load beyond it"
+    },
+    "contact_damping_ratio": {
+     "v": 0.2,
+     "q": "E",
+     "src": "between thigh and breast values (no face value)"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.3,
+     "q": "E",
+     "src": "as contact.restitution"
+    },
+    "response_time_ms": {
+     "v": {
+      "elastic_snap_back": [
+       110,
+       190
+      ]
+     },
+     "q": "E",
+     "src": "QU forearm value (no face value)"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "dermis_shear": 3.5,
+      "cheek_tissue_shear": 1.15
+     },
+     "q": "D",
+     "src": "sqrt(G / rho): dermis 13.3 kPa; cheek whole tissue G = 4.0 / 3 kPa"
+    },
+    "damping_ratio": {
+     "v": 0.2,
+     "q": "E",
+     "src": "between thigh and breast values (no face value)"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "neo_hookean",
+   "q": "E",
+   "src": "small-strain face; hyperelastic fits of face skin not found"
+  },
+  "density_kg_m3": {
+   "v": 1090,
+   "q": "E",
+   "src": "as skin.body (ICRU44)"
+  },
+  "E_kPa": {
+   "v": {
+    "epidermis": 4000.0,
+    "dermis": 40.0,
+    "cheek_whole_tissue": [
+     4.0,
+     9.9
+    ]
+   },
+   "q": "M",
+   "src": "FENG22 layers (forearm, applied); TAKEMOTO24 cheek whole-tissue indentation"
+  },
+  "poisson": {
+   "v": 0.5,
+   "q": "E",
+   "src": "incompressible (LAYERS)"
+  },
+  "stretch": {
+   "v": {
+    "cutometer_R0_mm": [
+     0.2,
+     0.33
+    ],
+    "R2": [
+     0.66,
+     0.82
+    ],
+    "R5": [
+     0.6,
+     0.92
+    ],
+    "R7": [
+     0.37,
+     0.52
+    ]
+   },
+   "q": "M",
+   "src": "JOFA pooled facial areas, 72 adults"
+  },
+  "viscoelastic": {
+   "recovery": {
+    "v": {
+     "R7_immediate_recovery": [
+      0.37,
+      0.52
+     ]
+    },
+    "q": "M",
+    "src": "JOFA"
+   }
+  },
+  "expression_motion_mm": {
+   "v": {
+    "mouth_corner_smile": [
+     16,
+     18
+    ],
+    "brow": 10
+   },
+   "q": "M",
+   "src": "HEADFACE F11 / F12 surface displacement in expression"
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.37,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 0.372 W/mK (SD 0.059, 8 studies, range 0.322-0.498); 0.37 kept"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 3391,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 3390.5 J/kgK (SD 233, 4 studies, 3150-3662)"
+  },
+  "density_kg_m3": {
+   "v": 1109,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 1109 kg/m3 (SD 38, n 10, 1100-1125); ICRU44 ~1090: recalled, not re-read"
+  },
+  "effusivity": {
+   "v": 1180,
+   "q": "D",
+   "src": "sqrt(k rho c) from the three ITIS values above, J m-2 K-1 s-1/2 (the 'feels warm/cold' number)"
+  },
+  "emissivity": {
+   "v": 0.98,
+   "q": "M",
+   "src": "STEKETEE73 abstract re-read 11-08 (paper paywalled; abstract text via a reproduction): skin 0.98 +/- 0.01, independent of wavelength over the measured 1-14 um; white, black and burnt skin measured (normal = burnt); separate per-pigment values are not given in the abstract"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {},
+   "_": "the base (casual sebum)"
+  },
+  "washed": {
+   "set": {
+    "surface.alpha": 0.32
+   },
+   "q": "E",
+   "src": "sebum removed: less gloss (SPEC sebum_note: gloss +21 % forehead 0.5 -> 6 h after washing, Jang 2018); alpha step E"
+  },
+  "oily_6h": {
+   "set": {
+    "surface.alpha": 0.22,
+    "contact.friction.kinetic.v.dry": 0.8
+   },
+   "q": "E",
+   "src": "6 h after washing gloss +21-24 %, glossy area x4.1 (SPEC sebum_note); forehead refills to its casual level in ~3 h (MOIST O4)"
+  },
+  "sweaty": {
+   "set": {
+    "contact.friction.kinetic.v.dry": 1.0
+   },
+   "q": "E",
+   "src": "forehead sweats most (passive heat 0.99, exercise 3.39 mg/cm2/min, MOIST E4/E5); hydrated skin friction > 1 (DERLER12)"
+  }
+ },
+ "sources": {
+  "ALPHALAB09": {
+   "cite": "AlphaLab Inc. (W. Lee). The TriboElectric Series, charge affinity in nC/J, 72 F, 35 % RH (2009)",
+   "url": "https://www.trifield.com/content/tribo-electric-series/",
+   "lic": "(c) AlphaLab 2009; two entries used as facts, table not copied"
+  },
+  "BOBJER93": {
+   "cite": "Bobjer O, Johansson SE, Piguet S. Friction between hand and handle: effects of oil and lard on textured and non-textured surfaces; perception of discomfort. Appl Ergon 24(3):190-202 (1993); Bobjer 2004 thesis (Loughborough)",
+   "url": "https://doi.org/10.1016/0003-6870(93)90007-V",
+   "lic": "abstract read; numbers used as facts, text studied only"
+  },
+  "CUA90": {
+   "cite": "Cua AB, Wilhelm KP, Maibach HI. Frictional properties of human skin: relation to age, sex and anatomical region, stratum corneum hydration and transepidermal water loss. Br J Dermatol 123:473-479 (1990)",
+   "url": "https://doi.org/10.1111/j.1365-2133.1990.tb01452.x",
+   "lic": "abstract read; numbers used as facts, text studied only"
+  },
+  "DERLER12": {
+   "cite": "Derler S, Gerhardt L-C. Tribology of skin: review and analysis of experimental results for the friction coefficient of human skin. Tribol Lett 45:1-27 (2012)",
+   "url": "https://doi.org/10.1007/s11249-011-9854-y",
+   "lic": "paywalled; author copy doc.rero.ch/record/315296; numbers used as facts, text studied only"
+  },
+  "DUCK90": {
+   "cite": "Duck FA. Physical Properties of Tissue. Academic Press (1990); standard ranges",
+   "url": "https://doi.org/10.1016/C2009-0-02649-4",
+   "lic": "book, copyright; numbers used as facts, text studied only"
+  },
+  "FENG22": {
+   "cite": "Feng X, Li GY, Ramier A, Eltony AM, Yun SH. In vivo stiffness measurement of epidermis, dermis, and hypodermis using broadband Rayleigh-wave OCE. Acta Biomater (2022); arXiv:2201.12258 (via params/skin_layers.json)",
+   "url": "https://arxiv.org/abs/2201.12258",
+   "lic": "arXiv; numbers used as facts, text studied only"
+  },
+  "GABRIEL96": {
+   "cite": "Gabriel S, Lau RW, Gabriel C. The dielectric properties of biological tissues II/III. Phys Med Biol 41:2251-2293 (1996); low-frequency values as compiled in a Frontiers supplementary table (article id 1094968, Table 1)",
+   "url": "https://www.frontiersin.org/api/v4/articles/1094968/file/Table_1.DOCX/1094968_supplementary-materials_tables_1_docx/1",
+   "lic": "the Frontiers table CC BY 4.0; the 1996 paper paywalled; numbers used as facts, text studied only"
+  },
+  "HEADFACE": {
+   "cite": "the project's research note head_face.md (F1 soft-tissue T-table, F8 ultrasound skin thickness 45 women, F9 histology)",
+   "url": "the project's research note head_face.md",
+   "lic": "project file"
+  },
+  "ICRU44": {
+   "cite": "ICRU Report 44 (1989), densities as listed by NIST X-Ray Mass Attenuation Coefficients Table 2",
+   "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/tab2.html",
+   "lic": "NIST page, US government work"
+  },
+  "ITIS": {
+   "cite": "Baumgartner C, Hasgall PA, Di Gennaro F, Neufeld E, Lloyd B, Gosselin MC, Payne D, Klingenboeck A, Kuster N. IT'IS Database for thermal and electromagnetic parameters of biological tissues, Version 5.0, Aug 21 2025, DOI 10.13099/VIP21000-05-0 (average values; the live tables re-read 11-08: the 2024-06-04 and 2025-08-21 table files give the same skin, fat and muscle rows)",
+   "url": "https://itis.swiss/virtual-population/tissue-properties/database",
+   "lic": "IT'IS legal notice (read 11-08): web pages and documents may be copied only for private, scientific and noncommercial use; storing them on other servers or data carriers needs written consent: STUDY ONLY (P13). Individual averages used as facts with this citation; the table is never copied in bulk"
+  },
+  "JOFA": {
+   "cite": "The use of cutometer to evaluate the skin elasticity on the face. J Face Aesthetics (Cutometer Dual MPA 580, 72 adults, pooled facial areas)",
+   "url": "https://jofa.ump.edu.pl/index.php/jofa/article/view/54",
+   "lic": "open access journal, licence not checked; numbers used as facts, text studied only"
+  },
+  "KRUSS": {
+   "cite": "KRUSS application report: surface free energy of non-degreased (forehead) skin, OWRK from contact angles (via instrument.com.cn solution 807610)",
+   "url": "https://instrument.com.cn/application/Solution-807610.html",
+   "lic": "vendor application note, terms not stated; numbers used as facts, text studied only"
+  },
+  "LAYERS": {
+   "cite": "the project's parameter file skin_layers.json (per-region epidermis and dermis thickness, OCE moduli)",
+   "url": "the project's parameter file skin_layers.json",
+   "lic": "project file"
+  },
+  "MAVON97": {
+   "cite": "Mavon A, Zahouani H, Redoules D, Agache P, Gall Y, Humbert P. Sebum and stratum corneum lipids increase human skin surface free energy as determined from contact angle measurements. Colloids Surf B 8:147-155 (1997); CST values via US patent 6846490 (secondary)",
+   "url": "https://doi.org/10.1016/S0927-7765(96)01317-5",
+   "lic": "paywalled; numbers used as facts, text studied only"
+  },
+  "MOIST": {
+   "cite": "the project's research note skin_moisture.md (E sweat rates, O sebum, W lips)",
+   "url": "the project's research note skin_moisture.md",
+   "lic": "project file"
+  },
+  "SPEC": {
+   "cite": "the project's parameter file skin_specular.json (Weyrich et al. 2006, 149 faces, Fig. 15 per-region m / rho_s)",
+   "url": "the project's parameter file skin_specular.json",
+   "lic": "project file; Weyrich 2006 (c) ACM, numbers as facts"
+  },
+  "SRL": {
+   "cite": "the project's research note skin_regions_and_layers.md (F1 SC layers, F2 RCM, F5 dermis US, F11 sweat glands, skin types section 2)",
+   "url": "the project's research note skin_regions_and_layers.md",
+   "lic": "project file"
+  },
+  "STEKETEE73": {
+   "cite": "Steketee J. Spectral emissivity of skin and pericardium. Phys Med Biol 18:686-694 (1973)",
+   "url": "https://doi.org/10.1088/0031-9155/18/5/307",
+   "lic": "paywalled; abstract re-read 11-08 via a reproduction (Europe PMC has no abstract); numbers used as facts, text studied only"
+  },
+  "TAKEMOTO24": {
+   "cite": "Takemoto et al. Fabrication of apparatus specialized for measuring the elasticity of perioral tissues. Materials (2024), PMC11313372 (one healthy man in his 20s)",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11313372/",
+   "lic": "open access (MDPI, CC BY 4.0 standard; not re-checked)"
+  },
+  "YAMAMOTO76": {
+   "cite": "Yamamoto T, Yamamoto Y. Electrical properties of the epidermal stratum corneum. Med Biol Eng 14:151-158 (1976); Dielectric constant and resistivity of epidermal stratum corneum, ibid. 494-500",
+   "url": "https://doi.org/10.1007/BF02478741",
+   "lic": "paywalled; not read (numbers not retrieved)"
+  },
+  "ZHANGMAK99": {
+   "cite": "Zhang M, Mak AFT. In vivo friction properties of human skin. Prosthet Orthot Int 23:135-141 (1999); it quotes Taylor & Lenderman (fingertip on aluminium ~0.6, down >= 75 % with soap)",
+   "url": "https://doi.org/10.3109/03093649909071625",
+   "lic": "abstract and search summary read; numbers used as facts, text studied only"
+  }
+ }
+}

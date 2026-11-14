@@ -1,0 +1,104 @@
+{
+ "name": "tooth",
+ "inherits": null,
+ "_": "fs-mouth 11-11; format: design C7 (engine/fieldstudio/DESIGN_PRODUCT_2026-11-10.md); optics: engine/materials/profiles + engine/library/mouth/media_fit.json (fitted to cited in-vivo colours); how the renderers read it: fs-light (pending)",
+ "form": {
+  "kind": "tooth type U1-U7 / L1-L7 (teeth_types.json)",
+  "rules": [
+   {
+    "what": "crown mesiodistal width",
+    "per_type": "teeth_types.json md",
+    "tolerance_sd_mm": 0.5
+   },
+   {
+    "what": "anatomical crown length",
+    "per_type": "teeth_types.json H",
+    "tolerance_sd_mm": 0.8
+   },
+   {
+    "what": "enamel thickness, U1 labial thirds (cervical / middle / incisal)",
+    "value_mm": [
+     0.41,
+     0.62,
+     0.945
+    ]
+   }
+  ]
+ },
+ "medium": {
+  "layers": [
+   {
+    "name": "saliva film + pellicle",
+    "thickness": {
+     "v": 0.003,
+     "unit": "mm",
+     "q": "E"
+    },
+    "profile": "saliva",
+    "role": "coat (n 1.335): the wet specular"
+   },
+   {
+    "name": "enamel",
+    "between": [
+     "surface",
+     "channel:dej"
+    ],
+    "profile": "tooth.enamel",
+    "fit": "media_fit.json enamel"
+   },
+   {
+    "name": "dentine",
+    "between": [
+     "channel:dej",
+     "channel:pulp"
+    ],
+    "profile": "tooth.dentin",
+    "fit": "media_fit.json dentin"
+   },
+   {
+    "name": "pulp",
+    "inside": "channel:pulp",
+    "profile": null,
+    "optics_E": {
+     "n": 1.38,
+     "mus_reduced": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "mua": [
+      0.05,
+      0.8,
+      1.0
+     ]
+    }
+   }
+  ],
+  "fields": "one part per tooth (fs-light 20:35): its surface plus true-distance channels 'dej' (= teeth.py Tooth.fields()['dentin']: the DEJ under the crown, the root surface below the CEJ) and 'pulp', on the part's own brick rows, true distance in a band round each zero set, sign-correct inside; saliva a surface coat (n 1.335), not a voxel layer"
+ },
+ "physics": {
+  "profile": "tooth.enamel (crown), tooth.dentin (root)",
+  "contact": {
+   "tooth-tooth": "touch (occlusion)",
+   "tooth-gingiva": "touch above the sulcus, bond below (junctional epithelium)",
+   "tooth-bone": "touch across the 0.2 mm periodontal ligament"
+  }
+ },
+ "look": {
+  "generator": "engine/library/mouth/arch.py Dentition + teeth.py Tooth",
+  "settings": "library_items.SETTINGS",
+  "seed": "settings.seed"
+ },
+ "modifiers": {
+  "wear": "flattens the incisal edge / cusp tips (facets) and lowers the mamelon remnants (form)",
+  "stain": "not yet (colour in the pellicle / enamel cracks, built)",
+  "dry": "removes the saliva coat (extracted teeth)",
+  "age": "the incisal mamelons by age and incisal contact (teeth.Tooth: Alalowi & Al-Jhany 2020 prevalence, seeded per incisor)",
+  "yellowness": "per-person tooth yellowness: media_fit.json 'yellowness' (one factor on enamel and dentine absorption above red; whole-tooth b* over the cited in-vivo spread 10.1-17, default 12; the dentine the yellow layer)"
+ },
+ "levels": {
+  "sculpt": "one albedo per object (Field Studio today)",
+  "lookdev": "layered media by fields (fs-light)",
+  "final": "layered media + perikymata relief at render time"
+ }
+}

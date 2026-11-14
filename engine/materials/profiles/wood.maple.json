@@ -1,0 +1,612 @@
+{
+ "id": "wood.maple",
+ "kind": "porous_solid",
+ "family": "wood",
+ "_": "sugar (hard) maple (Acer saccharum). Clear, straight-grained wood; numbers at 12 % moisture content (MC, the 20 C / 65 % RH equilibrium) unless a case says green. Wood is an orthotropic, porous, hygroscopic solid: the grain frame (L along the fibres, R radial across the rings, T tangential along the rings) must be carried per point by the asset. Strength data are clear-wood averages (knots, slope of grain and checks lower them). Solids research lane 11-07 (the project's materials research note SOLIDS.md).",
+ "surface": {
+  "alpha": {
+   "v": 0.45,
+   "q": "E",
+   "src": "planed bare wood; GGX alpha from typical planed Ra 3-6 um (larger than light wavelengths, so rough); no BRDF fit read"
+  },
+  "alpha_by_finish": {
+   "v": {
+    "raw_sanded": 0.55,
+    "planed": 0.45,
+    "oiled": 0.25,
+    "satin_finish": 0.15,
+    "gloss_finish": 0.05
+   },
+   "q": "E",
+   "src": "bare sanded/planed rough (Ra 3-10 um), oil leaves the pores open, a film finish (lacquer, polyurethane) levels the top: satin ~0.15, gloss ~0.05; MARSCHNER05 models finished wood as a smooth clear coat over a fibre-direction subsurface highlight"
+  },
+  "n": {
+   "v": 1.53,
+   "q": "E",
+   "src": "cellulose ~1.53-1.55 (bare); clear coats ~1.5; MARSCHNER05 uses a dielectric coat n ~1.5"
+  },
+  "F0": {
+   "v": 0.044,
+   "q": "D",
+   "src": "((1.53 - 1) / (1.53 + 1))^2"
+  },
+  "anisotropic_highlight": {
+   "v": "a second, fibre-direction highlight (a cone around the fibre axis, refracted through the finish) that moves as the board turns: the 'chatoyance' of figured maple and walnut",
+   "q": "M",
+   "src": "MARSCHNER05"
+  },
+  "Ra_um": {
+   "v": {
+    "sanded_180grit": [
+     3,
+     6
+    ],
+    "planed": [
+     3,
+     8
+    ],
+    "sawn": [
+     10,
+     30
+    ],
+    "lacquered": [
+     0.1,
+     0.5
+    ]
+   },
+   "q": "E",
+   "src": "typical woodworking surface-roughness ranges (wood machining literature); not measured per species"
+  }
+ },
+ "optics_summary": {
+  "colour_note": {
+   "v": "creamy white to light reddish-tan sapwood (the usual 'hard maple'), darker brown heartwood; fine even texture, diffuse-porous, satin chatoyance; curly / birdseye figure in some boards; yellows under clear finish",
+   "q": "E",
+   "src": "species description (Wood Handbook ch2 species descriptions and common practice)"
+  },
+  "translucency": {
+   "v": "low: light enters ~0.5-2 mm into bare wood; visible in thin veneers and backlit end grain",
+   "q": "E",
+   "src": "general wood-optics observation; no measured scattering length found for these species"
+  },
+  "scattering_length_mm": {
+   "v": null,
+   "q": "E",
+   "src": "not found: no measured sigma_s for these species"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": [
+      0.25,
+      0.62
+     ],
+     "wet": [
+      0.2,
+      0.7
+     ]
+    },
+    "q": "M",
+    "src": "ETB friction table re-read 11-08: wood on clean wood 0.25-0.5, wet wood 0.2; oak on oak parallel grain 0.62 static / 0.48 sliding, cross grain 0.54 / 0.32 (Morin's values as tabulated in Marks; Marks itself not re-read); wet upper bound 0.7 E; friction rises with MC up to FSP then falls with free surface water (FPL190C4)"
+   },
+   "kinetic": {
+    "v": {
+     "dry": [
+      0.3,
+      0.48
+     ],
+     "wet": [
+      0.2,
+      0.4
+     ]
+    },
+    "q": "M",
+    "src": "ETB friction table re-read 11-08: oak on oak parallel grain sliding 0.48, cross grain 0.32 (Morin, as in Marks; Marks itself not re-read); wet: E"
+   },
+   "counterface": "wood on wood (the pair table holds along/across cases); against smooth steel ~0.3-0.5 dry at 12 % MC, 0.7-0.9 near FSP (FPL190C4 friction section, via secondary citations)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": [
+     40,
+     60
+    ],
+    "q": "E",
+    "src": "wood surface free energy in wood-wetting literature 40-60 mJ/m^2 (fresh surfaces higher, aged / extractive-rich lower)"
+   },
+   "tack": {
+    "v": "none: wood is not tacky; green or resinous pine can leave sticky pitch",
+    "q": "E",
+    "src": "observation"
+   }
+  },
+  "restitution": {
+   "v": [
+    0.4,
+    0.6
+   ],
+   "q": "E",
+   "src": "hard sphere on a wooden board ~0.4-0.6 (board flexure dominates); depends on support and grain; no species measurement found"
+  },
+  "solver": {
+   "phase": "solid",
+   "collision_thickness_mm": {
+    "v": 0.1,
+    "q": "E",
+    "src": "numerical offset only: a rigid solid has no compliant surface layer; 0.1 mm sits below what reads on screen at character distance and above the field's float/step resolution at metre scale, so contacts never show a gap or a pass-through; finishes (lacquer, sealer, a water film) are thinner still"
+   },
+   "penetration_response": {
+    "ramp": "hertz",
+    "E_star_GPa": {
+     "v": 1.13,
+     "q": "D",
+     "src": "E / (1 - nu^2) from E_T 0.901 GPa (side-grain hit: the tangential modulus, the softest face direction) and an effective nu 0.45 (between nu_RT and nu_TR) (the half-space modulus; a rigid indenter assumed, the soft partner's own E* combines in series)"
+    },
+    "contact_stiffness_kPa_per_mm": {
+     "v": 14400.0,
+     "q": "D",
+     "src": "mean pressure per mm of overlap under a 50 mm-radius flat patch (hand-sized): k = 2 E* a (flat punch), / (pi a^2): ~1e5-1e6 kPa/mm, so the solver should treat the surface as an unyielding barrier and let the soft partner deform"
+    },
+    "hertz_constant_N_per_m1_5_R25mm": {
+     "v": 238000000.0,
+     "q": "D",
+     "src": "F = (4/3) E* sqrt(R) d^1.5 for a rigid sphere R 25 mm"
+    },
+    "contact_damping_ratio": {
+     "v": 0.215,
+     "q": "D",
+     "src": "zeta = -ln e / sqrt(pi^2 + ln^2 e) from restitution 0.5"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": [
+      0.4,
+      0.6
+     ],
+     "q": "E",
+     "src": "hard sphere on a wooden board ~0.4-0.6 (board flexure, support and grain dominate); no species measurement found"
+    },
+    "response_time_ms": {
+     "v": 1.44,
+     "q": "D",
+     "src": "Hertz contact time t = 2.87 (m^2 / (R E*^2 v))^0.2 for a rigid 1 kg sphere, R 25 mm, 1 m/s on this material: tens of microseconds. In a hand slap the soft tissue sets the pulse (ms); this surface only has to not yield, so the slap's sound and stop come from the hand"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "bar_longitudinal": 1130,
+      "shear": 664
+     },
+     "q": "D",
+     "src": "sqrt(E/rho), sqrt(G/rho), G = E/(2(1+nu)), rho 706"
+    },
+    "damping_ratio": {
+     "v": 0.215,
+     "q": "D",
+     "src": "as contact_damping_ratio (energy lost per impact, from restitution)"
+    }
+   },
+   "_": "Side-grain values (a hit on a board face). End grain is ~10x stiffer (E_L); a thin board flexes as a whole, which the deform block (E_L bending) handles, not the contact ramp."
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": [
+     45,
+     70
+    ],
+    "q": "E",
+    "src": "dense diffuse-porous hardwood, sanded; wood-wetting literature range; not measured for this profile"
+   },
+   "finished_water_contact_angle_deg": {
+    "v": [
+     70,
+     95
+    ],
+    "q": "E",
+    "src": "polyurethane / lacquer film 70-95 deg (polymer coatings), wax higher"
+   },
+   "_": "Bare wood wicks water along the grain (end grain absorbs fastest; contact angle drops within seconds)."
+  },
+  "porosity": {
+   "v": 0.58,
+   "q": "D",
+   "src": "1 - SG12 / 1.5 (cell-wall substance density ~1.5 g/cm3, FPL190C4): void fraction of dry wood at 12 % volume"
+  },
+  "water_absorption": {
+   "v": {
+    "max_MC_pct": 120.0,
+    "rate_note": "end grain wicks ~10-15x faster than side grain"
+   },
+   "q": "D",
+   "src": "max MC = (1/G - 1/1.5) x 100 + FSP 28 % (FPL190C4 maximum-moisture relation); rate ratio E (wood drying/wetting literature)"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "charge_affinity_nC_J": 7,
+     "position": "slightly positive: below glass (+25) and dry skin (+30), above cotton (+5) and wool (0)"
+    },
+    "q": "M",
+    "src": "ALPHALAB 'wood (pine)' +7 nC/J (applied to all dry woods, E for non-pine)"
+   },
+   "resistivity_ohm_m": {
+    "v": {
+     "ovendry": [
+      100000000000000.0,
+      1e+16
+     ],
+     "mc12": [
+      1000000000.0,
+      100000000000.0
+     ],
+     "fsp": [
+      1000.0,
+      10000.0
+     ]
+    },
+    "q": "E",
+    "src": "E: recalled from the Wood Handbook ch. 4 (FPL190C4), not re-read (the FPL server returned 502 on 11-08): FPL190C4 electrical section: resistivity falls ~10x per 1-2 % MC from ovendry to FSP; mid-band values not read"
+   },
+   "permittivity_rel": {
+    "v": {
+     "ovendry": 2.0,
+     "mc12": [
+      3,
+      5
+     ]
+    },
+    "q": "E",
+    "src": "E: recalled from the Wood Handbook ch. 4 (FPL190C4), not re-read (the FPL server returned 502 on 11-08): FPL190C4 dielectric section (dry wood ~2, rises with MC)"
+   }
+  },
+  "hardness": {
+   "v": {
+    "janka_side_N": {
+     "green": 4300,
+     "mc12": 6400
+    }
+   },
+   "q": "M",
+   "src": "FPL190C5 Table 5-3a side hardness (load to embed an 11.28 mm ball to half its diameter)"
+  },
+  "abrasion": {
+   "v": "bare wood dents and scuffs easily (soft latewood/earlywood wear unevenly); finish film carries wear",
+   "q": "E",
+   "src": "observation"
+  }
+ },
+ "deform": {
+  "model": "orthotropic",
+  "density_kg_m3": {
+   "v": 706,
+   "q": "D",
+   "src": "FPL190C5 Table 5-3a SG at 12 % (ovendry mass / 12 % volume) 0.63 x 1000 x 1.12 (mass at 12 % MC)"
+  },
+  "orthotropic": {
+   "_": "Axes: L along the grain (fibre / trunk axis), R radial (across the growth rings, pith to bark), T tangential (along the rings). Stiffest along L; E_R ~ 0.1-0.16 E_L, E_T ~ 0.05-0.08 E_L. Grain direction must be carried by the asset (a per-point L, R frame).",
+   "E_L_GPa": {
+    "v": 13.9,
+    "q": "D",
+    "src": "FPL190C5 Table 5-3a MOE 12 % 12600 MPa x 1.1 (Table 5-1 note a: bending MOE +10 % for shear deflection)"
+   },
+   "E_T_GPa": {
+    "v": 0.901,
+    "q": "D",
+    "src": "FPL190C5 Table 5-1 ET/EL = 0.065 x E_L"
+   },
+   "E_R_GPa": {
+    "v": 1.83,
+    "q": "D",
+    "src": "FPL190C5 Table 5-1 ER/EL = 0.132 x E_L"
+   },
+   "G_LR_GPa": {
+    "v": 1.54,
+    "q": "D",
+    "src": "FPL190C5 Table 5-1 GLR/EL = 0.111 x E_L"
+   },
+   "G_LT_GPa": {
+    "v": 0.873,
+    "q": "D",
+    "src": "FPL190C5 Table 5-1 GLT/EL = 0.063 x E_L"
+   },
+   "G_RT_GPa": {
+    "v": 0.291,
+    "q": "E",
+    "src": "0.021 x E_L: black walnut G_RT/E_L 0.021 (Table 5-1) for maple (blank)"
+   }
+  },
+  "poisson": {
+   "_": "nu_ij = -strain_j / strain_i under stress along i (Wood Handbook convention: first letter = load direction). Symmetry nu_ij/E_i = nu_ji/E_j holds only roughly in measured data.",
+   "nu_LR": {
+    "v": 0.424,
+    "q": "M",
+    "src": "FPL190C5 Table 5-2 (approximately 12 % MC)"
+   },
+   "nu_LT": {
+    "v": 0.476,
+    "q": "M",
+    "src": "FPL190C5 Table 5-2 (approximately 12 % MC)"
+   },
+   "nu_RT": {
+    "v": 0.774,
+    "q": "M",
+    "src": "FPL190C5 Table 5-2 (approximately 12 % MC)"
+   },
+   "nu_TR": {
+    "v": 0.349,
+    "q": "M",
+    "src": "FPL190C5 Table 5-2 (approximately 12 % MC)"
+   },
+   "nu_RL": {
+    "v": 0.065,
+    "q": "M",
+    "src": "FPL190C5 Table 5-2 (approximately 12 % MC)"
+   },
+   "nu_TL": {
+    "v": 0.037,
+    "q": "M",
+    "src": "FPL190C5 Table 5-2 (approximately 12 % MC)"
+   }
+  },
+  "strength": {
+   "MOR_kPa": {
+    "v": {
+     "green": 65000,
+     "mc12": 109000
+    },
+    "q": "M",
+    "src": "FPL190C5 Table 5-3a modulus of rupture, clear specimens"
+   },
+   "MOE_bending_MPa": {
+    "v": {
+     "green": 10700,
+     "mc12": 12600
+    },
+    "q": "M",
+    "src": "FPL190C5 Table 5-3a, centre-loaded beam, span/depth 14"
+   },
+   "compression_parallel_kPa": {
+    "v": {
+     "green": 27700,
+     "mc12": 54000
+    },
+    "q": "M",
+    "src": "FPL190C5 Table 5-3a maximum crushing strength along the grain"
+   },
+   "compression_perpendicular_kPa": {
+    "v": {
+     "green": 4400,
+     "mc12": 10100
+    },
+    "q": "M",
+    "src": "FPL190C5 Table 5-3a fibre stress at proportional limit across the grain (no ultimate: wood crushes and densifies)"
+   },
+   "shear_parallel_kPa": {
+    "v": {
+     "green": 10100,
+     "mc12": 16100
+    },
+    "q": "M",
+    "src": "FPL190C5 Table 5-3a"
+   },
+   "tension_perpendicular_kPa": {
+    "v": null,
+    "q": "E",
+    "src": "not found: FPL190C5 Table 5-3a blank for sugar maple"
+   },
+   "tension_parallel_kPa": {
+    "v": 109000.0,
+    "q": "E",
+    "src": "~ MOR at 12 % (Wood Handbook ch5 Table 5-7: tension parallel of clear wood is of the order of MOR, often higher); species value not read"
+   }
+  },
+  "fracture": {
+   "toughness_KIC_TL_MPa_m05": {
+    "v": 0.517,
+    "q": "M",
+    "src": "FPL190C5 Table 5-10 mode I TL 517 kPa m^0.5 (layout of the extracted table ambiguous; species row read as best possible)"
+   },
+   "toughness_KIIC_MPa_m05": {
+    "v": [
+     1.65,
+     2.4
+    ],
+    "q": "M",
+    "src": "FPL190C5 text: mode II 1650-2400 kPa m^0.5 (all species)"
+   },
+   "_": "Wood fails by splitting along the grain (low tension perpendicular), crushing across it, and fibrous tension failure along it."
+  },
+  "moisture": {
+   "_": "Below the fibre saturation point (FSP) strength and stiffness rise as wood dries; above it (green) they stay at the green values. Dimensions change only below FSP.",
+   "fibre_saturation_pct": {
+    "v": [
+     25,
+     30
+    ],
+    "q": "M",
+    "src": "FPL190C4 (FSP ~30 % on average, 25-30 typical)"
+   },
+   "emc_at_20C_65RH_pct": {
+    "v": 12,
+    "q": "M",
+    "src": "FPL190C4 EMC tables: ~12 % at 21 C, 65 % RH (the '12 %' state of all strength data)"
+   },
+   "shrinkage_green_to_ovendry_pct": {
+    "v": {
+     "radial": 4.8,
+     "tangential": 9.9,
+     "volumetric": 14.7,
+     "longitudinal": [
+      0.1,
+      0.2
+     ]
+    },
+    "q": "M",
+    "src": "EESHRINK re-read 11-08 (R and T match; also woodbin.com's copy of the FPL table) (R, T, Wood Handbook Table 4-3, % of green dimension); volumetric E: recalled from FPL190C4 Table 4-3, not re-read (the FPL server returned 502 on 11-08); longitudinal 0.1-0.2 % normal wood (FPL190C4 text)"
+   },
+   "shrinkage_per_pct_MC": {
+    "v": {
+     "radial": 0.16,
+     "tangential": 0.33
+    },
+    "q": "D",
+    "src": "total shrinkage / FSP 30 % (linear between 0 and FSP; percent of green dimension per 1 % MC)"
+   }
+  },
+  "viscoelastic": {
+   "log_decrement": {
+    "v": [
+     0.02,
+     0.1
+    ],
+    "q": "M",
+    "src": "FPL190C5 internal friction: ~0.1 hot moist wood, < 0.02 hot dry; cool wood intermediate"
+   },
+   "damping_ratio": {
+    "v": 0.008,
+    "q": "D",
+    "src": "log decrement ~0.05 (cool wood) / 2 pi"
+   },
+   "creep_note": {
+    "v": "sustained load deflects ~1.5-2x the elastic value over years at constant 12 % MC (more when MC cycles)",
+    "q": "E",
+    "src": "FPL190C5 creep section (general statement, species not separated)"
+   }
+  },
+  "speed_of_sound_along_m_s": {
+   "v": 4432,
+   "q": "D",
+   "src": "sqrt(E_L / rho)"
+  },
+  "sim": {
+   "_": "Stiff orthotropic solid: at character scale treat a wood object as rigid for contact; use E_L/E_R/E_T for bending and fracture of thin members (boards, sticks).",
+   "xpbd_compliance_L_1_Pa": {
+    "v": 7.22e-11,
+    "q": "D",
+    "src": "1 / E_L"
+   },
+   "xpbd_compliance_T_1_Pa": {
+    "v": 1.11e-09,
+    "q": "D",
+    "src": "1 / E_T"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.172,
+   "q": "D",
+   "src": "FPL190C4 k = G(B + C M) + A, G 0.63, M 12, B 0.1941, C 0.004064, A 0.01864 W/mK (across the grain)"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1620.0,
+   "q": "D",
+   "src": "FPL190C4 c0 = 0.1031 + 0.003867 T (kJ/kgK, T K), moist c = (c0 + 0.01 M cw)/(1 + 0.01 M) + Ac, Ac = M(b1 + b2 T + b3 M), 20 C, 12 %"
+  },
+  "effusivity": {
+   "v": 443,
+   "q": "D",
+   "src": "sqrt(k rho c) = sqrt(0.172 x 706 x 1621) W s^0.5 m^-2 K^-1"
+  },
+  "contact_temp_with_skin_C": {
+   "v": 29.5,
+   "q": "D",
+   "src": "SKINTH: T = (e_skin 33 + e 20)/(e_skin + e), skin 33 C on material 20 C, e_skin = 1188 (sqrt(0.37 x 1090 x 3500)); lower = feels colder"
+  },
+  "emissivity": {
+   "v": 0.9,
+   "q": "E",
+   "src": "wood emissivity ~0.9 (common IR tables)"
+  },
+  "conductivity_along_grain_W_mK": {
+   "v": 0.343,
+   "q": "D",
+   "src": "x2.0 of the transverse value: FPL190C4 says longitudinal conductivity is ~1.5-2.8 x transverse (mid value)"
+  }
+ },
+ "states": {
+  "mc12": {
+   "set": {},
+   "_": "the base: 12 % MC, dry to the touch"
+  },
+  "green": {
+   "set": {
+    "deform.orthotropic.E_L_GPa": 11.8,
+    "deform.density_kg_m3": 952
+   },
+   "q": "D",
+   "src": "FPL190C5 Table 5-3a green MOE 10700 MPa x 1.1; density SG_green 0.56 x (1 + ~70 % MC) (E for the MC; green MC varies 40-200 %)"
+  },
+  "wet_surface": {
+   "set": {
+    "contact.friction.static.v.dry": 0.6,
+    "surface.alpha": 0.2
+   },
+   "q": "E",
+   "src": "surface water film: friction rises toward the near-FSP band then drops with free water (FPL190C4); a water film smooths the look (darker, glossier: water fills the surface pores, n 1.33 over the fibres)"
+  },
+  "soaked": {
+   "set": {
+    "deform.orthotropic.E_L_GPa": 11.8
+   },
+   "q": "D",
+   "src": "above FSP stiffness drops to the green value (FPL190C5); swells by the full shrinkage"
+  },
+  "finished_gloss": {
+   "set": {
+    "surface.alpha": 0.05,
+    "surface.n": 1.5,
+    "contact.wetting.water_contact_angle_deg": [
+     70,
+     95
+    ]
+   },
+   "q": "E",
+   "src": "clear film finish (MARSCHNER05 coat model)"
+  }
+ },
+ "sources": {
+  "FPL190C5": {
+   "cite": "Kretschmann DE. Mechanical properties of wood. Ch. 5 in Wood Handbook, FPL-GTR-190, USDA Forest Products Laboratory (2010)",
+   "url": "https://www.fpl.fs.usda.gov/documnts/fplgtr/fplgtr190/chapter_05.pdf (read 11-07 via the CEDengineering reprint S04-019)",
+   "lic": "US government work, public domain"
+  },
+  "FPL190C4": {
+   "cite": "Glass SV, Zelinka SL. Moisture relations and physical properties of wood. Ch. 4 in Wood Handbook, FPL-GTR-190 (2010)",
+   "url": "https://www.fpl.fs.usda.gov/documnts/fplgtr/fplgtr190/chapter_04.pdf",
+   "lic": "US government work, public domain"
+  },
+  "EESHRINK": {
+   "cite": "Engineers Edge, Shrinkage values of domestic hardwoods/softwoods (reprint of Wood Handbook Table 4-3, green to ovendry)",
+   "url": "https://www.engineersedge.com/civil_engineering/shrinkage_values_of_domestic_hardwoods_9997.htm",
+   "lic": "free web page; numbers are facts from the public-domain Wood Handbook (re-read 11-08: R and T for white oak, northern red oak, sugar maple, black walnut, loblolly and eastern white pine match; the page has no volumetric column)"
+  },
+  "MARKS": {
+   "cite": "Morin's friction tests (1830s) as tabulated in Marks' Standard Handbook for Mechanical Engineers, 'Coefficients of static and sliding friction'",
+   "url": "",
+   "lic": "paywalled handbook; numbers used as facts"
+  },
+  "ETB": {
+   "cite": "The Engineering ToolBox, Friction and friction coefficients for some common materials",
+   "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+   "lic": "free web reference; numbers used as facts (friction table re-read 11-08)"
+  },
+  "ALPHALAB": {
+   "cite": "Lee B / AlphaLab Inc. (TriField) triboelectric table, charge affinity nC/J (positive = charges +)",
+   "url": "https://www.trifield.com/content/tribo-electric-series/ (read via storiesinfabric.blogspot.com reprint 11-07)",
+   "lic": "free web table; numbers used as facts"
+  },
+  "MARSCHNER05": {
+   "cite": "Marschner SR, Westin SH, Arbree A, Moon JT. Measuring and modeling the appearance of finished wood. ACM TOG 24(3):727-734 (SIGGRAPH 2005)",
+   "url": "https://doi.org/10.1145/1073204.1073254",
+   "lic": "paywalled; findings used"
+  },
+  "SKINTH": {
+   "cite": "skin thermal inputs for contact temperature: k 0.37 W/mK, c 3500 J/kgK (Duck 1990 tissue tables, typical), rho 1090 from skin.body",
+   "url": "",
+   "lic": "numbers used as facts"
+  }
+ }
+}

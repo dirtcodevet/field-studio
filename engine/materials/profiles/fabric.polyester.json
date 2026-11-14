@@ -1,0 +1,447 @@
+{
+ "id": "fabric.polyester",
+ "kind": "fabric",
+ "family": "fabric",
+ "_": "Woven 100 % polyester (PET) plain weave, spun or filament, light dress / lining weight ~100-130 g/m2. Hydrophobic, low regain, charges strongly, dries fast. The bending / shear values are measured on 100 % PET 30 Ne plain weaves (IJFTR44, read via a search summary).",
+ "surface": {
+  "alpha": {
+   "v": {
+    "spun": 0.6,
+    "filament": 0.35
+   },
+   "q": "E",
+   "src": "filament polyester can be glossy (satin linings far smoother); no BRDF fit retrieved"
+  },
+  "n": {
+   "v": 1.631,
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 mean of 1.725 / 1.537; the fibre highlight is brighter than cotton's (F0 0.057 vs 0.047)"
+  },
+  "F0": {
+   "v": 0.0575,
+   "q": "D",
+   "src": "((n - 1) / (n + 1))^2 at n = mean 1.631"
+  },
+  "sheen": {
+   "v": "moderate for filament yarns, plasticky",
+   "q": "E",
+   "src": "qualitative"
+  }
+ },
+ "optics_summary": {
+  "fibre_n": {
+   "v": {
+    "parallel": 1.725,
+    "perpendicular": 1.537
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 PET 1.725 / 1.537 (recalled; the brief's 1.54 / 1.72, strongly birefringent)"
+  },
+  "wet_darkening": {
+   "v": "weak: water stays between the yarns, not inside the fibre",
+   "q": "E",
+   "src": "PET absorbs ~0.4 % water (ASTMD1909); the film effect (LEKNER88) still darkens spun fabric"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": 0.4,
+     "wet": 0.45
+    },
+    "q": "E",
+    "src": "fabric band 0.2-0.6; one ASTM D1894 study found polyester higher than viscose (JTATM 7307, search summary)"
+   },
+   "kinetic": {
+    "v": {
+     "dry": 0.34,
+     "wet": 0.38
+    },
+    "q": "E",
+    "src": "x ~0.85"
+   },
+   "counterface": "fabric-on-fabric (E)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": {
+     "total": 44,
+     "dispersive": 40,
+     "polar": 4
+    },
+    "q": "E",
+    "src": "E: recalled from textbook / trade ranges, not re-read: PET film, Owens-Wendt (literature values recalled, not retrieved)"
+   }
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": [
+     70,
+     80
+    ],
+    "q": "E",
+    "src": "E: recalled from textbook / trade ranges, not re-read: PET film / fibre (recalled; a search summary calls PET highly hydrophobic with 0.4 % regain)"
+   }
+  },
+  "moisture_regain_pct": {
+   "v": 0.4,
+   "q": "M",
+   "src": "ASTMD1909"
+  },
+  "water_absorption": {
+   "v": {
+    "drip_saturated_pct": [
+     30,
+     80
+    ]
+   },
+   "q": "E",
+   "src": "only capillary water between fibres; spins out to ~10 %"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "position": "negative (charges - against skin, nylon, wool, cotton)",
+     "affinity_nC_J": -40
+    },
+    "q": "E",
+    "src": "E: recalled from textbook / trade ranges, not re-read: ordinal series place PES negative (search summaries); -40 nC/J recalled from ALPHALAB, not re-read"
+   },
+   "surface_resistivity_ohm_sq": {
+    "v": {
+     "rh35": 1000000000000000.0,
+     "rh65": 100000000000000.0,
+     "antistat_finished": 10000000000.0
+    },
+    "q": "E",
+    "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: hydrophobic: little humidity dependence; finishes lower it (MORTON08 recalled)"
+   },
+   "charge_decay_s": {
+    "v": {
+     "rh35": [
+      10,
+      1000
+     ]
+    },
+    "q": "E",
+    "src": "slow decay is why PES clings and sparks; order of magnitude"
+   }
+  },
+  "abrasion": {
+   "v": {
+    "martindale_rubs": [
+     40000,
+     80000
+    ]
+   },
+   "q": "E",
+   "src": "TYPICAL: strong fibre"
+  },
+  "pilling": {
+   "v": "high for spun PES (pills are anchored by the strong fibre and do not fall off)",
+   "q": "E",
+   "src": "TYPICAL"
+  },
+  "solver": {
+   "phase": "cloth",
+   "collision_thickness_mm": {
+    "v": 0.12,
+    "q": "D",
+    "src": "half of T0 0.24 mm at 0.5 gf/cm2 (typical light woven, not measured; inputs E)"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 80.9,
+     "q": "D",
+     "src": "KES-FB3 secant: (4.903 - 0.049) kPa / (T0 0.24 - Tm 0.18) mm (typical light woven, not measured; inputs E)"
+    },
+    "initial_stiffness_kPa_per_mm": {
+     "v": 26.7,
+     "q": "D",
+     "src": "secant x LC 0.33: LC < 1 means the pile is soft first then stiffens as fibres pack"
+    },
+    "compressible_to_fraction": {
+     "v": 0.75,
+     "q": "D",
+     "src": "Tm / T0 at 50 gf/cm2 (~5 kPa, a firm press or sitting); beyond it the fibres themselves resist (fibre modulus, GPa)"
+    },
+    "ramp": "barrier_log",
+    "ramp_note": "stiffening ramp (LC < 1): IPC log barrier starting at collision_thickness, or a two-slope ramp initial -> secant",
+    "contact_damping_ratio": {
+     "v": 0.04,
+     "q": "D",
+     "src": "(1 - RC 50 %) / (4 pi): energy lost per press-release cycle; RC from typical light woven, not measured"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.05,
+     "q": "E",
+     "src": "a cloth layer dropped or slapped on a rigid flat does not bounce: energy goes into bending and fibre friction (no measurement found)"
+    },
+    "response_time_ms": {
+     "v": [
+      2,
+      10
+     ],
+     "q": "E",
+     "src": "a cloth flap / slap reads as a short damped crack; set by the in-plane wave crossing a ~0.3 m panel at the speeds below plus bending"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "longitudinal_warp": 326,
+      "shear": 12.5
+     },
+     "q": "D",
+     "src": "sqrt(stretch_N_m 12257 / mass 0.115 kg/m2) and sqrt(shear_N_m_rad 18.0 / mass); transverse (flutter) speed is sqrt(tension / mass) and depends on load"
+    },
+    "damping_ratio": {
+     "v": 0.036,
+     "q": "D",
+     "src": "(1 - RT 55 %) / (4 pi) tensile loss"
+    }
+   },
+   "self_contact": {
+    "friction_static": {
+     "v": 0.4,
+     "q": "E",
+     "src": "= contact.friction.static dry (fabric-on-fabric, same fabric)"
+    },
+    "friction_kinetic": {
+     "v": 0.34,
+     "q": "E",
+     "src": "= contact.friction.kinetic dry"
+    },
+    "min_separation_mm": {
+     "v": 0.24,
+     "q": "D",
+     "src": "two half-thicknesses: folded layers rest T0 apart at light pressure, Tm under ~5 kPa"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": "cloth",
+  "density_kg_m3": {
+   "v": 480,
+   "q": "D",
+   "src": "apparent 115 g/m2 / 0.24 mm (E)"
+  },
+  "fibre_density_kg_m3": {
+   "v": 1380,
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 PET 1.38 (recalled)"
+  },
+  "areal_density_g_m2": {
+   "v": 115,
+   "q": "E",
+   "src": "light woven"
+  },
+  "thickness_mm": {
+   "v": 0.24,
+   "q": "E",
+   "src": "typical"
+  },
+  "tensile": {
+   "EMT_pct": {
+    "v": {
+     "warp": 4,
+     "weft": 5
+    },
+    "q": "E",
+    "src": "not retrieved"
+   },
+   "RT_pct": {
+    "v": 55,
+    "q": "E",
+    "src": "PET recovers well, wrinkle-resistant"
+   }
+  },
+  "bending_rigidity_gfcm2_cm": {
+   "v": 0.019,
+   "q": "M",
+   "src": "IJFTR44 100 % PET 30 Ne plain weave, 0.018-0.019 (via search summary; direction not stated)"
+  },
+  "bending_rigidity_uNm": {
+   "v": 1.86,
+   "q": "D",
+   "src": "UNITS x 98.07"
+  },
+  "shear_rigidity_N_m_deg": {
+   "v": {
+    "G_gf_cm_deg": 0.32
+   },
+   "q": "M",
+   "src": "IJFTR44 100 % PET 30 Ne, 0.31-0.33"
+  },
+  "drape_coefficient_pct": {
+   "v": [
+    35,
+    55
+   ],
+   "q": "E",
+   "src": "SANAD16 scale; low B and G drape well"
+  },
+  "poisson": {
+   "v": {
+    "small_strain": [
+     0.15,
+     0.35
+    ]
+   },
+   "q": "E",
+   "src": "not found"
+  },
+  "recovery": {
+   "v": "good: creases fall out; heat-set pleats are permanent (thermoplastic, Tg ~70-80 C)",
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 (recalled)"
+  },
+  "sim": {
+   "_": "Per unit width / area; for a triangle mesh with edge length h, spring k_edge ~ k_membrane (square cells) and XPBD compliance alpha = 1/k. Secant to the KES maximum load: the real curve is soft-then-stiff (toe region), so use these as the stiff branch and ~1/3 of it below 1 % strain unless a curve is fitted",
+   "stretch_N_m": {
+    "v": {
+     "warp": 12258,
+     "weft": 9807
+    },
+    "q": "D",
+    "src": "UNITS 490.3 N/m / EMT (4 / 5 %) from E EMT"
+   },
+   "stretch_compliance_m_N": {
+    "v": {
+     "warp": 8.16e-05,
+     "weft": 0.000102
+    },
+    "q": "D",
+    "src": "1 / stretch_N_m"
+   },
+   "bend_uNm": {
+    "v": {
+     "warp": 1.86,
+     "weft": 1.86
+    },
+    "q": "D",
+    "src": "UNITS B x 98.07 from IJFTR44"
+   },
+   "bend_compliance_1_per_Nm": {
+    "v": {
+     "warp": 537000.0,
+     "weft": 537000.0
+    },
+    "q": "D",
+    "src": "1 / bend (N m per unit width); a dihedral constraint's compliance scales with edge length / area of the hinge"
+   },
+   "shear_N_m_rad": {
+    "v": 18.0,
+    "q": "D",
+    "src": "UNITS G x 56.19 from IJFTR44"
+   },
+   "shear_compliance_m_N": {
+    "v": 0.0556,
+    "q": "D",
+    "src": "1 / shear_N_m_rad"
+   },
+   "bending_length_cm": {
+    "v": {
+     "warp": 1.18,
+     "weft": 1.18
+    },
+    "q": "D",
+    "src": "c = (B / W)^(1/3), B gf cm2/cm, W gf/cm2 (Peirce cantilever relation): the cantilever check a sim should reproduce"
+   },
+   "mass_per_area_kg_m2": {
+    "v": 0.115,
+    "q": "D",
+    "src": "areal_density_g_m2 / 1000"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.045,
+   "q": "E",
+   "src": "TYPICAL"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1300,
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: PET ~1.2-1.35 (recalled)"
+  },
+  "effusivity": {
+   "v": 168,
+   "q": "D",
+   "src": "sqrt(0.045 x 480 x 1300)"
+  },
+  "emissivity": {
+   "v": 0.9,
+   "q": "E",
+   "src": "TYPICAL"
+  },
+  "melt_C": {
+   "v": 255,
+   "q": "E",
+   "src": "E: recalled from textbook / trade ranges, not re-read: PET melts ~250-260 C (recalled): melts and drips rather than chars"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {}
+  },
+  "wet": {
+   "set": {
+    "deform.areal_density_g_m2": 175,
+    "deform.bending_rigidity_gfcm2_cm": 0.017
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: KIM85: polyester fabric bending rigidity and hysteresis FALL with water content (direction M, size E ~-10 %); strength unchanged wet (MORTON08 recalled); little mass gain"
+  }
+ },
+ "sources": {
+  "IJFTR44": {
+   "cite": "Plain-woven 100 % cotton, 100 % polyester and 50:50 blend fabrics (15 samples), KES-FB bending and shear. Indian J Fibre Text Res 44(1):9-15 (2019); read through a search summary only (B 0.018-0.119 gf cm2/cm, G 0.31-4.15 gf/cm deg; 100 % PET 30 Ne: B 0.018-0.019, G 0.31-0.33)",
+   "url": "https://www.scribd.com/document/447021025/IJFTR-44-1-9-15",
+   "lic": "open access journal; full text not opened here; numbers used as facts"
+  },
+  "ASTMD1909": {
+   "cite": "ASTM D1909-13(2020)e1 Standard tables of commercial moisture regains for textile fibres (cotton 8.5, wool 13.6, silk 11, flax 12, nylon 4.5, polyester 0.4 %); read through a CC BY review table citing it (Bioresour Bioprocess 2020, 10.1186/s40643-020-00339-1 Table 10) and the ASTM catalogue abstracts. Commercial (agreed) regains, close to equilibrium at 65 % RH, 21 C",
+   "url": "https://store.astm.org/d1909-13.html",
+   "lic": "paywalled standard; the numbers are facts"
+  },
+  "KIM85": {
+   "cite": "Kim S-G. Effect of water on the bending properties of wool, polyester and wool-polyester blended fabrics. Textile Science and Engineering (Korea) 22(3):43-52 (1985). Abstract only: bending rigidity of wool and blends rises slightly with water content; polyester falls; bending hysteresis of wool rises steeply up to wool's maximum regain then levels",
+   "url": "https://koreascience.kr/article/JAKO198511919981408.page",
+   "lic": "abstract read; full text not opened; direction of the effect used"
+  },
+  "LEKNER88": {
+   "cite": "Lekner J, Dorf MC. Why some things are darker when wet. Appl Opt 27(7):1278-1280 (1988): a water film's total internal reflection returns diffuse light to an absorbing surface for another chance of absorption (Angstrom), plus a lower relative index inside",
+   "url": "https://www.wgtn.ac.nz/scps/staff/pdf/darkerwhenwet.pdf",
+   "lic": "paywalled journal; author copy; formula used, text studied only"
+  },
+  "SANAD16": {
+   "cite": "Sanad RA, Cassidy T. Fabric objective measurement and drape. Textile Progress 47(4):317-406 (2016): Cusick drape, 18 cm disc / 30 cm sample gives DC 30-98 % from limp to stiff; specimen 24 cm when DC < 30 %, 36 cm when > 85 %",
+   "url": "https://eprints.whiterose.ac.uk/93388/",
+   "lic": "accepted version, all rights reserved; studied, ranges used as facts"
+  },
+  "MORTON08": {
+   "cite": "Morton WE, Hearle JWS. Physical Properties of Textile Fibres, 4th ed. Woodhead (2008): fibre densities, refractive indices, moduli, wet/dry strength, electrical resistance. Recalled; not re-opened in this session",
+   "url": "https://doi.org/10.1533/9781845694425",
+   "lic": "copyrighted book; individual numbers as facts; recalled, so marked E"
+  },
+  "ALPHALAB": {
+   "cite": "AlphaLab Inc. (W. Lee) triboelectric table, charge affinity nC/J at ~22 C, 35 % RH (2009); cotton +5, wool 0 read from secondary copies (blog / Scribd); nylon listed with dry skin at +30",
+   "url": "https://storiesinfabric.blogspot.com/2013/11/taken-from-httpwwwtrifieldcomcontenttri.html",
+   "lic": "(c) AlphaLab, may be reproduced only whole; single numbers used as facts, table not copied"
+  },
+  "UNITS": {
+   "cite": "Unit conversions done here: 1 gf = 9.80665 mN; KES B gf cm2/cm x 98.07 = uN m per unit width; KES G gf/(cm deg) x 56.19 = N/m per rad; KES-FB1 standard max load 500 gf/cm = 490.3 N/m; 1 oz/yd2 = 33.906 g/m2; 1 momme = 4.306 g/m2; 1 ft3/ft2/min (ASTM D737, 125 Pa) = 5.08 mm/s",
+   "url": "",
+   "lic": "definitions"
+  },
+  "TYPICAL": {
+   "cite": "Trade and textbook typical values (fabric weight classes, Martindale rating bands such as EN 14465 upholstery 'heavy domestic' >= 25 000 rubs, fabric emissivity ~0.9, effective fabric conductivity dominated by trapped air 0.03-0.06 W/mK). Used only where no measured value was retrieved; each use says why",
+   "url": "",
+   "lic": "general knowledge; marked E"
+  }
+ }
+}

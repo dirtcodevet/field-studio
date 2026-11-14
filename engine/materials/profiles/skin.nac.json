@@ -1,0 +1,448 @@
+{
+ "id": "skin.nac",
+ "kind": "layered_tissue",
+ "family": "human_soft",
+ "_": "Nipple-areola skin: glabrous (or nearly), pigmented, keratinised skin over a dermis full of smooth muscle (an areolar muscle ~2 mm thick at the nipple base tapering to the limbus; circular and radial fibres), with no fat directly beneath; Montgomery tubercles (sebaceous). Two responses: smooth-muscle contraction (cold, touch: areola shrinks and wrinkles, nipple rises) and a vascular response (vasocongestion: nipple lengthens and widens, areola swells). Values for an adult woman, not lactating. SKIN lane 11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.2,
+   "q": "E",
+   "src": "NACJSON roughness: areola 0.36-0.52, skin 0.45 (Principled, look-tuned on NAC2, not measured) -> GGX alpha = r^2 ~0.13-0.27"
+  },
+  "n": {
+   "v": 1.4,
+   "q": "E",
+   "src": "as skin.body"
+  }
+ },
+ "form": {
+  "areola_diameter_mm": {
+   "v": [
+    30,
+    45
+   ],
+   "q": "M",
+   "src": "BNAC N1 (strong for 30-45; centre 35-40)"
+  },
+  "nipple_diameter_mm": {
+   "v": [
+    10,
+    13
+   ],
+   "q": "M",
+   "src": "BNAC N3"
+  },
+  "nipple_height_mm": {
+   "v": [
+    6.5,
+    9
+   ],
+   "q": "M",
+   "src": "BNAC N4"
+  },
+  "areolar_muscle_mm_at_nipple_base": {
+   "v": 2.0,
+   "q": "M",
+   "src": "BNAC S1 (Petrovic 2022, citing Rieffel), tapering to the limbus"
+  },
+  "tubercles": {
+   "v": {
+    "count": [
+     3,
+     8
+    ],
+    "size_mm": [
+     1,
+     2
+    ]
+   },
+   "q": "M",
+   "src": "BNAC section 4 / Part 3"
+  }
+ },
+ "contact": {
+  "friction": {
+   "kinetic": {
+    "v": {
+     "dry": 0.5,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "E",
+    "src": "as skin.body (no NAC friction found)"
+   },
+   "static": {
+    "v": {
+     "dry": 0.5,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "E",
+    "src": "static taken equal to kinetic (skin friction is reported almost only as dynamic)"
+   },
+   "counterface": "smooth hard probe as skin.body unless stated"
+  },
+  "adhesion": {
+   "tack": {
+    "v": "Montgomery tubercles secrete a sebaceous lubricant (more in pregnancy / lactation)",
+    "q": "M",
+    "src": "BNAC S1/S2 (qualitative)"
+   }
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "dry_skin_nC_J": 30,
+     "oily_skin_nC_J": 45,
+     "position": "near the positive end (gives up electrons): above nylon-class, below polyurethane foam"
+    },
+    "q": "M",
+    "src": "ALPHALAB09 rows 'Nylon, dry skin' +30 and 'Hair, oily skin' +45 nC/J (72 F, 35 % RH); skin is conductive, so metal rubbing cannot charge it"
+   }
+  },
+  "solver": {
+   "phase": "soft_solid",
+   "collision_thickness_mm": {
+    "v": 0.06,
+    "q": "E",
+    "src": "the epidermis"
+   },
+   "compliance_layers": [
+    {
+     "name": "epidermis",
+     "thickness_mm": {
+      "v": 0.06,
+      "q": "M",
+      "src": "areola epidermis not measured; ridges 'more developed than breast skin' (BNAC S1); default 60 um E"
+     },
+     "E_kPa": {
+      "v": 4000.0,
+      "q": "M",
+      "src": "FENG22 OCE forearm incl. stratum corneum (small strain)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.9,
+      "q": "E",
+      "src": "a stiff thin shell: thins little under contact (E)"
+     }
+    },
+    {
+     "name": "dermis_with_smooth_muscle",
+     "thickness_mm": {
+      "v": 2.0,
+      "q": "M",
+      "src": "BNAC S1 areolar muscle ~2 mm at the nipple base (dermis and muscle together)"
+     },
+     "E_kPa": {
+      "v": 20.0,
+      "q": "E",
+      "src": "relaxed smooth muscle in dermis: softer than the dermis's 40 kPa when relaxed; several-fold stiffer when contracted (E: no NAC modulus found)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.8,
+      "q": "E",
+      "src": "E"
+     }
+    },
+    {
+     "name": "gland_and_ducts",
+     "thickness_mm": {
+      "v": 20.0,
+      "q": "E",
+      "src": "retro-areolar gland / ducts, ~2 cm (E)"
+     },
+     "E_kPa": {
+      "v": 31.5,
+      "q": "M",
+      "src": "SOFTTISSUE R2 via R3: breast gland ex vivo 28-35 kPa at 5 % precompression (in vivo whole breast E 0.2-3 kPa, R9/R10: far softer)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.5,
+      "q": "E",
+      "src": "E"
+     }
+    },
+    {
+     "name": "breast_fat",
+     "thickness_mm": {
+      "v": 20.0,
+      "q": "E",
+      "src": "varies by breast size (E)"
+     },
+     "E_kPa": {
+      "v": 20.0,
+      "q": "M",
+      "src": "SOFTTISSUE R2 via R3: breast fat 18-22 kPa ex vivo at 5 % precompression"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.4,
+      "q": "E",
+      "src": "E"
+     }
+    },
+    {
+     "name": "chest_wall",
+     "thickness_mm": {
+      "v": 0.0,
+      "q": "E",
+      "src": "pectoralis on ribs: treat as a stiff floor for local contact"
+     },
+     "E_kPa": {
+      "v": 62.2,
+      "q": "E",
+      "src": "muscle in vivo (SOFTTISSUE R31) - not rigid"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.5,
+      "q": "E",
+      "src": "E"
+     }
+    }
+   ],
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 0.576,
+     "q": "D",
+     "src": "series stack of compliance_layers: E_eff = T / sum(t_i / E_i) = 24.24 kPa over T 42.06 mm, / T; initial (small-strain) value; each layer stiffens with strain (the smooth muscle's contraction state sets the dermal stiffness (states))"
+    },
+    "E_eff_kPa": {
+     "v": 24.24,
+     "q": "D",
+     "src": "series stack of compliance_layers (initial)"
+    },
+    "ramp": {
+     "v": "barrier_log",
+     "q": "E",
+     "src": "IPC-style log barrier inside collision_thickness keeps surfaces apart; the tissue's own stiffening (exponential in strain) carries the load beyond it"
+    },
+    "contact_damping_ratio": {
+     "v": [
+      0.07,
+      0.22
+     ],
+     "q": "M",
+     "src": "SOFTTISSUE M17/M18 breast damping"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.3,
+     "q": "E",
+     "src": "soft breast behind: low"
+    },
+    "response_time_ms": {
+     "v": {
+      "breast_ring_down_s": [
+       0.3,
+       0.9
+      ],
+      "breast_frequency_hz": [
+       2,
+       7
+      ]
+     },
+     "q": "M",
+     "src": "SOFTTISSUE M17/M18 (whole breast)"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "dermis_relaxed_shear": 2.47
+     },
+     "q": "D",
+     "src": "sqrt(G / rho), G = 20 / 3 kPa (E inside)"
+    },
+    "damping_ratio": {
+     "v": [
+      0.07,
+      0.22
+     ],
+     "q": "M",
+     "src": "SOFTTISSUE M17/M18 breast damping"
+    }
+   },
+   "membrane_stiffness_N_m": {
+    "v": 40.0,
+    "q": "D",
+    "src": "E x t = 20 kPa x 2 mm relaxed (E inside D); contracted several-fold higher"
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "neo_hookean",
+   "q": "E",
+   "src": "with an active (smooth muscle) state; no NAC fit found"
+  },
+  "density_kg_m3": {
+   "v": 1090,
+   "q": "E",
+   "src": "as skin.body"
+  },
+  "E_kPa": {
+   "v": null,
+   "q": "E",
+   "src": "not found: no in vivo modulus for areola or nipple"
+  },
+  "poisson": {
+   "v": 0.5,
+   "q": "E",
+   "src": "incompressible"
+  },
+  "stretch": {
+   "v": {
+    "vascular_response_nipple_length_mm": [
+     5,
+     10
+    ],
+    "vascular_response_base_widening_mm": [
+     2.5,
+     5
+    ],
+    "height_factor": [
+     1.6,
+     2.5
+    ]
+   },
+   "q": "M",
+   "src": "BNAC E11 (S4 via S5, weak): own stretch, not skin.body's"
+  },
+  "active_contraction": {
+   "v": {
+    "cold_nipple_height_gain_mm": 0.59,
+    "cold_nipple_height_factor": 1.13,
+    "cold_areola_diameter_factor": 0.96,
+    "controls_height_factor": 1.08
+   },
+   "q": "M",
+   "src": "BNAC E9/E10 (S3 Remy 2025, free nipple grafts: a floor for native NACs)"
+  },
+  "viscoelastic": {
+   "recovery": {
+    "v": null,
+    "q": "E",
+    "src": "not found: time course of NAC detumescence / relaxation; on fast detumescence the areola corrugates (BNAC S4 via S5, qualitative)"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.37,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 0.372 W/mK (SD 0.059, 8 studies, range 0.322-0.498); 0.37 kept"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 3391,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 3390.5 J/kgK (SD 233, 4 studies, 3150-3662)"
+  },
+  "density_kg_m3": {
+   "v": 1109,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 1109 kg/m3 (SD 38, n 10, 1100-1125); ICRU44 ~1090: recalled, not re-read"
+  },
+  "effusivity": {
+   "v": 1180,
+   "q": "D",
+   "src": "sqrt(k rho c) from the three ITIS values above, J m-2 K-1 s-1/2 (the 'feels warm/cold' number)"
+  },
+  "emissivity": {
+   "v": 0.98,
+   "q": "M",
+   "src": "STEKETEE73 abstract re-read 11-08 (paper paywalled; abstract text via a reproduction): skin 0.98 +/- 0.01, independent of wavelength over the measured 1-14 um; white, black and burnt skin measured (normal = burnt); separate per-pigment values are not given in the abstract"
+  }
+ },
+ "states": {
+  "relaxed": {
+   "set": {},
+   "_": "the base"
+  },
+  "contracted_cold_touch": {
+   "set": {
+    "form.areola_scale": 0.96,
+    "form.nipple_height_factor": 1.13
+   },
+   "q": "M",
+   "src": "BNAC E9/E10 (grafts, floor); NACJSON's NAC2 look uses areola 0.82 / projection x1.35 + 1.5 mm (EST, the accepted look)"
+  },
+  "vascular_response": {
+   "set": {
+    "form.nipple_height_factor": 2.0,
+    "form.nipple_base_add_mm": 3.5
+   },
+   "q": "M",
+   "src": "BNAC E11 (+5-10 mm length, +2.5-5 mm base; mid values)"
+  }
+ },
+ "sources": {
+  "ALPHALAB09": {
+   "cite": "AlphaLab Inc. (W. Lee). The TriboElectric Series, charge affinity in nC/J, 72 F, 35 % RH (2009)",
+   "url": "https://www.trifield.com/content/tribo-electric-series/",
+   "lic": "(c) AlphaLab 2009; two entries used as facts, table not copied"
+  },
+  "BNAC": {
+   "cite": "the project's research note breast_nac.md (Part 3 NACSS: S1 Petrovic 2022 smooth muscle, S3 Remy 2025 cold response, S4/S5 vascular response; N rows sizes)",
+   "url": "the project's research note breast_nac.md",
+   "lic": "project file"
+  },
+  "FENG22": {
+   "cite": "Feng X, Li GY, Ramier A, Eltony AM, Yun SH. In vivo stiffness measurement of epidermis, dermis, and hypodermis using broadband Rayleigh-wave OCE. Acta Biomater (2022); arXiv:2201.12258 (via params/skin_layers.json)",
+   "url": "https://arxiv.org/abs/2201.12258",
+   "lic": "arXiv; numbers used as facts, text studied only"
+  },
+  "ICRU44": {
+   "cite": "ICRU Report 44 (1989), densities as listed by NIST X-Ray Mass Attenuation Coefficients Table 2",
+   "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/tab2.html",
+   "lic": "NIST page, US government work"
+  },
+  "ITIS": {
+   "cite": "Baumgartner C, Hasgall PA, Di Gennaro F, Neufeld E, Lloyd B, Gosselin MC, Payne D, Klingenboeck A, Kuster N. IT'IS Database for thermal and electromagnetic parameters of biological tissues, Version 5.0, Aug 21 2025, DOI 10.13099/VIP21000-05-0 (average values; the live tables re-read 11-08: the 2024-06-04 and 2025-08-21 table files give the same skin, fat and muscle rows)",
+   "url": "https://itis.swiss/virtual-population/tissue-properties/database",
+   "lic": "IT'IS legal notice (read 11-08): web pages and documents may be copied only for private, scientific and noncommercial use; storing them on other servers or data carriers needs written consent: STUDY ONLY (P13). Individual averages used as facts with this citation; the table is never copied in bulk"
+  },
+  "LAYERS": {
+   "cite": "the project's parameter file skin_layers.json (per-region epidermis and dermis thickness, OCE moduli)",
+   "url": "the project's parameter file skin_layers.json",
+   "lic": "project file"
+  },
+  "NACJSON": {
+   "cite": "the project's parameter file nac.json (NAC Studio rows; NAC2 accepted look, mostly EST)",
+   "url": "the project's parameter file nac.json",
+   "lic": "project presets"
+  },
+  "SOFTTISSUE": {
+   "cite": "the project's research note soft_tissue.md (project research file; its R-keys name the primary papers: R20 Boyer 2012, R21, R25, R31 gluteal ultrasound + compression, R32/R33 seated MRI + FE, R42 Korean biopsies, R43 skin US, R44 fat/muscle US, M31 drop landing)",
+   "url": "the project's research note soft_tissue.md",
+   "lic": "project file; primary licences as listed there"
+  },
+  "STEKETEE73": {
+   "cite": "Steketee J. Spectral emissivity of skin and pericardium. Phys Med Biol 18:686-694 (1973)",
+   "url": "https://doi.org/10.1088/0031-9155/18/5/307",
+   "lic": "paywalled; abstract re-read 11-08 via a reproduction (Europe PMC has no abstract); numbers used as facts, text studied only"
+  }
+ }
+}

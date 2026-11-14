@@ -1,0 +1,482 @@
+{
+ "id": "metal.aluminium",
+ "kind": "rigid_solid",
+ "family": "metal",
+ "_": "Aluminium alloy 6061-T6 (Al-Mg-Si, solution treated and aged) at room temperature, bare machined / brushed, with its natural few-nm oxide: frames, rails, tools, furniture, fittings, bike parts. Anodised, polished and weathered as states. Partners research lane 11-07 (PARTNERS.md).",
+ "surface": {
+  "alpha": {
+   "v": {
+    "brushed": 0.2,
+    "machined": 0.12,
+    "polished": 0.02,
+    "bead_blasted": 0.45
+   },
+   "q": "E",
+   "src": "Ra by finish as for steel; brushed is anisotropic along the lines; no measured BRDF fit found"
+  },
+  "n": {
+   "v": {
+    "n": 0.965,
+    "k": 6.4
+   },
+   "q": "M",
+   "src": "RAKIC98 Brendel-Bormann data file re-read 11-08 (refractiveindex.info database main/Al/nk/Rakic-BB.yml, CC0): 0.54147 um n 0.935 k 6.310, 0.56452 um n 1.016 k 6.552, interpolated at 550 nm n 0.965, k 6.40 (the Lorentz-Drude fit Rakic-LD gives 0.967 / 6.46); corrected from n 0.96, k 6.69 (k 6.69 sits near 570 nm)"
+  },
+  "F0": {
+   "v": 0.914,
+   "q": "D",
+   "src": "((n-1)^2 + k^2)/((n+1)^2 + k^2) at 550 nm with n 0.965, k 6.40 (recomputed 11-08 after the n,k correction; was 0.921): the brightest common metal, near-neutral (slight dip ~800 nm)"
+  },
+  "F0_rgb": {
+   "v": [
+    0.913,
+    0.922,
+    0.924
+   ],
+   "q": "E",
+   "src": "aluminium reflectance near-neutral (PBR practice tables, consistent with the n,k above)"
+  }
+ },
+ "optics_summary": {
+  "n_k_550nm": {
+   "v": {
+    "n": 0.965,
+    "k": 6.4
+   },
+   "q": "M",
+   "src": "RAKIC98 Brendel-Bormann data file re-read 11-08 (refractiveindex.info database main/Al/nk/Rakic-BB.yml, CC0): 0.54147 um n 0.935 k 6.310, 0.56452 um n 1.016 k 6.552, interpolated at 550 nm n 0.965, k 6.40 (the Lorentz-Drude fit Rakic-LD gives 0.967 / 6.46); corrected from n 0.96, k 6.69 (k 6.69 sits near 570 nm)"
+  },
+  "absorption": {
+   "v": "opaque metal; skin depth ~7 nm at 550 nm; the natural oxide (Al2O3, 2-5 nm, n 1.65) is optically invisible; anodic oxide (5-25 um) is a transparent porous dielectric over the metal and takes dye",
+   "q": "D",
+   "src": "lambda/(4 pi k)"
+  },
+  "translucency": {
+   "v": "none (bare)",
+   "q": "D",
+   "src": "conductor"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry_clean": [
+      1.05,
+      1.35
+     ],
+     "lubricated": 0.3
+    },
+    "q": "M",
+    "src": "ETB friction table re-read 11-08: aluminum on aluminum clean and dry 1.05-1.35, lubricated and greasy 0.3: soft, adhesive, galls and smears"
+   },
+   "kinetic": {
+    "v": {
+     "dry_clean": 1.4,
+     "lubricated": [
+      0.1,
+      0.3
+     ]
+    },
+    "q": "E",
+    "src": "E: the sources disagree and the primary is not re-read: ETB re-read 11-08 lists 0.4 in its kinetic column for aluminum on aluminum clean and dry; Wikipedia's friction table (re-read 11-08) gives 1.4-1.5 marked 'citation needed'; MARKS 1.4 recalled from Marks' Handbook, not re-read; 1.4 kept; lubricated 0.1-0.3 E"
+   },
+   "counterface": "aluminium on aluminium (pairs/partners.json: steel, rubber.sole; pairs/skin.json: skin.glabrous)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": {
+     "clean_oxide": [
+      500,
+      1000
+     ],
+     "air_aged": [
+      35,
+      50
+     ]
+    },
+    "q": "E",
+    "src": "as metal.steel (MANTEL94-type behaviour: the hydrocarbon overlayer sets it)"
+   },
+   "tack": {
+    "v": "none dry",
+    "q": "E",
+    "src": "observation"
+   }
+  },
+  "restitution": {
+   "v": 0.75,
+   "q": "E",
+   "src": "ARYAEI10 aluminium lower than steel; not read as a number"
+  },
+  "solver": {
+   "phase": "solid",
+   "collision_thickness_mm": {
+    "v": 0.1,
+    "q": "E",
+    "src": "numerical offset only, as metal.steel"
+   },
+   "penetration_response": {
+    "ramp": "hertz",
+    "E_star_GPa": {
+     "v": 77.3,
+     "q": "D",
+     "src": "E / (1 - nu^2) from E 68.9 GPa, nu 0.33 (half-space modulus; the soft partner's own E* combines in series)"
+    },
+    "contact_stiffness_kPa_per_mm": {
+     "v": 984000.0,
+     "q": "D",
+     "src": "flat punch k = 2 E* a over area pi a^2, a 50 mm (hand-sized patch): an unyielding barrier next to any soft partner"
+    },
+    "hertz_constant_N_per_m1_5_R25mm": {
+     "v": 16300000000.0,
+     "q": "D",
+     "src": "F = (4/3) E* sqrt(R) d^1.5, rigid sphere R 25 mm"
+    },
+    "contact_damping_ratio": {
+     "v": 0.0912,
+     "q": "D",
+     "src": "zeta = -ln e / sqrt(pi^2 + ln^2 e) from restitution 0.75"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.75,
+     "q": "E",
+     "src": "ARYAEI10: aluminium balls / sheets give lower e than steel (softer, earlier plasticity); 0.7-0.8 taken at ~1 m/s, not read as a number"
+    },
+    "response_time_ms": {
+     "v": 0.265,
+     "q": "D",
+     "src": "Hertz contact time t = 2.87 (m^2/(R E*^2 v))^0.2, rigid 1 kg sphere, R 25 mm, 1 m/s: sub-millisecond; in a slap or a step the soft partner sets the pulse"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "bar_longitudinal": 5052,
+      "shear": 3097
+     },
+     "q": "D",
+     "src": "sqrt(E/rho), sqrt(G/rho), G = E/(2(1+nu)), rho 2700"
+    },
+    "damping_ratio": {
+     "v": 0.0912,
+     "q": "D",
+     "src": "as contact_damping_ratio (energy lost per impact, from restitution)"
+    }
+   },
+   "_": "Rigid next to body tissue. Thin aluminium (cans, foil, sheet) buckles and dents easily: yield 276 MPa but a third of steel's stiffness, so thin parts are a shell-buckling problem, not a contact-stiffness one."
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": {
+     "clean": [
+      0,
+      10
+     ],
+     "degreased_aged": [
+      60,
+      85
+     ],
+     "anodised_sealed": [
+      20,
+      60
+     ]
+    },
+    "q": "E",
+    "src": "FIRGELLI degreased aluminium 67.3 deg (vendor calculator page, no primary source); behaviour as steel"
+   }
+  },
+  "porosity": {
+   "v": {
+    "bare": 0.0,
+    "anodic_layer_unsealed": [
+     0.1,
+     0.25
+    ]
+   },
+   "q": "E",
+   "src": "wrought metal non-porous; the anodic oxide is a honeycomb of 10-30 nm pores (sealed after dyeing)"
+  },
+  "water_absorption": {
+   "v": 0.0,
+   "q": "M",
+   "src": "none (bare)"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "charge_affinity_nC_J": 0,
+     "position": "conductor, the zero of the scale (as metal.steel); anodised aluminium is an insulator on top and charges like a ceramic"
+    },
+    "q": "M",
+    "src": "ALPHALAB: all conductors about the same affinity"
+   },
+   "resistivity_ohm_m": {
+    "v": 3.99e-08,
+    "q": "M",
+    "src": "ASM_6061 datasheet re-read 11-08 (ASM / MatWeb sheet MA6061T6, PDF at aerospacemetals.com; AA typical values, not for design): 3.99e-006 ohm-cm (3.99 uohm cm) at 68 F"
+   },
+   "charge_decay_s": {
+    "v": {
+     "grounded": 0
+    },
+    "q": "D",
+    "src": "conductor"
+   },
+   "permittivity_rel": {
+    "v": null,
+    "q": "E",
+    "src": "not defined for a conductor"
+   }
+  },
+  "hardness": {
+   "v": {
+    "brinell_HB": 95,
+    "vickers_HV": 107,
+    "mohs": [
+     2.5,
+     3
+    ]
+   },
+   "q": "M",
+   "src": "ASM_6061 HB 95 (500 kg, 10 mm), HV 107 converted; Mohs E (pure Al 2.75)"
+  },
+  "abrasion": {
+   "v": "soft: scratches from steel, sand and even hard grit in cloth; bare aluminium greys a fingertip (oxide smears); anodised surfaces resist wear (Al2O3, ~HV 300-500)",
+   "q": "E",
+   "src": "observation"
+  }
+ },
+ "deform": {
+  "model": "elastoplastic",
+  "density_kg_m3": {
+   "v": 2700,
+   "q": "M",
+   "src": "ASM_6061 2.70 g/cm3"
+  },
+  "E_GPa": {
+   "v": 68.9,
+   "q": "M",
+   "src": "ASM_6061 68.9 GPa (compression ~2 % higher)"
+  },
+  "poisson": {
+   "v": 0.33,
+   "q": "M",
+   "src": "ASM_6061 datasheet re-read 11-08 (ASM / MatWeb sheet MA6061T6, PDF at aerospacemetals.com; AA typical values, not for design): 0.33"
+  },
+  "shear_GPa": {
+   "v": 26,
+   "q": "M",
+   "src": "ASM_6061 datasheet re-read 11-08 (ASM / MatWeb sheet MA6061T6, PDF at aerospacemetals.com; AA typical values, not for design): shear modulus 26 GPa; E/(2(1+nu)) gives 25.9"
+  },
+  "bulk_GPa": {
+   "v": 67.5,
+   "q": "D",
+   "src": "E / (3 (1 - 2 nu))"
+  },
+  "plastic": {
+   "yield_MPa": {
+    "v": 276,
+    "q": "M",
+    "src": "ASM_6061 datasheet re-read 11-08 (ASM / MatWeb sheet MA6061T6, PDF at aerospacemetals.com; AA typical values, not for design): T6 tensile yield 276 MPa"
+   },
+   "ultimate_MPa": {
+    "v": 310,
+    "q": "M",
+    "src": "ASM_6061 datasheet re-read 11-08 (ASM / MatWeb sheet MA6061T6, PDF at aerospacemetals.com; AA typical values, not for design): T6 UTS 310 MPa"
+   },
+   "elongation_pct": {
+    "v": [
+     12,
+     17
+    ],
+    "q": "M",
+    "src": "ASM_6061 datasheet re-read 11-08 (ASM / MatWeb sheet MA6061T6, PDF at aerospacemetals.com; AA typical values, not for design): elongation at break 12 % and 17 % (two specimen forms, 1/16 in sheet and 1/2 in round)"
+   }
+  },
+  "fracture": {
+   "toughness_KIC_MPa_m05": {
+    "v": 29,
+    "q": "M",
+    "src": "ASM_6061 datasheet re-read 11-08 (ASM / MatWeb sheet MA6061T6, PDF at aerospacemetals.com; AA typical values, not for design): K_IC 29 MPa m^0.5 (TL orientation)"
+   }
+  },
+  "fatigue": {
+   "v": "no endurance limit: aluminium parts flexed repeatedly crack eventually (96.5 MPa at 5e8 cycles, ASM)",
+   "q": "M",
+   "src": "ASM_6061 datasheet re-read 11-08 (ASM / MatWeb sheet MA6061T6, PDF at aerospacemetals.com; AA typical values, not for design): fatigue strength 96.5 MPa at 5e8 cycles, completely reversed (RR Moore)"
+  },
+  "thermal_expansion_1_K": {
+   "v": 2.36e-05,
+   "q": "M",
+   "src": "ASM_6061 datasheet re-read 11-08 (ASM / MatWeb sheet MA6061T6, PDF at aerospacemetals.com; AA typical values, not for design): CTE 23.6 um/m-C (68-212 F)"
+  },
+  "sim": {
+   "_": "Rigid for body contacts; shells buckle for thin parts.",
+   "xpbd_compliance_1_Pa": {
+    "v": 1.45e-11,
+    "q": "D",
+    "src": "1 / E"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 167,
+   "q": "M",
+   "src": "ASM_6061 167 W/mK at 25 C (Wikipedia range 151-202 by temper)"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 896,
+   "q": "M",
+   "src": "ASM_6061 datasheet re-read 11-08 (ASM / MatWeb sheet MA6061T6, PDF at aerospacemetals.com; AA typical values, not for design): 0.896 J/g-C"
+  },
+  "effusivity": {
+   "v": 20100,
+   "q": "D",
+   "src": "sqrt(k rho c) = sqrt(167 x 2700 x 896) W s^0.5 m^-2 K^-1"
+  },
+  "contact_temp_with_skin_C": {
+   "v": 20.7,
+   "q": "D",
+   "src": "SKINTH: T = (e_skin 33 + e 20)/(e_skin + e), skin 33 C on material 20 C, e_skin 1188; lower = feels colder"
+  },
+  "emissivity": {
+   "v": {
+    "polished": [
+     0.03,
+     0.06
+    ],
+    "brushed_bare": [
+     0.05,
+     0.1
+    ],
+    "anodised": [
+     0.77,
+     0.9
+    ]
+   },
+   "q": "M",
+   "src": "EMIS_ETB re-read 11-08: aluminum highly polished 0.039-0.057, foil 0.04, rough 0.07, commercial sheet 0.09, heavily oxidized 0.2-0.31, anodized 0.77; polished [0.03, 0.06] kept (0.03 E); brushed 0.05-0.1 E (between rough and commercial sheet); anodised upper 0.9 E"
+  },
+  "thermal_expansion_1_K": {
+   "v": 2.36e-05,
+   "q": "M",
+   "src": "ASM_6061 datasheet re-read 11-08 (ASM / MatWeb sheet MA6061T6, PDF at aerospacemetals.com; AA typical values, not for design): 23.6 um/m-C"
+  }
+ },
+ "states": {
+  "clean": {
+   "set": {},
+   "_": "the base: bare brushed 6061-T6, air-aged"
+  },
+  "anodised": {
+   "set": {
+    "surface.alpha": 0.25,
+    "thermal.emissivity": 0.85,
+    "contact.electrostatic.triboelectric.v.charge_affinity_nC_J": null,
+    "contact.hardness.v.vickers_HV": 400,
+    "contact.wetting.water_contact_angle_deg.v.degreased_aged": [
+     20,
+     60
+    ]
+   },
+   "q": "E",
+   "src": "anodic Al2O3 5-25 um: a dielectric coat over the metal: matte-satin, dyeable (colour sits IN the clear porous layer: a coloured coat over a metal base), insulating, hard, high IR emissivity (EMIS_ETB 0.77); EMIS_ETB re-read 11-08: aluminum anodized 0.77"
+  },
+  "polished": {
+   "set": {
+    "surface.alpha": 0.02,
+    "thermal.emissivity": 0.04
+   },
+   "q": "E",
+   "src": "mirror polish; dulls in weeks as oxide and handling haze it"
+  },
+  "weathered_oxidised": {
+   "set": {
+    "surface.alpha": 0.45,
+    "surface.F0": 0.6
+   },
+   "q": "E",
+   "src": "outdoor aluminium greys to a chalky dull oxide (white corrosion product, pitting near salt); not a rust: it protects itself"
+  },
+  "wet": {
+   "set": {
+    "contact.friction.static.v.dry_clean": [
+     0.5,
+     0.8
+    ]
+   },
+   "q": "E",
+   "src": "water film between aluminium faces partly separates the adhesive junctions"
+  },
+  "oily": {
+   "set": {
+    "contact.friction.static.v.dry_clean": 0.3,
+    "contact.wetting.water_contact_angle_deg.v.degreased_aged": [
+     85,
+     100
+    ]
+   },
+   "q": "M",
+   "src": "ETB friction table re-read 11-08: aluminum on aluminum lubricated and greasy 0.3 (MARKS 0.3, recalled, agrees)"
+  },
+  "cold": {
+   "set": {},
+   "q": "D",
+   "src": "feels the coldest of the library's solids: effusivity ~20 100, contact temperature with skin ~20.7 C at 20 C ambient (wood.oak 29.3 C)"
+  }
+ },
+ "sources": {
+  "ETB": {
+   "cite": "The Engineering ToolBox, Friction and friction coefficients for some common materials",
+   "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+   "lic": "free web reference; numbers used as facts (friction table re-read 11-08)"
+  },
+  "MARKS": {
+   "cite": "Marks' Standard Handbook for Mechanical Engineers, friction coefficient table (static/kinetic, dry and greasy, metals on metals)",
+   "url": "",
+   "lic": "paywalled handbook; numbers used as facts (recalled from the source, not re-read 11-07)"
+  },
+  "ALPHALAB": {
+   "cite": "Lee B / AlphaLab Inc. (TriField) triboelectric table, charge affinity nC/J (positive = charges +); zero = the average conductor (all metals about equal); read via the storiesinfabric.blogspot.com reprint 11-07",
+   "url": "https://storiesinfabric.blogspot.com/2013/11/taken-from-httpwwwtrifieldcomcontenttri.html",
+   "lic": "free web table, reproduction only in whole: single numbers used as facts, table not copied STUDY ONLY (P13)"
+  },
+  "SKINTH": {
+   "cite": "skin thermal inputs for contact temperature: k 0.37 W/mK, c 3500 J/kgK (Duck 1990 tissue tables, typical), rho 1090 from skin.body",
+   "url": "",
+   "lic": "numbers used as facts"
+  },
+  "ASM_6061": {
+   "cite": "ASM Aerospace Specification Metals / MatWeb, Aluminum 6061-T6 datasheet (Aluminum Association typical values, 'not for design'): density 2.70, E 68.9 GPa, nu 0.33, G 26 GPa, yield 276, UTS 310 MPa, HB 95, K_IC 29, k 167 W/mK, c 0.896 J/gK, CTE 23.6e-6/K, resistivity 3.99 uohm cm, fatigue 96.5 MPa; density, E, HB and k read 11-07 via a PDF printout",
+   "url": "https://asm.matweb.com/search/SpecificMaterial.asp?bassnum=MA6061T6 (re-read 11-08 as the PDF print at https://www.aerospacemetals.com/wp-content/uploads/2023/06/Aluminum-6061-T6-6061-T651.pdf)",
+   "lic": "MatWeb terms forbid redistributing the compilation: single numbers used as facts, STUDY ONLY (P13); re-read 11-08: every number in the cite matches the sheet"
+  },
+  "RAKIC98": {
+   "cite": "Rakic AD, Djurisic AB, Elazar JM, Majewski ML. Optical properties of metallic films for vertical-cavity optoelectronic devices. Appl Opt 37:5271-5283 (1998), Brendel-Bormann fit, via refractiveindex.info; data file re-read 11-08 (refractiveindex.info-database main/Al/nk/Rakic-BB.yml)",
+   "url": "https://refractiveindex.info/?shelf=3d&book=metals&page=aluminium",
+   "lic": "refractiveindex.info CC0; numbers used as facts"
+  },
+  "ARYAEI10": {
+   "cite": "Aryaei A, Hashemnia K, Jafarpur K. Experimental and numerical study of ball size effect on restitution coefficient in low velocity impacts. Int J Impact Eng 37:1037-1044 (2010)",
+   "url": "https://doi.org/10.1016/j.ijimpeng.2010.04.005",
+   "lic": "paywalled; finding (e falls with ball size, rises with sheet hardness) used"
+  },
+  "MANTEL94": {
+   "cite": "Mantel M, Wightman JP. Influence of the surface chemistry on the wettability of stainless steel. Surf Interface Anal 21:595-605 (1994)",
+   "url": "https://doi.org/10.1002/sia.740210902",
+   "lic": "paywalled; abstract finding used"
+  },
+  "EMIS_ETB": {
+   "cite": "The Engineering ToolBox, Emissivity coefficients of common products (re-read 11-08: stainless polished 0.075, weathered 0.85, type 301 0.54-0.63; aluminum highly polished 0.039-0.057, commercial sheet 0.09, rough 0.07, anodized 0.77; rubber hard glossy plate 0.94, natural hard 0.91, natural soft 0.86; plastics 0.90-0.97; no nylon row)",
+   "url": "https://www.engineeringtoolbox.com/emissivity-coefficients-d_447.html",
+   "lic": "free web reference; numbers used as facts (re-read 11-08)"
+  },
+  "FIRGELLI": {
+   "cite": "Firgelli Automations, surface energy / contact angle calculator page: degreased aluminium water angle 67.3 deg (no primary source given)",
+   "url": "https://www.firgelliauto.com/en-nl/blogs/calculators/surface-energy-contact-angle-calculator",
+   "lic": "vendor web page; number used only as an estimate"
+  }
+ }
+}

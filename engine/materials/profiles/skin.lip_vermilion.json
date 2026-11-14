@@ -1,0 +1,426 @@
+{
+ "id": "skin.lip_vermilion",
+ "kind": "layered_tissue",
+ "family": "human_soft",
+ "_": "The red lip (vermilion): no hair, no sweat glands, sebaceous glands essentially absent (free Fordyce glands only), very thin stratum corneum with high water loss, capillary loops near the surface (its red is blood). Over orbicularis oris; the whole lip is firmer than the cheek. Kept moist by saliva and licking. SKIN lane 11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.285,
+   "q": "M",
+   "src": "SPEC lips m 0.285"
+  },
+  "n": {
+   "v": 1.414,
+   "q": "D",
+   "src": "SPEC mapping, lips rho_s 0.288 -> F0 0.0294"
+  },
+  "F0": {
+   "v": 0.0294,
+   "q": "D",
+   "src": "SPEC mapping"
+  }
+ },
+ "optics_summary": {
+  "structure": {
+   "v": {
+    "vermilion_total_mm_upper": 1.06,
+    "epidermis_um_upper_lip_max": 63,
+    "lip_soft_tissue_to_bone_mm": [
+     11,
+     13.5
+    ]
+   },
+   "q": "M",
+   "src": "HEADFACE F8 (US), F9 (histology), F1 (T-table at the lips)"
+  },
+  "glands": {
+   "v": "no sweat glands, no follicles; sebaceous glands essentially absent (Fordyce in ~80 % of adults); TEWL above the cheek",
+   "q": "M",
+   "src": "SRL section 2; MOIST W4 (weak)"
+  }
+ },
+ "contact": {
+  "friction": {
+   "kinetic": {
+    "v": {
+     "dry": 0.5,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "E",
+    "src": "not found for the vermilion; skin.body values (DERLER12); the lip's thin SC hydrates fast, so it moves toward 'wet' within seconds of licking (E). Another thin-SC site reads 0.66 vs forearm 0.48 (MOIST W7)"
+   },
+   "static": {
+    "v": {
+     "dry": 0.5,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "E",
+    "src": "static taken equal to kinetic (skin friction is reported almost only as dynamic)"
+   },
+   "counterface": "smooth hard probe as skin.body unless stated"
+  },
+  "adhesion": {
+   "tack": {
+    "v": "moist lips stick (lip-to-lip seal, saliva bridges); dry lips are tacky after balm; no number",
+    "q": "E",
+    "src": "observation"
+   }
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": null,
+    "q": "E",
+    "src": "not found"
+   }
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": null,
+    "q": "E",
+    "src": "not found; usually moist, so charge leaks (wet skin resistivity ~17 ohm m, GABRIEL96)"
+   }
+  },
+  "solver": {
+   "phase": "soft_solid",
+   "collision_thickness_mm": {
+    "v": 0.04,
+    "q": "E",
+    "src": "the thin epithelium"
+   },
+   "compliance_layers": [
+    {
+     "name": "epidermis",
+     "thickness_mm": {
+      "v": 0.04,
+      "q": "M",
+      "src": "thin orthokeratinised epithelium with very thin SC (SRL section 2); 40 um E inside the 63 um maximum (HEADFACE F9)"
+     },
+     "E_kPa": {
+      "v": 4000.0,
+      "q": "M",
+      "src": "FENG22 OCE forearm incl. stratum corneum (small strain)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.9,
+      "q": "E",
+      "src": "a stiff thin shell: thins little under contact (E)"
+     }
+    },
+    {
+     "name": "lamina_propria",
+     "thickness_mm": {
+      "v": 1.0,
+      "q": "D",
+      "src": "HEADFACE F8 upper vermilion 1.06 mm total less the epithelium"
+     },
+     "E_kPa": {
+      "v": 45.0,
+      "q": "M",
+      "src": "TAKEMOTO24 upper lip ~45 kPa whole-tissue indentation (one man): applied to the whole stack"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.85,
+      "q": "E",
+      "src": "as dermis"
+     }
+    },
+    {
+     "name": "orbicularis_oris",
+     "thickness_mm": {
+      "v": 6.0,
+      "q": "E",
+      "src": "lip 11-13.5 mm to bone (HEADFACE F1) less mucosa and glands: muscle ~6 mm (E)"
+     },
+     "E_kPa": {
+      "v": 45.0,
+      "q": "M",
+      "src": "TAKEMOTO24 upper lip whole tissue ~45 kPa (one subject; ~5-11x the cheek's 4.0-9.9)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.6,
+      "q": "E",
+      "src": "muscle, fluid-filled: E"
+     }
+    },
+    {
+     "name": "labial_mucosa_and_glands",
+     "thickness_mm": {
+      "v": 4.0,
+      "q": "E",
+      "src": "minor salivary glands and mucosa to the teeth (E)"
+     },
+     "E_kPa": {
+      "v": 20.0,
+      "q": "E",
+      "src": "soft glandular tissue (E)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.5,
+      "q": "E",
+      "src": "E"
+     }
+    },
+    {
+     "name": "teeth_bone",
+     "thickness_mm": {
+      "v": 0.0,
+      "q": "E",
+      "src": "incisors / alveolar bone"
+     },
+     "E_kPa": {
+      "v": 17000000.0,
+      "q": "E",
+      "src": "rigid"
+     },
+     "poisson": {
+      "v": 0.3,
+      "q": "E",
+      "src": "typical"
+     },
+     "compressible_to_fraction": {
+      "v": 1.0,
+      "q": "E",
+      "src": "rigid"
+     }
+    }
+   ],
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 2.812,
+     "q": "D",
+     "src": "series stack of compliance_layers: E_eff = T / sum(t_i / E_i) = 31.05 kPa over T 11.04 mm, / T; initial (small-strain) value; each layer stiffens with strain (muscle stiffens with activation (pucker, press) like other muscle (SOFTTISSUE R28-R30))"
+    },
+    "E_eff_kPa": {
+     "v": 31.05,
+     "q": "D",
+     "src": "series stack of compliance_layers (initial)"
+    },
+    "ramp": {
+     "v": "barrier_log",
+     "q": "E",
+     "src": "IPC-style log barrier inside collision_thickness keeps surfaces apart; the tissue's own stiffening (exponential in strain) carries the load beyond it"
+    },
+    "contact_damping_ratio": {
+     "v": 0.3,
+     "q": "E",
+     "src": "no lip value"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.3,
+     "q": "E",
+     "src": "a soft muscular pad on teeth"
+    },
+    "response_time_ms": {
+     "v": {
+      "elastic_snap_back": [
+       110,
+       190
+      ]
+     },
+     "q": "E",
+     "src": "QU forearm value; no lip recovery time found"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "lip_tissue_shear": 3.76
+     },
+     "q": "D",
+     "src": "sqrt(G / rho), G = 45 / 3 kPa (TAKEMOTO24), rho 1060"
+    },
+    "damping_ratio": {
+     "v": 0.3,
+     "q": "E",
+     "src": "no lip value"
+    }
+   },
+   "membrane_stiffness_N_m": {
+    "v": 45.0,
+    "q": "D",
+    "src": "E x t = 45 kPa x 1.0 mm (own: stiffer per thickness than eyelid skin's ~21 N/m)"
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "neo_hookean",
+   "q": "E",
+   "src": "no lip hyperelastic fit found"
+  },
+  "density_kg_m3": {
+   "v": 1060,
+   "q": "E",
+   "src": "mostly muscle: MENDEZ60 1060 (GAPS_RESEARCH.md 3)"
+  },
+  "E_kPa": {
+   "v": {
+    "whole_upper_lip": 45.0
+   },
+   "q": "M",
+   "src": "TAKEMOTO24 (one healthy man, compact indentation device)"
+  },
+  "poisson": {
+   "v": 0.5,
+   "q": "E",
+   "src": "incompressible"
+  },
+  "stretch": {
+   "v": "the vermilion's vertical grooves (sulci labiorum) open when it stretches (smile, pucker); mouth corner moves 16-18 mm in a wide smile",
+   "q": "M",
+   "src": "SRL section 2; HEADFACE F11/F12"
+  },
+  "viscoelastic": {
+   "recovery": {
+    "v": null,
+    "q": "E",
+    "src": "not found for the lip"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.37,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 0.372 W/mK (SD 0.059, 8 studies, range 0.322-0.498); 0.37 kept"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 3391,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 3390.5 J/kgK (SD 233, 4 studies, 3150-3662)"
+  },
+  "density_kg_m3": {
+   "v": 1109,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 1109 kg/m3 (SD 38, n 10, 1100-1125); ICRU44 ~1090: recalled, not re-read"
+  },
+  "effusivity": {
+   "v": 1180,
+   "q": "D",
+   "src": "sqrt(k rho c) from the three ITIS values above, J m-2 K-1 s-1/2 (the 'feels warm/cold' number)"
+  },
+  "emissivity": {
+   "v": 0.98,
+   "q": "M",
+   "src": "STEKETEE73 abstract re-read 11-08 (paper paywalled; abstract text via a reproduction): skin 0.98 +/- 0.01, independent of wavelength over the measured 1-14 um; white, black and burnt skin measured (normal = burnt); separate per-pigment values are not given in the abstract"
+  }
+ },
+ "states": {
+  "moist": {
+   "set": {
+    "surface.coat": {
+     "n": 1.336,
+     "alpha": 0.02
+    },
+    "contact.friction.kinetic.v.dry": 1.0
+   },
+   "q": "E",
+   "src": "a saliva film (n ~1.336, water-like); hydrated thin SC -> wet-skin friction (DERLER12)"
+  },
+  "dry": {
+   "set": {},
+   "_": "the base"
+  },
+  "chapped": {
+   "set": {
+    "surface.alpha": 0.4
+   },
+   "q": "E",
+   "src": "flaking SC scales roughen the surface (E)"
+  }
+ },
+ "sources": {
+  "DERLER12": {
+   "cite": "Derler S, Gerhardt L-C. Tribology of skin: review and analysis of experimental results for the friction coefficient of human skin. Tribol Lett 45:1-27 (2012)",
+   "url": "https://doi.org/10.1007/s11249-011-9854-y",
+   "lic": "paywalled; author copy doc.rero.ch/record/315296; numbers used as facts, text studied only"
+  },
+  "FENG22": {
+   "cite": "Feng X, Li GY, Ramier A, Eltony AM, Yun SH. In vivo stiffness measurement of epidermis, dermis, and hypodermis using broadband Rayleigh-wave OCE. Acta Biomater (2022); arXiv:2201.12258 (via params/skin_layers.json)",
+   "url": "https://arxiv.org/abs/2201.12258",
+   "lic": "arXiv; numbers used as facts, text studied only"
+  },
+  "GABRIEL96": {
+   "cite": "Gabriel S, Lau RW, Gabriel C. The dielectric properties of biological tissues II/III. Phys Med Biol 41:2251-2293 (1996); low-frequency values as compiled in a Frontiers supplementary table (article id 1094968, Table 1)",
+   "url": "https://www.frontiersin.org/api/v4/articles/1094968/file/Table_1.DOCX/1094968_supplementary-materials_tables_1_docx/1",
+   "lic": "the Frontiers table CC BY 4.0; the 1996 paper paywalled; numbers used as facts, text studied only"
+  },
+  "HEADFACE": {
+   "cite": "the project's research note head_face.md (F1 soft-tissue T-table, F8 ultrasound skin thickness 45 women, F9 histology)",
+   "url": "the project's research note head_face.md",
+   "lic": "project file"
+  },
+  "ICRU44": {
+   "cite": "ICRU Report 44 (1989), densities as listed by NIST X-Ray Mass Attenuation Coefficients Table 2",
+   "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/tab2.html",
+   "lic": "NIST page, US government work"
+  },
+  "ITIS": {
+   "cite": "Baumgartner C, Hasgall PA, Di Gennaro F, Neufeld E, Lloyd B, Gosselin MC, Payne D, Klingenboeck A, Kuster N. IT'IS Database for thermal and electromagnetic parameters of biological tissues, Version 5.0, Aug 21 2025, DOI 10.13099/VIP21000-05-0 (average values; the live tables re-read 11-08: the 2024-06-04 and 2025-08-21 table files give the same skin, fat and muscle rows)",
+   "url": "https://itis.swiss/virtual-population/tissue-properties/database",
+   "lic": "IT'IS legal notice (read 11-08): web pages and documents may be copied only for private, scientific and noncommercial use; storing them on other servers or data carriers needs written consent: STUDY ONLY (P13). Individual averages used as facts with this citation; the table is never copied in bulk"
+  },
+  "LAYERS": {
+   "cite": "the project's parameter file skin_layers.json (per-region epidermis and dermis thickness, OCE moduli)",
+   "url": "the project's parameter file skin_layers.json",
+   "lic": "project file"
+  },
+  "MENDEZ60": {
+   "cite": "MENDEZ60: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+   "url": "the project's materials research note GAPS_RESEARCH.md",
+   "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+  },
+  "MOIST": {
+   "cite": "the project's research note skin_moisture.md (E sweat rates, O sebum, W lips)",
+   "url": "the project's research note skin_moisture.md",
+   "lic": "project file"
+  },
+  "SOFTTISSUE": {
+   "cite": "the project's research note soft_tissue.md (project research file; its R-keys name the primary papers: R20 Boyer 2012, R21, R25, R31 gluteal ultrasound + compression, R32/R33 seated MRI + FE, R42 Korean biopsies, R43 skin US, R44 fat/muscle US, M31 drop landing)",
+   "url": "the project's research note soft_tissue.md",
+   "lic": "project file; primary licences as listed there"
+  },
+  "SPEC": {
+   "cite": "the project's parameter file skin_specular.json (Weyrich et al. 2006, 149 faces, Fig. 15 per-region m / rho_s)",
+   "url": "the project's parameter file skin_specular.json",
+   "lic": "project file; Weyrich 2006 (c) ACM, numbers as facts"
+  },
+  "SRL": {
+   "cite": "the project's research note skin_regions_and_layers.md (F1 SC layers, F2 RCM, F5 dermis US, F11 sweat glands, skin types section 2)",
+   "url": "the project's research note skin_regions_and_layers.md",
+   "lic": "project file"
+  },
+  "STEKETEE73": {
+   "cite": "Steketee J. Spectral emissivity of skin and pericardium. Phys Med Biol 18:686-694 (1973)",
+   "url": "https://doi.org/10.1088/0031-9155/18/5/307",
+   "lic": "paywalled; abstract re-read 11-08 via a reproduction (Europe PMC has no abstract); numbers used as facts, text studied only"
+  },
+  "TAKEMOTO24": {
+   "cite": "Takemoto et al. Fabrication of apparatus specialized for measuring the elasticity of perioral tissues. Materials (2024), PMC11313372 (one healthy man in his 20s)",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11313372/",
+   "lic": "open access (MDPI, CC BY 4.0 standard; not re-checked)"
+  }
+ }
+}

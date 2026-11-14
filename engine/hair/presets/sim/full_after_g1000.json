@@ -1,0 +1,22 @@
+{
+ "name": "full_after_g1000",
+ "notes": "Field Studio's generic preset (fs-hair, 11-11): the resolved values of the hair lane's natural base layers, sourced in the hair lane's NATURAL_BASE_SOURCES and engine/hair/kinds.py; no person's data. Field Studio's Hair panel sets density, length, thickness and pigment on top.",
+ "points": 64,
+ "body": {
+  "collider": "torso",
+  "head": "fh3"
+ },
+ "flow": {
+  "source": "grow",
+  "order": "after"
+ },
+ "grow": {
+  "guides": 1000,
+  "seg_max_mm": 6.0,
+  "splat_mm": "auto",
+  "friction_reach_mm": 12,
+  "short_friction_load": "strip",
+  "short_friction_stiff": false,
+  "contact_ear_k": 10.0
+ }
+}

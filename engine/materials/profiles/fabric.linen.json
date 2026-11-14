@@ -1,0 +1,444 @@
+{
+ "id": "fabric.linen",
+ "kind": "fabric",
+ "family": "fabric",
+ "_": "Linen (flax) plain-weave shirting / dress weight, ~150-200 g/m2, unfinished or softened; 65 % RH. Stiffer and crisper than cotton (flax fibre modulus several times cotton's), low recovery so it creases deeply, slub yarns give an uneven surface. No measured KES set was retrieved: E throughout except the regain.",
+ "surface": {
+  "alpha": {
+   "v": 0.7,
+   "q": "E",
+   "src": "slubby yarns with some lustre from the smooth flax fibre; Sadeghi 2013 fitted linen plain (values not retrieved)"
+  },
+  "n": {
+   "v": 1.562,
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 mean"
+  },
+  "F0": {
+   "v": 0.0481,
+   "q": "D",
+   "src": "((n - 1) / (n + 1))^2 at n = mean 1.562"
+  },
+  "sheen": {
+   "v": "subtle, irregular (slubs)",
+   "q": "E",
+   "src": "qualitative"
+  }
+ },
+ "optics_summary": {
+  "fibre_n": {
+   "v": {
+    "parallel": 1.596,
+    "perpendicular": 1.528
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 flax 1.596 / 1.528 (recalled)"
+  },
+  "wet_darkening": {
+   "v": "A_wet = (1 - r_e) A (1 - r_i) / (1 - r_i A), r_e = 0.066 (water, diffuse external), r_i = 1 - (1 - r_e) / 1.333^2 = 0.474; A 0.8 -> 0.63, 0.5 -> 0.32, 0.2 -> 0.11",
+   "q": "D",
+   "src": "LEKNER88 / Angstrom film model, diffuse light; the index-matching effect inside the yarn (ZHANG06) darkens further and is not in this formula; white thin fabric also turns translucent (fibre/water index ratio ~1.16 instead of ~1.55 in air)"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": 0.5,
+     "wet": 0.6
+    },
+    "q": "E",
+    "src": "as cotton (fabric band 0.2-0.6)"
+   },
+   "kinetic": {
+    "v": {
+     "dry": 0.42,
+     "wet": 0.5
+    },
+    "q": "E",
+    "src": "x ~0.85"
+   },
+   "counterface": "fabric-on-fabric (E)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": [
+     50,
+     65
+    ],
+    "q": "E",
+    "src": "cellulose as cotton"
+   }
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": {
+     "scoured": 0
+    },
+    "q": "E",
+    "src": "wicks like cotton"
+   }
+  },
+  "moisture_regain_pct": {
+   "v": 8.75,
+   "q": "M",
+   "src": "ASTMD1909 linen 8.75 (raw flax 12.0; Morton & Hearle flax 7); corrected 11-07 ~23:25 from 12 (the raw-flax value) after proof T4a"
+  },
+  "water_absorption": {
+   "v": {
+    "drip_saturated_pct": [
+     100,
+     200
+    ]
+   },
+   "q": "E",
+   "src": "cellulosic; not measured"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "position": "near neutral (cellulosic, as cotton)"
+    },
+    "q": "E",
+    "src": "ordinal series"
+   },
+   "surface_resistivity_ohm_sq": {
+    "v": {
+     "rh65": 10000000000.0
+    },
+    "q": "E",
+    "src": "as cotton"
+   }
+  },
+  "abrasion": {
+   "v": {
+    "martindale_rubs": [
+     15000,
+     30000
+    ]
+   },
+   "q": "E",
+   "src": "TYPICAL; folds crack along hard creases with wear"
+  },
+  "solver": {
+   "phase": "cloth",
+   "collision_thickness_mm": {
+    "v": 0.175,
+    "q": "D",
+    "src": "half of T0 0.35 mm at 0.5 gf/cm2 (typical, as the cotton's shape, not measured; inputs E)"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 60.7,
+     "q": "D",
+     "src": "KES-FB3 secant: (4.903 - 0.049) kPa / (T0 0.35 - Tm 0.27) mm (typical, as the cotton's shape, not measured; inputs E)"
+    },
+    "initial_stiffness_kPa_per_mm": {
+     "v": 19.4,
+     "q": "D",
+     "src": "secant x LC 0.32: LC < 1 means the pile is soft first then stiffens as fibres pack"
+    },
+    "compressible_to_fraction": {
+     "v": 0.77,
+     "q": "D",
+     "src": "Tm / T0 at 50 gf/cm2 (~5 kPa, a firm press or sitting); beyond it the fibres themselves resist (fibre modulus, GPa)"
+    },
+    "ramp": "barrier_log",
+    "ramp_note": "stiffening ramp (LC < 1): IPC log barrier starting at collision_thickness, or a two-slope ramp initial -> secant",
+    "contact_damping_ratio": {
+     "v": 0.049,
+     "q": "D",
+     "src": "(1 - RC 38 %) / (4 pi): energy lost per press-release cycle; RC from typical, as the cotton's shape, not measured"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.05,
+     "q": "E",
+     "src": "a cloth layer dropped or slapped on a rigid flat does not bounce: energy goes into bending and fibre friction (no measurement found)"
+    },
+    "response_time_ms": {
+     "v": [
+      2,
+      10
+     ],
+     "q": "E",
+     "src": "a cloth flap / slap reads as a short damped crack; set by the in-plane wave crossing a ~0.3 m panel at the speeds below plus bending"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "longitudinal_warp": 310,
+      "shear": 22.3
+     },
+     "q": "D",
+     "src": "sqrt(stretch_N_m 16343 / mass 0.17 kg/m2) and sqrt(shear_N_m_rad 84.3 / mass); transverse (flutter) speed is sqrt(tension / mass) and depends on load"
+    },
+    "damping_ratio": {
+     "v": 0.052,
+     "q": "D",
+     "src": "(1 - RT 35 %) / (4 pi) tensile loss"
+    }
+   },
+   "self_contact": {
+    "friction_static": {
+     "v": 0.5,
+     "q": "E",
+     "src": "= contact.friction.static dry (fabric-on-fabric, same fabric)"
+    },
+    "friction_kinetic": {
+     "v": 0.42,
+     "q": "E",
+     "src": "= contact.friction.kinetic dry"
+    },
+    "min_separation_mm": {
+     "v": 0.35,
+     "q": "D",
+     "src": "two half-thicknesses: folded layers rest T0 apart at light pressure, Tm under ~5 kPa"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": "cloth",
+  "density_kg_m3": {
+   "v": 485,
+   "q": "D",
+   "src": "apparent 170 g/m2 / 0.35 mm (E)"
+  },
+  "fibre_density_kg_m3": {
+   "v": 1500,
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: MORTON08 flax 1.50 (recalled)"
+  },
+  "areal_density_g_m2": {
+   "v": 170,
+   "q": "E",
+   "src": "typical shirting-dress linen 150-200"
+  },
+  "thickness_mm": {
+   "v": 0.35,
+   "q": "E",
+   "src": "typical"
+  },
+  "tensile": {
+   "EMT_pct": {
+    "v": {
+     "warp": 3,
+     "weft": 4
+    },
+    "q": "E",
+    "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: flax barely extends (fibre break strain ~2-3 %, MORTON08 recalled)"
+   },
+   "RT_pct": {
+    "v": 35,
+    "q": "E",
+    "src": "poor recovery"
+   }
+  },
+  "bending_rigidity_gfcm2_cm": {
+   "v": {
+    "warp": 0.14,
+    "weft": 0.11
+   },
+   "q": "E",
+   "src": "crisper than the measured cotton (0.03-0.06, PAL24) at ~1.3x the mass; fibre modulus several times cotton's"
+  },
+  "bending_rigidity_uNm": {
+   "v": {
+    "warp": 13.73,
+    "weft": 10.79
+   },
+   "q": "D",
+   "src": "UNITS x 98.07"
+  },
+  "shear_rigidity_N_m_deg": {
+   "v": {
+    "G_gf_cm_deg": 1.5
+   },
+   "q": "E",
+   "src": "inside the woven cellulosic range 0.31-4.15 (IJFTR44)"
+  },
+  "drape_coefficient_pct": {
+   "v": [
+    60,
+    80
+   ],
+   "q": "E",
+   "src": "stiff-crisp; SANAD16 scale"
+  },
+  "poisson": {
+   "v": {
+    "small_strain": [
+     0.1,
+     0.3
+    ]
+   },
+   "q": "E",
+   "src": "not found"
+  },
+  "recovery": {
+   "v": "poorest of the group: sharp creases persist",
+   "q": "E",
+   "src": "low RT, flax's crystalline fibre"
+  },
+  "sim": {
+   "_": "Per unit width / area; for a triangle mesh with edge length h, spring k_edge ~ k_membrane (square cells) and XPBD compliance alpha = 1/k. Secant to the KES maximum load: the real curve is soft-then-stiff (toe region), so use these as the stiff branch and ~1/3 of it below 1 % strain unless a curve is fitted",
+   "stretch_N_m": {
+    "v": {
+     "warp": 16344,
+     "weft": 12258
+    },
+    "q": "D",
+    "src": "UNITS 490.3 N/m / EMT (3 / 4 %) from E EMT"
+   },
+   "stretch_compliance_m_N": {
+    "v": {
+     "warp": 6.12e-05,
+     "weft": 8.16e-05
+    },
+    "q": "D",
+    "src": "1 / stretch_N_m"
+   },
+   "bend_uNm": {
+    "v": {
+     "warp": 13.73,
+     "weft": 10.79
+    },
+    "q": "D",
+    "src": "UNITS B x 98.07 from E B"
+   },
+   "bend_compliance_1_per_Nm": {
+    "v": {
+     "warp": 72800.0,
+     "weft": 92700.0
+    },
+    "q": "D",
+    "src": "1 / bend (N m per unit width); a dihedral constraint's compliance scales with edge length / area of the hinge"
+   },
+   "shear_N_m_rad": {
+    "v": 84.3,
+    "q": "D",
+    "src": "UNITS G x 56.19 from E G"
+   },
+   "shear_compliance_m_N": {
+    "v": 0.0119,
+    "q": "D",
+    "src": "1 / shear_N_m_rad"
+   },
+   "bending_length_cm": {
+    "v": {
+     "warp": 2.02,
+     "weft": 1.86
+    },
+    "q": "D",
+    "src": "c = (B / W)^(1/3), B gf cm2/cm, W gf/cm2 (Peirce cantilever relation): the cantilever check a sim should reproduce"
+   },
+   "mass_per_area_kg_m2": {
+    "v": 0.17,
+    "q": "D",
+    "src": "areal_density_g_m2 / 1000"
+   }
+  },
+  "fracture": {
+   "wet_strength_ratio": {
+    "v": 1.0,
+    "q": "D",
+    "src": "by definition: wet / dry strength ratio, the conditioned dry strength (20 C, 65 % RH) is the reference"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.06,
+   "q": "E",
+   "src": "TYPICAL; denser, flatter yarns hold less air than cotton knits"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1300,
+   "q": "E",
+   "src": "as cotton"
+  },
+  "effusivity": {
+   "v": 195,
+   "q": "D",
+   "src": "sqrt(0.06 x 485 x 1300): linen's 'cool' touch"
+  },
+  "emissivity": {
+   "v": 0.9,
+   "q": "E",
+   "src": "TYPICAL"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {}
+  },
+  "wet": {
+   "set": {
+    "deform.areal_density_g_m2": 400,
+    "deform.fracture.wet_strength_ratio": {
+     "v": [
+      1.09,
+      1.2
+     ],
+     "q": "D",
+     "src": "COTTONINC13 flax dry 5.5-6.5, wet 6.0-7.8 gf/den: ratio of the range ends (row checked by density 1.50 / regain 8.75)"
+    }
+   },
+   "q": "E",
+   "src": "E: recalled from Morton & Hearle 2008 (MORTON08), not re-read: flax ~20 % STRONGER wet (MORTON08 recalled); creases set in the wet state and are ironed out damp"
+  }
+ },
+ "sources": {
+  "PAL24": {
+   "cite": "Pal A, Samanta AK, Kar TR. Impact of fire retardant finish on the mechanical and comfort properties of cotton fabric. Indian J Fibre Text Res 49:408-415 (2024). doi:10.56042/ijftr.v49i4.3017. Control fabric: peroxide-bleached 100 % cotton plain weave, 72 x 50 per inch, 126.2 g/m2, full KES-FB set (Tables 1-6, 8)",
+   "url": "https://or.niscpr.res.in/index.php/IJFTR/article/view/3017",
+   "lic": "open access (NIScPR); article licence not checked; numbers used as facts"
+  },
+  "IJFTR44": {
+   "cite": "Plain-woven 100 % cotton, 100 % polyester and 50:50 blend fabrics (15 samples), KES-FB bending and shear. Indian J Fibre Text Res 44(1):9-15 (2019); read through a search summary only (B 0.018-0.119 gf cm2/cm, G 0.31-4.15 gf/cm deg; 100 % PET 30 Ne: B 0.018-0.019, G 0.31-0.33)",
+   "url": "https://www.scribd.com/document/447021025/IJFTR-44-1-9-15",
+   "lic": "open access journal; full text not opened here; numbers used as facts"
+  },
+  "ASTMD1909": {
+   "cite": "ASTM D1909-13(2020)e1 Standard tables of commercial moisture regains for textile fibres (cotton 8.5, wool 13.6, silk 11, flax 12, nylon 4.5, polyester 0.4 %); read through a CC BY review table citing it (Bioresour Bioprocess 2020, 10.1186/s40643-020-00339-1 Table 10) and the ASTM catalogue abstracts. Commercial (agreed) regains, close to equilibrium at 65 % RH, 21 C",
+   "url": "https://store.astm.org/d1909-13.html",
+   "lic": "paywalled standard; the numbers are facts"
+  },
+  "LEKNER88": {
+   "cite": "Lekner J, Dorf MC. Why some things are darker when wet. Appl Opt 27(7):1278-1280 (1988): a water film's total internal reflection returns diffuse light to an absorbing surface for another chance of absorption (Angstrom), plus a lower relative index inside",
+   "url": "https://www.wgtn.ac.nz/scps/staff/pdf/darkerwhenwet.pdf",
+   "lic": "paywalled journal; author copy; formula used, text studied only"
+  },
+  "ZHANG06": {
+   "cite": "Zhang H, Voss KJ. Bidirectional reflectance study on dry, wet and submerged particulate layers: effects of pore liquid refractive index and translucent particle concentrations. Appl Opt 45 (2006): index matching lets light go deeper and be absorbed; neither model alone sufficient",
+   "url": "https://web3.physics.miami.edu/~voss/ken/RefPapers/056_ZV_AO_2006.pdf",
+   "lic": "paywalled journal; author copy; studied only"
+  },
+  "SANAD16": {
+   "cite": "Sanad RA, Cassidy T. Fabric objective measurement and drape. Textile Progress 47(4):317-406 (2016): Cusick drape, 18 cm disc / 30 cm sample gives DC 30-98 % from limp to stiff; specimen 24 cm when DC < 30 %, 36 cm when > 85 %",
+   "url": "https://eprints.whiterose.ac.uk/93388/",
+   "lic": "accepted version, all rights reserved; studied, ranges used as facts"
+  },
+  "MORTON08": {
+   "cite": "Morton WE, Hearle JWS. Physical Properties of Textile Fibres, 4th ed. Woodhead (2008): fibre densities, refractive indices, moduli, wet/dry strength, electrical resistance. Recalled; not re-opened in this session",
+   "url": "https://doi.org/10.1533/9781845694425",
+   "lic": "copyrighted book; individual numbers as facts; recalled, so marked E"
+  },
+  "UNITS": {
+   "cite": "Unit conversions done here: 1 gf = 9.80665 mN; KES B gf cm2/cm x 98.07 = uN m per unit width; KES G gf/(cm deg) x 56.19 = N/m per rad; KES-FB1 standard max load 500 gf/cm = 490.3 N/m; 1 oz/yd2 = 33.906 g/m2; 1 momme = 4.306 g/m2; 1 ft3/ft2/min (ASTM D737, 125 Pa) = 5.08 mm/s",
+   "url": "",
+   "lic": "definitions"
+  },
+  "TYPICAL": {
+   "cite": "Trade and textbook typical values (fabric weight classes, Martindale rating bands such as EN 14465 upholstery 'heavy domestic' >= 25 000 rubs, fabric emissivity ~0.9, effective fabric conductivity dominated by trapped air 0.03-0.06 W/mK). Used only where no measured value was retrieved; each use says why",
+   "url": "",
+   "lic": "general knowledge; marked E"
+  },
+  "COTTONINC13": {
+   "cite": "Textile Fibers (2013), Cotton Incorporated: cotton is 10-20 % stronger when wet (dry 3.0-4.9, wet 3.3-6.7 gf/den in the text); appendix 'Comparison of fiber properties' dry / wet tenacity gf/den: cotton 3.0-5.0 / 3.3-6.0, flax 5.5-6.5 / 6.0-7.8, silk 2.4-5.1 / 2.0-4.3, nylon 2.3-5.0 / 1.8-4.0, spandex 0.5-1.5 / 0.5-1.5 (rows identified by density and regain: the PDF text layer shifts the row labels by one)",
+   "url": "https://cottonworks.com/wp-content/uploads/2017/11/Fibers_Booklet_edited-1.pdf",
+   "lic": "(c) 2013 Cotton Incorporated, all rights reserved: text STUDY ONLY (P13); a few numbers used as facts"
+  }
+ }
+}

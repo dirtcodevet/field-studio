@@ -158,8 +158,8 @@ checks in the gate 11-12 10:39 (`8013917f`). Evidence: accepted in the workflow.
   108,237 / 30,263 / 7,717 / 1,082 seam nodes at L0-L3, 8,899 of the L0 ones within a cell of the surface and 169 + 33
   with opposite signs. They had been written by earlier writer paths. They were repaired at the data (a finer level's
   uncapped value at L1-L3, otherwise the copies' midrange; L0 moved at most 29.5 um), 4 + 2 enclosed air bubbles were
-  filled and 7,219 unreferenced duplicate brick rows dropped. The next version scans clean and was published with the
-  author's agreement, on the condition that the cause be fixed too.
+  filled and 7,219 unreferenced duplicate brick rows dropped. The next version scans clean and was published on the
+  condition that the cause be fixed too.
 - **The cause proof.** Five real strokes written back through the editor: the pre-fix writer produced 4,053 L0 and 73
   L1 seams; the fixed writer (`8f2333eb`, 11-12 09:06) produced 0 at every level. One earlier unpublished write-back
   carried 9,051 new L0 seams of up to 5.4 mm.
@@ -227,16 +227,16 @@ accepted in the workflow.*
   A project is a folder of sculpt chunks (only changed chunks re-compressed, the rest hard-linked from the previous
   save), stroke results, the undo journal and `project.json` with a state hash last. It is written to `<name>.tmp` and
   swapped in by rename, retried while the operating system holds a handle, with the previous save restored if the swap
-  cannot finish. Opening recomputes the hash and refuses a mismatch. **A failure that reached the author:** on 11-12 a
+  cannot finish. Opening recomputes the hash and refuses a mismatch. **A failure seen in real use:** on 11-12 a
   save followed at once by quitting was killed with the process (the writer ran on a daemon thread), leaving no
   project file and no automatic save; the work was recovered from the temporary folder. Since then a save is counted
   as pending from request to the writer's end, quitting waits for it, and a failed write keeps the window and the
   automatic save. After: the close waited 1.4 s and the project reopened with the same hash.
 - **Checks kept in the tool.** A debug check compares every card brick with the CPU field at its own nodes (tolerance
   50 um): clean after each of 12 repeated Smooth strokes on an eyelid. Those 12 strokes lower a 1.54 mm bulge to
-  0.45-0.49 mm and stall; none raises it again. The author's report that a smoothed eyelid bulge reappeared on screen
-  is therefore **not reproduced and not explained** yet; the working hypothesis (an edited brick losing its atlas row,
-  so the store's original shape is drawn there) is untested. His report of lag growing after 5-10 minutes is also open:
+  0.45-0.49 mm and stall; none raises it again. The report from hand use that a smoothed eyelid bulge reappeared on
+  screen is therefore **not reproduced and not explained** yet; the working hypothesis (an edited brick losing its atlas row,
+  so the store's original shape is drawn there) is untested. The report of lag growing after 5-10 minutes is also open:
   a 16-stroke run showed none, and the longer run was not finished.
 
 ### 7. The scaling study: what a stroke costs and where the store goes next
@@ -284,7 +284,7 @@ save.
    it (the sign of unstored space comes from that distance, never from per-tile tags).
 4. For worlds: chunked residency, brush levels for body-scale strokes, shared bricks for repeated objects, edit layers.
 
-**Decision** (the author, 11-12 09:27): the full path; steps 1-2 now, step 3 right after step 2.
+**Decision** (11-12 09:27): the full path; steps 1-2 now, step 3 right after step 2.
 
 **Status at the time of writing.** Parts of step 1 landed 11-12 10:47 (`94ad156d`, `655c0fc2`): a body Flatten's table
 time 1,359 -> 21 ms; mirror sync 266 -> 0 ms a body stroke; torso Draw 14.6 -> 23.6 fps; body Smooth 2.5 -> 5.8 fps,
@@ -321,7 +321,7 @@ reproduced under a frozen configuration* for the first fault below (two fresh ru
 
 ### 9. Parts being redesigned around named patents
 
-On 11-12 the independent claims of the patents below were read beside our mechanisms, following an outside review's
+On 11-12 the independent claims of the patents below were read beside our mechanisms, to the
 standard that each concern name the claim element behind it and each design-around name the element that is absent.
 These are flags from our own review, not conclusions that any claim is or is not met. **As of this text none of the four redesigns has landed; the
 affected code is held out of any published code until it does.**

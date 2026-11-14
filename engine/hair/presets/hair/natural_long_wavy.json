@@ -1,0 +1,77 @@
+{
+ "name": "natural_long_wavy",
+ "notes": "Field Studio's generic preset (fs-hair, 11-11): the resolved values of the hair lane's natural base layers, sourced in the hair lane's NATURAL_BASE_SOURCES and engine/hair/kinds.py; no person's data. Field Studio's Hair panel sets density, length, thickness and pigment on top.",
+ "locks": {
+  "lock_r_mm": 9.2,
+  "sub_r_mm": 3.4,
+  "front_scale": 0.55,
+  "front_zone_mm": 40,
+  "bundle_jitter_phi_deg": [
+   45,
+   65
+  ],
+  "causes": true
+ },
+ "clump": {
+  "lock": [
+   0.2,
+   0.6
+  ],
+  "front_rise_mm": 6,
+  "sub": [
+   0.3,
+   0.65
+  ],
+  "bundle": [
+   0.26,
+   0.52
+  ]
+ },
+ "waves": {
+  "wavelength_mm": 70.0,
+  "amp_mm": [
+   0.0,
+   0.0
+  ],
+  "start_mm": [
+   15.0,
+   40.0
+  ],
+  "tilt_deg": [
+   15.0,
+   40.0
+  ]
+ },
+ "frizz": {
+  "wander_mm": [
+   0.37,
+   0.98
+  ],
+  "frizz_mm": [
+   0.02,
+   0.08
+  ],
+  "fly_frac": 0.02
+ },
+ "oil": {
+  "amount": 0.1,
+  "days_since_wash": 0.3
+ },
+ "radius": {
+  "root_mm": 0.0325,
+  "edge_scale": [
+   0.55,
+   0.8
+  ]
+ },
+ "fibre": {
+  "kappa0_mm": 0.05,
+  "bind": {
+   "on": true
+  },
+  "type": "wavy"
+ },
+ "grow": {
+  "rod_waves": true
+ }
+}

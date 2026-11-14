@@ -1,0 +1,448 @@
+{
+ "id": "skin.inner_arm",
+ "kind": "layered_tissue",
+ "family": "human_soft",
+ "_": "Skin of the volar (inner) upper arm and the antecubital side: thin (dermis ~0.84 mm in women, 17-21 % thinner than men's), soft and compliant, sun-protected, hairy-field skin with ~46 follicles /cm2; over a soft fat layer and the biceps. Values: adult woman, relaxed arm. SKIN lane 11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.35,
+   "q": "E",
+   "src": "as skin.body (no measurement off the face)"
+  },
+  "n": {
+   "v": 1.4,
+   "q": "M",
+   "src": "skin_specular.json off_face_coat_ior (as skin.body)"
+  }
+ },
+ "optics_summary": {
+  "structure": {
+   "v": {
+    "epidermis_um": 58.2,
+    "sc_layers": 15,
+    "dermis_mm": 0.84,
+    "follicles_per_cm2": 45.9,
+    "sweat_per_cm2_front": 94
+   },
+   "q": "M",
+   "src": "SRL upper arm row (F1, F2, F11, MB-R15); LAYERS dermis_mm.upper_arm (Wang S 2023, 104 women, flexor 0.84 +/- 0.15 mm)"
+  }
+ },
+ "contact": {
+  "friction": {
+   "kinetic": {
+    "v": {
+     "dry": 0.5,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "E",
+    "src": "as skin.body (forearm-measured; the inner arm not separately measured)"
+   },
+   "static": {
+    "v": {
+     "dry": 0.5,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "E",
+    "src": "static taken equal to kinetic (skin friction is reported almost only as dynamic)"
+   },
+   "counterface": "smooth hard probe as skin.body unless stated",
+   "measured_forearm_volar": {
+    "v": 0.7,
+    "q": "M",
+    "src": "Asserin et al. via search summary: volar forearm vs a silicone reference ~0.7 (one woman, 42 y, preliminary)"
+   }
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "dry_skin_nC_J": 30,
+     "oily_skin_nC_J": 45,
+     "position": "near the positive end (gives up electrons): above nylon-class, below polyurethane foam"
+    },
+    "q": "M",
+    "src": "ALPHALAB09 rows 'Nylon, dry skin' +30 and 'Hair, oily skin' +45 nC/J (72 F, 35 % RH); skin is conductive, so metal rubbing cannot charge it"
+   },
+   "resistivity_ohm_m": {
+    "v": {
+     "stratum_corneum_low_freq": [
+      500,
+      5000
+     ],
+     "wet_skin_low_freq": 17
+    },
+    "q": "D",
+    "src": "1 / sigma: stratum corneum 2e-4 to 2e-3 S/m and wet skin 0.059 S/m at low frequency (GABRIEL96 via the Frontiers compiled table); DC dry stratum corneum is higher still and falls steeply with depth (YAMAMOTO76, numbers not retrieved)"
+   },
+   "surface_resistivity_ohm_sq": {
+    "v": null,
+    "q": "E",
+    "src": "not found: depends on surface moisture; YAMAMOTO76 gives a depth profile, not retrieved"
+   },
+   "permittivity_rel": {
+    "v": {
+     "wet_skin_low_freq": 1136
+    },
+    "q": "M",
+    "src": "GABRIEL96 via the Frontiers compiled table (low-frequency relative permittivity, wet skin)"
+   },
+   "charge_decay_s": {
+    "v": {
+     "skin_surface_local_wet": 1.7e-07,
+     "skin_surface_local_dry_sc": [
+      1e-06,
+      0.0001
+     ],
+     "whole_body_discharge_to_ground": 1.5e-07,
+     "whole_body_on_insulating_shoes": "seconds to minutes (E)"
+    },
+    "q": "D",
+    "src": "local: tau = eps0 eps_r rho (wet 8.85e-12 x 1136 x 17; dry stratum corneum rho 500-5000 with eps_r ~ 200-1000, E); whole body: JS001 R C = 1500 ohm x 100 pF; held charge on insulating soles depends on the sole, E"
+   }
+  },
+  "solver": {
+   "phase": "soft_solid",
+   "collision_thickness_mm": {
+    "v": 0.058,
+    "q": "E",
+    "src": "the epidermis"
+   },
+   "compliance_layers": [
+    {
+     "name": "epidermis",
+     "thickness_mm": {
+      "v": 0.058,
+      "q": "M",
+      "src": "SRL upper arm epidermis 58.2 um"
+     },
+     "E_kPa": {
+      "v": 4000.0,
+      "q": "M",
+      "src": "FENG22 OCE forearm incl. stratum corneum (small strain)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.9,
+      "q": "E",
+      "src": "a stiff thin shell: thins little under contact (E)"
+     }
+    },
+    {
+     "name": "dermis",
+     "thickness_mm": {
+      "v": 0.84,
+      "q": "M",
+      "src": "LAYERS upper_arm (Wang S 2023 flexor, 104 women)"
+     },
+     "E_kPa": {
+      "v": 40.0,
+      "q": "M",
+      "src": "FENG22 forearm OCE (the nearest site)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.85,
+      "q": "E",
+      "src": "as skin.body"
+     }
+    },
+    {
+     "name": "fat",
+     "thickness_mm": {
+      "v": 12.0,
+      "q": "E",
+      "src": "SOFTTISSUE biceps face 8-18 mm from neighbours (no direct value); triceps face 17.6 F (R44)"
+     },
+     "E_kPa": {
+      "v": 26.1,
+      "q": "E",
+      "src": "SOFTTISSUE R31 in vivo fat (gluteal) applied"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.54,
+      "q": "E",
+      "src": "as skin.body fat"
+     }
+    },
+    {
+     "name": "biceps",
+     "thickness_mm": {
+      "v": 25.0,
+      "q": "E",
+      "src": "relaxed biceps depth to humerus (E; SOFTTISSUE gives triceps 32 mm)"
+     },
+     "E_kPa": {
+      "v": 12.0,
+      "q": "D",
+      "src": "3 x G 4 kPa relaxed (SOFTTISSUE R25); x5-10 at 3-7 % EMG (R29)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.4,
+      "q": "E",
+      "src": "E"
+     }
+    },
+    {
+     "name": "bone",
+     "thickness_mm": {
+      "v": 0.0,
+      "q": "E",
+      "src": "humerus"
+     },
+     "E_kPa": {
+      "v": 17000000.0,
+      "q": "E",
+      "src": "rigid"
+     },
+     "poisson": {
+      "v": 0.3,
+      "q": "E",
+      "src": "typical"
+     },
+     "compressible_to_fraction": {
+      "v": 1.0,
+      "q": "E",
+      "src": "rigid"
+     }
+    }
+   ],
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 0.39,
+     "q": "D",
+     "src": "series stack of compliance_layers: E_eff = T / sum(t_i / E_i) = 14.78 kPa over T 37.9 mm, / T; initial (small-strain) value; each layer stiffens with strain (fat and muscle stiffen with strain (SOFTTISSUE section 3); muscle activation x5-10)"
+    },
+    "E_eff_kPa": {
+     "v": 14.78,
+     "q": "D",
+     "src": "series stack of compliance_layers (initial)"
+    },
+    "ramp": {
+     "v": "barrier_log",
+     "q": "E",
+     "src": "IPC-style log barrier inside collision_thickness keeps surfaces apart; the tissue's own stiffening (exponential in strain) carries the load beyond it"
+    },
+    "contact_damping_ratio": {
+     "v": 0.14,
+     "q": "E",
+     "src": "thigh value (SOFTTISSUE M31); no upper-arm value (SOFTTISSUE: gap)"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.4,
+     "q": "E",
+     "src": "as skin.body's body-segment value"
+    },
+    "response_time_ms": {
+     "v": {
+      "elastic_snap_back": [
+       110,
+       190
+      ],
+      "long_relaxation_s_women_forearm": 12.4
+     },
+     "q": "M",
+     "src": "QU; PARK19 (forearm, nearest site)"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "dermis_shear": 3.5,
+      "skin_reduced_shear_young_women": 2.1
+     },
+     "q": "D",
+     "src": "sqrt(G / rho): dermis 13.3 kPa; BOYER12 reduced modulus 14.38 kPa / 3"
+    },
+    "damping_ratio": {
+     "v": 0.14,
+     "q": "E",
+     "src": "thigh value (SOFTTISSUE M31); no upper-arm value (SOFTTISSUE: gap)"
+    }
+   },
+   "membrane_stiffness_N_m": {
+    "v": 33.6,
+    "q": "D",
+    "src": "E x t = 40 kPa x 0.84 mm: 0.7 x skin.body's 48 N/m - the thin compliant inner arm"
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "neo_hookean",
+   "q": "E",
+   "src": "small strain per layer; skin.body's GOH for large stretch"
+  },
+  "density_kg_m3": {
+   "v": 1090,
+   "q": "E",
+   "src": "as skin.body"
+  },
+  "E_kPa": {
+   "v": {
+    "skin_reduced_young_women_10mN": 14.38,
+    "skin_reduced_women_60y": 6.2,
+    "dermis_oce": 40.0
+   },
+   "q": "M",
+   "src": "BOYER12 air-flow indentation, volar forearm, women 23 y / 60 y (nearest measured site); FENG22"
+  },
+  "poisson": {
+   "v": 0.5,
+   "q": "E",
+   "src": "incompressible"
+  },
+  "stretch": {
+   "v": "volar forearm and upper arm hold higher Cutometer R5 / R7 (recovery) than the back of the hand (IWAEM22); ventral upper-arm roughness rises ~exponentially with age (SRL, Hoppe via MB)",
+   "q": "M",
+   "src": "IWAEM22, SRL (qualitative)"
+  },
+  "viscoelastic": {
+   "relaxation_s": {
+    "v": {
+     "women_forearm": 12.4
+    },
+    "q": "M",
+    "src": "PARK19"
+   },
+   "instantaneous_shear_kPa": {
+    "v": [
+     1.7,
+     3.56
+    ],
+    "q": "M",
+    "src": "PARK19 forearm"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.37,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 0.372 W/mK (SD 0.059, 8 studies, range 0.322-0.498); 0.37 kept"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 3391,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 3390.5 J/kgK (SD 233, 4 studies, 3150-3662)"
+  },
+  "density_kg_m3": {
+   "v": 1109,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 1109 kg/m3 (SD 38, n 10, 1100-1125); ICRU44 ~1090: recalled, not re-read"
+  },
+  "effusivity": {
+   "v": 1180,
+   "q": "D",
+   "src": "sqrt(k rho c) from the three ITIS values above, J m-2 K-1 s-1/2 (the 'feels warm/cold' number)"
+  },
+  "emissivity": {
+   "v": 0.98,
+   "q": "M",
+   "src": "STEKETEE73 abstract re-read 11-08 (paper paywalled; abstract text via a reproduction): skin 0.98 +/- 0.01, independent of wavelength over the measured 1-14 um; white, black and burnt skin measured (normal = burnt); separate per-pigment values are not given in the abstract"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {}
+  },
+  "flexed_biceps": {
+   "set": {
+    "contact.solver.compliance_layers[biceps].E_kPa.v": 90.0
+   },
+   "q": "D",
+   "src": "3 x G 22-43 kPa at 3-7 % EMG (SOFTTISSUE R29): a lightly flexed arm, 5-10x stiffer"
+  }
+ },
+ "sources": {
+  "ALPHALAB09": {
+   "cite": "AlphaLab Inc. (W. Lee). The TriboElectric Series, charge affinity in nC/J, 72 F, 35 % RH (2009)",
+   "url": "https://www.trifield.com/content/tribo-electric-series/",
+   "lic": "(c) AlphaLab 2009; two entries used as facts, table not copied"
+  },
+  "BOYER12": {
+   "cite": "Boyer G, Pailler-Mattei C, Molimard J, Pericoi M, Laquieze S, Zahouani H. Non contact method for in vivo assessment of skin mechanical properties for assessing effect of ageing. Med Eng Phys 34:172-178 (2012) (soft_tissue.md R20)",
+   "url": "https://hal-emse.ccsd.cnrs.fr/hal-00837958v1",
+   "lic": "HAL open archive; numbers used as facts, text studied only"
+  },
+  "FENG22": {
+   "cite": "Feng X, Li GY, Ramier A, Eltony AM, Yun SH. In vivo stiffness measurement of epidermis, dermis, and hypodermis using broadband Rayleigh-wave OCE. Acta Biomater (2022); arXiv:2201.12258 (via params/skin_layers.json)",
+   "url": "https://arxiv.org/abs/2201.12258",
+   "lic": "arXiv; numbers used as facts, text studied only"
+  },
+  "GABRIEL96": {
+   "cite": "Gabriel S, Lau RW, Gabriel C. The dielectric properties of biological tissues II/III. Phys Med Biol 41:2251-2293 (1996); low-frequency values as compiled in a Frontiers supplementary table (article id 1094968, Table 1)",
+   "url": "https://www.frontiersin.org/api/v4/articles/1094968/file/Table_1.DOCX/1094968_supplementary-materials_tables_1_docx/1",
+   "lic": "the Frontiers table CC BY 4.0; the 1996 paper paywalled; numbers used as facts, text studied only"
+  },
+  "ICRU44": {
+   "cite": "ICRU Report 44 (1989), densities as listed by NIST X-Ray Mass Attenuation Coefficients Table 2",
+   "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/tab2.html",
+   "lic": "NIST page, US government work"
+  },
+  "ITIS": {
+   "cite": "Baumgartner C, Hasgall PA, Di Gennaro F, Neufeld E, Lloyd B, Gosselin MC, Payne D, Klingenboeck A, Kuster N. IT'IS Database for thermal and electromagnetic parameters of biological tissues, Version 5.0, Aug 21 2025, DOI 10.13099/VIP21000-05-0 (average values; the live tables re-read 11-08: the 2024-06-04 and 2025-08-21 table files give the same skin, fat and muscle rows)",
+   "url": "https://itis.swiss/virtual-population/tissue-properties/database",
+   "lic": "IT'IS legal notice (read 11-08): web pages and documents may be copied only for private, scientific and noncommercial use; storing them on other servers or data carriers needs written consent: STUDY ONLY (P13). Individual averages used as facts with this citation; the table is never copied in bulk"
+  },
+  "IWAEM22": {
+   "cite": "Yamanashi Univ. lab, IWAEM 2022 presentation: Cutometer by body site (back of hand lower R5/R7 than volar forearm and upper arm)",
+   "url": "https://saf-me-lab.yamanashi.ac.jp/wp-content/uploads/2026/02/R4_IWAEM22発表資料.pdf",
+   "lic": "conference slides, terms not stated; qualitative use"
+  },
+  "JS001": {
+   "cite": "ANSI/ESDA/JEDEC JS-001 human-body model: 100 pF through 1500 ohm (the standard ESD body model)",
+   "url": "https://www.esda.org",
+   "lic": "standard; model constants used as facts"
+  },
+  "LAYERS": {
+   "cite": "the project's parameter file skin_layers.json (per-region epidermis and dermis thickness, OCE moduli)",
+   "url": "the project's parameter file skin_layers.json",
+   "lic": "project file"
+  },
+  "PARK19": {
+   "cite": "Park et al. Low-cost indentation device for skin viscoelasticity (Prony fit), in vivo forearm and wrist. Molecules (2019), PMC6429284 (pilot, small n)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6429284",
+   "lic": "CC BY 4.0"
+  },
+  "SOFTTISSUE": {
+   "cite": "the project's research note soft_tissue.md (project research file; its R-keys name the primary papers: R20 Boyer 2012, R21, R25, R31 gluteal ultrasound + compression, R32/R33 seated MRI + FE, R42 Korean biopsies, R43 skin US, R44 fat/muscle US, M31 drop landing)",
+   "url": "the project's research note soft_tissue.md",
+   "lic": "project file; primary licences as listed there"
+  },
+  "SRL": {
+   "cite": "the project's research note skin_regions_and_layers.md (F1 SC layers, F2 RCM, F5 dermis US, F11 sweat glands, skin types section 2)",
+   "url": "the project's research note skin_regions_and_layers.md",
+   "lic": "project file"
+  },
+  "STEKETEE73": {
+   "cite": "Steketee J. Spectral emissivity of skin and pericardium. Phys Med Biol 18:686-694 (1973)",
+   "url": "https://doi.org/10.1088/0031-9155/18/5/307",
+   "lic": "paywalled; abstract re-read 11-08 via a reproduction (Europe PMC has no abstract); numbers used as facts, text studied only"
+  },
+  "YAMAMOTO76": {
+   "cite": "Yamamoto T, Yamamoto Y. Electrical properties of the epidermal stratum corneum. Med Biol Eng 14:151-158 (1976); Dielectric constant and resistivity of epidermal stratum corneum, ibid. 494-500",
+   "url": "https://doi.org/10.1007/BF02478741",
+   "lic": "paywalled; not read (numbers not retrieved)"
+  }
+ }
+}

@@ -1,0 +1,398 @@
+{
+ "id": "sand.wet",
+ "kind": "granular",
+ "family": "ground",
+ "_": "Moist / wet quartz sand (beach below the tide line, sandcastle sand): capillary bridges between grains give an apparent cohesion so it holds a shape; the strength peaks at ~1 % liquid volume fraction and is lost again when the pores fill (saturated sand flows). Bekker set: LETE sand (a compact test sand) used as a firm-packed proxy. World lane 2026-11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.25,
+   "q": "E",
+   "src": "wet sand shows a broad sheen; the swash film makes it mirror-like (alpha ~0.02) for seconds"
+  },
+  "n": {
+   "v": 1.333,
+   "q": "D",
+   "src": "a water film on quartz: the specular comes from the water (n water)"
+  },
+  "albedo_visible": {
+   "v": {
+    "wet": [
+     0.15,
+     0.25
+    ]
+   },
+   "q": "M",
+   "src": "darker when wet (LEKNER88 (total internal reflection in the water film: more absorption per escaping photon), LOBELL02 (reflectance falls roughly exponentially with water content)): wet sand albedo roughly half of dry"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": 0.67
+    },
+    "q": "D",
+    "src": "tan(friction angle): a body sliding on or shearing the ground is limited by the ground's own shear strength (Mohr-Coulomb), not by a surface coefficient; pair values in pairs/world.json"
+   },
+   "counterface": "itself (internal friction)"
+  },
+  "porosity": {
+   "v": 0.28,
+   "q": "D",
+   "src": "1 - bulk / particle density (TERZAGHI)"
+  },
+  "permeability_m2": {
+   "v": [
+    1e-12,
+    1e-10
+   ],
+   "q": "D",
+   "src": "k = K mu/(rho g) from hydraulic conductivity K [1e-05, 0.001] m/s (FHWA_GEC: clean sands)"
+  },
+  "hydraulic_conductivity_m_s": {
+   "v": [
+    1e-05,
+    0.001
+   ],
+   "q": "E",
+   "src": "FHWA_GEC: E: recalled from FHWA_GEC, not re-read (was M); FHWA_GEC: clean sands"
+  },
+  "water_retention": {
+   "v": {
+    "capillary_optimum_liquid_frac": 0.01,
+    "bridge_threshold_liquid_frac": 0.002,
+    "saturated_v_v": [
+     0.35,
+     0.42
+    ],
+    "cohesion_lost_when": "pores nearly filled (funicular -> slurry): no air-water menisci"
+   },
+   "q": "M",
+   "src": "PAKPOUR12; MITARAI06 (states); saturation D from porosity"
+  },
+  "restitution": {
+   "v": {
+    "ball_tennis_from_1m": [
+     0.3,
+     0.5
+    ]
+   },
+   "q": "E",
+   "src": "ANON_E: packed wet sand is firm (beach games bounce better there)"
+  },
+  "capillary_bridge": {
+   "v": "bridge force ~ 2 pi R gamma cos(theta) per contact, nearly independent of the liquid amount over a wide range: strength comes from the number of bridges",
+   "q": "E",
+   "src": "MITARAI06: E: recalled from MITARAI06, not re-read (was M); MITARAI06"
+  },
+  "solver": {
+   "phase": {
+    "v": "granular",
+    "q": "D",
+    "src": "deform.model mohr_coulomb"
+   },
+   "collision_thickness_mm": {
+    "v": 0.175,
+    "q": "D",
+    "src": "half the median grain (deform.grain_size_mm d50): the roughness a contact rides on"
+   },
+   "penetration_response": {
+    "ramp": {
+     "v": "bekker_power: p = (k_c/b + k_phi) z^n on loading; plastic: the sinkage stays on unloading (elastic rebound a few % of z)",
+     "q": "D",
+     "src": "WONG08 pressure-sinkage; plastic unloading E"
+    },
+    "contact_damping_ratio": {
+     "v": [
+      0.5,
+      1.0
+     ],
+     "q": "E",
+     "src": "ANON_E: soil/granular contact dissipates most of the energy (plastic flow, grain friction): near-critical damping"
+    },
+    "bekker_k_c_kN_m_n1": {
+     "v": 102,
+     "q": "M",
+     "src": "WONG08 LETE sand, confirmed 11-08 against the Project Chrono SCM demo set quoted in mail-archive projectchrono msg01991 (n 0.793, k_c 102e3, k_phi 5301e3, c 1.3 kPa, phi 31.1 deg)"
+    },
+    "bekker_k_phi_kN_m_n2": {
+     "v": 5301,
+     "q": "M",
+     "src": "WONG08 LETE sand, confirmed 11-08 against the Project Chrono SCM demo set quoted in mail-archive projectchrono msg01991 (n 0.793, k_c 102e3, k_phi 5301e3, c 1.3 kPa, phi 31.1 deg)"
+    },
+    "bekker_n": {
+     "v": 0.79,
+     "q": "M",
+     "src": "WONG08 LETE sand, confirmed 11-08 against the Project Chrono SCM demo set quoted in mail-archive projectchrono msg01991 (n 0.793, k_c 102e3, k_phi 5301e3, c 1.3 kPa, phi 31.1 deg)"
+    },
+    "contact_stiffness_kPa_per_mm": {
+     "v": 23.59,
+     "q": "D",
+     "src": "tangent dp/dz = n p / z at the standing foot load (p 20 kPa, b 0.09 m, z 0.7 mm) from the Bekker set; small foot on plate parameters: indicative"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": {
+      "ball_tennis_from_1m": [
+       0.3,
+       0.5
+      ]
+     },
+     "q": "E",
+     "src": "ANON_E: packed wet sand is firm (beach games bounce better there)"
+    },
+    "response_time_ms": {
+     "v": [
+      5,
+      30
+     ],
+     "q": "E",
+     "src": "ANON_E: an impact into a granular bed lasts ~ penetration depth / speed (cm at m/s: ~10 ms); mud longer (viscous squeeze)"
+    },
+    "wave_speed_m_s": {
+     "v": 101,
+     "q": "D",
+     "src": "shear sqrt(G/rho), G = E/(2(1+nu)) with E 50 MPa (mid of deform.E_MPa), nu 0.3, rho 1900; at the free surface the confining stress is ~0 and the real speed is far lower (~50-150 m/s in loose sand, E)"
+    },
+    "damping_ratio": {
+     "v": [
+      0.05,
+      0.2
+     ],
+     "q": "E",
+     "src": "ANON_E: small-strain soil damping 2-10 %, rising with strain (FHWA_GEC trend)"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "mohr_coulomb",
+   "q": "M",
+   "src": "TERZAGHI / FHWA_GEC: granular and soil strength"
+  },
+  "density_kg_m3": {
+   "v": 1900,
+   "q": "E",
+   "src": "dense packed wet beach sand: dry 1.6-1.7 g/cm3 + pore water"
+  },
+  "particle_density_kg_m3": {
+   "v": 2650,
+   "q": "M",
+   "src": "quartz (USDA_NRCS)"
+  },
+  "friction_angle_deg": {
+   "v": 34,
+   "q": "E",
+   "src": "FHWA_GEC: E: recalled from FHWA_GEC, not re-read (was M); FHWA_GEC medium-dense sand 32-36 deg (capillarity adds cohesion, not angle)"
+  },
+  "cohesion_kPa": {
+   "v": [
+    0.5,
+    5
+   ],
+   "q": "E",
+   "src": "apparent (capillary) cohesion of moist sand ~0.5-5 kPa; MITARAI06 tensile strength ~kPa; PAKPOUR12 modulus peak at ~1 % liquid"
+  },
+  "angle_of_repose_deg": {
+   "v": [
+    45,
+    90
+   ],
+   "q": "E",
+   "src": "HORNBAKER97: E: recalled from HORNBAKER97, not re-read (was M); HORNBAKER97: small liquid content raises the critical angle far above the dry 30-35 deg; moist sand stands vertical in sandcastles (PAKPOUR12)"
+  },
+  "grain_size_mm": {
+   "wentworth_sand_mm": {
+    "v": [
+     0.0625,
+     2.0
+    ],
+    "q": "M",
+    "src": "Wentworth"
+   },
+   "d50_mm": {
+    "v": [
+     0.2,
+     0.5
+    ],
+    "q": "E",
+    "src": "typical beach sand"
+   }
+  },
+  "E_MPa": {
+   "v": [
+    30,
+    80
+   ],
+   "q": "E",
+   "src": "PAKPOUR12 measured a peak modulus at ~1 % liquid (value not retrieved); dense sand FHWA_GEC 30-80 MPa"
+  },
+  "poisson": {
+   "v": 0.3,
+   "q": "E",
+   "src": "FHWA_GEC: E: recalled from FHWA_GEC, not re-read (was M); FHWA_GEC"
+  },
+  "bekker": {
+   "n": {
+    "v": 0.79,
+    "q": "M",
+    "src": "WONG08 LETE sand, confirmed 11-08 against the Project Chrono SCM demo set quoted in mail-archive projectchrono msg01991 (n 0.793, k_c 102e3, k_phi 5301e3, c 1.3 kPa, phi 31.1 deg)"
+   },
+   "k_c_kN_m_n1": {
+    "v": 102,
+    "q": "M",
+    "src": "WONG08 LETE sand, confirmed 11-08 against the Project Chrono SCM demo set quoted in mail-archive projectchrono msg01991 (n 0.793, k_c 102e3, k_phi 5301e3, c 1.3 kPa, phi 31.1 deg)"
+   },
+   "k_phi_kN_m_n2": {
+    "v": 5301,
+    "q": "M",
+    "src": "WONG08 LETE sand, confirmed 11-08 against the Project Chrono SCM demo set quoted in mail-archive projectchrono msg01991 (n 0.793, k_c 102e3, k_phi 5301e3, c 1.3 kPa, phi 31.1 deg)"
+   },
+   "cohesion_kPa": {
+    "v": 1.3,
+    "q": "M",
+    "src": "WONG08 LETE sand, confirmed 11-08 against the Project Chrono SCM demo set quoted in mail-archive projectchrono msg01991 (n 0.793, k_c 102e3, k_phi 5301e3, c 1.3 kPa, phi 31.1 deg)"
+   },
+   "friction_angle_deg": {
+    "v": 31.1,
+    "q": "M",
+    "src": "WONG08 LETE sand, confirmed 11-08 against the Project Chrono SCM demo set quoted in mail-archive projectchrono msg01991 (n 0.793, k_c 102e3, k_phi 5301e3, c 1.3 kPa, phi 31.1 deg)"
+   }
+  },
+  "footprint_sinkage_mm": {
+   "v": {
+    "standing_20kPa": 0.7,
+    "walking_heel_60kPa": 2.4
+   },
+   "q": "D",
+   "src": "Bekker with WONG08 LETE sand (packed); foot loads: standing ~20 kPa over a ~0.09 m wide sole (60 kg on two feet, ~150 cm2 each); walking heel strike ~60 kPa over ~0.06 m (E from body weight and plantar-pressure literature, foot.md); packed wet beach sand takes a crisp mm-deep print, which matches"
+  },
+  "bearing_capacity_kPa": {
+   "v": {
+    "allowable_presumptive": 96
+   },
+   "q": "M",
+   "src": "IBC18 sand class"
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 2.0,
+   "q": "M",
+   "src": "FAROUKI81: moist/saturated sand 1.5-3 W/mK"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 800,
+   "q": "M",
+   "src": "FAROUKI81: soil minerals ~0.7-0.9 kJ/kgK dry (water raises the bulk value)"
+  },
+  "emissivity": {
+   "v": [
+    0.9,
+    0.96
+   ],
+   "q": "M",
+   "src": "FAROUKI81 / remote-sensing tables (soils and sands 0.90-0.96; wet higher)"
+  },
+  "effusivity": {
+   "v": 1744,
+   "q": "D",
+   "src": "sqrt(k rho c) with the values above"
+  }
+ },
+ "states": {
+  "saturated_swash": {
+   "set": {
+    "deform.cohesion_kPa": 0,
+    "surface.alpha": 0.02,
+    "deform.model": "non_newtonian_fluid"
+   },
+   "q": "M",
+   "src": "MITARAI06: saturated sand loses capillary cohesion; vibration liquefies it (quick condition); mirror film E"
+  },
+  "drying_crust": {
+   "set": {
+    "deform.cohesion_kPa": [
+     0.1,
+     1
+    ]
+   },
+   "q": "E",
+   "src": "ANON_E: salt/fines crust on drying beach sand"
+  }
+ },
+ "sources": {
+  "WONG08": {
+   "cite": "Wong JY. Theory of Ground Vehicles, 4th ed. Wiley (2008), Table 2.3 (Bekker pressure-sinkage and Mohr-Coulomb parameters of soils, from Bekker / Land Locomotion Lab / WES). Values recalled as widely reproduced; the LETE sand set is confirmed by the Project Chrono forum post (mail-archive.com projectchrono msg01991)",
+   "url": "https://www.wiley.com/en-us/Theory+of+Ground+Vehicles%2C+4th+Edition-p-9780470170380",
+   "lic": "book, copyright; individual parameters used as facts, table not copied in bulk"
+  },
+  "USDA_NRCS": {
+   "cite": "USDA NRCS Soil Quality Indicators: Bulk Density (2008/2019) and Soil Survey Manual (Handbook 18, 2017): bulk densities by texture, particle density 2.65 g/cm3, texture classes, available water by texture",
+   "url": "https://www.nrcs.usda.gov/resources/guides-and-instructions/soil-survey-manual",
+   "lic": "US government work, public domain"
+  },
+  "FHWA_GEC": {
+   "cite": "FHWA Geotechnical Engineering Circulars (GEC 5 Evaluation of Soil and Rock Properties, FHWA-IF-02-034, 2002; GEC 6 Shallow Foundations) and the NAVFAC DM 7.01/7.02 design manuals: friction angles, unit weights, elastic moduli, hydraulic conductivity ranges by soil type. Ranges recalled",
+   "url": "https://www.fhwa.dot.gov/engineering/geotech/pubs/",
+   "lic": "US government work, public domain"
+  },
+  "IBC18": {
+   "cite": "International Building Code 2018, Table 1806.2 presumptive load-bearing values (sandy gravel 3000 psf; sand, silty sand 2000 psf; clay, silt 1500 psf)",
+   "url": "https://codes.iccsafe.org/content/IBC2018P6/chapter-18-soils-and-foundations",
+   "lic": "ICC copyright; three code values used as facts"
+  },
+  "TERZAGHI": {
+   "cite": "Terzaghi K, Peck RB, Mesri G. Soil Mechanics in Engineering Practice, 3rd ed. (1996): bearing capacity q_ult = 5.14 c_u (undrained, Prandtl), clay consistency (very soft c_u < 12 kPa), void ratio/porosity relations",
+   "url": "https://www.wiley.com/en-us/Soil+Mechanics+in+Engineering+Practice%2C+3rd+Edition-p-9780471086581",
+   "lic": "book, copyright; formulas and class limits used as facts"
+  },
+  "LEKNER88": {
+   "cite": "Lekner J, Dorf MC. Why some things are darker when wet. Appl Opt 27:1278-1280 (1988); Twomey SA, Bohren CF, Mergenthaler JL. Reflectance and albedo differences between wet and dry surfaces. Appl Opt 25:431 (1986)",
+   "url": "https://doi.org/10.1364/AO.27.001278",
+   "lic": "paywalled; the mechanism (total internal reflection in the water film, more absorption per photon path) used as fact"
+  },
+  "LOBELL02": {
+   "cite": "Lobell DB, Asner GP. Moisture effects on soil reflectance. Soil Sci Soc Am J 66:722-727 (2002). Recalled: reflectance falls roughly exponentially with water content, most of the drop in the first ~0.1-0.2 v/v",
+   "url": "https://doi.org/10.2136/sssaj2002.7220",
+   "lic": "paywalled; findings used as facts"
+  },
+  "FAROUKI81": {
+   "cite": "Farouki OT. Thermal Properties of Soils. CRREL Monograph 81-1, US Army Cold Regions Research and Engineering Laboratory (1981)",
+   "url": "https://apps.dtic.mil/sti/citations/ADA111734",
+   "lic": "US government work, public domain"
+  },
+  "LEJEUNE98": {
+   "cite": "Lejeune TM, Willems PA, Heglund NC. Mechanics and energetics of human locomotion on sand. J Exp Biol 201:2071-2080 (1998). Recalled: walking on sand costs 1.6-2.5x firm ground, running 1.2-1.6x",
+   "url": "https://doi.org/10.1242/jeb.201.13.2071",
+   "lic": "free to read (JEB archive); numbers used as facts"
+  },
+  "MALITSON_QZ": {
+   "cite": "Quartz ordinary index n_o ~1.544 at 589 nm (Ghosh 1999 via refractiveindex.info)",
+   "url": "https://refractiveindex.info/?shelf=main&book=SiO2&page=Ghosh-o",
+   "lic": "database CC0 1.0"
+  },
+  "ANON_E": {
+   "cite": "Estimate made in this lane; the reason is given in each src",
+   "url": "-",
+   "lic": "own work"
+  },
+  "PAKPOUR12": {
+   "cite": "Pakpour M, Habibi M, Moller P, Bonn D. How to construct the perfect sandcastle. Sci Rep 2:549 (2012). doi:10.1038/srep00549. PMC3412320: wet-sand modulus peaks at ~1 % liquid volume fraction; bridges do not form below ~0.2 %; max column height ~ R^(2/3)",
+   "url": "https://doi.org/10.1038/srep00549",
+   "lic": "CC BY-NC-SA 3.0 (Sci Rep 2012) STUDY ONLY (P13): numbers used as facts, nothing copied"
+  },
+  "HORNBAKER97": {
+   "cite": "Hornbaker DJ, Albert R, Albert I, Barabasi A-L, Schiffer P. What keeps sandcastles standing? Nature 387:765 (1997). Recalled: a small liquid content raises the critical angle of a granular pile well above the dry angle of repose",
+   "url": "https://doi.org/10.1038/42831",
+   "lic": "paywalled; findings used as facts"
+  },
+  "MITARAI06": {
+   "cite": "Mitarai N, Nori F. Wet granular materials. Adv Phys 55:1-45 (2006). arXiv cond-mat/0601450. Recalled: pendular / funicular / capillary / slurry states; capillary bridge force ~2 pi R gamma cos(theta); tensile strength of wet sand ~ kPa order",
+   "url": "https://arxiv.org/abs/cond-mat/0601450",
+   "lic": "arXiv non-exclusive licence; findings used as facts"
+  }
+ }
+}

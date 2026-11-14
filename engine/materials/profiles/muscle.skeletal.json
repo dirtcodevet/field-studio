@@ -1,0 +1,654 @@
+{
+  "id": "muscle.skeletal",
+  "kind": "bulk_tissue",
+  "family": "human_soft",
+  "_": "Living, perfused skeletal muscle at rest. Optics through engine/body/muscle_colour.mu (params/muscle_chromophores.json: myoglobin, capillary blood, baseline, mu_s' 11.4 (lambda/500)^-1.87); mechanics from params/soft_tissue_constants.json. Materials foundation lane 2026-11-07. v2 (SKIN lane 11-07): mechanics moved into deform; contact, thermal added.",
+  "layers": [
+    {
+      "name": "muscle",
+      "thickness_mm": {
+        "v": null,
+        "q": "E",
+        "src": "bulk: the stack's last layer, or a sample's own size"
+      },
+      "optics": {
+        "model": {
+          "v": "muscle",
+          "q": "M",
+          "src": "muscle_colour.mu"
+        },
+        "absorbers": {
+          "myoglobin_mM": {
+            "v": 0.28,
+            "q": "M",
+            "src": "whole-muscle biopsies 4.7 mg/g ~ 0.28 mM (research/LOOK_TARGETS.md 3); look round 11-08, was 0.40 (muscle_chromophores.json default)"
+          },
+          "blood_volume_fraction": {
+            "v": 0.01,
+            "q": "D",
+            "src": "LOOK_TARGETS 3: the 2 % came from a 71.8 uM NIRS total-heme reading that cannot separate Hb from myoglobin; with myoglobin counted on its own the blood share is ~1 % (D, E-grade: no non-optical muscle blood volume found)"
+          }
+        },
+        "g": {
+          "v": 0.9,
+          "q": "E",
+          "src": "typical ~0.9 (JACQ13); no muscle-only value found (the project's materials research note GAPS_RESEARCH.md 3)"
+        },
+        "n": {
+          "v": 1.4,
+          "q": "M",
+          "src": "muscle_chromophores.json refractive_index (Jacques 2013)"
+        }
+      }
+    }
+  ],
+  "surface": {
+    "alpha": {
+      "v": 0.15,
+      "q": "E",
+      "src": "a cut or fascia-covered muscle face is wet and smooth; only seen in a section sample"
+    },
+    "n": {
+      "v": 1.4,
+      "q": "M",
+      "src": "as the layer"
+    }
+  },
+  "contact": {
+    "friction": {
+      "kinetic": {
+        "v": null,
+        "q": "E",
+        "src": "not found: muscle slides within its fascia / epimysium (internal)"
+      },
+      "counterface": "fascia"
+    },
+    "restitution": {
+      "v": {
+        "thigh": 0.64,
+        "calf": 0.23
+      },
+      "q": "D",
+      "src": "e = exp(-pi zeta / sqrt(1 - zeta^2)) from the damping ratios below"
+    },
+    "solver": {
+      "phase": "soft_solid",
+      "collision_thickness_mm": {
+        "v": 0.5,
+        "q": "E",
+        "src": "internal layer; small offset for fascia planes (E)"
+      },
+      "impact": {
+        "restitution": {
+          "v": {
+            "thigh": 0.64,
+            "calf": 0.23
+          },
+          "q": "D",
+          "src": "from damping"
+        },
+        "response_time_ms": {
+          "v": {
+            "wobble_half_period_thigh": [
+              31,
+              36
+            ],
+            "settle_10pct_thigh": [
+              170,
+              200
+            ],
+            "settle_calf": [
+              80,
+              100
+            ]
+          },
+          "q": "D",
+          "src": "SOFTTISSUE M31 / M30 (derived there)"
+        },
+        "wave_speed_m_s": {
+          "v": {
+            "shear_relaxed": 1.94,
+            "shear_20mvc": 2.99
+          },
+          "q": "D",
+          "src": "sqrt(G / rho), G 4 / 9.5 kPa"
+        },
+        "damping_ratio": {
+          "v": {
+            "thigh": 0.14,
+            "calf": 0.42
+          },
+          "q": "D",
+          "src": "soft_tissue_constants.json thigh / calf damping (M30, M31)"
+        },
+        "loss_factor_impact": {
+          "v": {
+            "tan_delta_wobble_thigh": [
+              0.22,
+              0.32
+            ],
+            "tan_delta_wobble_calf": 0.84,
+            "dynamic_stiffness_x_at_80Hz": [
+              4.1,
+              5.0
+            ]
+          },
+          "q": "D",
+          "src": "from deform.viscoelastic (SOFTTISSUE M30/M31; VANLOOCKE09). A ms-scale muscle Prony set was not found: muscle under a slap is stiffer than its quasi-static law by ~4-5x already at 80 Hz. how a solver uses it: integrate the Prony set (deform.viscoelastic.prony) as internal variables in an implicit step (one exponential update per term per step; stable at any dt) on top of the hyperelastic stress, so a 1-10 ms slap sees the short-time stiffness and loses energy in the 1-10 ms terms; do not use Rayleigh damping fitted to the ~15 Hz wobble: beta-damping gives zeta = beta * omega / 2, so a beta set for zeta 0.15 at 15 Hz (beta 3.2 ms) gives zeta ~5 at 250-500 Hz (a 1-2 ms pulse): over-damped, the slap goes dead. Where only one number fits, use the loss factor at the pulse's frequency f ~ 1 / (2 x contact time), zeta = tan_delta / 2."
+        }
+      },
+      "penetration_response": {
+        "contact_stiffness_kPa_per_mm": {
+          "v": null,
+          "q": "E",
+          "src": "per region: set by the stack in the skin profile"
+        },
+        "strain_stiffening": {
+          "v": {
+            "E0_kPa": 62.2,
+            "k": 7
+          },
+          "q": "D",
+          "src": "SOFTTISSUE section 3 from R31's gluteal muscle points"
+        }
+      }
+    }
+  },
+  "deform": {
+    "model": {
+      "v": "transversely_isotropic",
+      "q": "M",
+      "src": "MORROW10 along / across fibre ~20:1 in tension"
+    },
+    "density_kg_m3": {
+      "v": 1060,
+      "q": "M",
+      "src": "MENDEZ60 fresh mammalian 1.0597; ICRU44 1.05; fixed human 1.112 (WARD05) (the project's materials research note GAPS_RESEARCH.md 3)"
+    },
+    "shear_kPa_relaxed": {
+      "v": 4.0,
+      "q": "M",
+      "src": "soft_tissue_constants.json g_muscle_relaxed_kpa (SSI 2.99-4.50, 30 adults, R25)"
+    },
+    "shear_kPa_20mvc": {
+      "v": 9.5,
+      "q": "M",
+      "src": "soft_tissue_constants.json g_muscle_20mvc_kpa (MRE vastus, R28)"
+    },
+    "E_kPa_in_vivo_compression": {
+      "v": {
+        "gluteal_eps_0.19": 62.2,
+        "gluteal_eps_0.47": 440.4
+      },
+      "q": "M",
+      "src": "SOFTTISSUE R31"
+    },
+    "bulk_kPa": {
+      "v": 2600000.0,
+      "q": "D",
+      "src": "K = rho c^2 = 1060 x 1580^2 (DUCK90; GAPS_RESEARCH.md 3)"
+    },
+    "poisson": {
+      "v": 0.4992,
+      "q": "D",
+      "src": "nu = (3K - 2G) / (2 (3K + G)), K 2.6 GPa, G 4 kPa -> 0.49999; 0.4992 a solver-safe stand-in (E inside D)"
+    },
+    "anisotropy": {
+      "v": {
+        "E_along_kPa": 447,
+        "E_across_kPa": 22.4
+      },
+      "q": "M",
+      "src": "MORROW10 rabbit EDL tension (~20:1); compression can reverse it (Takaza 2013, unverified) (the project's materials research note GAPS_RESEARCH.md 3)"
+    },
+    "hyperelastic": {
+      "neo_hookean_C10_kPa": {
+        "v": {
+          "relaxed": 2.0,
+          "20mvc": 4.75
+        },
+        "q": "D",
+        "src": "C10 = G / 2"
+      },
+      "ogden": {
+        "v": null,
+        "q": "E",
+        "src": "not found for human muscle in this pass"
+      }
+    },
+    "strain_limit": {
+      "v": 0.47,
+      "q": "M",
+      "src": "soft_tissue_constants.json muscle_strain_limit (R31)"
+    },
+    "viscoelastic": {
+      "damping_ratio": {
+        "v": {
+          "thigh": 0.14,
+          "calf": 0.42
+        },
+        "q": "D",
+        "src": "soft_tissue_constants.json thigh / calf damping (M30, M31)"
+      },
+      "prony": {
+        "v": {
+          "fibre": [
+            {
+              "g": 0.374,
+              "tau_s": 0.6
+            },
+            {
+              "g": 0.285,
+              "tau_s": 6
+            },
+            {
+              "g": 0.077,
+              "tau_s": 30
+            },
+            {
+              "g": 0.078,
+              "tau_s": 60
+            },
+            {
+              "g": 0.101,
+              "tau_s": 300
+            }
+          ],
+          "cross_fibre": [
+            {
+              "g": 0.097,
+              "tau_s": 0.6
+            },
+            {
+              "g": 0.532,
+              "tau_s": 6
+            },
+            {
+              "g": 0.072,
+              "tau_s": 30
+            },
+            {
+              "g": 0.0,
+              "tau_s": 60
+            },
+            {
+              "g": 0.086,
+              "tau_s": 300
+            }
+          ]
+        },
+        "q": "M",
+        "src": "VANLOOCKE09 Table 2, NLV-SYM model fitted to 10 % cycles at 0.4 Hz, porcine; slow terms only (0.6-300 s): seconds-scale relaxation, NOT impact; weights valid inside that model (strain-dependent multipliers h, a), and the authors report it misses the stiffening above 5 Hz"
+      },
+      "dynamic_stiffening_vs_freq": {
+        "v": {
+          "0.22Hz": 1.0,
+          "80Hz": [
+            4.1,
+            5.0
+          ]
+        },
+        "q": "M",
+        "src": "VANLOOCKE09: stress-cycle amplitude of 10 % cycles at 25 % mean compression rises ~4.1x (abstract) to ~5x (text) from 0.22 to 80 Hz (5 to 3200 %strain/s); cross-fibre 1.2x stiffer at low amplitude; porcine, ex vivo"
+      },
+      "high_rate_E_kPa": {
+        "v": {
+          "0.05": 1.0,
+          "32": [
+            4.1,
+            5.0
+          ]
+        },
+        "q": "D",
+        "src": "keys: strain rate per s; values: dynamic stiffness relative to 0.05 /s (no absolute E retrieved): VANLOOCKE09 cycle-amplitude ratio at 0.22 Hz (5 %/s) vs 80 Hz (3200 %/s). Times the quasi-static law (deform.stiffening) for a first estimate"
+      },
+      "high_rate_compression": {
+        "v": "concave-up, strongly rate-sensitive stress-strain in compression at Hopkinson-bar rates: bovine 1000-2500 /s to 80 % strain (VANSLIGT06); porcine 0.007-3700 /s, along and across fibre (SONG07); human soleus / gastrocnemius ~500-1800 /s, stiffer than porcine and bovine, rate effect evident above ~150 /s, soleus stiffer (BALARAMAN). Numbers only in figures: not digitised",
+        "q": "M",
+        "src": "VANSLIGT06; SONG07; BALARAMAN"
+      },
+      "loss_factor_vs_freq": {
+        "v": {
+          "15Hz": [
+            0.22,
+            0.32
+          ],
+          "10Hz_calf": 0.84,
+          "100Hz": null,
+          "1000Hz": null
+        },
+        "q": "D",
+        "src": "tan_delta ~ 2 zeta from the in vivo segment wobble (SOFTTISSUE M31 thigh zeta 0.11-0.16 at 14-16 Hz; M30 calf 0.42 at 10.5 Hz): a whole-segment mode (muscle + fat + skin, activation-dependent), not a material loss factor; 100 and 1000 Hz not found (MRE G'' for thigh muscle not retrieved)"
+      },
+      "loss_vs_freq_measured": {
+        "v": {
+          "100Hz": [
+            0.07,
+            1.29
+          ],
+          "300Hz": [
+            0.21,
+            3.9
+          ],
+          "1000Hz": [
+            0.7,
+            12.9
+          ],
+          "cases": {
+            "brachialis_along_fibre_relaxed_SSI": {
+              "100Hz": 0.07,
+              "300Hz": 0.21,
+              "1000Hz": 0.7
+            },
+            "brachialis_across_fibre_relaxed_SSI": {
+              "100Hz": 0.37,
+              "300Hz": 1.1,
+              "1000Hz": 3.66
+            },
+            "relaxed_along_fibre_crawling_wave": {
+              "100Hz": [
+                0.7,
+                1.29
+              ],
+              "300Hz": [
+                2.1,
+                3.9
+              ],
+              "1000Hz": [
+                7.0,
+                12.9
+              ]
+            }
+          },
+          "voigt_mu_kPa_eta_Pa_s": {
+            "brachialis_along_relaxed_SSI": {
+              "mu": 5.86,
+              "eta": 0.65
+            },
+            "brachialis_across_relaxed_SSI": {
+              "mu": 1.58,
+              "eta": 0.92
+            },
+            "brachialis_along_passive_stretch_90_to_165deg_SSI": {
+              "mu": [
+                5.4,
+                29.5
+              ],
+              "eta": [
+                0.58,
+                1.57
+              ]
+            },
+            "brachialis_along_loaded_1_to_4kg_SSI": {
+              "mu": [
+                41.3,
+                100.8
+              ],
+              "eta": [
+                2.6,
+                6.7
+              ]
+            },
+            "rectus_femoris_relaxed_CW": {
+              "mu": [
+                5.33,
+                5.87
+              ],
+              "eta": [
+                9.14,
+                9.72
+              ]
+            },
+            "biceps_femoris_relaxed_CW": {
+              "mu": 4.45,
+              "eta": 9.13
+            },
+            "medial_gastrocnemius_relaxed_CW": {
+              "mu": 4.98,
+              "eta": 9.26
+            },
+            "biceps_brachii_relaxed_CW": {
+              "mu": [
+                6.09,
+                8.68
+              ],
+              "eta": [
+                9.73,
+                10.55
+              ]
+            },
+            "contracted_CW": {
+              "mu": [
+                8.4,
+                11.9
+              ],
+              "eta": [
+                11.6,
+                13.2
+              ]
+            }
+          }
+        },
+        "q": "D",
+        "src": "Voigt fits to in vivo human shear-wave phase-velocity dispersion: GENNISSON10 Table 1 and 3 (supersonic shear imaging, brachialis, 100-800 Hz, volunteer 1 for the loads) and HOYT08 Table 2 and 3 (crawling-wave sonoelastography, 80-200 Hz, along fibres, 2 men) (mu, eta: M); tan delta = 2 pi f eta / mu computed here (D). The two disagree ~14x along the fibre at 100 Hz (0.07 vs 0.7-1.3): GENNISSON10 found the along-fibre wave nearly non-dispersive (low eta) and the across-fibre wave strongly dispersive; the Voigt model forces tan delta to grow linearly with f, and GENNISSON10 note it was not validated against attenuation. HOYT08 values at 300 and 1000 Hz and GENNISSON10 at 1000 Hz are past their bands (extrapolated). For a slap on relaxed muscle (shear across the fibres under the skin) the across-fibre SSI case is the closest measured: tan delta ~0.4 at 100 Hz, ~1 at 300 Hz. Contraction raises mu ~7-17x and eta ~4-10x along the fibre",
+        "method": "in vivo ultrasound shear-wave elastography dispersion (SSI 100-800 Hz; crawling waves 80-200 Hz), Kelvin-Voigt fit"
+      },
+      "G_storage_loss_vs_freq_measured_kPa": {
+        "v": {
+          "brachialis_along_relaxed_SSI": {
+            "G_storage": 5.86,
+            "G_loss": {
+              "100Hz": 0.41,
+              "300Hz": 1.23,
+              "1000Hz": 4.1
+            }
+          },
+          "brachialis_across_relaxed_SSI": {
+            "G_storage": 1.58,
+            "G_loss": {
+              "100Hz": 0.58,
+              "300Hz": 1.73,
+              "1000Hz": 5.8
+            }
+          },
+          "relaxed_along_fibre_CW": {
+            "G_storage": [
+              4.45,
+              8.68
+            ],
+            "G_loss": {
+              "100Hz": [
+                5.7,
+                6.6
+              ],
+              "300Hz": [
+                17,
+                20
+              ],
+              "1000Hz": [
+                57,
+                66
+              ]
+            }
+          }
+        },
+        "q": "D",
+        "src": "Voigt: G' = mu, G'' = 2 pi f eta, from GENNISSON10 Table 1 (0 kg) and HOYT08 Table 2/3 relaxed; computed here; values past each band extrapolated"
+      }
+    },
+    "fracture": {
+      "strength_kPa": {
+        "v": null,
+        "q": "E",
+        "src": "not found in this pass"
+      }
+    },
+    "sim": {
+      "v": {
+        "xpbd_deviatoric_compliance_1_per_Pa": 0.00025,
+        "xpbd_volume_compliance_1_per_Pa": 3.846e-10
+      },
+      "q": "D",
+      "src": "1 / G (4 kPa), 1 / K"
+    },
+    "stiffening": {
+      "law": "exponential_tangent",
+      "form": "E_t(eps) = E0 * exp(k * (eps - eps_ref)): tangent compressive modulus, relaxed muscle, quasi-static, in vivo, whole layer in place",
+      "E0_kPa": {
+        "v": 62.2,
+        "q": "M",
+        "src": "ISOGAI22 (SOFTTISSUE R31) gluteal muscle in vivo, E at 5 N (strain 0.19) 62.2 +/- 10.3 kPa, relaxed"
+      },
+      "k": {
+        "v": 6.99,
+        "q": "D",
+        "src": "ISOGAI22 two points: ln(440.4 / 62.2) / (0.47 - 0.19)"
+      },
+      "eps_ref": {
+        "v": 0.19,
+        "q": "M",
+        "src": "ISOGAI22"
+      },
+      "valid_eps": {
+        "v": [
+          0.19,
+          0.47
+        ],
+        "q": "M",
+        "src": "ISOGAI22 measured span (440.4 +/- 80.0 kPa at 0.47, 30 N)"
+      },
+      "E_at_eps0_kPa": {
+        "v": 16.5,
+        "q": "D",
+        "src": "62.2 * exp(-6.99 * 0.19); compare relaxed 3G = 12 kPa (SSI G 4 kPa): consistent"
+      },
+      "q": "D",
+      "src": "ISOGAI22 via SOFTTISSUE R31 / section 3; contraction raises G x2.6 and more (SOFTTISSUE R28-R30), not in this law"
+    }
+  },
+  "thermal": {
+    "conductivity_W_mK": {
+      "v": 0.49,
+      "q": "M",
+      "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Muscle average 0.495 W/mK (SD 0.042, 8 studies, 0.42-0.56); 0.49 kept"
+    },
+    "heat_capacity_J_kgK": {
+      "v": 3421,
+      "q": "M",
+      "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Muscle average 3421 J/kgK (SD 460, 5 studies, 2624-3799)"
+    },
+    "density_kg_m3": {
+      "v": 1090,
+      "q": "M",
+      "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Muscle average 1090.4 kg/m3 (SD 55, n 14, 1041-1178); MENDEZ60 1060: recalled, not re-read"
+    },
+    "effusivity": {
+      "v": 1352,
+      "q": "D",
+      "src": "sqrt(k rho c) from the ITIS values"
+    }
+  },
+  "states": {
+    "rest": {
+      "set": {}
+    },
+    "working": {
+      "set": {
+        "layers.muscle.optics.absorbers": {
+          "blood_volume_fraction": 0.04,
+          "blood_saturation": 0.6,
+          "myoglobin_saturation": 0.6
+        }
+      },
+      "q": "E",
+      "src": "muscle_colour.STATES 'living, flushed (working)'"
+    },
+    "ischaemic": {
+      "set": {
+        "layers.muscle.optics.absorbers": {
+          "blood_saturation": 0.1,
+          "myoglobin_saturation": 0.1
+        }
+      },
+      "q": "E",
+      "src": "muscle_colour.STATES"
+    }
+  },
+  "sources": {
+    "DUCK90": {
+      "cite": "Duck FA. Physical Properties of Tissue. Academic Press (1990); standard ranges",
+      "url": "https://doi.org/10.1016/C2009-0-02649-4",
+      "lic": "book, copyright; numbers used as facts, text studied only"
+    },
+    "ICRU44": {
+      "cite": "ICRU Report 44 (1989), densities as listed by NIST X-Ray Mass Attenuation Coefficients Table 2",
+      "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/tab2.html",
+      "lic": "NIST page, US government work"
+    },
+    "ITIS": {
+      "cite": "Baumgartner C, Hasgall PA, Di Gennaro F, Neufeld E, Lloyd B, Gosselin MC, Payne D, Klingenboeck A, Kuster N. IT'IS Database for thermal and electromagnetic parameters of biological tissues, Version 5.0, Aug 21 2025, DOI 10.13099/VIP21000-05-0 (average values; the live tables re-read 11-08: the 2024-06-04 and 2025-08-21 table files give the same skin, fat and muscle rows)",
+      "url": "https://itis.swiss/virtual-population/tissue-properties/database",
+      "lic": "IT'IS legal notice (read 11-08): web pages and documents may be copied only for private, scientific and noncommercial use; storing them on other servers or data carriers needs written consent: STUDY ONLY (P13). Individual averages used as facts with this citation; the table is never copied in bulk"
+    },
+    "JACQ13": {
+      "cite": "JACQ13: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "MENDEZ60": {
+      "cite": "MENDEZ60: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "MORROW10": {
+      "cite": "MORROW10: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "SOFTTISSUE": {
+      "cite": "the project's research note soft_tissue.md (project research file; its R-keys name the primary papers: R20 Boyer 2012, R21, R25, R31 gluteal ultrasound + compression, R32/R33 seated MRI + FE, R42 Korean biopsies, R43 skin US, R44 fat/muscle US, M31 drop landing)",
+      "url": "the project's research note soft_tissue.md",
+      "lic": "project file; primary licences as listed there"
+    },
+    "WARD05": {
+      "cite": "WARD05: full citation in the project's materials research note GAPS_RESEARCH.md, Sources",
+      "url": "the project's materials research note GAPS_RESEARCH.md",
+      "lic": "see GAPS_RESEARCH.md; numbers used as facts"
+    },
+    "VANLOOCKE09": {
+      "cite": "Van Loocke M, Simms CK, Lyons CG. Viscoelastic properties of passive skeletal muscle in compression - cyclic behaviour. J Biomech 42:1038-1048 (2009). doi 10.1016/j.jbiomech.2009.02.022; fresh porcine muscle, 25 % mean compression, 2 / 10 % cycles at 0.22-80 Hz",
+      "url": "https://orbi.umons.ac.be/handle/20.500.12907/9791",
+      "lic": "(c) Elsevier; author postprint (ORBi UMONS) read 11-08; numbers used as facts, text studied only"
+    },
+    "VANSLIGT06": {
+      "cite": "Van Sligtenhorst C, Cronin DS, Brodland GW. High strain rate compressive properties of bovine muscle tissue determined using a split Hopkinson bar apparatus. J Biomech 39:1852-1858 (2006)",
+      "url": "https://doi.org/10.1016/j.jbiomech.2005.05.015",
+      "lic": "paywalled; abstract only (DOI not verified); qualitative findings used"
+    },
+    "SONG07": {
+      "cite": "Song B, Chen W, Ge Y, Weerasooriya T. Dynamic and quasi-static compressive response of porcine muscle. J Biomech 40:2999-3005 (2007)",
+      "url": "https://doi.org/10.1016/j.jbiomech.2007.02.001",
+      "lic": "paywalled; abstract and secondary quotes only (DOI not verified); qualitative findings used"
+    },
+    "BALARAMAN": {
+      "cite": "Balaraman K, Mukherjee S, Chawla A, Malhotra R. Dynamic compressive response of passive human muscles using split Hopkinson pressure bar (IIT Delhi manuscript; year not printed); human soleus / gastrocnemius, 1 donor, ~500-1800 /s",
+      "url": "https://web.iitd.ac.in/~achawla/PDF%20Files/Dynamic%20Compressive%20response%20of%20passive%20human%20muscles.pdf",
+      "lic": "manuscript on the authors' site, terms not stated; text read, curves in figures not digitised"
+    },
+    "ISOGAI22": {
+      "cite": "Isogai K, et al. J Phys Ther Sci 34:777-783 (2022). doi 10.1589/jpts.34.777 (SOFTTISSUE R31): gluteal fat and muscle in vivo, ultrasound + compression, 16 men 20-22 y, 576 mm2 probe",
+      "url": "https://doi.org/10.1589/jpts.34.777",
+      "lic": "open access, journal licence CC BY-NC-ND 4.0 (not re-checked 11-08): the text and figures STUDY ONLY (P13); four numbers used as facts"
+    },
+    "GENNISSON10": {
+      "cite": "Gennisson J-L, Deffieux T, Mace E, Montaldo G, Fink M, Tanter M. Viscoelastic and anisotropic mechanical properties of in vivo muscle tissue assessed by supersonic shear imaging. Ultrasound Med Biol 36(5):789-801 (2010)",
+      "url": "https://www.institut-langevin.espci.fr/IMG/pdf/2010_viscoelastic_and_anisotropic_mechanical_properties_of_in_vivo_muscle_tissue_assessed_by_supersonic_shear_imaging.pdf",
+      "lic": "(c) World Federation for Ultrasound in Medicine & Biology (Elsevier); lab copy read; Table 1 and 3 numbers used as facts, text studied only"
+    },
+    "HOYT08": {
+      "cite": "Hoyt K, Kneezel T, Castaneda B, Parker KJ. Quantitative sonoelastography for the in vivo assessment of skeletal muscle viscoelasticity. Phys Med Biol 53:4063-4080 (2008)",
+      "url": "https://www.hajim.rochester.edu/ece/sites/parker/assets/pdf/crawling-waves/141 - Quantitative sonoelastography for the in vivo assessment of skeletal muscle viscoelasticity.pdf",
+      "lic": "(c) IPEM / IOP; lab copy read; Table 2 and 3 numbers used as facts, text studied only"
+    }
+  }
+}

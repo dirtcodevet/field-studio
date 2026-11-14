@@ -16,7 +16,7 @@ publication dates. The only public date is the release date of this disclosure.
 - *implemented*: built and run, with no measurement we rely on;
 - *measured on named cases*: numbers exist for the cases named, usually from a single run;
 - *reproduced under a frozen configuration*: re-run to the same result from recorded inputs and hashes;
-- *accepted in the workflow*: in daily use, by the author's decision.
+- *accepted in the workflow*: in daily use, by an explicit adoption decision.
 
 Nothing here claims novelty, protection or freedom to operate. Published methods are credited where they are used.
 
@@ -28,45 +28,43 @@ The project is one author, Mathew, working with AI coding sessions on one deskto
 adopted one at a time, usually after something went wrong. All of them carry the state *accepted in the workflow*.
 
 **1.1 One short charter (11-02) and a short list of principles (11-06).** A single charter of at most 30 lines
-states the outcome in the author's words: "extreme realism, but generally aligned with the reference ...
-if I look at your end result I should be looking at it and saying, 'my god whoever took that photograph has
-extraordinary talent, it's unbelievably good!' No matter what level I am zoomed to." Every other document is a
-reference, a tool or a dated record, to be weighed and not obeyed. A list of principles and machine mechanics was
-approved on 11-06. The author's words are read in three tiers: an observation is a hypothesis
-to test; an explicit direction holds for that task only; a standing rule exists only where he says it is one.
+states the outcome: extreme, life-like realism, generally aligned with the reference, at every level of zoom. Every
+other document is a reference, a tool or a dated record, to be weighed and not obeyed. A list of principles and
+machine mechanics was adopted on 11-06. Direction is read in three tiers: an observation is a hypothesis to test; an
+explicit direction holds for that task only; a standing rule exists only where it is set as one.
 
 **1.2 Outcome first (stated 11-06, the default since 11-09).** Define the target outcome from the references with
 precision, so that it holds in every view, light, zoom and motion, and build it directly. Causes (anatomy, physiology,
 physics) come in as drivers of variation and states, or where the outcome is itself a behaviour such as contact or
 motion. Physics is never tuned until a shape appears. This replaced a cause-first default. The cost behind it: skin
 colour built up from chromophore causes kept producing blotches that were hard to trace, across rounds on 11-02, 11-06
-and 11-07 ("hours", by the record). The author approved it on 11-09 with his own caveat: lanes that genuinely need
-causes first are to say so plainly and build that way (`engine/lessons/outcome_first.md`).
+and 11-07 (hours of work, by the record). It was adopted on 11-09 with one provision: a lane whose outcome genuinely
+needs causes first says so plainly and builds that way (`engine/lessons/outcome_first.md`).
 
 **1.3 Built, not painted (11-09).** A look has to come from the structure that produces it (form, volume, translucent
 layers, an optical medium, motion), so it holds when the light, view or zoom changes. Blur used to soften, baked or
 painted creases and pores, painted shading and colour decals are not allowed unless that operation is what really
 happens. Defects are fixed at the shape, never hidden.
 
-**1.4 Fix a named problem at its cause (charter, 11-02).** When the author names a problem, the session finds what
+**1.4 Fix a named problem at its cause (charter, 11-02).** When a problem is named, the work finds what
 causes that point and resolves it there. Making the surroundings look right instead is the one thing the charter
 forbids. Two recorded costs. On 11-02, eight builds tried to shape a nose and an upper lip with numeric displacement
-fields fitted to 2-D outlines, each stacking an offset on the last; after about 20 hours the nose was "clearly wrong".
+fields fitted to 2-D outlines, each stacking an offset on the last; after about 20 hours the nose was still clearly wrong.
 A profile line says nothing about width, so everything off the line was guessed by falloffs. What worked was a real
-3-D form: the author sculpted those features himself. On 10-31, a one-shot hair rebuild ran ten rounds of fixes that
-each made the next artefact; he marked it a total failure and it was archived, not built on.
+3-D form: those features were sculpted by hand. On 10-31, a one-shot hair rebuild ran ten rounds of fixes that
+each made the next artefact; it was recorded as a failure and archived, not built on.
 
-**1.5 Measure before claiming.** Numbers locate a fault and confirm a change; the rendered image and the author's eye
-decide whether a form is right (`engine/lessons/measuring.md`). Pass marks are written before a run and not moved
+**1.5 Measure before claiming.** Numbers locate a fault and confirm a change; the rendered image, looked at beside
+the reference, decides whether a form is right (`engine/lessons/measuring.md`). Pass marks are written before a run and not moved
 after it. Every number is labelled measured, derived or estimated. Failures are kept as run. An instrument is proved
 once on the failure it exists for: one closest-point routine with a one-token bug made 11-38 % of distances too small,
 and its own self-check could not see it. In one overnight run about five results were withdrawn under these habits,
-two of them over-claims by the lead session.
+two of them over-claims in coordination summaries.
 
-**1.6 The author sees each round and decides.** Each round reaches him as a numbered sheet beside the reference: the
-current model through the real renderer at full quality, looked at by the session first. He decides what enters the
-current model. The cost behind "the real renderer": on 11-03 a session's own render path moved the eyes of his
-sculpted face, and he rejected the work outright. A face guard followed (a content hash over the field bricks of the
+**1.6 Each round is reviewed beside the reference.** Each round is shown as a numbered sheet beside the reference:
+the current model through the real renderer at full quality, looked at first by the session that made it. What enters
+the current model is an explicit decision. The cost behind the real-renderer requirement: on 11-03 a session's own
+render path moved the eyes of the hand-sculpted face, and the work was rejected outright. A face guard followed (a content hash over the field bricks of the
 face region, checked before and after every edit). On 11-04 a review found the checksum then in use had been guarding
 a superseded file outside the render path; it was replaced.
 
@@ -74,8 +72,8 @@ a superseded file outside the render path; it was replaced.
 three lanes each owned by one session advanced, while the Field Studio integration, split into 30-minute hand-offs
 between fresh sessions that each re-learned the plan, barely moved in four rounds
 (the project's lesson record of 11-07). Since then one session owns each lane continuously; a lead
-plans, briefs and arbitrates and does not carry lane work. Briefs carry the outcome, the author's words, the machine
-constants and a "done when", not a method. Other costs from that night: flags lost in short summaries, and a stuck GPU
+plans, briefs and arbitrates and does not carry lane work. Briefs carry the outcome, the direction as given, the machine
+constants and a completion condition, not a method. Other costs from that night: flags lost in short summaries, and a stuck GPU
 process nobody was permitted to stop, which held the card for three hours.
 
 **1.8 One shared machine.** All sessions share 8 cores, 32 GB of RAM (16 GB until 11-06) and one 8 GB RTX 5050.
@@ -94,8 +92,8 @@ process nobody was permitted to stop, which held the card for three hours.
 
 **1.9 Records.** A ledger keeps every request and run outcome and is reconciled after each run (since 10-26). Work is
 committed locally; the repository has no remote. Each change of lead writes a dated hand-off: what is measured, what
-is *not established*, each lane's state, and the decisions waiting on the author. Incoming sessions take the work "as
-it actually is, not how it is stated to be", and look at the latest images before trusting a status line.
+is *not established*, each lane's state, and the decisions still open. Incoming sessions take the work as
+it actually is, not as it is stated to be, and look at the latest images before trusting a status line.
 
 **1.10 Sources and licences (since 10-26).** No source or asset whose terms limit commercial use is used, except to
 study. Facts and numbers from a paper are used as facts; its text, figures, data and code are not copied. One ledger
@@ -103,11 +101,11 @@ study. Facts and numbers from a paper are used as facts; its text, figures, data
 
 **1.11 Mesh-free everywhere (11-07 and 11-08).** No triangles, quads, tetrahedra or element meshes in the model, the
 tools, the renderer, previews, tests or scaffolding. Bodies, cloth, hair and fluids are fields, lattices, particles or
-curves. The steps: vertices dropped for the model on 11-03; "zero meshes allowed anywhere ever" on 11-07; test benches
+curves. The steps: vertices dropped for the model on 11-03; no meshes anywhere, as a standing rule, on 11-07; test benches
 included on 11-08. What it cost: a 2-D finite-element bench used for material proofs was retired that night, and a
 real-time web viewer with a mesh skin was archived.
 
-**1.12 Patents (11-11).** The author intends an open-source release. A patented method is studied, not shipped. Where
+**1.12 Patents (11-11).** The tool is intended for an open-source release. A patented method is studied, not shipped. Where
 a published patent appears to cover something the tool needs, the lane designs a plainly different method and records
 its reading of the claim elements one by one. These are engineering notes by non-lawyers; the searches are not
 exhaustive, and no clearance is claimed.
@@ -120,7 +118,7 @@ exhaustive, and no clearance is claimed.
 
 The earliest dated build records are from 10-19. The human model was a polygon mesh in Blender, rendered with Cycles.
 Its base body came from a free base model from Blender Studio (Human Base Meshes v1.4.1; every asset's licence field
-says CC0, per `engine/LICENSES.md`), and the author sculpted the face on it. This era left procedural skin relief
+says CC0, per `engine/LICENSES.md`), and the face was sculpted on it by hand. This era left procedural skin relief
 driven as render-time displacement, seeded iris and hair tools, and the measuring lessons above. It also hit a wall:
 at full skin detail Blender ran out of memory on every close frame on this machine (12.25 GB) and finished 31 of 120
 frames in 30 minutes.
@@ -128,8 +126,8 @@ frames in 30 minutes.
 
 ### 2.2 Vertices dropped (11-03)
 
-At 00:12 the author wrote that treating a human form as millions of vertices with modifiers "makes realism detail work
-almost impossible". At 17:47 he decided: "I want to get rid of the entire vertex-based framework." Cage, subdivision
+At 00:12 the problem was recorded: treating a human form as millions of vertices with modifiers makes realism at fine
+detail close to impossible. At 17:47 the decision followed: the vertex-based framework is dropped entirely. Cage, subdivision
 and displacement fallbacks were set aside too. Success would be measured on the field side: the same or better look
 for less time and memory on an 8 GB card.
 **Evidence: accepted in the workflow.**
@@ -159,7 +157,7 @@ additions:
 frame against the same renderer's brute force at 425.5 ms, with a mean image difference of 0.96/255. Whole-shot wall
 time was about 7 s against about 300 s for Blender, a figure extrapolated from 5 frames. The record lists why that is
 not like for like: the field renderer computed less light transport, the materials differed, Blender was not tuned,
-and the cache is valid only while light and subject stay still. Its own verdict was "yes, partly". A later round found
+and the cache is valid only while light and subject stay still. Its own conclusion was a qualified yes. A later round found
 the field's path tracer no faster per sample than Cycles: the speed comes from the cache, not from the field format.
 **Evidence: measured on named cases** (single runs, one head, one machine).
 
@@ -195,7 +193,7 @@ is a cache that one deterministic writer regenerates from them, bit for bit.
 - Separate tissues that touch are never blended: each part is stored whole and the visible field is their minimum.
 - Every edit is an entry in a replayable operation log; undo is exact.
 
-**Tolerance.** On 11-05 the author allowed his sculpts to be rebuilt natively "within that small tolerance", about
+**Tolerance.** On 11-05 a tolerance was set for rebuilding the hand sculpts natively: about
 20 um (pass mark: 1 mm-averaged offset, 99th percentile at most 20 um), in place of byte copies.
 
 **What happened.** The neck was native by 11-05 23:45. The first full assembly, on the night of 11-06, was refused by
@@ -203,8 +201,8 @@ the writer, as designed: two joins did not fit and three had no overlap. By the 
 native in one full-body cache that matched the old version on the GPU (mean difference 0.01 to 0.22 of 255); the rest
 were blocked where three or more parts meet or slits close. One limit was reported plainly: where the old mesh's
 stair-steps sit on a sculpted fold, holding the sculpt within 20 um means re-drawing the stair-steps. Whether every
-region finally met the 20 um bar is **not established** in the records read for this part. On 11-09 the author added
-that no part is sacred, his sculpts included: flaws are fixed and small shifts are fine.
+region finally met the 20 um bar is **not established** in the records read for this part. On 11-09 the rule was extended:
+no part is held as final, the hand sculpts included; flaws are fixed and small shifts are fine.
 **Evidence: measured on named cases.**
 
 **Finer than 0.25 mm.** The renderer's finest body level is 0.25 mm. Contact leaves at 0.125 mm were built for tight
@@ -219,25 +217,25 @@ Field Studio began as a CPU-only Windows tool that sculpts directly in a field, 
 command (first committed 11-05). Its viewport moved to GPU tracing and sculpting on 11-08, and a product design
 followed on 11-10.
 
-On 11-11 the author changed the main effort. A round on the lips had come back with the lips pressed together, "the
-sort of thing that a human would not have done". His conclusion: the sessions are strong at code, physics, measurement
-and research, and weak in the fine visual refinement loop. So the work became "the actual base, the tool, the studio,
-and all of the components it needs ... so that a human can finish the work", within 16 GB of RAM and an 8 GB card for
-the whole system.
+On 11-11 the main effort changed. A round on the lips had come back with the lips pressed together in a way a person
+would not have shaped them. The conclusion drawn: the sessions are strong at code, physics, measurement and research,
+and weak in the fine visual refinement loop. So the work became the base itself (the tool, the studio and all the
+components it needs) so that a person can finish the work by hand, within 16 GB of RAM and an 8 GB card for the whole
+system.
 
 **Test 1.** With front and side reference images on one centre axis, sculpt a sphere into a basic head (head shape,
-eye indents, nose, cheeks, chin and jaw line) aligned with them, in under 5 minutes (first said as 2). Scripted
+eye indents, nose, cheeks, chin and jaw line) aligned with them, in under 5 minutes (first set at 2). Scripted
 measures: outline mean within 3 mm, lumps at most 1.5 mm RMS, at least 30 frames per second while stroking, at most
 100 ms to the next stroke.
 
-**How the first runs went.** A scripted run in the real window on 11-11 at 10:47 made "a lumpy egg with a flat face",
+**How the first runs went.** A scripted run in the real window on 11-11 at 10:47 made a lumpy, egg-like form with a flat face,
 after 144 actions and an estimated 7.8 minutes. Four passes of Smooth took the lumps from 4.49 to 4.23 mm RMS (6 %).
 Strokes ran at 6.6 to 13 frames per second. A neck pulled down with Grab tore into an open ring. 22 of 166 presses
-near the silhouette turned the view instead of sculpting. The author's first comment was about the driver: "You used
-too small of a brush". A sculptor blocks in with a brush a third to half the size of the head, and the tool capped
+near the silhouette turned the view instead of sculpting. The first finding was about the driver: the brush was too
+small. A sculptor blocks in with a brush a third to half the size of the head, and the tool capped
 brush size and ran large brushes slowest. Since the run could not tell tool limits from AI limits, each tool was then
 measured on standard forms against its equivalent elsewhere. By the 11-12 morning hand-off, 30 frames per second for
-small strokes was still not established, and the author's own first hand run of test 1 was still open.
+small strokes was still not established, and the first hands-on run of test 1 was still open.
 **Evidence: measured on named cases** (scripted runs; test 1 is not passed).
 
 ### 2.7 Skin
@@ -265,7 +263,7 @@ estimates. Cadaver data serves form and thickness only; colour comes from living
 fields. Its random walk was checked against a published Monte Carlo reference (colour difference 0.5), and the check
 showed the older analytic colour model wrong by 7 to 10. An earlier tone multiplier, fitted through a film-look
 display transform, had baked that transform into the material. Even with correct optics, colour from causes kept
-blotching. The author's direction: a natural base tone per zone from living references; low natural variation matched
+blotching. The direction adopted: a natural base tone per zone from living references; low natural variation matched
 per zone on the band ruler; sparse, faint accents; then triggered states. Causes stay for the states.
 **Evidence: accepted in the workflow.**
 
@@ -275,7 +273,7 @@ pores, texture, per-zone overrides, local refinements). The same seed and settin
 gives another skin of the same kind. Colour is a regional base smoothed along the surface, plus tan by exposure, four
 seeded bands of variation, and freckles and moles as a seeded point process of irregular soft patches. Relief comes
 from seeded growers scaled by age and sex. Output is evaluated at any point and written as lattices aligned with the
-model's bricks. The author approved it as the model's default on 11-11. It has no panel in the tool yet and is
+model's bricks. It was adopted as the model's default on 11-11. It has no panel in the tool yet and is
 re-baked after a shape change.
 **Evidence: accepted in the workflow.**
 
@@ -287,7 +285,7 @@ fibres at their real scale, over a dark back layer, under an analytic cornea. Gl
 **Evidence: measured on named cases.**
 
 **Why four rounds read as a stain (analysis 11-05).** A brown inner zone had read as a circle, then a splat, a
-watercolour stain and a starburst. The author asked for a pause to study reference irises: colour, then texture, then
+watercolour stain and a starburst. The work paused to study reference irises: colour, then texture, then
 structure. Three independent measures agreed. In real irises the amber is the bright material: brownness and lightness
 correlate at about +0.5 at fibre scale. In ours it was a dark absorbing film: -0.3 to -0.7. The amber added absorption
 and no scatter, and its edge was drawn across the fibres instead of being made by them, so no edge shape could fix it.
@@ -296,11 +294,11 @@ and Larsson 2009). The reference photographs were iris macros under CC BY and CC
 **Evidence: measured on named cases** (three reference irises; three others were too soft to resolve the zone).
 
 **What the r22 draft got wrong (11-09).** It failed its own gates as run (9 of 13 texture gates, 6 of 10 geometry
-gates, parallax failed). The author's read: "Ours blur, rather than being natural, and are too wavy in a consistent
-way", too symmetrical at the inner border, with fine detail "all but absent". Blur used to soften is painting (1.3).
+gates, parallax failed). On review it read as blurred rather than natural and too regularly wavy, too symmetrical at the inner border, with
+fine detail almost absent. Blur used to soften is painting (1.3).
 A fresh session took the lane.
 
-**The seeded generator (11-09 17:40; `engine/eye_lane/iris_gen.py`).** His direction: a seed and settings that give
+**The seeded generator (11-09 17:40; `engine/eye_lane/iris_gen.py`).** The direction: a seed and settings that give
 different irises (colour variation, patterns, crypts), not one eye. Everything is drawn from (seed, settings) on a
 5 um grid over the iris plane:
 
@@ -313,10 +311,10 @@ different irises (colour variation, patterns, crypts), not one eye. Everything i
 Relief and collagen density come from distance fields to the strands. There are about 80 settings and four presets.
 **Evidence: measured on named cases** (two to four seeds shown beside reference photographs).
 
-**Colour carried by the fibres (the author's verdict, 11-09 about 21:30).** The blue irises worked because their
+**Colour carried by the fibres (a finding of 11-09, about 21:30).** The blue irises worked because their
 colour comes out of the fibre structure itself. For green, hazel and brown, a separate pigmented tissue had been laid
-over the strands; it hid the fibre architecture and read as mud. "That was the single action that drove the failure of
-effectively every eye except the blue." The direction: one fibre architecture for every colour, with the pigment
+over the strands; it hid the fibre architecture and read as mud. That one choice drove the failure of effectively
+every eye except the blue. The direction: one fibre architecture for every colour, with the pigment
 carried inside the strands and tissue, per strand, layer and zone. The 11-11 status still lists this as missing, along
 with a whole-eye generator.
 **Evidence: proposed.**
@@ -338,8 +336,8 @@ beside licensed reference photographs. As of the 11-11 status the tool's viewpor
 part did not re-check that. A separate catalogue (11-09) plans 215 further profiles; it is planning only.
 **Evidence: implemented.**
 
-**Labels carry the material (design, 11-10).** A label is the front door to a profile: "I label that as an eye ...
-Field Studio knows what an eye is." Labelling a part applies its material, physics and generator. Proof sheets for
+**Labels carry the material (design, 11-10).** A label is the front door to a profile: a part labelled as an
+eye is known to Field Studio as an eye. Labelling a part applies its material, physics and generator. Proof sheets for
 stone and wood, rendered in the field renderer beside references, are future work.
 **Evidence: proposed.**
 

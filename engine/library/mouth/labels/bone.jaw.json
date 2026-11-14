@@ -1,0 +1,60 @@
+{
+ "name": "bone.jaw",
+ "inherits": null,
+ "_": "fs-mouth 11-11; format: design C7 (engine/fieldstudio/DESIGN_PRODUCT_2026-11-10.md); optics: engine/materials/profiles + engine/library/mouth/media_fit.json (fitted to cited in-vivo colours); how the renderers read it: fs-light (pending)",
+ "form": {
+  "rules": [
+   {
+    "what": "bigonial width (women)",
+    "value_mm": [
+     82.0,
+     89.8
+    ]
+   },
+   {
+    "what": "ramus height",
+    "value_mm": 54.2
+   },
+   {
+    "what": "gonial angle",
+    "value_deg": [
+     119.7,
+     122.1
+    ]
+   }
+  ]
+ },
+ "medium": {
+  "layers": [
+   {
+    "name": "cortical bone",
+    "optics_E": {
+     "n": 1.55,
+     "mus_reduced": [
+      2.6,
+      2.8,
+      3.0
+     ],
+     "mua": [
+      0.02,
+      0.04,
+      0.09
+     ]
+    }
+   }
+  ]
+ },
+ "physics": {
+  "profile": null,
+  "contact": {
+   "bone-gingiva": "bond",
+   "bone-tooth": "touch across the ligament"
+  }
+ },
+ "look": {
+  "generator": "engine/library/mouth/jaw.py Mandible + gums.py (alveolar bone, hard palate)",
+  "settings": [
+   "seed"
+  ]
+ }
+}

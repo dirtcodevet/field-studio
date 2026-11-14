@@ -1,0 +1,561 @@
+{
+ "id": "ceramic.brick",
+ "kind": "porous_solid",
+ "family": "ceramic",
+ "_": "Fired clay building brick (common / facing), dry, room temperature. Numbers from the lane research fs_build/fs-materials/research/STONE_LOOK_RESEARCH.md (density and absorption measured, arXiv:1610.08301; colour from measured brick faces, ECOSTRESS and USGS); mechanical and thermal values are typical-class estimates marked E. fs-materials 11-14.",
+ "surface": {
+  "alpha": {
+   "v": 0.7,
+   "q": "E",
+   "src": "LANE: a wire-cut or pressed brick face is matte"
+  },
+  "alpha_by_finish": {
+   "v": {
+    "wirecut": 0.7,
+    "pressed": 0.55,
+    "sandfaced": 0.85
+   },
+   "q": "E",
+   "src": "LANE: by face type"
+  },
+  "n": {
+   "v": 1.55,
+   "q": "E",
+   "src": "LANE: fired clay (quartz / mullite / glass phases) about 1.5-1.6"
+  },
+  "F0": {
+   "v": 0.0465,
+   "q": "D",
+   "src": "((n - 1)/(n + 1))^2"
+  }
+ },
+ "optics_summary": {
+  "colour_note": {
+   "v": "red, orange, brown (iron oxide fired in oxidising kilns); buff where iron is low; darker flashed ends; light sand grains and white lime specks in the body",
+   "q": "E",
+   "src": "LANE: brick description"
+  },
+  "translucency": {
+   "v": "opaque",
+   "q": "E",
+   "src": "observation"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": [
+      0.6,
+      0.75
+     ],
+     "wet": [
+      0.55,
+      0.7
+     ]
+    },
+    "q": "E",
+    "src": "ETB: masonry / brick on brick 0.6-0.7 (typical)"
+   },
+   "kinetic": {
+    "v": {
+     "dry": [
+      0.5,
+      0.65
+     ],
+     "wet": [
+      0.45,
+      0.6
+     ]
+    },
+    "q": "E",
+    "src": "LANE: slightly below static"
+   },
+   "counterface": "brick on brick (ETB)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": [
+     40,
+     70
+    ],
+    "q": "E",
+    "src": "clean mineral oxide/carbonate surfaces are high-energy but quickly covered by adsorbed water and organics; effective 40-70 (E)"
+   },
+   "tack": {
+    "v": "none",
+    "q": "E",
+    "src": "observation"
+   }
+  },
+  "restitution": {
+   "v": [
+    0.7,
+    0.9
+   ],
+   "q": "E",
+   "src": "hard sphere (steel, glass) on a thick stone slab: the slab is near-rigid; ball material and slab support dominate"
+  },
+  "solver": {
+   "phase": "solid",
+   "collision_thickness_mm": {
+    "v": 0.1,
+    "q": "E",
+    "src": "numerical offset only: a rigid solid has no compliant surface layer; 0.1 mm sits below what reads on screen at character distance and above the field's float/step resolution at metre scale, so contacts never show a gap or a pass-through; finishes (lacquer, sealer, a water film) are thinner still"
+   },
+   "penetration_response": {
+    "ramp": "hertz",
+    "E_star_GPa": {
+     "v": 15.6,
+     "q": "D",
+     "src": "E / (1 - nu^2) from the profile's E 15 GPa (E) and nu 0.2 (the half-space modulus; a rigid indenter assumed, the soft partner's own E* combines in series)"
+    },
+    "contact_stiffness_kPa_per_mm": {
+     "v": 199000.0,
+     "q": "D",
+     "src": "mean pressure per mm of overlap under a 50 mm-radius flat patch (hand-sized): k = 2 E* a (flat punch), / (pi a^2): ~1e5-1e6 kPa/mm, so the solver should treat the surface as an unyielding barrier and let the soft partner deform"
+    },
+    "hertz_constant_N_per_m1_5_R25mm": {
+     "v": 3290000000.0,
+     "q": "D",
+     "src": "F = (4/3) E* sqrt(R) d^1.5 for a rigid sphere R 25 mm"
+    },
+    "contact_damping_ratio": {
+     "v": 0.071,
+     "q": "D",
+     "src": "zeta = -ln e / sqrt(pi^2 + ln^2 e) from restitution 0.8"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": [
+      0.7,
+      0.9
+     ],
+     "q": "E",
+     "src": "hard sphere on a thick slab, E (ball and support dominate)"
+    },
+    "response_time_ms": {
+     "v": 0.502,
+     "q": "D",
+     "src": "Hertz contact time t = 2.87 (m^2 / (R E*^2 v))^0.2 for a rigid 1 kg sphere, R 25 mm, 1 m/s on this material: tens of microseconds. In a hand slap the soft tissue sets the pulse (ms); this surface only has to not yield, so the slap's sound and stop come from the hand"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "bar_longitudinal": 2554,
+      "shear": 1648
+     },
+     "q": "D",
+     "src": "sqrt(E/rho), sqrt(G/rho), G = E/(2(1+nu)), rho 2300"
+    },
+    "damping_ratio": {
+     "v": 0.071,
+     "q": "D",
+     "src": "as contact_damping_ratio (energy lost per impact, from restitution)"
+    }
+   },
+   "_": "A wall, floor or step of this stone: an unyielding barrier at body scale; the soft body deforms against it."
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": [
+     0,
+     40
+    ],
+    "q": "E",
+    "src": "porous stone wicks water: apparent contact angle near zero within seconds unless sealed"
+   }
+  },
+  "porosity": {
+   "v": [
+    0.12,
+    0.25
+   ],
+   "q": "D",
+   "src": "ARXIV1610: open porosity ~12 % measured; 23 % from 14 % absorption x 1636 kg/m3"
+  },
+  "water_absorption": {
+   "v": [
+    11,
+    25
+   ],
+   "q": "M",
+   "src": "ARXIV1610: 14 % measured (24 h cold); 11-25 % range (BJSIR 46731); at most 20 % first class"
+  },
+  "oil_absorption": {
+   "v": "unsealed calcareous and porous stones stain with oil (it wicks in and darkens permanently); granite and slate much less",
+   "q": "E",
+   "src": "stone-care practice"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": "quartz grains, like glass on the positive side (E)",
+    "q": "E",
+    "src": "not in ALPHALAB; by mineral (quartz glass-like +, calcite near neutral)"
+   },
+   "resistivity_ohm_m": {
+    "v": [
+     100.0,
+     1000000000.0
+    ],
+    "q": "E",
+    "src": "ROCK electrical: dry dense rock 1e9-1e12 ohm m; porous rock set by pore water (1e2-1e4 wet); E: recalled from ROCK, not re-read"
+   }
+  },
+  "hardness": {
+   "v": 6,
+   "q": "E",
+   "src": "LANE: fired clay with quartz grains, Mohs about 5-7"
+  },
+  "abrasion": {
+   "v": "the fire skin (the outer mm) is harder than the body; wear exposes the paler, softer body",
+   "q": "E",
+   "src": "LANE"
+  }
+ },
+ "deform": {
+  "model": "brittle",
+  "density_kg_m3": {
+   "v": 1636,
+   "q": "M",
+   "src": "ARXIV1610: bulk density 1636 kg/m3 measured; typical 1600-1800"
+  },
+  "E_GPa": {
+   "v": 12,
+   "q": "E",
+   "src": "LANE: fired clay brick 5-20 GPa (typical class)"
+  },
+  "poisson": {
+   "v": 0.15,
+   "q": "E",
+   "src": "LANE: brick 0.1-0.2"
+  },
+  "shear_GPa": {
+   "v": 5.22,
+   "q": "D",
+   "src": "E / (2 (1 + nu))"
+  },
+  "bulk_GPa": {
+   "v": 5.71,
+   "q": "D",
+   "src": "E / (3 (1 - 2 nu))"
+  },
+  "fracture": {
+   "strength_compressive_MPa": {
+    "v": {
+     "typical": 40,
+     "range": [
+      10,
+      100
+     ]
+    },
+    "q": "E",
+    "src": "LANE: common to engineering brick classes"
+   },
+   "strength_tensile_MPa": {
+    "v": {
+     "typical": 3,
+     "range": [
+      1,
+      6
+     ]
+    },
+    "q": "E",
+    "src": "LANE: about a tenth of compressive (brittle)"
+   },
+   "toughness_KIC_MPa_m05": {
+    "v": [
+     0.5,
+     1.5
+    ],
+    "q": "E",
+    "src": "LANE: fired clay ceramics"
+   },
+   "_": "Brittle: arrises chip (2-15 mm chips on handled bricks, research photos); cracks across the length under bending."
+  },
+  "sim": {
+   "_": "Rigid at character scale.",
+   "xpbd_compliance_1_Pa": {
+    "v": 8.33e-11,
+    "q": "D",
+    "src": "1 / E"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.8,
+   "q": "E",
+   "src": "ETB: brick 0.6-1.0 W/mK"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 840.0,
+   "q": "E",
+   "src": "ETB: brick ~840 J/kgK"
+  },
+  "effusivity": {
+   "v": 1050,
+   "q": "D",
+   "src": "sqrt(k rho c) = sqrt(0.8 x 1636 x 840)"
+  },
+  "emissivity": {
+   "v": 0.93,
+   "q": "E",
+   "src": "IR tables: red brick 0.93"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {},
+   "_": "the base"
+  },
+  "wet": {
+   "set": {
+    "surface.alpha": 0.4
+   },
+   "q": "E",
+   "src": "a water film smooths the face; the porous body darkens as it absorbs"
+  }
+ },
+ "sources": {
+  "ECOSTRESS": {
+   "cite": "Meerdink SK et al. 2019, The ECOSTRESS spectral library version 1.0, Remote Sens Environ 230:111196; Baldridge AM et al. 2009, The ASTER spectral library version 2.0, Remote Sens Environ 113:711-715",
+   "url": "https://speclib.jpl.nasa.gov/",
+   "lic": "free; Caltech (c) 2017, citation asked; numbers used as cited facts, raw files study only"
+  },
+  "USGS7": {
+   "cite": "Kokaly RF et al. 2017, USGS Spectral Library Version 7, USGS Data Series 1035, doi:10.5066/F7RR1WDJ",
+   "url": "https://www.sciencebase.gov/catalog/item/586e8c88e4b0f5ce109fccae",
+   "lic": "US public domain"
+  },
+  "LANE": {
+   "cite": "fs-materials lane estimates (11-14), each named in its src; replaced as measured values are found",
+   "url": "",
+   "lic": "own work"
+  },
+  "ARXIV1610": {
+   "cite": "arXiv:1610.08301 (fired clay brick properties; bulk density, water absorption, porosity)",
+   "url": "https://arxiv.org/pdf/1610.08301",
+   "lic": "arXiv licence; numbers used as facts"
+  },
+  "ETB": {
+   "cite": "The Engineering ToolBox: friction coefficients; thermal conductivity and heat capacity of brick",
+   "url": "https://www.engineeringtoolbox.com",
+   "lic": "free web reference; numbers used as facts"
+  },
+  "BJSIR": {
+   "cite": "Bangladesh J Sci Ind Res, article 46731 (brick water absorption 11-25 %)",
+   "url": "https://www.banglajol.info",
+   "lic": "open access; numbers used as facts"
+  }
+ },
+ "look": {
+  "_": "The look as numbers (fs-materials 11-14; materials/library.py resolve_look, the card shading materials/look.cuh): the mean albedo is MEASURED (a variety face spectrum -> linear sRGB: fs_build/fs-materials/research/STONE_LOOK_RESEARCH.md); the composition about it keeps that mean at every zoom. Fired-brick structure: light sand grains in the red body (grain dir: lighter grains are paler), white lime specks as spots, kiln flashing as the mottle (the iron axis: darker red).",
+  "varieties": {
+   "v": {
+    "red": {
+     "albedo_lin": [
+      0.257,
+      0.102,
+      0.072
+     ],
+     "sample": "USGS GDS353, medium red building brick, face"
+    },
+    "dark_red": {
+     "albedo_lin": [
+      0.164,
+      0.07,
+      0.053
+     ],
+     "sample": "USGS GDS350, dark red building brick, face"
+    },
+    "smooth_red": {
+     "albedo_lin": [
+      0.225,
+      0.132,
+      0.1
+     ],
+     "sample": "ECOSTRESS 0097, red smooth-faced building brick, face"
+    },
+    "tan": {
+     "albedo_lin": [
+      0.185,
+      0.098,
+      0.054
+     ],
+     "sample": "USGS GDS347, tan paving brick, face"
+    },
+    "light_grey": {
+     "albedo_lin": [
+      0.242,
+      0.226,
+      0.2
+     ],
+     "sample": "USGS GDS354, light grey building brick, face"
+    }
+   },
+   "q": "M",
+   "src": "ECOSTRESS / USGS face spectra integrated by the lane (fs_build/fs-materials/research/STONE_LOOK_RESEARCH.md)"
+  },
+  "default_variety": {
+   "v": "red",
+   "q": "E",
+   "src": "LANE: the common building colour"
+  },
+  "albedo_lin": {
+   "v": [
+    0.257,
+    0.102,
+    0.072
+   ],
+   "q": "M",
+   "src": "ECOSTRESS: the default variety"
+  },
+  "iron_dir": {
+   "v": [
+    -0.6792,
+    -0.5693,
+    -0.4633
+   ],
+   "q": "D",
+   "src": "unit log ratio of two measured varieties (the colour axis between them)"
+  },
+  "copy_log_sd": {
+   "v": 0.05,
+   "q": "E",
+   "src": "LANE: block-to-block lightness within one source"
+  },
+  "copy_iron_sd": {
+   "v": 0.06,
+   "q": "E",
+   "src": "LANE: block-to-block spread along the colour axis"
+  },
+  "grain": {
+   "v": {
+    "size_mm": 0.35,
+    "log_sd": 0.12,
+    "dir": [
+     1.0,
+     1.1,
+     1.25
+    ],
+    "fine_mm": 0.1,
+    "fine_log_sd": 0.06,
+    "interstice_log": -0.2,
+    "interstice_r0": 0.68,
+    "dark_p": 0.03,
+    "dark_log": -0.9,
+    "cluster_mm": 1.5,
+    "cluster_log_sd": 0.06
+   },
+   "q": "E",
+   "src": "LANE: from the rock type (grain size class) and the reference photos"
+  },
+  "laminae": {
+   "v": {
+    "spacing_mm": 0.0,
+    "iron_log_sd": 0.0,
+    "grey_log_sd": 0.0,
+    "warp_mm": 0.0,
+    "dip_deg": [
+     0.0,
+     0.0
+    ]
+   },
+   "q": "E",
+   "src": "LANE"
+  },
+  "spots": {
+   "v": {
+    "cell_mm": 5.0,
+    "share": 0.02,
+    "radius_cells": 0.1,
+    "log": -0.9
+   },
+   "q": "E",
+   "src": "LANE"
+  },
+  "mottle": {
+   "v": {
+    "lam_mm": 45.0,
+    "log_sd": 0.07
+   },
+   "q": "E",
+   "src": "LANE"
+  },
+  "micro": {
+   "v": {
+    "amp_um": 35.0,
+    "radius_cells": 0.66
+   },
+   "q": "E",
+   "src": "LANE: the grains standing above the interstices on a cut face (geometry: look.cuh mat_micro)"
+  },
+  "finishes": {
+   "v": {
+    "wirecut": {
+     "alpha": 0.7,
+     "on_sigma": 0.4,
+     "relief": "sawn",
+     "grain_clip": 0.6
+    },
+    "pressed": {
+     "alpha": 0.55,
+     "on_sigma": 0.3,
+     "relief": "rubbed",
+     "grain_clip": 0.35
+    },
+    "sandfaced": {
+     "alpha": 0.85,
+     "on_sigma": 0.5,
+     "relief": "riven_or_tooled",
+     "grain_clip": 1.0
+    }
+   },
+   "q": "E",
+   "src": "surface.alpha_by_finish where the profile has it; gloss for comparison (granite, Sanmartin et al. 2011: sawn 12.5-24.8 GU at 60 deg, honed 8.5-22, polished 67-89; Carrara, Careddu & Aru 2023: polished 61.9 GU at 60 deg, rough finishes 0.1-6 GU; research)"
+  },
+  "skin": {
+   "v": {
+    "depth_mm": 0.6,
+    "width_mm": 0.3,
+    "body_log": [
+     0.16,
+     0.2,
+     0.14
+    ]
+   },
+   "q": "E",
+   "src": "LANE 11-14: a fired brick's face is its skin (the kiln-coloured surface: flashing, sand facing, oxidation), ~0.5-1 mm (even small chips show the body in the photos); the body under it paler and a little more orange where chips and cracks cut through (reference photos show it qualitatively). ESTIMATE: no reference yet has skin and body in the same light (brick_hamstead: the fracture faces down, in shadow); body ~17-22 % lighter, depth 0.6 mm; a runner ask for a measured pair"
+  },
+  "weather": {
+   "v": {
+    "patch_mm": 40.0,
+    "patch_frac": 0.5,
+    "wear_mm": 4.0,
+    "wear_var": 0.35,
+    "wear_lam_mm": 80.0,
+    "micro_gain": 1.0
+   },
+   "q": "E",
+   "src": "the colour shift is look.weather_colour (M). E (the lane 11-14, by eye on the free references at their pixel scale, reference content/stone_brick_2026-11-14): worn arrises rounded ~3-6 mm (brick_pile_chipped_edges, ~0.2 mm/px; brick_newhey_whole_chipped) -> wear 4 mm at full weathering, +-35 % along the arris over ~80 mm; the face colour uneven at ~40 mm; the grains standing prouder (fines washed out) x2 at full weathering. Weathering is a state 0..1 (the panel), seeded per object."
+  },
+  "fracture": {
+   "v": {
+    "amp_um": 110.0,
+    "cell_mm": 0.6
+   },
+   "q": "E",
+   "src": "the lane 11-14: broken and worn brick surfaces are granular at ~0.2-0.6 mm (the chipped arrises of brick_pile_chipped_edges at ~0.2 mm/px: grains and sockets 1-3 px), the body sand 0.1-1 mm; render-time relief below the as-made box (look.cuh mat_micro) (11-14 round 3: amplitude set beside the same-scale reference: the band read too dark and pitted higher)"
+  },
+  "weather_colour": {
+   "v": [
+    -0.0259,
+    -0.0797,
+    -0.1458
+   ],
+   "q": "M",
+   "src": "the weathered face colour, MEASURED: ln(weathered / bare) per linear sRGB channel (x the weathering state w), ECOSTRESS v1.0 (JPL) 0412 weathered red brick (smooth) vs 0413 bare red brick (smooth), the same lane integration as the varieties (linear sRGB 0.2060 / 0.0651 / 0.0325 vs 0.2114 / 0.0705 / 0.0376: fs_build/fs-materials/research/albedo_samples.csv); numbers as facts, citation requested"
+  }
+ }
+}

@@ -1,0 +1,427 @@
+{
+ "id": "air",
+ "kind": "gas",
+ "family": "gas",
+ "_": "Dry and humid air near sea level (ISA 15 C, and room 20 C), with a `wind` block for outdoor scenes: Beaufort speeds, gusts, turbulence, the log profile near the ground, and the drag coefficients of the shapes it pushes (a head, a hair fibre, cloth). World lane 2026-11-07.",
+ "surface": {
+  "n": {
+   "v": 1.000293,
+   "q": "M",
+   "src": "CIDDOR96: classic 0 C STP value; 1.000277 at 15 C, 550 nm (Ciddor)"
+  },
+  "alpha": {
+   "v": 0.0,
+   "q": "D",
+   "src": "no surface"
+  }
+ },
+ "optics_summary": {
+  "n": {
+   "v": {
+    "0C_STP": 1.000293,
+    "15C_550nm": 1.000277
+   },
+   "q": "M",
+   "src": "CIDDOR96"
+  },
+  "scattering": {
+   "v": "Rayleigh (lambda^-4): the blue sky; aerosol (Mie) adds haze; 23 km visibility clean air",
+   "q": "M",
+   "src": "PREETHAM99 / HOSEK12 sky models (turbidity)"
+  }
+ },
+ "contact": {
+  "density_kg_m3": {
+   "v": {
+    "ISA_15C": 1.225,
+    "20C": 1.204
+   },
+   "q": "M",
+   "src": "ISA; 20 C D from p/(R T)"
+  },
+  "viscosity_mPa_s": {
+   "v": {
+    "15C": 0.01789,
+    "20C": 0.01813,
+    "35C": 0.01885
+   },
+   "q": "M",
+   "src": "ISA / CRC (Sutherland law)"
+  },
+  "kinematic_viscosity_m2_s": {
+   "v": 1.506e-05,
+   "q": "D",
+   "src": "mu / rho at 20 C"
+  },
+  "humidity_effect": {
+   "v": "humid air is LESS dense than dry at the same p and T (M_w 18 < 29): at 30 C, 100 % RH ~1.5 % lighter; n - 1 drops slightly; sound a bit faster",
+   "q": "D",
+   "src": "ideal-gas mixture with saturation vapour pressure (CRC)"
+  },
+  "solver": {
+   "phase": {
+    "v": "non_colliding",
+    "q": "D",
+    "src": "SCHEMA: gas is non_colliding. Air never blocks a solid; it acts on bodies only through drag, lift, buoyancy and pressure"
+   },
+   "collision_thickness_mm": {
+    "v": null,
+    "q": "D",
+    "src": "not applicable: no collision surface"
+   },
+   "penetration_response": {
+    "model": {
+     "v": "drag only: F = 0.5 rho |u_rel| u_rel Cd A (wind.drag coefficients); buoyancy rho_air V g; a hair fibre per unit length 0.5 rho u^2 Cd d",
+     "q": "D",
+     "src": "HOERNER65 / wind.drag"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": null,
+     "q": "D",
+     "src": "not applicable"
+    },
+    "response_time_ms": {
+     "v": null,
+     "q": "D",
+     "src": "not applicable"
+    },
+    "wave_speed_m_s": {
+     "v": 343.2,
+     "q": "D",
+     "src": "sound speed at 20 C (deform.sound_speed_m_s)"
+    },
+    "damping_ratio": {
+     "v": "aerodynamic: linearised drag c = rho u Cd A per body",
+     "q": "D",
+     "src": "from the drag law"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "ideal_gas",
+   "q": "M",
+   "src": "ISA"
+  },
+  "density_kg_m3": {
+   "v": 1.225,
+   "q": "M",
+   "src": "ISA sea level 15 C"
+  },
+  "pressure_Pa": {
+   "v": 101325,
+   "q": "M",
+   "src": "ISA / CODATA18"
+  },
+  "gas_constant_J_kgK": {
+   "v": 287.05,
+   "q": "M",
+   "src": "ISA"
+  },
+  "gamma": {
+   "v": 1.4,
+   "q": "M",
+   "src": "ISA"
+  },
+  "sound_speed_m_s": {
+   "v": {
+    "ISA_15C": 340.29,
+    "20C": 343.2
+   },
+   "q": "M",
+   "src": "ISA; 20 C D from sqrt(gamma R T)"
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.0259,
+   "q": "M",
+   "src": "ETB air properties table (Engineering ToolBox, re-read 11-08; a secondary source): 25.87 mW/mK at 20 C, 1 atm; corrected from 0.0257 (CRC, recalled)"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1006,
+   "q": "M",
+   "src": "ETB specific heat of air table (Engineering ToolBox, re-read 11-08; a secondary source): cp 1.006 kJ/kgK at 288.7-300 K, 1 bar; corrected from 1005 (CRC, recalled)"
+  },
+  "effusivity": {
+   "v": 5.6,
+   "q": "D",
+   "src": "sqrt(0.0257*1.204*1005)"
+  },
+  "emissivity": {
+   "v": null,
+   "q": "E",
+   "src": "not found: a gas layer; use sky temperature for radiative exchange"
+  }
+ },
+ "wind": {
+  "beaufort_m_s_at_10m": {
+   "v": {
+    "0": [
+     0,
+     0.2
+    ],
+    "1": [
+     0.3,
+     1.5
+    ],
+    "2": [
+     1.6,
+     3.3
+    ],
+    "3": [
+     3.4,
+     5.4
+    ],
+    "4": [
+     5.5,
+     7.9
+    ],
+    "5": [
+     8.0,
+     10.7
+    ],
+    "6": [
+     10.8,
+     13.8
+    ],
+    "7": [
+     13.9,
+     17.1
+    ],
+    "8": [
+     17.2,
+     20.7
+    ],
+    "9": [
+     20.8,
+     24.4
+    ],
+    "10": [
+     24.5,
+     28.4
+    ],
+    "11": [
+     28.5,
+     32.6
+    ],
+    "12": [
+     32.7,
+     null
+    ]
+   },
+   "q": "M",
+   "src": "WMO_BEAUFORT (force: [lo, hi] m/s at 10 m)"
+  },
+  "beaufort_effects": {
+   "v": {
+    "2": "leaves rustle, wind felt on face",
+    "4": "raises dust, loose paper; small branches move; hair blown",
+    "6": "large branches move, umbrellas hard to use",
+    "8": "twigs break off, walking impeded"
+   },
+   "q": "M",
+   "src": "WMO_BEAUFORT land descriptions (paraphrased)"
+  },
+  "gust_factor": {
+   "v": {
+    "open_land": [
+     1.3,
+     1.5
+    ],
+    "rough_built": [
+     1.5,
+     2.0
+    ]
+   },
+   "q": "M",
+   "src": "WMO_BEAUFORT (WMO-TD 1555: 3-s gust / 10-min mean)"
+  },
+  "turbulence_intensity": {
+   "v": {
+    "open_sea": [
+     0.05,
+     0.1
+    ],
+    "open_grass": [
+     0.12,
+     0.2
+    ],
+    "suburban": [
+     0.2,
+     0.3
+    ],
+    "urban": [
+     0.3,
+     0.5
+    ]
+   },
+   "q": "E",
+   "src": "STULL88: E: recalled from STULL88, not re-read (was M); STULL88 / WIERINGA92 class ranges (recalled)"
+  },
+  "log_profile": {
+   "formula": {
+    "v": "u(z) = (u_star / kappa) ln(z / z0), kappa = 0.41; above a canopy use z - d (zero-plane displacement ~2/3 canopy height)",
+    "q": "M",
+    "src": "STULL88"
+   },
+   "z0_m": {
+    "v": {
+     "sea": 0.0002,
+     "snow_sand_flat": 0.001,
+     "short_grass": 0.01,
+     "open_grass": 0.03,
+     "crops": 0.1,
+     "hedges_scattered": 0.25,
+     "suburb": 0.5,
+     "town_forest": 1.0,
+     "city_centre": 2.0
+    },
+    "q": "E",
+    "src": "WIERINGA92: E: recalled from WIERINGA92, not re-read (was M); WIERINGA92 Davenport classes"
+   },
+   "head_height_vs_10m_open_grass": {
+    "v": 0.69,
+    "q": "D",
+    "src": "ln(1.7/0.03)/ln(10/0.03): wind at head height is ~70 % of the 10 m (Beaufort) value"
+   }
+  },
+  "drag": {
+   "sphere_Cd": {
+    "v": {
+     "Re_1e3_to_2e5": 0.47,
+     "post_crisis_Re_gt_3e5": [
+      0.1,
+      0.2
+     ]
+    },
+    "q": "E",
+    "src": "HOERNER65: E: recalled from HOERNER65, not re-read (was M); HOERNER65"
+   },
+   "cylinder_Cd": {
+    "v": {
+     "Re_1e3_to_2e5": [
+      1.0,
+      1.2
+     ],
+     "low_Re_fit": "Cd = 1 + 10 Re^-2/3 (1 < Re < 2e5)"
+    },
+    "q": "E",
+    "src": "HOERNER65: E: recalled from HOERNER65, not re-read (was M); HOERNER65 / White"
+   },
+   "hair_fibre_Cd": {
+    "v": {
+     "d70um_u1m_s_Re4.6": 4.62,
+     "d70um_u5m_s_Re23": 2.24,
+     "d70um_u10m_s_Re46": 1.78
+    },
+    "q": "D",
+    "src": "White's cylinder fit with Re = u d / nu, d 70 um, nu 1.51e-5 m2/s; per unit length force = 0.5 rho u^2 Cd d"
+   },
+   "flat_plate_normal_Cd": {
+    "v": [
+     1.17,
+     1.28
+    ],
+    "q": "E",
+    "src": "HOERNER65: E: recalled from HOERNER65, not re-read (was M); HOERNER65 (square plate ~1.05-1.17); cloth flapping adds a dynamic term"
+   },
+   "flat_plate_parallel": {
+    "v": "skin friction only: Cf ~ 1.33 Re^-0.5 laminar (Blasius), ~0.074 Re^-0.2 turbulent",
+    "q": "E",
+    "src": "HOERNER65: E: recalled from HOERNER65, not re-read (was M); HOERNER65 / standard boundary-layer results"
+   },
+   "standing_human_CdA_m2": {
+    "v": [
+     0.5,
+     0.9
+    ],
+    "q": "E",
+    "src": "cycling/pedestrian wind literature: upright person ~0.5-0.9 m2 (recalled, not re-checked)"
+   }
+  }
+ },
+ "states": {
+  "humid_30C_100RH": {
+   "set": {
+    "contact.density_kg_m3": 1.146,
+    "deform.density_kg_m3": 1.146
+   },
+   "q": "D",
+   "src": "ideal-gas mix: dry 1.164 at 30 C minus the vapour (4.24 kPa) effect (CRC saturation pressure)"
+  },
+  "cold_0C": {
+   "set": {
+    "deform.density_kg_m3": 1.292,
+    "deform.sound_speed_m_s": 331.3
+   },
+   "q": "D",
+   "src": "ideal gas p/(R T), sqrt(gamma R T) at 273.15 K"
+  }
+ },
+ "sources": {
+  "ISA": {
+   "cite": "ICAO Doc 7488 / ISO 2533:1975 International Standard Atmosphere: sea level 101325 Pa, 288.15 K, 1.225 kg/m3, 1.7894e-5 Pa s, 340.29 m/s",
+   "url": "https://www.iso.org/standard/7472.html",
+   "lic": "standard copyright; defining constants used as facts"
+  },
+  "CIDDOR96": {
+   "cite": "Ciddor PE. Refractive index of air: new equations for the visible and near infrared. Appl Opt 35:1566 (1996); via refractiveindex.info (n-1 = 2.77e-4 at 550 nm, 15 C, 101325 Pa, dry, 450 ppm CO2). n 1.000293 is the classic 0 C STP figure",
+   "url": "https://refractiveindex.info/?shelf=other&book=air&page=Ciddor",
+   "lic": "database CC0 1.0"
+  },
+  "CRC": {
+   "cite": "CRC Handbook of Chemistry and Physics (any recent edition): standard property tables for water, ice, air, oils. Values recalled as standard table values, not re-checked line by line this session",
+   "url": "https://hbcp.chemnetbase.com",
+   "lic": "copyright, paywalled; individual physical constants used as facts, no table copied"
+  },
+  "CODATA18": {
+   "cite": "CODATA 2018 recommended values (NIST): c = 299792458 m/s exact, sigma = 5.670374419e-8 W m-2 K-4 exact, k_B, standard atmosphere 101325 Pa, g_n = 9.80665 m/s2 (CGPM 1901)",
+   "url": "https://physics.nist.gov/cuu/Constants/",
+   "lic": "NIST, US government work, public domain"
+  },
+  "WMO_BEAUFORT": {
+   "cite": "WMO Manual on Codes (WMO-No. 306) / WMO Guide to Meteorological Instruments (WMO-No. 8): Beaufort scale equivalent wind speeds at 10 m (m/s); WMO-TD 1555 (2010) Guidelines for converting between various wind averaging periods: gust factors ~1.2-1.6 over land",
+   "url": "https://library.wmo.int",
+   "lic": "WMO publications, free; numbers used as facts"
+  },
+  "WIERINGA92": {
+   "cite": "Wieringa J. Updating the Davenport roughness classification. J Wind Eng Ind Aerodyn 41:357-368 (1992). Recalled: z0 ~0.0002 sea, 0.03 open grass, 0.1 crops, 0.5-1 suburbs, >=2 city centres",
+   "url": "https://doi.org/10.1016/0167-6105(92)90434-C",
+   "lic": "paywalled; class values used as facts"
+  },
+  "HOERNER65": {
+   "cite": "Hoerner SF. Fluid-Dynamic Drag (1965) and White FM. Fluid Mechanics / Viscous Fluid Flow: sphere Cd ~0.47 subcritical, drag crisis Re ~3e5; long cylinder Cd ~1.0-1.2 (1e3<Re<2e5) and White's fit Cd = 1 + 10 Re^-2/3 (1<Re<2e5); flat plate normal to flow Cd ~1.17-1.28 (square ~1.05-1.17). Recalled textbook values",
+   "url": "https://openlibrary.org/works/OL3484209W",
+   "lic": "books, copyright; standard coefficients used as facts"
+  },
+  "STULL88": {
+   "cite": "Stull RB. An Introduction to Boundary Layer Meteorology. Kluwer (1988): log law u(z) = (u*/kappa) ln(z/z0), kappa ~0.40-0.41; near-surface turbulence intensity ~0.1-0.3",
+   "url": "https://doi.org/10.1007/978-94-009-3027-8",
+   "lic": "book, copyright; formulas used"
+  },
+  "PREETHAM99": {
+   "cite": "Preetham AJ, Shirley P, Smits B. A practical analytic model for daylight. SIGGRAPH 1999",
+   "url": "https://doi.org/10.1145/311535.311545",
+   "lic": "ACM; model form used"
+  },
+  "HOSEK12": {
+   "cite": "Hosek L, Wilkie A. An analytic model for full spectral sky-dome radiance. ACM TOG 31(4) (SIGGRAPH 2012); reference code ArHosekSkyModel (as shipped in Blender intern/sky and OSPRay)",
+   "url": "https://cgg.mff.cuni.cz/projects/SkylightModelling/",
+   "lic": "code BSD-3-Clause (Blender/OSPRay SPDX headers; checked by search 11-07): usable commercially with attribution"
+  },
+  "ANON_E": {
+   "cite": "Estimate made in this lane; the reason is given in each src",
+   "url": "-",
+   "lic": "own work"
+  },
+  "ETB": {
+   "cite": "The Engineering ToolBox: Air - thermal conductivity vs temperature and pressure (2009); Air - specific heat capacity (2004)",
+   "url": "https://www.engineeringtoolbox.com/air-properties-viscosity-conductivity-heat-capacity-d_1509.html",
+   "lic": "free web tables, copyright; single numbers used as facts, tables not copied (secondary source)"
+  }
+ }
+}

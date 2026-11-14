@@ -1,0 +1,283 @@
+{
+ "id": "tears",
+ "kind": "fluid",
+ "family": "fluid",
+ "_": "Tear film and free tears: precorneal film ~3 um (aqueous-mucin ~3.3 um under a ~50 nm lipid layer) and the lid-margin meniscus; overflow tears are the same aqueous fluid (more watery when reflex). At ~34 C ocular surface. Built from water.variants.tears plus research. World lane 2026-11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.003,
+   "q": "E",
+   "src": "the film smooths the corneal surface optically (the cornea's sharp highlight); a broken-up film is rougher (E)"
+  },
+  "n": {
+   "v": 1.337,
+   "q": "M",
+   "src": "EYEMD G1 (tear water ~1.337)"
+  },
+  "F0": {
+   "v": 0.0208,
+   "q": "D",
+   "src": "((n-1)/(n+1))^2"
+  }
+ },
+ "optics_summary": {
+  "n": {
+   "v": 1.337,
+   "q": "M",
+   "src": "EYEMD G1 (tear water ~1.337)"
+  },
+  "absorption": {
+   "v": "clear; water-like absorption (negligible at mm scale in the visible)",
+   "q": "D",
+   "src": "GAPS 5 water mu_a < 1 per m in 400-700 nm"
+  },
+  "scattering_length_mm": {
+   "v": null,
+   "q": "E",
+   "src": "not found: no scatterers resolved; clear film"
+  },
+  "translucency": {
+   "v": "transparent film",
+   "q": "D",
+   "src": "as absorption"
+  }
+ },
+ "contact": {
+  "surface_tension_mN_m": {
+   "v": [
+    42,
+    46
+   ],
+   "q": "M",
+   "src": "TIFFANY91 (Nagyova & Tiffany 1999 abstract re-read 11-08): intact pooled stimulated tears 42-46 mN/m; 53-55.5 after lipid extraction (the abstract states no temperature)"
+  },
+  "viscosity_mPa_s": {
+   "v": {
+    "low_shear": [
+     4.4,
+     8.3
+    ],
+    "high_shear_blink": [
+     1.0,
+     1.5
+    ]
+   },
+   "q": "E",
+   "src": "TIFFANY91 abstract re-read 11-08: marked shear-thinning at 22 C over 2-160 1/s; Cross-model zero-shear viscosity of normal tears 4.4, 7.1, 8.3 mPa s (dry eye 27-31): low_shear corrected from [3, 6] to that range (M); high_shear_blink [1.0, 1.5] is E (not in the abstract; water-like at blink shear)"
+  },
+  "density_kg_m3": {
+   "v": [
+    1000,
+    1006
+   ],
+   "q": "E",
+   "src": "aqueous with ~0.7 % protein + salts"
+  },
+  "film_thickness_um": {
+   "v": {
+    "aqueous_mucin": 3.3,
+    "lipid": 0.0527
+   },
+   "q": "M",
+   "src": "EYEMD F1"
+  },
+  "meniscus_radius_mm": {
+   "v": 0.37,
+   "q": "M",
+   "src": "EYEMD"
+  },
+  "volume_uL": {
+   "v": 7,
+   "q": "E",
+   "src": "MISHIMA66: E: recalled from Mishima 1966 (~6-7 uL), not re-read (no abstract in Europe PMC; the IOVS page refused 11-08)"
+  },
+  "production_uL_min": {
+   "v": 1.2,
+   "q": "E",
+   "src": "MISHIMA66: E: recalled from Mishima 1966 (basal turnover ~16 %/min), not re-read (no abstract in Europe PMC; the IOVS page refused 11-08)"
+  },
+  "osmolarity_mOsm_L": {
+   "v": 300,
+   "q": "E",
+   "src": "TFOS17: E: recalled from TFOS DEWS II (~300 normal), not re-read"
+  },
+  "breakup_time_s": {
+   "v": ">10 normal",
+   "q": "E",
+   "src": "TFOS17: E: recalled from TFOS DEWS II, not re-read"
+  },
+  "overflow": {
+   "v": "reflex/emotional tears exceed the drain (~1-2 uL/min capacity); a drop on the lid margin needs ~ > 10-20 uL, then runs down the cheek in a rivulet",
+   "q": "E",
+   "src": "ANON_E from volume 7 uL and capillary length 2.7 mm"
+  },
+  "solver": {
+   "phase": {
+    "v": "fluid",
+    "q": "D",
+    "src": "a liquid (deform.model)"
+   },
+   "collision_thickness_mm": {
+    "v": {
+     "film_on_surface": "the film's own thickness (layers / film values)",
+     "particle_solver": "half the particle spacing"
+    },
+    "q": "D",
+    "src": "ANON_E solver convention: a liquid has no skin of its own; it keeps a no-penetration boundary at solids"
+   },
+   "penetration_response": {
+    "model": {
+     "v": "incompressible: no stiffness ramp; a pressure projection (or weakly compressible SPH with numerical sound speed >= 10x the max flow speed) keeps it out of solids and out of itself",
+     "q": "D",
+     "src": "bulk modulus (water 2.2 GPa: effectively incompressible at body speeds)"
+    },
+    "ramp": {
+     "v": "pressure_projection",
+     "q": "D",
+     "src": "as model"
+    },
+    "boundary_wetting": {
+     "v": "the contact angle per pair (pairs/world.json wetting) sets the meniscus at a solid",
+     "q": "D",
+     "src": "DEGENNES04"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": {
+      "on_wettable_surface": 0.0,
+      "on_superhydrophobic": [
+       0.3,
+       0.9
+      ]
+     },
+     "q": "M",
+     "src": "RICHARD02 / DEGENNES04: drops stick and spread on wettable solids; bounce only on (super)hydrophobic ones"
+    },
+    "response_time_ms": {
+     "v": {
+      "drop_R1mm": 12.4,
+      "drop_R2mm": 35.1
+     },
+     "q": "D",
+     "src": "RICHARD02 tau = 2.6 sqrt(rho R^3/gamma) with rho 1003, gamma 0.044 N/m"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "sound": 1500,
+      "capillary_wave_1mm": 0.53
+     },
+     "q": "D",
+     "src": "sound ~ water's (CRC; oils ~1450); capillary-wave phase speed sqrt(2 pi gamma/(rho lambda)) at lambda 1 mm"
+    },
+    "damping_ratio": {
+     "v": "viscous: set by viscosity_mPa_s (no separate damping)",
+     "q": "D",
+     "src": "Newtonian/viscous dissipation"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "non_newtonian_fluid",
+   "q": "M",
+   "src": "TIFFANY91 abstract re-read 11-08: marked shear-thinning in all samples"
+  },
+  "density_kg_m3": {
+   "v": 1003,
+   "q": "E",
+   "src": "as contact.density_kg_m3 mid"
+  },
+  "power_law_note": {
+   "v": "treat as Newtonian 1-1.5 mPa s for drop/rivulet motion; shear-thinning matters only in the film between blinks",
+   "q": "D",
+   "src": "from the two viscosity values"
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.6,
+   "q": "E",
+   "src": "water-like (>= 99 % water): IAPWS ~0.62 at 35 C"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 4100,
+   "q": "E",
+   "src": "water-like, slightly lowered by solutes"
+  },
+  "effusivity": {
+   "v": 1571,
+   "q": "D",
+   "src": "sqrt(k rho c) with the values above"
+  },
+  "emissivity": {
+   "v": 0.96,
+   "q": "E",
+   "src": "water's value (CRC)"
+  }
+ },
+ "states": {
+  "reflex": {
+   "set": {
+    "contact.viscosity_mPa_s": 1.1
+   },
+   "q": "E",
+   "src": "ANON_E: reflex tears are more dilute (less protein/mucin)"
+  },
+  "dry_eye_breakup": {
+   "set": {
+    "surface.alpha": 0.03
+   },
+   "q": "E",
+   "src": "ANON_E: dry patches roughen the highlight; TFOS17 breakup < 10 s"
+  }
+ },
+ "sources": {
+  "EYEMD": {
+   "cite": "The project's research note eye.md (F1 tear film 3.3 um aqueous-mucin, lipid 52.7 nm; G1 tear n 1.337; meniscus radius 0.37 mm)",
+   "url": "local",
+   "lic": "project record"
+  },
+  "TIFFANY91": {
+   "cite": "Tiffany JM. The viscosity of human tears. Int Ophthalmol 15:371-376 (1991); Nagyova B, Tiffany JM. Components responsible for the surface tension of human tears. Curr Eye Res 19:4-11 (1999). Recalled: tears shear-thinning, surface tension ~42-46 mN/m at 34 C",
+   "url": "https://doi.org/10.1007/BF00128908",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "MISHIMA66": {
+   "cite": "Mishima S, Gasset A, Klyce SD, Baum JL. Determination of tear volume and tear flow. Invest Ophthalmol 5:264-276 (1966). Recalled: tear volume ~7 uL, turnover ~1.2 uL/min, ~16 %/min",
+   "url": "https://iovs.arvojournals.org/article.aspx?articleid=2203550",
+   "lic": "ARVO archive, free to read; numbers used as facts"
+  },
+  "TFOS17": {
+   "cite": "Willcox MDP et al. TFOS DEWS II Tear Film Report. Ocul Surf 15:366-403 (2017). Recalled: osmolarity ~300 mOsm/L, pH ~7.4, breakup time >10 s normal",
+   "url": "https://doi.org/10.1016/j.jtos.2017.03.006",
+   "lic": "Elsevier open access (CC BY-NC-ND 4.0): numbers used as facts, text not copied"
+  },
+  "IAPWS": {
+   "cite": "IAPWS releases: Surface Tension of Ordinary Water Substance (2014); Viscosity of Ordinary Water (2008); IAPWS-95 density; thermal conductivity (2011)",
+   "url": "http://www.iapws.org/release.html",
+   "lic": "freely available releases; numbers used as facts"
+  },
+  "ANON_E": {
+   "cite": "Estimate made in this lane; the reason is given in each src",
+   "url": "-",
+   "lic": "own work"
+  },
+  "RICHARD02": {
+   "cite": "Richard D, Clanet C, Quere D. Contact time of a bouncing drop. Nature 417:811 (2002): tau = 2.6 sqrt(rho R^3 / gamma), independent of impact speed",
+   "url": "https://doi.org/10.1038/417811a",
+   "lic": "paywalled; formula used as fact"
+  },
+  "DEGENNES04": {
+   "cite": "de Gennes P-G, Brochard-Wyart F, Quere D. Capillarity and Wetting Phenomena. Springer (2004): capillary length, Bond number, Tanner spreading",
+   "url": "https://doi.org/10.1007/978-0-387-21656-0",
+   "lic": "book, copyright; formulas used"
+  },
+  "CRC": {
+   "cite": "CRC Handbook of Chemistry and Physics (any recent edition): standard property tables for water, ice, air, oils. Values recalled as standard table values, not re-checked line by line this session",
+   "url": "https://hbcp.chemnetbase.com",
+   "lic": "copyright, paywalled; individual physical constants used as facts, no table copied"
+  }
+ }
+}

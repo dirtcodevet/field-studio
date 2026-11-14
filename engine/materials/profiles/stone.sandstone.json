@@ -1,0 +1,715 @@
+{
+ "id": "stone.sandstone",
+ "kind": "porous_solid",
+ "family": "stone",
+ "_": "Sandstone (quartz sand grains cemented by silica, calcite or clay), building grade; the most variable stone here. Dry, room temperature, intact stone (no joints); natural stone varies quarry to quarry, so the central values carry wide ranges. Finish (polished, honed, flamed, sawn, riven) changes the look and the grip far more than the rock does. Solids research lane 11-07 (the project's materials research note SOLIDS.md).",
+ "surface": {
+  "alpha": {
+   "v": 0.6,
+   "q": "E",
+   "src": "sawn finish; GGX alpha estimated from gloss practice (polished stone 70-90 GU at 60 deg ~ alpha 0.02-0.05, honed 10-30 GU ~ 0.2-0.35, flamed/sawn/riven matte); no BRDF fit read"
+  },
+  "alpha_by_finish": {
+   "v": {
+    "sawn": 0.6,
+    "rubbed": 0.45,
+    "riven_or_tooled": 0.8
+   },
+   "q": "E",
+   "src": "as alpha: finish categories from dimension-stone practice"
+  },
+  "n": {
+   "v": 1.55,
+   "q": "E",
+   "src": "quartz n 1.544-1.553"
+  },
+  "F0": {
+   "v": 0.0465,
+   "q": "D",
+   "src": "((n - 1)/(n + 1))^2"
+  }
+ },
+ "optics_summary": {
+  "colour_note": {
+   "v": "buff, cream, yellow, red-brown (iron oxide cement) or grey-green; visible sand grain (0.06-2 mm), bedding lines; matte, never takes a mirror polish",
+   "q": "E",
+   "src": "rock description (petrography, common practice)"
+  },
+  "translucency": {
+   "v": "opaque",
+   "q": "E",
+   "src": "observation"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "dry": [
+      0.6,
+      0.85
+     ],
+     "wet": [
+      0.6,
+      0.85
+     ]
+    },
+    "q": "M",
+    "src": "BYERLEE78 rock friction; sandstone grains interlock, sliding near the upper bound; water changes rock-rock friction little except clay/mica-rich rocks"
+   },
+   "kinetic": {
+    "v": {
+     "dry": [
+      0.5,
+      0.7
+     ],
+     "wet": [
+      0.4,
+      0.7
+     ]
+    },
+    "q": "E",
+    "src": "slightly below static (rate-and-state friction of rock: a few % lower)"
+   },
+   "counterface": "stone on stone (BYERLEE78); against shoe rubber see rubber_slider_PTV and the pair table"
+  },
+  "rubber_slider_PTV": {
+   "v": {
+    "sawn_dry_PTV": [
+     70,
+     90
+    ],
+    "sawn_wet_PTV": [
+     45,
+     65
+    ]
+   },
+   "q": "E",
+   "src": "UKSRG pendulum values by finish: E from the finish ranking (polished << honed < sawn/flamed/riven) and the PTV 36 safe line; no measured value found for this rock; mu = 3 PTV / (330 - PTV)"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": [
+     40,
+     70
+    ],
+    "q": "E",
+    "src": "clean mineral oxide/carbonate surfaces are high-energy but quickly covered by adsorbed water and organics; effective 40-70 (E)"
+   },
+   "tack": {
+    "v": "none",
+    "q": "E",
+    "src": "observation"
+   }
+  },
+  "restitution": {
+   "v": [
+    0.7,
+    0.9
+   ],
+   "q": "E",
+   "src": "hard sphere (steel, glass) on a thick stone slab: the slab is near-rigid; ball material and slab support dominate"
+  },
+  "solver": {
+   "phase": "solid",
+   "collision_thickness_mm": {
+    "v": 0.1,
+    "q": "E",
+    "src": "numerical offset only: a rigid solid has no compliant surface layer; 0.1 mm sits below what reads on screen at character distance and above the field's float/step resolution at metre scale, so contacts never show a gap or a pass-through; finishes (lacquer, sealer, a water film) are thinner still"
+   },
+   "penetration_response": {
+    "ramp": "hertz",
+    "E_star_GPa": {
+     "v": 15.6,
+     "q": "D",
+     "src": "E / (1 - nu^2) from the profile's E 15 GPa (E) and nu 0.2 (the half-space modulus; a rigid indenter assumed, the soft partner's own E* combines in series)"
+    },
+    "contact_stiffness_kPa_per_mm": {
+     "v": 199000.0,
+     "q": "D",
+     "src": "mean pressure per mm of overlap under a 50 mm-radius flat patch (hand-sized): k = 2 E* a (flat punch), / (pi a^2): ~1e5-1e6 kPa/mm, so the solver should treat the surface as an unyielding barrier and let the soft partner deform"
+    },
+    "hertz_constant_N_per_m1_5_R25mm": {
+     "v": 3290000000.0,
+     "q": "D",
+     "src": "F = (4/3) E* sqrt(R) d^1.5 for a rigid sphere R 25 mm"
+    },
+    "contact_damping_ratio": {
+     "v": 0.071,
+     "q": "D",
+     "src": "zeta = -ln e / sqrt(pi^2 + ln^2 e) from restitution 0.8"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": [
+      0.7,
+      0.9
+     ],
+     "q": "E",
+     "src": "hard sphere on a thick slab, E (ball and support dominate)"
+    },
+    "response_time_ms": {
+     "v": 0.502,
+     "q": "D",
+     "src": "Hertz contact time t = 2.87 (m^2 / (R E*^2 v))^0.2 for a rigid 1 kg sphere, R 25 mm, 1 m/s on this material: tens of microseconds. In a hand slap the soft tissue sets the pulse (ms); this surface only has to not yield, so the slap's sound and stop come from the hand"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "bar_longitudinal": 2554,
+      "shear": 1648
+     },
+     "q": "D",
+     "src": "sqrt(E/rho), sqrt(G/rho), G = E/(2(1+nu)), rho 2300"
+    },
+    "damping_ratio": {
+     "v": 0.071,
+     "q": "D",
+     "src": "as contact_damping_ratio (energy lost per impact, from restitution)"
+    }
+   },
+   "_": "A wall, floor or step of this stone: an unyielding barrier at body scale; the soft body deforms against it."
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": [
+     0,
+     40
+    ],
+    "q": "E",
+    "src": "porous stone wicks water: apparent contact angle near zero within seconds unless sealed"
+   }
+  },
+  "porosity": {
+   "v": [
+    0.05,
+    0.25
+   ],
+   "q": "E",
+   "src": "ROCK sandstone 5-25 %; E: recalled from ROCK, not re-read"
+  },
+  "water_absorption": {
+   "v": [
+    2,
+    8
+   ],
+   "q": "E",
+   "src": "ASTM: E: recalled from ASTM, not re-read (was M); ASTM C616 type I (sandstone) max 8 % by weight; type III quartzite max 1 %; typical 2-8 (ROCK) (24 h immersion, % by dry mass)"
+  },
+  "oil_absorption": {
+   "v": "unsealed calcareous and porous stones stain with oil (it wicks in and darkens permanently); granite and slate much less",
+   "q": "E",
+   "src": "stone-care practice"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": "quartz grains, like glass on the positive side (E)",
+    "q": "E",
+    "src": "not in ALPHALAB; by mineral (quartz glass-like +, calcite near neutral)"
+   },
+   "resistivity_ohm_m": {
+    "v": [
+     100.0,
+     1000000000.0
+    ],
+    "q": "E",
+    "src": "ROCK electrical: dry dense rock 1e9-1e12 ohm m; porous rock set by pore water (1e2-1e4 wet); E: recalled from ROCK, not re-read"
+   }
+  },
+  "hardness": {
+   "v": 7,
+   "q": "M",
+   "src": "quartz grains Mohs 7; the cement is weaker, so the surface sheds grains rather than scratching"
+  },
+  "abrasion": {
+   "v": "grain plucking: wears by losing grains, faster when wet or with clay cement",
+   "q": "E",
+   "src": "ROCK/ASTM: grain plucking: wears by losing grains, faster when wet or w"
+  }
+ },
+ "deform": {
+  "model": "brittle",
+  "density_kg_m3": {
+   "v": 2300,
+   "q": "E",
+   "src": "ROCK sandstone 2000-2600 (porosity dependent); E: recalled from ROCK, not re-read"
+  },
+  "E_GPa": {
+   "v": 15,
+   "q": "E",
+   "src": "ROCK typical 5-40 GPa (static; dynamic higher); central value for this grade; E: recalled from ROCK, not re-read"
+  },
+  "poisson": {
+   "v": 0.2,
+   "q": "E",
+   "src": "ROCK typical 0.1-0.3; E: recalled from ROCK, not re-read"
+  },
+  "shear_GPa": {
+   "v": 6.25,
+   "q": "D",
+   "src": "E / (2 (1 + nu))"
+  },
+  "bulk_GPa": {
+   "v": 8.33,
+   "q": "D",
+   "src": "E / (3 (1 - 2 nu))"
+  },
+  "fracture": {
+   "strength_compressive_MPa": {
+    "v": {
+     "typical": 60,
+     "range": [
+      20,
+      170
+     ]
+    },
+    "q": "E",
+    "src": "ROCK uniaxial compressive strength range for the rock type; E: recalled from ROCK, not re-read"
+   },
+   "strength_tensile_MPa": {
+    "v": {
+     "typical": 4,
+     "range": [
+      1,
+      10
+     ]
+    },
+    "q": "E",
+    "src": "ROCK Brazilian / direct tension; ~1/10-1/20 of UCS (brittle); E: recalled from ROCK, not re-read"
+   },
+   "toughness_KIC_MPa_m05": {
+    "v": [
+     0.3,
+     0.9
+    ],
+    "q": "E",
+    "src": "ROCK sandstone mode I 0.3-0.9 MPa m^0.5; E: recalled from ROCK, not re-read"
+   },
+   "spec_minimums": {
+    "v": "ASTM C616 type I sandstone: absorption <= 8 %, compressive >= 27.6 MPa, density >= 2003 kg/m3 (recalled from the source, not re-read 11-07)",
+    "q": "E",
+    "src": "ASTM: E: recalled from ASTM, not re-read (was M); ASTM"
+   },
+   "_": "Brittle: fails in tension from flaws; compressive strength ~10-20 x tensile. Edges and corners chip; thin slabs crack under point loads or impact."
+  },
+  "sim": {
+   "_": "Rigid at character scale (E is ~1e6 x skin's); use E only for impact/fracture, sound, or thin slabs.",
+   "xpbd_compliance_1_Pa": {
+    "v": 6.67e-11,
+    "q": "D",
+    "src": "1 / E"
+   },
+   "p_wave_speed_m_s": {
+    "v": 2692,
+    "q": "D",
+    "src": "sqrt((K + 4G/3)/rho), for impact sound"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 2.5,
+   "q": "E",
+   "src": "ROCK conductivity 1.5-4.0 W/mK; E: recalled from ROCK, not re-read"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 920.0,
+   "q": "E",
+   "src": "ROCK specific heat (rock-forming minerals 750-920 J/kgK); E: recalled from ROCK, not re-read"
+  },
+  "effusivity": {
+   "v": 2300,
+   "q": "D",
+   "src": "sqrt(k rho c) = sqrt(2.5 x 2300 x 920) W s^0.5 m^-2 K^-1"
+  },
+  "contact_temp_with_skin_C": {
+   "v": 24.4,
+   "q": "D",
+   "src": "SKINTH: T = (e_skin 33 + e 20)/(e_skin + e), skin 33 C on material 20 C, e_skin = 1188 (sqrt(0.37 x 1090 x 3500)); lower = feels colder"
+  },
+  "emissivity": {
+   "v": 0.92,
+   "q": "E",
+   "src": "polished stone emissivity ~0.9-0.95 (IR tables)"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {},
+   "_": "the base"
+  },
+  "wet": {
+   "set": {
+    "surface.alpha": 0.3
+   },
+   "q": "E",
+   "src": "a water film (n 1.333) smooths the micro-relief: honed/sawn stone looks darker, more saturated and glossier when wet; porous stone darkens as it absorbs (refractive matching in the pores)"
+  },
+  "sealed": {
+   "set": {
+    "contact.wetting.water_contact_angle_deg": [
+     80,
+     110
+    ]
+   },
+   "q": "E",
+   "src": "impregnating / siloxane sealers make the surface hydrophobic (stone-protection literature 80-110 deg)"
+  }
+ },
+ "sources": {
+  "ASTM": {
+   "cite": "ASTM dimension-stone specifications: C615 granite, C503 marble, C568 limestone, C616 sandstone (quartz-based), C629 slate (minimum / maximum requirements)",
+   "url": "https://www.astm.org",
+   "lic": "paywalled standards; the spec limits are used as facts (recalled from the source, not re-read 11-07)"
+  },
+  "ROCK": {
+   "cite": "Typical engineering ranges for intact rock: Goodman RE, Introduction to Rock Mechanics (2nd ed., 1989); Schoen JH, Physical Properties of Rocks (2nd ed., 2015); Engineering ToolBox rock tables",
+   "url": "",
+   "lic": "paywalled texts / free web; ranges used as facts (recalled from the source, not re-read 11-07)"
+  },
+  "BYERLEE78": {
+   "cite": "Byerlee J. Friction of rocks. Pure Appl Geophys 116:615-626 (1978)",
+   "url": "https://doi.org/10.1007/BF00876528",
+   "lic": "paywalled; the law's numbers used as facts"
+  },
+  "GHOSH99": {
+   "cite": "Ghosh G. Dispersion-equation coefficients for the refractive index and birefringence of calcite and quartz crystals. Opt Commun 163:95-102 (1999), via refractiveindex.info",
+   "url": "https://refractiveindex.info/?shelf=main&book=CaCO3",
+   "lic": "refractiveindex.info database CC0; paper paywalled"
+  },
+  "RUBBERCO": {
+   "cite": "Rubberco, 'PTV flooring ratings UK: pendulum test values explained' (supplier blog): unprotected polished marble ~10-20 wet PTV",
+   "url": "https://rubberco.co.uk/blogs/news/ptv-flooring-ratings-uk-pendulum-test-values-explained",
+   "lic": "commercial web page; number used as a fact, low authority"
+  },
+  "CARRARA_DS": {
+   "cite": "Carrara C / levigati white Carrara slab spec sheets (Capietra; MOHD): honed, BS/UNI EN 14231 SRV dry 75, wet 31; wax-finished Bianco Carrara (Petra Antiqua catalogue) dry 77, wet 30",
+   "url": "https://capietra.com/carrara-c-marble-slab",
+   "lic": "manufacturer data sheets; numbers used as facts"
+  },
+  "STONESPEC": {
+   "cite": "Stone Specialist, 'The time of tests: slip resistance': finish dominates; worn, dirty polished stone wet can be 'no better than ice'",
+   "url": "https://www.stonespecialist.com/news/time-tests-slip-resistance",
+   "lic": "trade magazine; findings used"
+  },
+  "UKSRG": {
+   "cite": "UK Slip Resistance Group guidelines (issue 5, 2016) and HSE 'Assessing the slip resistance of flooring' (2012): PTV bands 0-24 high, 25-35 moderate, 36+ low slip potential; PTV to CoF mu = 3 PTV / (330 - PTV)",
+   "url": "https://www.hse.gov.uk/pubns/geis2.pdf",
+   "lic": "UK Open Government Licence (HSE); UKSRG guideline numbers used as facts"
+  },
+  "JENSEN01": {
+   "cite": "Jensen HW, Marschner SR, Levoy M, Hanrahan P. A practical model for subsurface light transport. SIGGRAPH 2001, Fig./Table of measured sigma_s', sigma_a (mm^-1)",
+   "url": "https://graphics.stanford.edu/papers/bssrdf/",
+   "lic": "paper free to read; measured numbers used as facts"
+  },
+  "SKINTH": {
+   "cite": "skin thermal inputs for contact temperature: k 0.37 W/mK, c 3500 J/kgK (Duck 1990 tissue tables, typical), rho 1090 from skin.body",
+   "url": "",
+   "lic": "numbers used as facts"
+  },
+  "ETB": {
+   "cite": "The Engineering ToolBox, Friction and friction coefficients for some common materials",
+   "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+   "lic": "free web reference; numbers used as facts"
+  },
+  "DERLER12": {
+   "cite": "Derler S, Gerhardt L-C. Tribology of skin: review and analysis of experimental results for the friction coefficient of human skin. Tribol Lett 45:1-27 (2012)",
+   "url": "https://doi.org/10.1007/s11249-011-9854-y",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "LANE": {
+   "cite": "fs-materials lane estimates (11-14), each named in its src; replaced as measured values are found",
+   "url": "",
+   "lic": "own work"
+  },
+  "ECOSTRESS": {
+   "cite": "Meerdink SK et al. 2019, The ECOSTRESS spectral library version 1.0, Remote Sens Environ 230:111196; Baldridge AM et al. 2009, The ASTER spectral library version 2.0, Remote Sens Environ 113:711-715",
+   "url": "https://speclib.jpl.nasa.gov/",
+   "lic": "free; Caltech (c) 2017, citation asked; numbers used as cited facts, raw files study only"
+  },
+  "GOMEZ23": {
+   "cite": "Gomez-Marfil & Varas-Muriel 2023, Materiales de Construccion 73(349) e309, doi:10.3989/mc.2023.296622 (Minolta CM-700d, D65, to EN 15886)",
+   "url": "https://doi.org/10.3989/mc.2023.296622",
+   "lic": "CC BY 4.0"
+  },
+  "LAPUENTE24": {
+   "cite": "Lapuente Mercadal, Cuchi Oterino & Auque Sanz 2024, Heritage 7(2):896-912, doi:10.3390/heritage7020043, Table 1 (CM-2600d, D65/10, median of 9 specimens)",
+   "url": "https://doi.org/10.3390/heritage7020043",
+   "lic": "CC BY 4.0"
+  },
+  "CARMONA17": {
+   "cite": "Carmona-Quiroga et al. 2017, PLoS ONE 12(2):e0172347, doi:10.1371/journal.pone.0172347, Table 2 (CM-700d; D65/10 assumed)",
+   "url": "https://doi.org/10.1371/journal.pone.0172347",
+   "lic": "CC BY 4.0"
+  }
+ },
+ "look": {
+  "_": "The look as numbers (fs-materials 11-14; materials/library.py resolve_look, the card shading materials/look.cuh). The mean albedo is MEASURED (a variety face spectrum, D65, CIE 1931 2 deg -> linear sRGB, white-normalised: the lane research, fs_build/fs-materials/research/STONE_LOOK_RESEARCH.md); the colour structure about it (grains, interstices, laminae, rust spots, faint mottling) keeps that mean at every zoom. Relief by finish is geometry (materials/generate.py FINISH).",
+  "varieties": {
+   "v": {
+    "cream_buff": {
+     "albedo_lin": [
+      0.522,
+      0.413,
+      0.311
+     ],
+     "sample": "Demanda Gold subarkose (Burgos, ES), fresh cut cube, L*a*b* 71.5 / 3.5 / 13.2 (GOMEZ23)"
+    },
+    "buff": {
+     "albedo_lin": [
+      0.372,
+      0.291,
+      0.197
+     ],
+     "sample": "Woodkirk sandstone, light brownish-buff (Leeds, UK), new sawn slab, L*a*b* 61.8 / 2.4 / 15.3 (CARMONA17)"
+    },
+    "golden": {
+     "albedo_lin": [
+      0.498,
+      0.375,
+      0.253
+     ],
+     "sample": "Alcaniz sandstone (Teruel, ES), fresh commercial block, L*a*b* 68.9 / 4.0 / 17.0 (LAPUENTE24)"
+    },
+    "deep_golden": {
+     "albedo_lin": [
+      0.405,
+      0.301,
+      0.202
+     ],
+     "sample": "Uncastillo sandstone (Zaragoza, ES), fresh commercial block, L*a*b* 63.0 / 4.1 / 16.1 (LAPUENTE24)"
+    },
+    "grey_buff": {
+     "albedo_lin": [
+      0.457,
+      0.422,
+      0.345
+     ],
+     "sample": "ECOSTRESS ward58, Berea sandstone (Ohio), face"
+    },
+    "red": {
+     "albedo_lin": [
+      0.349,
+      0.187,
+      0.138
+     ],
+     "sample": "ECOSTRESS ward59, Potsdam sandstone (New York), face",
+     "iron_dir": [
+      -0.2149,
+      -0.6486,
+      -0.7302
+     ]
+    },
+    "brown": {
+     "albedo_lin": [
+      0.144,
+      0.102,
+      0.086
+     ],
+     "sample": "ECOSTRESS ward60, Portland brownstone, face",
+     "iron_dir": [
+      -0.2149,
+      -0.6486,
+      -0.7302
+     ]
+    },
+    "grey_green": {
+     "albedo_lin": [
+      0.26,
+      0.259,
+      0.217
+     ],
+     "sample": "ECOSTRESS ward63, grey-green sandstone, face",
+     "iron_dir": [
+      -0.4285,
+      -0.5342,
+      -0.7287
+     ]
+    }
+   },
+   "q": "M",
+   "src": "grey_buff / red / brown / grey_green: ECOSTRESS face spectra integrated by the lane; cream_buff, buff, golden, deep_golden: CIELAB of fresh-cut building sandstones, D65, d/8 sphere, converted to linear sRGB (research/WARM_SANDSTONE_COLOURS.md, warm_sandstone_lab.py)"
+  },
+  "default_variety": {
+   "v": "cream_buff",
+   "q": "E",
+   "src": "LANE: a light warm building sandstone, quartz-rich like Berea (the measured Demanda Gold)"
+  },
+  "albedo_lin": {
+   "v": [
+    0.522,
+    0.413,
+    0.311
+   ],
+   "q": "M",
+   "src": "GOMEZ23: the default variety"
+  },
+  "iron_dir": {
+   "v": [
+    -0.4285,
+    -0.5342,
+    -0.7287
+   ],
+   "q": "D",
+   "src": "GOMEZ23 / LAPUENTE24: unit log(deep_golden / cream_buff): the goethite (yellow-brown) axis of buff and golden sandstones; red and brown varieties carry the hematite axis (their own iron_dir)"
+  },
+  "copy_log_sd": {
+   "v": 0.06,
+   "q": "E",
+   "src": "LANE: block-to-block lightness within one bed (no measured set of one stone found)"
+  },
+  "copy_iron_sd": {
+   "v": 0.08,
+   "q": "E",
+   "src": "LANE: block-to-block spread along the iron direction"
+  },
+  "grain": {
+   "v": {
+    "size_mm": 0.2,
+    "log_sd": 0.24,
+    "dir": [
+     1.0,
+     0.97,
+     0.85
+    ],
+    "fine_mm": 0.08,
+    "fine_log_sd": 0.07,
+    "interstice_log": -0.45,
+    "interstice_r0": 0.62,
+    "dark_p": 0.03,
+    "dark_log": -1.0,
+    "cluster_mm": 0.8,
+    "cluster_log_sd": 0.06,
+    "hue_log_sd": 0.3,
+    "hue_dir": [
+     0.0499,
+     -0.1997,
+     -0.9786
+    ],
+    "clear_p": 0.3
+   },
+   "q": "E",
+   "src": "grain size: building sandstones 0.1-0.5 mm (Wentworth fine-medium; Bentheimer about 0.2 mm: research); contrast, interstices, dark lithics by the lane from the macro photos (reference content/stone_brick_2026-11-14); clusters (0.8 mm, packing and sorting over a few grains) by the lane, E; per-grain hue along the iron direction (clean quartz paler and greyer, coated grains yellow-brown: the macro photo R3), E; the grain hue along the goethite (yellow-brown coating) axis, blue dropping most (E, from the macro photo); clear quartz grains 30 % (glassy fracture faces: sharper specular, a darker greyer look; E from the macro photo)"
+  },
+  "laminae": {
+   "v": {
+    "spacing_mm": 1.5,
+    "iron_log_sd": 0.073,
+    "grey_log_sd": 0.024,
+    "warp_mm": 0.25,
+    "dip_deg": [
+     0.0,
+     2.5
+    ]
+   },
+   "q": "E",
+   "src": "LANE: mm-thick laminae, lighter iron-poor layers (photo sandstone_ground_sawn_surface_mainsandstein_pd.jpg); the bed horizontal in the object; near planar (warp 0.25 mm), dipping 0-2.5 deg: a natural-bed block (a face cut across the bed shows streaks, as the Main sandstone photo) (E); 11-14: the strengths scaled by 1/1.24 when the layer noise moved off the lattice line (lk_layers read on y = z = 0 had ~0.8 of its nominal SD and a period at the spacing: the plaid); the visible strength calibrated by eye is kept (measured: the row-band SD from the laminae 2.05 -> 2.55 at the old values)"
+  },
+  "spots": {
+   "v": {
+    "cell_mm": 6.0,
+    "share": 0.03,
+    "radius_cells": 0.12,
+    "log": 1.0
+   },
+   "q": "E",
+   "src": "LANE: sparse iron-oxide spots about 1-1.5 mm (the same photo)"
+  },
+  "mottle": {
+   "v": {
+    "lam_mm": 40.0,
+    "log_sd": 0.015
+   },
+   "q": "E",
+   "src": "LANE: faint cm-scale staining"
+  },
+  "finishes": {
+   "v": {
+    "sawn": {
+     "alpha": 0.6,
+     "on_sigma": 0.35,
+     "relief": "sawn",
+     "grain_clip": 0.45
+    },
+    "rubbed": {
+     "alpha": 0.45,
+     "on_sigma": 0.3,
+     "relief": "rubbed",
+     "grain_clip": 0.3
+    },
+    "honed": {
+     "alpha": 0.35,
+     "on_sigma": 0.25,
+     "relief": "honed",
+     "grain_clip": 0.15
+    },
+    "riven_or_tooled": {
+     "alpha": 0.8,
+     "on_sigma": 0.45,
+     "relief": "riven_or_tooled",
+     "grain_clip": 0.9
+    },
+    "split_face": {
+     "alpha": 0.85,
+     "on_sigma": 0.5,
+     "relief": "split_face",
+     "grain_clip": 1.0
+    },
+    "droved": {
+     "alpha": 0.65,
+     "on_sigma": 0.4,
+     "relief": "droved",
+     "grain_clip": 0.6
+    }
+   },
+   "q": "E",
+   "src": "surface.alpha_by_finish (this profile); gloss for comparison (granite, Sanmartin et al. 2011: sawn 12.5-24.8 GU at 60 deg, honed 8.5-22, polished 67-89; research); Oren-Nayar sigma (rad) E from the finish; grain_clip: how flat the cut leaves the grain tops (E); droved: a dressed face with chisel strokes ~3.5 mm apart (E, research photos)"
+  },
+  "micro": {
+   "v": {
+    "amp_um": 45.0,
+    "radius_cells": 0.66
+   },
+   "q": "E",
+   "src": "LANE: the grains stand ~0.2 of a 0.2 mm grain above the interstices on a sawn face (sawn granite Ra 22-25 um, Sanmartin et al. 2011: research; the sawn face cuts grains flat: finishes.grain_clip); render-time geometry below the lattice (look.cuh mat_micro)"
+  },
+  "stains": {
+   "v": {
+    "dir": [
+     -0.3241,
+     -0.5958,
+     -0.7349
+    ],
+    "patch_mm": 55.0,
+    "patch_log": 0.22,
+    "patch_th": 0.4,
+    "band_mm": 5.0,
+    "band_log": 0.22,
+    "band_w": 0.3,
+    "ring_zone": 3.0
+   },
+   "q": "E",
+   "src": "LANE: iron-oxide staining in buff sandstone from the reference photos (R1 Berea specimen: orange patches and rings; the droved face: orange against yellow zones): patches ~5 cm, Liesegang bands ~3-4 mm apart, thin, in about a third of the volume, along the hematite direction (orange); strengths and coverage drawn per block (some plain, some banded); 11-14 ~04:50: the stain direction orange (the mean of the hematite and goethite axes), rings with a sharp front and a fading tail, uneven spacing and strength, banding in about a fifth of the volume (E); 11-14 ~06:xx: rings as bands behind the patch fronts, parallel to them (references sandstone_liesegang_bands_quedlinburg_ccbysa.jpg, sandstone_liesegang_rings_aztec_ccbysa.jpg: a sharp front then a graded band, in a zone a few rings deep): median spacing 5 mm, the band 0.3 of it, a zone ~3 rings deep drawn per block (E)"
+  },
+  "weather": {
+   "v": {
+    "patch_mm": 40.0,
+    "patch_frac": 0.5,
+    "wear_mm": 3.0,
+    "wear_var": 0.35,
+    "wear_lam_mm": 80.0,
+    "micro_gain": 1.5
+   },
+   "q": "E",
+   "src": "the lane 11-14: no measured weathered / fresh sandstone pair yet (a runner ask), so no colour shift; the arrises of weathered dressed blocks rounded a few mm (sandstone_blocks_engine_bed_woolwich, sandstone_wall_tooled_blocks_eggesandstein: E by eye) -> 3 mm; granular disintegration (grains loosened): the grain relief x2.5 at full weathering"
+  },
+  "fracture": {
+   "v": {
+    "amp_um": 100.0,
+    "cell_mm": 0.45
+   },
+   "q": "E",
+   "src": "the lane 11-14: a sandstone fracture runs round its grains (0.2 mm here): grains and small grain clusters stand or are plucked, ~0.3-0.6 mm (the specimens' broken edges, sandstone_berea_buff_specimen_block, sandstone_potsdam_red_specimen) (11-14 round 3: amplitude set beside the same-scale reference: the band read too dark and pitted higher)"
+  }
+ }
+}

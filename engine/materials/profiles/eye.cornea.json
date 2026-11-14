@@ -1,0 +1,612 @@
+{
+ "id": "eye.cornea",
+ "kind": "layered_tissue",
+ "family": "eye",
+ "_": "Clear front shell of the eye: epithelium (~50 um), Bowman, collagen stroma (~90 %), Descemet, endothelium; 0.53-0.55 mm thick at the centre, R 7.8 mm front, held taut by intraocular pressure and always wet with the tear film. Adult, ~34 C surface, IOP ~15 mmHg. Eye-and-hair materials lane, 2026-11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.005,
+   "q": "E",
+   "src": "the tear film is a free liquid surface (tears.json alpha 0.003, water 0.005): the cornea's highlight is mirror-sharp; a broken film roughens it (states)"
+  },
+  "n": {
+   "v": 1.376,
+   "q": "M",
+   "src": "EYEMD G1 bulk cornea 1.376 (epithelium 1.401, stroma 1.373-1.380); the outer surface optically is the tear film 1.337"
+  },
+  "F0": {
+   "v": 0.021,
+   "q": "D",
+   "src": "EYEMD G2: air-tear 0.021 (air-cornea without tears 0.025)"
+  }
+ },
+ "optics_summary": {
+  "n": {
+   "v": {
+    "tear": 1.337,
+    "epithelium": 1.401,
+    "stroma_front": 1.38,
+    "stroma_back": 1.373,
+    "aqueous_behind": 1.336
+   },
+   "q": "M",
+   "src": "EYEMD G1"
+  },
+  "absorption": {
+   "v": "clear in the visible; transmits > ~90 % from ~450 nm, absorbs UV below ~300 nm",
+   "q": "E",
+   "src": "RECALL Boettner & Wolter 1962 (not reopened)"
+  },
+  "scattering": {
+   "v": "very weak (lattice-ordered collagen fibrils); haze rises when swollen",
+   "q": "E",
+   "src": "textbook transparency theory, not measured here"
+  },
+  "translucency": {
+   "v": "transparent",
+   "q": "M",
+   "src": "anatomy"
+  },
+  "power_D": {
+   "v": {
+    "front": 43.3,
+    "back": -6.1
+   },
+   "q": "D",
+   "src": "EYEMD B9"
+  }
+ },
+ "contact": {
+  "friction": {
+   "static": {
+    "v": {
+     "vs_eyelid_tear_film": 0.16,
+     "vs_mucin_glass": 0.59,
+     "vs_bare_glass": 2.1
+    },
+    "q": "M",
+    "src": "CHEN26 porcine eyeball, 30 mN, 8 mm/s"
+   },
+   "kinetic": {
+    "v": {
+     "vs_eyelid_tear_film": 0.05,
+     "vs_mucin_glass_tear_mimic": [
+      0.006,
+      0.015
+     ],
+     "vs_PDMS_saline": [
+      0.28,
+      0.32
+     ],
+     "vs_glass_PBS": 0.026
+    },
+    "q": "M",
+    "src": "CHEN26 (porcine lid on eyeball 0.05 +/- 0.01); WILSON15 human cornea vs mucin glass; MORRISON12 human cornea vs PDMS; Barros 2015 pig cornea vs glass (via CHEN26)"
+   },
+   "counterface": "eyelid (lid wiper) with tear film; glass and PDMS stand-ins listed for comparison"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": null,
+    "q": "E",
+    "src": "not found: the glycocalyx (membrane mucins) makes the epithelium hydrophilic and anti-adhesive (CHEN26 discussion)"
+   },
+   "tack": {
+    "v": "none while the glycocalyx is intact; dry patches stick (bare-glass mu_s 2.1 shows what the mucin layer prevents)",
+    "q": "M",
+    "src": "CHEN26"
+   }
+  },
+  "restitution": {
+   "v": null,
+   "q": "E",
+   "src": "not found; a soft wet shell: impacts are absorbed by the pressurised globe (see solver)"
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": null,
+    "q": "E",
+    "src": "not found as a number; healthy epithelium is fully wetted by tears (film breakup > 10 s, tears.json)"
+   },
+   "breakup_time_s": {
+    "v": ">10 normal",
+    "q": "M",
+    "src": "TEARS (TFOS 2017)"
+   }
+  },
+  "lid_pressure_kPa": {
+   "v": {
+    "in_vivo_blink": [
+     1,
+     10
+    ],
+    "spontaneous_blink_lens_wearer": [
+     3.5,
+     4.0
+    ]
+   },
+   "q": "M",
+   "src": "SHAW10 via CHEN26; LIEVENS22"
+  },
+  "blink_speed_mm_s": {
+   "v": {
+    "closing": 134,
+    "opening": 26,
+    "average": 120
+   },
+   "q": "M",
+   "src": "EYEMD I3 (Kwon 2013, mean speeds); LIEVENS22 average 12 cm/s"
+  },
+  "water_absorption": {
+   "v": "stroma ~78 % water, kept dehydrated by the endothelial pump; swells (thickens, hazes) when the pump or epithelium fails",
+   "q": "E",
+   "src": "textbook hydration, recalled; E: recalled, not re-read"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": null,
+    "q": "E",
+    "src": "not found; wet tissue: charge leaks instantly"
+   },
+   "resistivity_ohm_m": {
+    "v": null,
+    "q": "E",
+    "src": "not found"
+   }
+  },
+  "solver": {
+   "phase": {
+    "v": "soft_solid",
+    "q": "D",
+    "src": "a pressurised soft shell, always lubricated"
+   },
+   "collision_thickness_mm": {
+    "v": 0.0033,
+    "q": "D",
+    "src": "the tear film's aqueous-mucin layer 3.3 um (EYEMD F1): the lid rides on it, never on the epithelium"
+   },
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": {
+      "local_stroma": 561.0,
+      "whole_globe_porcine": 187.0
+     },
+     "q": "D",
+     "src": "E_stack / thickness: posterior-weighted stroma ~0.3 MPa (LOMBARDO14 0.17-0.21 back, 2.3 front; QIN21 Ogden mu 0.42-0.74) over 0.535 mm; porcine whole-eyeball indentation stiffness 0.1 MPa (CHEN26). At the scale of the whole eye the IOP carries the load (iop_support)"
+    },
+    "iop_support": {
+     "v": "Imbert-Fick: a flat contact of area A is held by F = IOP x A (Goldmann tonometry: 3.06 mm diameter at 1 g per 10 mmHg); press harder and the globe dents, aqueous is displaced against the ocular rigidity",
+     "q": "D",
+     "src": "tonometry principle; IOP below"
+    },
+    "ramp": {
+     "v": "barrier_log",
+     "q": "D",
+     "src": "IPC barrier at the tear-film thickness; friction from the pair table (lid on cornea ~0.05)"
+    },
+    "contact_damping_ratio": {
+     "v": 0.3,
+     "q": "E",
+     "src": "viscoelastic stroma (creep minutes, LOMBARDO14) plus the fluid-filled globe: heavily damped; no measured ratio"
+    }
+   },
+   "compliance_layers": [
+    {
+     "name": "tear_film",
+     "thickness_mm": {
+      "v": 0.0033,
+      "q": "M",
+      "src": "EYEMD F1"
+     },
+     "E_kPa": {
+      "v": 0,
+      "q": "D",
+      "src": "liquid: carries pressure, no shear stiffness"
+     },
+     "poisson": {
+      "v": 0.5,
+      "q": "D",
+      "src": "incompressible liquid"
+     },
+     "compressible_to_fraction": {
+      "v": 0.0,
+      "q": "D",
+      "src": "squeezed out sideways under the lid (it thins to the lid-wiper gap)"
+     }
+    },
+    {
+     "name": "epithelium",
+     "thickness_mm": {
+      "v": 0.05,
+      "q": "M",
+      "src": "EYEMD G6 / B6 (epithelium ~50 um of 535)"
+     },
+     "E_kPa": {
+      "v": null,
+      "q": "E",
+      "src": "not found separately; LOMBARDO14's anterior value with vs without epithelium (2.28 vs 3.30 MPa) implies the epithelium is the softer skin"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "hydrated tissue, near incompressible"
+     },
+     "compressible_to_fraction": {
+      "v": 0.9,
+      "q": "E",
+      "src": "cells deform little before damage (CHEN26 wear depth 8-12 um)"
+     }
+    },
+    {
+     "name": "stroma_anterior",
+     "thickness_mm": {
+      "v": 0.2,
+      "q": "E",
+      "src": "anterior third of ~0.48 mm stroma"
+     },
+     "E_kPa": {
+      "v": 2280,
+      "q": "M",
+      "src": "LOMBARDO14 anterior cornea 2.28 +/- 0.87 MPa (epithelium on)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near incompressible"
+     },
+     "compressible_to_fraction": {
+      "v": 0.95,
+      "q": "E",
+      "src": "lamellae bend, hardly compress"
+     }
+    },
+    {
+     "name": "stroma_posterior",
+     "thickness_mm": {
+      "v": 0.28,
+      "q": "E",
+      "src": "rest of the stroma"
+     },
+     "E_kPa": {
+      "v": 210,
+      "q": "M",
+      "src": "LOMBARDO14 posterior 0.21 +/- 0.09 MPa"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near incompressible"
+     },
+     "compressible_to_fraction": {
+      "v": 0.9,
+      "q": "E",
+      "src": "as above"
+     }
+    },
+    {
+     "name": "aqueous_under_IOP",
+     "thickness_mm": {
+      "v": 3.05,
+      "q": "M",
+      "src": "EYEMD C1 (chamber ~3.05 mm)"
+     },
+     "E_kPa": {
+      "v": 2.07,
+      "q": "D",
+      "src": "a liquid: its 'stiffness' is the IOP (15.5 mmHg = 2.07 kPa) plus the globe's ocular rigidity (deform.iop)"
+     },
+     "poisson": {
+      "v": 0.5,
+      "q": "D",
+      "src": "incompressible; it moves, it does not compress"
+     },
+     "compressible_to_fraction": {
+      "v": 1.0,
+      "q": "D",
+      "src": "volume conserved: indentation pushes aqueous out to the rest of the globe, raising IOP"
+     }
+    }
+   ],
+   "impact": {
+    "restitution": {
+     "v": null,
+     "q": "E",
+     "src": "not found"
+    },
+    "response_time_ms": {
+     "v": [
+      20,
+      30
+     ],
+     "q": "E",
+     "src": "Corvis ST air-puff deformation and recovery take ~20-30 ms (instrument record, recalled): the time a poke or blink impulse reads in; E: recalled, not re-read"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "shear_anterior": 26.9,
+      "shear_posterior": 8.16
+     },
+     "q": "D",
+     "src": "sqrt(G/rho), G = E/3 (incompressible), rho 1050 (SCOTT88)"
+    },
+    "damping_ratio": {
+     "v": 0.3,
+     "q": "E",
+     "src": "as contact_damping_ratio"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "hgo",
+   "q": "D",
+   "src": "fibre-reinforced (collagen lamellae) hyperelastic; an isotropic Ogden fit is the simple option"
+  },
+  "density_kg_m3": {
+   "v": 1050,
+   "q": "M",
+   "src": "SCOTT88 Table 1 (tissue)"
+  },
+  "thickness_mm": {
+   "v": {
+    "centre": 0.535,
+    "periphery": [
+     0.6,
+     0.8
+    ]
+   },
+   "q": "M",
+   "src": "EYEMD B6"
+  },
+  "E_kPa": {
+   "v": {
+    "anterior_ex_vivo": 2280,
+    "posterior_ex_vivo": 210,
+    "in_vivo_whole": 290
+   },
+   "q": "M",
+   "src": "LOMBARDO14 (inflation 18-42 mmHg, human globes); in_vivo 0.29 MPa: RECALL Hamilton & Pye 2008 (not reopened, E strength)"
+  },
+  "ogden": {
+   "v": {
+    "mu_MPa": [
+     0.42,
+     0.74
+    ],
+    "alpha": [
+     32.76,
+     55.63
+    ]
+   },
+   "q": "M",
+   "src": "QIN21 in vivo inverse fit (one-term Ogden)"
+  },
+  "poisson": {
+   "v": 0.49,
+   "q": "E",
+   "src": "hydrated soft tissue; the usual 0.49-0.5"
+  },
+  "anisotropy": {
+   "v": "in-plane lamellae: stiff in the plane, ~100x softer across (transverse shear); stiffer in the anterior third",
+   "q": "E",
+   "src": "NITI/OCE literature (arXiv 2006.10893 seen in search, not read) + LOMBARDO14 front-back gradient (M)"
+  },
+  "viscoelastic": {
+   "v": {
+    "model": "Zener (creep)",
+    "tau_load_min": 5.5,
+    "tau_unload_min": 1.1,
+    "creep_compliance_load_per_MPa": 1.19
+   },
+   "q": "M",
+   "src": "LOMBARDO14 anterior cornea, epithelium on"
+  },
+  "iop": {
+   "v": {
+    "mean_mmHg": 15.5,
+    "sd_mmHg": 2.6,
+    "normal_range_mmHg": [
+     10,
+     21
+    ],
+    "mean_kPa": 2.07
+   },
+   "q": "E",
+   "src": "RECALL population IOP (Colton & Ederer; not reopened); this is a world/state value carried by the globe, see eye.vitreous"
+  },
+  "ocular_rigidity": {
+   "v": {
+    "K_per_uL": 0.0215,
+    "law": "log10 P2 - log10 P1 = K (V2 - V1)"
+   },
+   "q": "E",
+   "src": "RECALL Friedenwald 1937 coefficient (not reopened)"
+  },
+  "fracture": {
+   "strength_kPa": {
+    "v": null,
+    "q": "E",
+    "src": "not found in a source read here"
+   }
+  },
+  "sim": {
+   "xpbd_compliance_per_kPa": {
+    "v": 0.00345,
+    "q": "D",
+    "src": "1/E with the in-vivo whole-cornea 290 kPa"
+   },
+   "note": {
+    "v": "drive the shell with the IOP as a pressure load; the shape at rest is the pressurised one",
+    "q": "D",
+    "src": "deform.iop"
+   }
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.58,
+   "q": "M",
+   "src": "SCOTT88"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 4178,
+   "q": "M",
+   "src": "SCOTT88"
+  },
+  "effusivity": {
+   "v": 1600.0,
+   "q": "D",
+   "src": "sqrt(k rho c), SCOTT88 values"
+  },
+  "emissivity": {
+   "v": 0.975,
+   "q": "M",
+   "src": "SCOTT88 (cornea reflects 2.5 % of thermal IR)"
+  },
+  "surface_temperature_C": {
+   "v": [
+    33,
+    35
+   ],
+   "q": "E",
+   "src": "ocular surface thermography (recalled); SCOTT88 model with 20 C room; E: recalled, not re-read"
+  },
+  "evaporative_loss_W_m2": {
+   "v": [
+    40,
+    100
+   ],
+   "q": "M",
+   "src": "SCOTT88 from tear secretion data"
+  }
+ },
+ "states": {
+  "tear_film_intact": {
+   "set": {},
+   "q": "M",
+   "src": "base"
+  },
+  "dry_eye_breakup": {
+   "set": {
+    "surface.alpha": 0.03,
+    "contact.friction.kinetic.vs_eyelid_tear_film": 0.15
+   },
+   "q": "E",
+   "src": "breakup roughens the highlight (tears.json); friction rises toward the saline values (SCHMIDT13 mu_k 0.24-0.31 without lubricin) - 0.15 E"
+  },
+  "tearing": {
+   "set": {
+    "surface.alpha": 0.003
+   },
+   "q": "E",
+   "src": "a thicker film, smoother (tears.json reflex)"
+  },
+  "iop_high": {
+   "set": {
+    "deform.iop.mean_mmHg": 25
+   },
+   "q": "E",
+   "src": "ocular hypertension > 21 mmHg"
+  },
+  "aged_60": {
+   "set": {
+    "deform.E_kPa.in_vivo_whole": 400
+   },
+   "q": "E",
+   "src": "cornea stiffens with age (Elsheikh 2007 inflation, recalled, not reopened); x1.4 E"
+  }
+ },
+ "sources": {
+  "EYEMD": {
+   "cite": "The project's research note eye.md (2026-10-19): A-I tables, G1 refractive indices, F1-F3 tear film, E1/E3/G5 sclera, C2 iris, D1-D3 lens, I3 blink",
+   "url": "local",
+   "lic": "project record; papers as cited there (R1-R69)"
+  },
+  "CHEN26": {
+   "cite": "Chen Y, Kaper HJ, de Jong E, van Kooten TG, Sharma PK. Importance of tribo-pairs to mimic blinking in vitro for dry eye disease research. Friction 14(8):9441241 (2026): porcine eyelid on eyeball, 30 mN, 8 mm/s: mu_s 0.16 +/- 0.04, mu_k 0.05 +/- 0.01; bare glass mu_s 2.10 +/- 0.60, mucin glass 0.59 +/- 0.19; tarsal plate 0.4 +/- 0.2 MPa, eyeball 0.1 +/- 0.08 MPa; Table 1 of literature values",
+   "url": "https://doi.org/10.26599/FRICT.2026.9441241",
+   "lic": "CC BY 4.0"
+  },
+  "WILSON15": {
+   "cite": "Wilson T, Aeschlimann R, Tosatti S et al. Coefficient of friction of human corneal tissue. Cornea 34(9):1179 (2015) (via CHEN26 Table 1): mucin-coated glass vs human cornea, 3.5-8.8 kPa, mean CoF 0.006-0.015 in tear-mimicking solutions",
+   "url": "https://doi.org/10.1097/ICO.0000000000000546",
+   "lic": "paywalled; numbers via CHEN26 used as facts"
+  },
+  "SCHMIDT13": {
+   "cite": "Schmidt TA, Sullivan DA et al. JAMA Ophthalmol 131:766 (2013) (via CHEN26): human eyelid vs rabbit cornea, 15-20 kPa: saline mu_s 0.27-0.51, mu_k 0.24-0.31; PRG4 mu_s 0.14-0.29, mu_k 0.12-0.17",
+   "url": "https://doi.org/10.1001/jamaophthalmol.2013.2385",
+   "lic": "paywalled; numbers via CHEN26"
+  },
+  "MORRISON12": {
+   "cite": "Morrison S, Sullivan DA, Sullivan BD, Sheardown H, Schmidt TA. Eye Contact Lens 38:27 (2012) (via CHEN26): PDMS vs human cornea 16.7 kPa, saline mu_s 0.29-0.37, mu_k 0.28-0.32",
+   "url": "https://doi.org/10.1097/ICL.0b013e31823f7041",
+   "lic": "paywalled; numbers via CHEN26"
+  },
+  "SHAW10": {
+   "cite": "Shaw AJ, Collins MJ, Davis BA, Carney LG. Eyelid pressure and contact with the ocular surface. IOVS 51:1911 (2010) (via CHEN26 Table 1: in vivo blink 1-10 kPa)",
+   "url": "https://doi.org/10.1167/iovs.09-4090",
+   "lic": "IOVS (CC BY-NC-ND for recent issues; this one not checked): number used as fact"
+  },
+  "LIEVENS22": {
+   "cite": "Lievens CW, Rayborn E. Tribology and the ocular surface. Clin Ophthalmol 16:973 (2022): blink contact pressure 3.5-4.0 kPa (lens wearer), average blink speed 12 cm/s",
+   "url": "https://doi.org/10.2147/OPTH.S360293",
+   "lic": "CC BY-NC 3.0: numbers used as facts, text studied only (P13)"
+  },
+  "LOMBARDO14": {
+   "cite": "Lombardo M et al. Analysis of the viscoelastic properties of the human cornea using Scheimpflug imaging in inflation experiment of eye globes. PLoS One 9:e112169 (2014): anterior E 2.28 +/- 0.87 MPa (epithelium on) / 3.30 +/- 0.90 (off); posterior 0.21 +/- 0.09 / 0.17 +/- 0.06 MPa; IOP 18-42 mmHg; Zener creep tau_load 5.50 min, tau_unload 1.10 min (anterior, epithelium on)",
+   "url": "https://doi.org/10.1371/journal.pone.0112169",
+   "lic": "CC BY 4.0"
+  },
+  "QIN21": {
+   "cite": "Exploring the biomechanical properties of the human cornea in vivo based on Corvis ST. Front Bioeng Biotechnol (2021) 10.3389/fbioe.2021.771763: Ogden mu 0.42-0.74 MPa, alpha 32.76-55.63 (inverse FE, in vivo)",
+   "url": "https://doi.org/10.3389/fbioe.2021.771763",
+   "lic": "CC BY 4.0 (numbers read via search summary)"
+  },
+  "SCOTT88": {
+   "cite": "Scott JA. A finite element model of heat transport in the human eye. Phys Med Biol 33:227 (1988), Table 1: cornea k 0.58, c 4178, rho 1050; aqueous 0.58 / 3997 / 1000; lens 0.40 / 3000 / 1050; vitreous 0.603 / 4178 / 1000; iris and ciliary as aqueous; corneal emissivity 0.975; tear evaporation 40-100 W/m2; h_air 10, h_blood 65 W/m2K",
+   "url": "https://doi.org/10.1088/0031-9155/33/2/003",
+   "lic": "IOP paywalled; numbers used as facts"
+  },
+  "WILDE12": {
+   "cite": "Wilde GS, Burd HJ, Judge SJ. Shear modulus data for the human lens determined from a spinning lens test. Exp Eye Res 97:36 (2012), PMC3405528: Model D nucleus/cortex G at 33 y 0.19/0.93, 43 y 1.28/1.41, 50 y 7.35/1.16 kPa; age-stiffness fits GN (A* 27.5, b1 0.00562, b2 0.0767, c 68.8 Pa), GC (43.0, 0.0235, -0.00932, 1340 Pa); nucleus stiffer than cortex from ~45 y",
+   "url": "https://doi.org/10.1016/j.exer.2012.01.011",
+   "lic": "CC BY (Europe PMC record)"
+  },
+  "HEYS04": {
+   "cite": "Heys KR, Cram SL, Truscott RJW. Massive increase in the stiffness of the human lens nucleus with age: the basis for presbyopia? Mol Vis 10:956 (2004): nucleus ~450x, cortex ~20x stiffer over life; young nucleus softer than cortex",
+   "url": "http://www.molvis.org/molvis/v10/a114/",
+   "lic": "Mol Vis open access (CC BY-NC-ND per journal; ratios used as facts, P13)"
+  },
+  "TRAM18": {
+   "cite": "Tram NK, Swindle-Reilly KE. Rheological properties and age-related changes of the human vitreous humor. Front Bioeng Biotechnol 6:199 (2018) and erratum PMC6428972: human G' 6.5 +/- 3.0 Pa, G'' 0.96 +/- 0.47 Pa (n 23); porcine 5.0/0.65; literature table (Shafaie, Filas, Nickerson, Swindle E 57.3 Pa...)",
+   "url": "https://doi.org/10.3389/fbioe.2018.00199",
+   "lic": "CC BY 4.0"
+  },
+  "GERAGHTY12": {
+   "cite": "Geraghty B, Jones SW, Rama P, Akhtar R, Elsheikh A. Age-related variations in the biomechanical properties of human sclera. J Mech Behav Biomed Mater 16:181 (2012): tangent modulus at 1 MPa / at 0.05 MPa = 11.2 / 12.0 / 12.4 (anterior / equator / posterior); stiffening with age; stiffness falls anterior to posterior",
+   "url": "https://doi.org/10.1016/j.jmbbm.2012.10.011",
+   "lic": "paywalled; ratios read in a search summary; used as facts"
+  },
+  "RECALL": {
+   "cite": "Values recalled from the ophthalmic literature this lane did not reopen (named in each src): Friberg & Lace 1988 Exp Eye Res 47:429; Hamilton & Pye 2008 Optom Vis Sci 85:445; Fisher 1969/1971 J Physiol; Colton & Ederer 1980 (IOP distribution); Friedenwald 1937 ocular rigidity; Mishima 1966; Boettner & Wolter 1962",
+   "url": "various",
+   "lic": "numbers used as facts; marked E until reopened"
+  },
+  "TEARS": {
+   "cite": "Library profile engine/materials/profiles/tears.json (fluids lane, 11-07): surface tension 42-46 mN/m, viscosity, volume, breakup",
+   "url": "local",
+   "lic": "project record"
+  },
+  "ANON_E": {
+   "cite": "This lane's estimate (reason given in each src)",
+   "url": "local",
+   "lic": "own"
+  },
+  "PHYS": {
+   "cite": "Standard mechanics: EI = E pi d^4/64 (ellipse I = pi a b^3/4 at equal area), J = pi d^4/32, gravity length (EI/(rho A g))^(1/3), cantilever first mode f1 = 1.875^2/(2 pi L^2) sqrt(EI/(rho A)), wave speeds sqrt(E/rho), sqrt(G/rho), capillary bridge between crossed cylinders F = 4 pi R gamma cos theta",
+   "url": "textbook",
+   "lic": "physics; used to derive"
+  }
+ }
+}

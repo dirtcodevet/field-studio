@@ -1,0 +1,1260 @@
+{
+ "id": "skin.body",
+ "kind": "layered_tissue",
+ "family": "human_soft",
+ "_": "Ordinary hairy body skin (trunk, limbs; the forearm is the best-measured site). Profile format v1 (engine/materials/optics.py): every value {v, q, src}; q = M measured, D derived, E estimated. Optics feed engine/skin/colour_model.absorption (the spectra live in packs/human/params/chromophores.json, not here); mechanics feed the physics. Materials foundation lane 2026-11-07. Generic light skin, not her fit: her own chromophores come from her colour lanes. v2 (SKIN lane 11-07 ~22:00): mechanics moved into contact / deform with their values and src kept; contact, deform, thermal added. The contact.solver stack is the woman's thigh (front) with a buttock variant; for other regions use the region profiles (skin.face, skin.inner_arm ...).",
+ "layers": [
+  {
+   "name": "epidermis",
+   "thickness_mm": {
+    "v": 0.06,
+    "q": "M",
+    "src": "params/skin_layers.json epidermis_mm.default (histology 55-63 um, skin_regions_and_layers.md)"
+   },
+   "optics": {
+    "model": {
+     "v": "skin_epidermis",
+     "q": "M",
+     "src": "colour_model.absorption: melanin (eu + pheo) over the living layer + bloodless baseline (Jacques 1998)"
+    },
+    "absorbers": {
+     "f_mel": {
+      "v": 0.0155,
+      "q": "D",
+      "src": "checks/skin_fit.json: exact-transport (bench) fit to the NIST light-forearm mean (NIST17, 81 adults, integrating sphere, public domain); residual R +3.4 / G +0.3 / B -1.3 %. Look round 11-08 (was 0.03 E). Tseng 2009 measured arm melanin 1.6-2.0 % (LOOK_TARGETS)"
+     },
+     "eu_frac": {
+      "v": 0.7,
+      "q": "E",
+      "src": "Donner & Jensen 2006 blend (chromophores.json pheomelanin); light skin carries some pheomelanin; 0.7 a middle value, not fitted"
+     }
+    },
+    "g": {
+     "v": 0.8,
+     "q": "E",
+     "src": "Jacques 2013 (soft tissue g 0.8-0.95); epidermis 0.8 E within it"
+    },
+    "n": {
+     "v": 1.4,
+     "q": "M",
+     "src": "chromophores.json refractive_index (Jacques 2013, soft tissue 1.36-1.40); stratum corneum ~1.47-1.55 is the outer few um only"
+    },
+    "scatter": {
+     "a_per_cm": {
+      "v": 54.3,
+      "q": "D",
+      "src": "checks/skin_fit.json: exact-transport (bench) fit to the NIST light-forearm mean (NIST17, 81 adults, integrating sphere, public domain); residual R +3.4 / G +0.3 / B -1.3 %. Look round 11-08 (was 46 /cm, Jacques 2013 mean, M)"
+     },
+     "b": {
+      "v": 1.421,
+      "q": "M",
+      "src": "Jacques 2013 skin mean (LOOK_TARGETS: measured red-end slope 1.0-1.15 above 600 nm; not refitted)"
+     }
+    }
+   }
+  },
+  {
+   "name": "dermis",
+   "thickness_mm": {
+    "v": 1.2,
+    "q": "M",
+    "src": "params/skin_layers.json dermis_mm.default (1.2); per region 0.6-1.97 in that file"
+   },
+   "optics": {
+    "model": {
+     "v": "skin_dermis",
+     "q": "M",
+     "src": "colour_model.absorption: blood (HbO2 / Hb, Prahl 1999) + baseline + carotene"
+    },
+    "absorbers": {
+     "f_blood": {
+      "v": 0.015,
+      "q": "D",
+      "src": "checks/skin_fit.json: exact-transport (bench) fit to the NIST light-forearm mean (NIST17, 81 adults, integrating sphere, public domain); residual R +3.4 / G +0.3 / B -1.3 %. Look round 11-08 (was 0.006 E). Agrees with LOOK_TARGETS' spectral fit 1.2-1.6 %"
+     },
+     "sat": {
+      "v": 0.75,
+      "q": "M",
+      "src": "chromophores.json oxygen_saturation (Jacques 1998 mixed arterial / venous)"
+     },
+     "carotene": {
+      "v": 1.0,
+      "q": "E",
+      "src": "x chromophores.json carotene_M (3e-7 M, itself E from Raman 0.1-1 nmol/g)"
+     }
+    },
+    "g": {
+     "v": 0.8,
+     "q": "E",
+     "src": "Jacques 2013 (soft tissue g 0.8-0.95); dermis 0.8 E within it"
+    },
+    "n": {
+     "v": 1.4,
+     "q": "M",
+     "src": "chromophores.json refractive_index"
+    },
+    "scatter": {
+     "a_per_cm": {
+      "v": 54.3,
+      "q": "D",
+      "src": "checks/skin_fit.json: exact-transport (bench) fit to the NIST light-forearm mean (NIST17, 81 adults, integrating sphere, public domain); residual R +3.4 / G +0.3 / B -1.3 %. Look round 11-08 (was 46 /cm, Jacques 2013 mean, M)"
+     },
+     "b": {
+      "v": 1.421,
+      "q": "M",
+      "src": "Jacques 2013 skin mean (LOOK_TARGETS: measured red-end slope 1.0-1.15 above 600 nm; not refitted)"
+     }
+    }
+   }
+  }
+ ],
+ "scatter_note": "mu_s' = 46.0 (lambda / 500)^-1.421 cm-1 for both layers (chromophores.json scattering, Jacques 2013 skin mean); epidermis and dermis alike (E, the review's layer sets differ less than their spread).",
+ "surface": {
+  "alpha": {
+   "v": 0.35,
+   "q": "M",
+   "src": "params/skin_specular.json: off the face no measurement; Donner 2008 m 0.35 for dry skin; GGX alpha = Beckmann m (the research file's mapping)"
+  },
+  "n": {
+   "v": 1.4,
+   "q": "M",
+   "src": "skin_specular.json off_face_coat_ior (d'Eon skin average)"
+  },
+  "F0": {
+   "v": 0.028,
+   "q": "D",
+   "src": "((1.40 - 1) / (1.40 + 1))^2"
+  }
+ },
+ "micro_relief": {
+  "_": "Not drawn by the bench yet (pass 1 draws the surface as GGX roughness only). Targets for the relief generator, from the microdetail lane's sourced bands:",
+  "Ra_um": {
+   "v": [
+    6,
+    10
+   ],
+   "q": "M",
+   "src": "work/microdetail/CURRENT.md:64 (in vivo Ra 7-10, Rz 32-40 um, volar forearm); BUILD.md target band 6-10 / 30-42"
+  },
+  "furrow_density_mm_per_mm2": {
+   "v": [
+    5,
+    6
+   ],
+   "q": "M",
+   "src": "microdetail BUILD.md furrow target 5-6 mm/mm2"
+  },
+  "plateaus_per_mm2": {
+   "v": 5.8,
+   "q": "M",
+   "src": "replica count (MB-R3) via research/skin_pores_vellus_relief.md:75 (Visioscan 1.0, 6x lower)"
+  },
+  "line_angles_deg": {
+   "v": [
+    50,
+    165
+   ],
+   "q": "M",
+   "src": "microdetail CURRENT.md:64 forearm primary lines to the limb axis"
+  },
+  "follicles_per_cm2": {
+   "v": [
+    15,
+    47
+   ],
+   "q": "M",
+   "src": "research/skin_pores_vellus_relief.md:10 (trunk and limbs, SRL section 1)"
+  }
+ },
+ "contact": {
+  "friction": {
+   "kinetic": {
+    "v": {
+     "dry": 0.5,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "D",
+    "src": "dry 0.5 and wet >= 1 measured (DERLER12 review: dry ~0.5, range 0.2-1, little load dependence; moist/wet typically > 1, rising as pressure falls); oily = an applied oil or soap film, D: dry x 0.25 (ZHANGMAK99: fingertip-aluminium ~0.6 drops >= 75 % with soap; BOBJER93 palm on polycarbonate 2.22 -> 0.28 with paraffin oil). The leaf takes its weakest member's q"
+   },
+   "static": {
+    "v": {
+     "dry": 0.5,
+     "wet": 1.0,
+     "oily": 0.13
+    },
+    "q": "E",
+    "src": "skin friction is reported almost only as dynamic; static taken equal (E). On smooth impermeable faces the static grip rises with dwell (occlusion, ADAMS13), see pairs/skin.json"
+   },
+   "measured": {
+    "v": {
+     "dry": 0.5,
+     "wet": 1.0,
+     "vs_fabric_dry": 0.42,
+     "vs_fabric_hydrated": 0.66,
+     "vs_wet_fabric": 0.95
+    },
+    "q": "M",
+    "src": "DERLER12 review (dry ~0.5, range 0.2-1; wet typically > 1); GERHARDT08 forearm vs cotton-polyester, women (the project's materials research note GAPS_RESEARCH.md 4); skin on skin: not found"
+   },
+   "by_counterface": {
+    "v": {
+     "teflon_probe_typical": 0.21,
+     "teflon_abdomen": 0.12,
+     "teflon_forehead": 0.34,
+     "mixed_probes_6_sites": 0.46,
+     "textiles_12_subjects": [
+      0.27,
+      0.71
+     ]
+    },
+    "q": "M",
+    "src": "CUA90 (11 sites, Teflon probe; age and sex no effect, site large); ZHANGMAK99 mean 0.46 +/- 0.15 over 6 sites and probes; DERLER07 textiles"
+   },
+   "load_index_n": {
+    "v": [
+     0.67,
+     1.0
+    ],
+    "q": "M",
+    "src": "ADAMS13: F = k W^n with 2/3 <= n <= 1 (forearm on glass n 0.80-0.85, Table 1): mu falls slowly as load rises"
+   },
+   "counterface": "standard counterface: a smooth hard probe (glass, steel, polymer; DERLER12 pooled); textile values kept under measured / by_counterface"
+  },
+  "adhesion": {
+   "surface_energy_mJ_m2": {
+    "v": {
+     "critical_surface_tension_forearm": 27
+    },
+    "q": "M",
+    "src": "MAVON97 via US patent 6846490 (secondary): forearm CST ~27 mN/m; forearm skin 'almost apolar' (dispersive-dominated)"
+   },
+   "tack": {
+    "v": "low on dry skin; adhesion becomes the main friction term on smooth impermeable faces as sweat is occluded (friction x10 in tens of s, ADAMS13); no pull-off force found",
+    "q": "M",
+    "src": "ADAMS13, DERLER09 (qualitative)"
+   }
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": 91,
+    "q": "M",
+    "src": "ELKHYAT04 forearm ~91 deg (secondary, via GAPS_RESEARCH.md 6); MAVON97 forearm near-apolar"
+   },
+   "oil_contact_angle_deg": {
+    "v": null,
+    "q": "E",
+    "src": "not found (MAVON97 used diiodomethane; values not retrieved)"
+   }
+  },
+  "restitution": {
+   "v": {
+    "soft_tissue_on_rigid_body_segment": [
+     0.23,
+     0.64
+    ],
+    "heel_pad_isolated": [
+     0.59,
+     0.73
+    ],
+    "heel_in_vivo_with_leg": 0.22
+   },
+   "q": "D",
+   "src": "e = exp(-pi zeta / sqrt(1 - zeta^2)) from damping 0.14 (thigh) / 0.42 (calf) (TISSUE); heel pad energy loss 46.5-65.5 % isolated and ~95 % in vivo (AERTS95), e = sqrt(1 - loss); KER96 pendulum ~48 %"
+  },
+  "electrostatic": {
+   "triboelectric": {
+    "v": {
+     "dry_skin_nC_J": 30,
+     "oily_skin_nC_J": 45,
+     "position": "near the positive end (gives up electrons): above nylon-class, below polyurethane foam"
+    },
+    "q": "M",
+    "src": "ALPHALAB09 rows 'Nylon, dry skin' +30 and 'Hair, oily skin' +45 nC/J (72 F, 35 % RH); skin is conductive, so metal rubbing cannot charge it"
+   },
+   "resistivity_ohm_m": {
+    "v": {
+     "stratum_corneum_low_freq": [
+      500,
+      5000
+     ],
+     "wet_skin_low_freq": 17
+    },
+    "q": "D",
+    "src": "1 / sigma: stratum corneum 2e-4 to 2e-3 S/m and wet skin 0.059 S/m at low frequency (GABRIEL96 via the Frontiers compiled table); DC dry stratum corneum is higher still and falls steeply with depth (YAMAMOTO76, numbers not retrieved)"
+   },
+   "surface_resistivity_ohm_sq": {
+    "v": null,
+    "q": "E",
+    "src": "not found: depends on surface moisture; YAMAMOTO76 gives a depth profile, not retrieved"
+   },
+   "permittivity_rel": {
+    "v": {
+     "wet_skin_low_freq": 1136
+    },
+    "q": "M",
+    "src": "GABRIEL96 via the Frontiers compiled table (low-frequency relative permittivity, wet skin)"
+   },
+   "charge_decay_s": {
+    "v": {
+     "skin_surface_local_wet": 1.7e-07,
+     "skin_surface_local_dry_sc": [
+      1e-06,
+      0.0001
+     ],
+     "whole_body_discharge_to_ground": 1.5e-07,
+     "whole_body_on_insulating_shoes": "seconds to minutes (E)"
+    },
+    "q": "D",
+    "src": "local: tau = eps0 eps_r rho (wet 8.85e-12 x 1136 x 17; dry stratum corneum rho 500-5000 with eps_r ~ 200-1000, E); whole body: JS001 R C = 1500 ohm x 100 pF; held charge on insulating soles depends on the sole, E"
+   }
+  },
+  "hardness": {
+   "v": null,
+   "q": "E",
+   "src": "not found: no durometer (Shore 00/A) value for body skin retrieved"
+  },
+  "solver": {
+   "phase": "soft_solid",
+   "collision_thickness_mm": {
+    "v": 0.06,
+    "q": "E",
+    "src": "the epidermis (55-63 um) as the surface layer; micro-relief Rz 30-40 um sits inside it"
+   },
+   "compliance_layers": [
+    {
+     "name": "epidermis",
+     "thickness_mm": {
+      "v": 0.06,
+      "q": "M",
+      "src": "LAYERS epidermis_mm.default (histology 55-63 um)"
+     },
+     "E_kPa": {
+      "v": 4000.0,
+      "q": "M",
+      "src": "FENG22 OCE forearm incl. stratum corneum (small strain)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.9,
+      "q": "E",
+      "src": "a stiff thin shell: thins little under contact (E)"
+     }
+    },
+    {
+     "name": "dermis",
+     "thickness_mm": {
+      "v": 1.5,
+      "q": "M",
+      "src": "SOFTTISSUE R43 thigh skin 1.55 mm total (342 adults, 20 MHz US) less the epidermis"
+     },
+     "E_kPa": {
+      "v": 40.0,
+      "q": "M",
+      "src": "FENG22 OCE dermis ~40 kPa"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.85,
+      "q": "E",
+      "src": "dermis is near-incompressible and thin; it thins mainly by spreading (E)"
+     }
+    },
+    {
+     "name": "fat",
+     "thickness_mm": {
+      "v": 18.0,
+      "q": "M",
+      "src": "SOFTTISSUE R44 thigh fat, women 18.0 +/- 7.4 mm (1085 F, US); slim young women sit low"
+     },
+     "E_kPa": {
+      "v": 26.1,
+      "q": "M",
+      "src": "SOFTTISSUE R31 gluteal fat in vivo, E at 1 N (strain 0.16) 26.1 +/- 19.0 kPa; stiffens E0 exp(26 eps), 2199 kPa at strain 0.33"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.54,
+      "q": "M",
+      "src": "SOFTTISSUE R32 seated buttock fat peak strain 46 +/- 7 % (MRI + FE): 1 - 0.46 seen in sitting, not a limit"
+     },
+     "stiffening": {
+      "law": "exponential_tangent",
+      "E0_kPa": {
+       "v": 26.1,
+       "q": "M",
+       "src": "ISOGAI22 (SOFTTISSUE R31) gluteal fat in vivo, E at 1 N (strain 0.16) 26.1 +/- 19.0 kPa; reads as a tangent (secant would be ~11)"
+      },
+      "k": {
+       "v": 26.1,
+       "q": "D",
+       "src": "ISOGAI22 two points: ln(2199 / 26.1) / (0.33 - 0.16); SOFTTISSUE section 3 (integrates to 1.25-1.65x the measured stress rise: an upper bound)"
+      },
+      "eps_ref": {
+       "v": 0.16,
+       "q": "M",
+       "src": "ISOGAI22 strain at the 26.1 kPa point"
+      },
+      "valid_eps": {
+       "v": [
+        0.16,
+        0.33
+       ],
+       "q": "M",
+       "src": "ISOGAI22 measured span (2199 +/- 1355 kPa at 0.33, 30 N); no support beyond 0.33"
+      },
+      "E_at_eps0_kPa": {
+       "v": 0.4,
+       "q": "D",
+       "src": "the law run back to eps 0: 26.1 * exp(-26.1 * 0.16) = 0.40 kPa; an extrapolation, but it lands inside the 0.4-3 kPa small-strain values (COMLEY10, ALKHOULI13, breast MRE), so the rest and the loaded values are one curve"
+      },
+      "q": "D",
+      "src": "ISOGAI22 via SOFTTISSUE R31 / section 3; quasi-static (rate effects: deform.viscoelastic)"
+     }
+    },
+    {
+     "name": "muscle",
+     "thickness_mm": {
+      "v": 32.5,
+      "q": "M",
+      "src": "SOFTTISSUE R44 thigh muscle, women 32.5 +/- 8.4 mm"
+     },
+     "E_kPa": {
+      "v": 62.2,
+      "q": "M",
+      "src": "SOFTTISSUE R31 gluteal muscle in vivo E at 5 N (strain 0.19) 62.2 +/- 10.3 kPa (relaxed); stiffens E0 exp(7 eps); contraction raises G x2.6-90 (SOFTTISSUE R28-R30)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.26,
+      "q": "M",
+      "src": "SOFTTISSUE R32 seated gluteus peak strain 74 +/- 7 %"
+     },
+     "stiffening": {
+      "law": "exponential_tangent",
+      "E0_kPa": {
+       "v": 62.2,
+       "q": "M",
+       "src": "ISOGAI22 (SOFTTISSUE R31) gluteal muscle in vivo, E at 5 N (strain 0.19) 62.2 +/- 10.3 kPa, relaxed"
+      },
+      "k": {
+       "v": 6.99,
+       "q": "D",
+       "src": "ISOGAI22 two points: ln(440.4 / 62.2) / (0.47 - 0.19)"
+      },
+      "eps_ref": {
+       "v": 0.19,
+       "q": "M",
+       "src": "ISOGAI22"
+      },
+      "valid_eps": {
+       "v": [
+        0.19,
+        0.47
+       ],
+       "q": "M",
+       "src": "ISOGAI22 measured span (440.4 +/- 80.0 kPa at 0.47, 30 N)"
+      },
+      "E_at_eps0_kPa": {
+       "v": 16.5,
+       "q": "D",
+       "src": "62.2 * exp(-6.99 * 0.19); compare relaxed 3G = 12 kPa (SSI G 4 kPa): consistent"
+      },
+      "q": "D",
+      "src": "ISOGAI22 via SOFTTISSUE R31 / section 3; contraction raises G x2.6 and more (SOFTTISSUE R28-R30), not in this law"
+     }
+    },
+    {
+     "name": "bone",
+     "thickness_mm": {
+      "v": 0.0,
+      "q": "E",
+      "src": "femur: the rigid floor of the stack"
+     },
+     "E_kPa": {
+      "v": 17000000.0,
+      "q": "E",
+      "src": "cortical bone ~17 GPa (DUCK90 range 15-20 GPa)"
+     },
+     "poisson": {
+      "v": 0.3,
+      "q": "E",
+      "src": "cortical bone typical"
+     },
+     "compressible_to_fraction": {
+      "v": 1.0,
+      "q": "E",
+      "src": "rigid"
+     }
+    }
+   ],
+   "penetration_response": {
+    "contact_stiffness_kPa_per_mm": {
+     "v": 0.8,
+     "q": "D",
+     "src": "series stack of compliance_layers: E_eff = T / sum(t_i / E_i) = 41.66 kPa over T 52.06 mm, / T; initial (small-strain) value; each layer stiffens with strain (SOFTTISSUE section 3: E_t = E0 exp(k eps), k ~26 fat, ~7 muscle)"
+    },
+    "E_eff_kPa": {
+     "v": 41.66,
+     "q": "D",
+     "src": "series stack of compliance_layers (initial)"
+    },
+    "ramp": {
+     "v": "barrier_log",
+     "q": "E",
+     "src": "IPC-style log barrier inside collision_thickness keeps surfaces apart; the tissue's own stiffening (exponential in strain) carries the load beyond it"
+    },
+    "contact_damping_ratio": {
+     "v": {
+      "thigh": [
+       0.11,
+       0.16
+      ],
+      "calf": 0.42
+     },
+     "q": "D",
+     "src": "SOFTTISSUE M31 drop landing thigh c 11.7-13.9 s-1 at 13.8-16.2 Hz -> zeta 0.11-0.16; calf zeta ~0.4 (TISSUE damping, M30)"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": 0.4,
+     "q": "D",
+     "src": "body segment on a rigid flat: mid of the restitution range above (contact.restitution)"
+    },
+    "response_time_ms": {
+     "v": {
+      "wobble_half_period": [
+       31,
+       36
+      ],
+      "settle_to_10pct": [
+       170,
+       200
+      ],
+      "elastic_snap_back": [
+       110,
+       190
+      ]
+     },
+     "q": "D",
+     "src": "SOFTTISSUE M31 thigh 13.8-16.2 Hz -> half period; 10 % after 170-200 ms (derived there); QU Cutometer elastic recovery 0.11-0.19 s. A slap reads from the first two"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "dermis_shear": 3.5,
+      "fat_shear": 0.93,
+      "muscle_shear": 1.94
+     },
+     "q": "D",
+     "src": "sqrt(G / rho): dermis G 13.3 kPa (FENG22 E/3), fat G 0.82 kPa (TISSUE), muscle G 4 kPa (TISSUE), rho 1090 / 950 / 1060"
+    },
+    "damping_ratio": {
+     "v": {
+      "thigh": [
+       0.11,
+       0.16
+      ],
+      "calf": 0.42
+     },
+     "q": "D",
+     "src": "SOFTTISSUE M31 drop landing thigh c 11.7-13.9 s-1 at 13.8-16.2 Hz -> zeta 0.11-0.16; calf zeta ~0.4 (TISSUE damping, M30)"
+    },
+    "loss_factor_impact": {
+     "v": {
+      "fat_layer_100Hz": 0.16,
+      "fat_layer_10Hz": 0.91,
+      "segment_wobble_15Hz": [
+       0.22,
+       0.32
+      ],
+      "zeta_pulse_2ms_250Hz": 0.04,
+      "zeta_pulse_10ms_50Hz": 0.14,
+      "zeta_pulse_20ms_25Hz": 0.25
+     },
+     "q": "D",
+     "src": "the slap is carried by the fat and muscle under the skin: fat from fat.subcutaneous (GRIG17 Prony, computed; E for trunk fat), wobble from SOFTTISSUE M31 (2 zeta). The skin's own tan delta at 10 Hz is 0.06-0.16 (BOYER07). how a solver uses it: integrate the Prony set (deform.viscoelastic.prony) as internal variables in an implicit step (one exponential update per term per step; stable at any dt) on top of the hyperelastic stress, so a 1-10 ms slap sees the short-time stiffness and loses energy in the 1-10 ms terms; do not use Rayleigh damping fitted to the ~15 Hz wobble: beta-damping gives zeta = beta * omega / 2, so a beta set for zeta 0.15 at 15 Hz (beta 3.2 ms) gives zeta ~5 at 250-500 Hz (a 1-2 ms pulse): over-damped, the slap goes dead. Where only one number fits, use the loss factor at the pulse's frequency f ~ 1 / (2 x contact time), zeta = tan_delta / 2."
+    }
+   },
+   "compliance_layers_buttock": [
+    {
+     "name": "epidermis",
+     "thickness_mm": {
+      "v": 0.06,
+      "q": "M",
+      "src": "LAYERS epidermis default"
+     },
+     "E_kPa": {
+      "v": 4000.0,
+      "q": "M",
+      "src": "FENG22 OCE forearm incl. stratum corneum (small strain)"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.9,
+      "q": "E",
+      "src": "a stiff thin shell: thins little under contact (E)"
+     }
+    },
+    {
+     "name": "dermis",
+     "thickness_mm": {
+      "v": 1.45,
+      "q": "M",
+      "src": "SOFTTISSUE R42 buttock dermis 1.32-1.59 mm (452 biopsies)"
+     },
+     "E_kPa": {
+      "v": 40.0,
+      "q": "M",
+      "src": "FENG22"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.85,
+      "q": "E",
+      "src": "as the thigh"
+     }
+    },
+    {
+     "name": "fat",
+     "thickness_mm": {
+      "v": 12.6,
+      "q": "M",
+      "src": "SOFTTISSUE R31 gluteal fat 12.6 +/- 4.7 mm (16 young men: women thicker, E)"
+     },
+     "E_kPa": {
+      "v": 26.1,
+      "q": "M",
+      "src": "SOFTTISSUE R31"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.54,
+      "q": "M",
+      "src": "SOFTTISSUE R32 seated 46 % strain"
+     },
+     "stiffening": {
+      "law": "exponential_tangent",
+      "E0_kPa": {
+       "v": 26.1,
+       "q": "M",
+       "src": "ISOGAI22 (SOFTTISSUE R31) gluteal fat in vivo, E at 1 N (strain 0.16) 26.1 +/- 19.0 kPa; reads as a tangent (secant would be ~11)"
+      },
+      "k": {
+       "v": 26.1,
+       "q": "D",
+       "src": "ISOGAI22 two points: ln(2199 / 26.1) / (0.33 - 0.16); SOFTTISSUE section 3 (integrates to 1.25-1.65x the measured stress rise: an upper bound)"
+      },
+      "eps_ref": {
+       "v": 0.16,
+       "q": "M",
+       "src": "ISOGAI22 strain at the 26.1 kPa point"
+      },
+      "valid_eps": {
+       "v": [
+        0.16,
+        0.33
+       ],
+       "q": "M",
+       "src": "ISOGAI22 measured span (2199 +/- 1355 kPa at 0.33, 30 N); no support beyond 0.33"
+      },
+      "E_at_eps0_kPa": {
+       "v": 0.4,
+       "q": "D",
+       "src": "the law run back to eps 0: 26.1 * exp(-26.1 * 0.16) = 0.40 kPa; an extrapolation, but it lands inside the 0.4-3 kPa small-strain values (COMLEY10, ALKHOULI13, breast MRE), so the rest and the loaded values are one curve"
+      },
+      "q": "D",
+      "src": "ISOGAI22 via SOFTTISSUE R31 / section 3; quasi-static (rate effects: deform.viscoelastic)"
+     }
+    },
+    {
+     "name": "muscle",
+     "thickness_mm": {
+      "v": 55.5,
+      "q": "M",
+      "src": "SOFTTISSUE R31 gluteal muscle 55.5 +/- 7.6 mm"
+     },
+     "E_kPa": {
+      "v": 62.2,
+      "q": "M",
+      "src": "SOFTTISSUE R31"
+     },
+     "poisson": {
+      "v": 0.49,
+      "q": "E",
+      "src": "near-incompressible soft tissue (FENG22 / LAYERS use 0.5; 0.49 keeps a solver stable)"
+     },
+     "compressible_to_fraction": {
+      "v": 0.26,
+      "q": "M",
+      "src": "SOFTTISSUE R32 seated 74 % strain"
+     },
+     "stiffening": {
+      "law": "exponential_tangent",
+      "E0_kPa": {
+       "v": 62.2,
+       "q": "M",
+       "src": "ISOGAI22 (SOFTTISSUE R31) gluteal muscle in vivo, E at 5 N (strain 0.19) 62.2 +/- 10.3 kPa, relaxed"
+      },
+      "k": {
+       "v": 6.99,
+       "q": "D",
+       "src": "ISOGAI22 two points: ln(440.4 / 62.2) / (0.47 - 0.19)"
+      },
+      "eps_ref": {
+       "v": 0.19,
+       "q": "M",
+       "src": "ISOGAI22"
+      },
+      "valid_eps": {
+       "v": [
+        0.19,
+        0.47
+       ],
+       "q": "M",
+       "src": "ISOGAI22 measured span (440.4 +/- 80.0 kPa at 0.47, 30 N)"
+      },
+      "E_at_eps0_kPa": {
+       "v": 16.5,
+       "q": "D",
+       "src": "62.2 * exp(-6.99 * 0.19); compare relaxed 3G = 12 kPa (SSI G 4 kPa): consistent"
+      },
+      "q": "D",
+      "src": "ISOGAI22 via SOFTTISSUE R31 / section 3; contraction raises G x2.6 and more (SOFTTISSUE R28-R30), not in this law"
+     }
+    },
+    {
+     "name": "bone",
+     "thickness_mm": {
+      "v": 0.0,
+      "q": "E",
+      "src": "ischial tuberosity"
+     },
+     "E_kPa": {
+      "v": 17000000.0,
+      "q": "E",
+      "src": "cortical bone (DUCK90)"
+     },
+     "poisson": {
+      "v": 0.3,
+      "q": "E",
+      "src": "typical"
+     },
+     "compressible_to_fraction": {
+      "v": 1.0,
+      "q": "E",
+      "src": "rigid"
+     }
+    }
+   ],
+   "buttock_contact_stiffness_kPa_per_mm": {
+    "v": 0.709,
+    "q": "D",
+    "src": "series stack of compliance_layers_buttock: E_eff 49.32 kPa over 69.61 mm, / T (initial)"
+   },
+   "checks": {
+    "v": {
+     "seated_ischial_pressure_kPa": 17,
+     "seated_fat_strain": 0.46,
+     "seated_muscle_strain": 0.74
+    },
+    "q": "M",
+    "src": "SOFTTISSUE R32: a seated solve with this stack should land near these"
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "hgo",
+   "q": "M",
+   "src": "ANNAIDH12B fits skin with GOH (fibre-reinforced, dispersed); small strain: neo-Hookean per layer"
+  },
+  "density_kg_m3": {
+   "v": 1090,
+   "q": "E",
+   "src": "ICRU44 / Duck 1990: E: recalled from ICRU 44 (~1.09 g/cm3) and Duck 1990 (1.09-1.19), not re-read; the IT'IS v5.0 skin average 1109 (thermal.density_kg_m3, re-read 11-08) is the measured cross-check"
+  },
+  "E_kPa": {
+   "v": {
+    "epidermis": 4000.0,
+    "dermis": 40.0
+   },
+   "q": "M",
+   "src": "params/skin_layers.json moduli_kPa (Feng et al. 2022 OCE, forearm; small strain); other methods differ by orders of magnitude (that file's note)"
+  },
+  "poisson": {
+   "v": 0.5,
+   "q": "E",
+   "src": "skin_layers.json poisson (incompressible)"
+  },
+  "shear_kPa": {
+   "v": {
+    "dermis": 13.3
+   },
+   "q": "D",
+   "src": "G = E / (2 (1 + nu)) = 40 / 3 (FENG22)"
+  },
+  "bulk_kPa": {
+   "v": 2790000.0,
+   "q": "D",
+   "src": "K = rho c^2, 1090 kg/m3 x (1600 m/s)^2 (DUCK90 skin sound speed ~1600, E)"
+  },
+  "E_MPa_tension_linear": {
+   "v": {
+    "parallel_langer": [
+     73.8,
+     112.5
+    ],
+    "perpendicular": [
+     37.7,
+     63.8
+    ]
+   },
+   "q": "M",
+   "src": "ANNAIDH12 excised back skin, high-strain linear region; anisotropy ~1.8-2 (the project's materials research note GAPS_RESEARCH.md 4). The low-strain toe region is kPa-scale (E_kPa above)"
+  },
+  "hyperelastic": {
+   "goh": {
+    "v": {
+     "mu_MPa": 0.2014,
+     "k1_MPa": 243.6,
+     "k2": 0.1327,
+     "kappa": 0.1404
+    },
+    "q": "M",
+    "src": "ANNAIDH12B excised human back skin, GOH fit (kappa from histology, fibre dispersion)"
+   },
+   "ogden_one_term": {
+    "v": {
+     "mu_MPa": 0.4,
+     "alpha": 9
+    },
+    "q": "E",
+    "src": "SHERGOLD06: E: recalled from Shergold 2006 (pig skin, low strain rate), not re-read (paywalled; the abstract could not be fetched 11-08); mu rises with strain rate, alpha does not"
+   },
+   "neo_hookean_C10_MPa": {
+    "v": {
+     "epidermis": 0.12,
+     "dermis": 1.11,
+     "hypodermis": 0.00042
+    },
+    "q": "M",
+    "src": "SOFTTISSUE R21 forearm indentation + MRI, one young man (weak); the small-strain FENG22 set gives dermis C10 = G/2 = 6.7 kPa: methods differ by orders of magnitude"
+   },
+   "mooney_rivlin": {
+    "v": null,
+    "q": "E",
+    "src": "not adopted: SHERGOLD06 reports Mooney-Rivlin cannot capture skin's strain hardening"
+   }
+  },
+  "anisotropy": {
+   "v": {
+    "langer_parallel_to_perpendicular": [
+     1.8,
+     2.0
+    ]
+   },
+   "q": "D",
+   "src": "ANNAIDH12 Table 3 moduli ratio"
+  },
+  "viscoelastic": {
+   "recovery": {
+    "v": {
+     "elastic_s": [
+      0.11,
+      0.19
+     ],
+     "viscoelastic": "slow creep back after the snap; a deep pressure mark minutes to tens of minutes (E)"
+    },
+    "q": "M",
+    "src": "QU Cutometer (J Cosmet Sci 67(1)); the project's materials research note GAPS_RESEARCH.md 4"
+   },
+   "relaxation_s": {
+    "v": {
+     "forearm_women": 12.4,
+     "forearm_men": 4.6
+    },
+    "q": "M",
+    "src": "PARK19 in vivo indentation, 2-term Prony fit (pilot, small n)"
+   },
+   "instantaneous_shear_kPa": {
+    "v": [
+     1.7,
+     3.56
+    ],
+    "q": "M",
+    "src": "PARK19 forearm"
+   },
+   "prony": {
+    "v": {
+     "g": [
+      0.3,
+      0.3
+     ],
+     "tau_s": [
+      0.15,
+      12.4
+     ]
+    },
+    "q": "E",
+    "src": "two terms placed on the measured times (QU elastic snap 0.11-0.19 s; PARK19 12.4 s women); the weights g are not measured (E)"
+   },
+   "loss_factor_vs_freq": {
+    "v": {
+     "10Hz": [
+      0.06,
+      0.16
+     ],
+     "100Hz": null,
+     "1000Hz": null
+    },
+    "q": "D",
+    "src": "BOYER07 forearm in vivo dynamic indentation, Kelvin-Voigt k 47-128 N/m, c 0.080-0.121 N s/m (4 subjects, weak): tan delta = c omega / k at 10 Hz; a Kelvin-Voigt fit cannot be carried to 100-1000 Hz; skin alone at impact rates not found"
+   },
+   "high_rate_E_kPa": {
+    "v": null,
+    "q": "E",
+    "src": "not found for human skin at impact rates; SHERGOLD06 (pig skin, 0.004-4000 /s: Ogden mu rises with rate) not re-read. Under a slap the skin is a thin membrane over fat: the stack's rate response is the fat's and muscle's (fat.subcutaneous, muscle.skeletal)"
+   }
+  },
+  "fracture": {
+   "strength_kPa": {
+    "v": {
+     "tensile_parallel_langer": 28600,
+     "tensile_perpendicular": 16500
+    },
+    "q": "M",
+    "src": "ANNAIDH12 middle back UTS 28.6 / 16.5 MPa"
+   },
+   "toughness_J_m2": {
+    "v": {
+     "pig_skin_trouser": 17000,
+     "skin_range": [
+      1000,
+      20000
+     ]
+    },
+    "q": "M",
+    "src": "YANG15 quoting Comley & Fleck 2010 (17 +/- 4 kJ/m2) and Ashby 1995"
+   },
+   "tear_N": {
+    "v": 11,
+    "q": "D",
+    "src": "trouser tear force F = J t / 2 = 17 kJ/m2 x 1.3 mm / 2 (skin 1.3 mm thick)"
+   }
+  },
+  "wrinkle_wavelength_mm": {
+   "v": null,
+   "q": "D",
+   "src": "computed by work/materials/checks/fold_mech.py from E and thickness (film on substrate)"
+  },
+  "sim": {
+   "v": {
+    "xpbd_deviatoric_compliance_1_per_Pa": 7.5e-05,
+    "xpbd_volume_compliance_1_per_Pa": 3.584e-10
+   },
+   "q": "D",
+   "src": "XPBD compliance = 1 / stiffness: 1 / G_dermis, 1 / K"
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.37,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 0.372 W/mK (SD 0.059, 8 studies, range 0.322-0.498); 0.37 kept"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 3391,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 3390.5 J/kgK (SD 233, 4 studies, 3150-3662)"
+  },
+  "density_kg_m3": {
+   "v": 1109,
+   "q": "M",
+   "src": "ITIS v5.0 (DOI 10.13099/VIP21000-05-0), live table re-read 11-08: Skin average 1109 kg/m3 (SD 38, n 10, 1100-1125); ICRU44 ~1090: recalled, not re-read"
+  },
+  "effusivity": {
+   "v": 1180,
+   "q": "D",
+   "src": "sqrt(k rho c) from the three ITIS values above, J m-2 K-1 s-1/2 (the 'feels warm/cold' number)"
+  },
+  "emissivity": {
+   "v": 0.98,
+   "q": "M",
+   "src": "STEKETEE73 abstract re-read 11-08 (paper paywalled; abstract text via a reproduction): skin 0.98 +/- 0.01, independent of wavelength over the measured 1-14 um; white, black and burnt skin measured (normal = burnt); separate per-pigment values are not given in the abstract"
+  }
+ },
+ "states": {
+  "dry": {
+   "set": {},
+   "_": "the base"
+  },
+  "flushed": {
+   "set": {
+    "layers.dermis.optics.absorbers.f_blood": 0.015
+   },
+   "q": "E",
+   "src": "x2.5 dermal blood: Jacques 1998 range 0.2-7 %; a blush / exertion raises blood volume; size of the step to be checked against flush photos"
+  },
+  "pressed": {
+   "set": {
+    "layers.dermis.optics.absorbers.f_blood": 0.0015
+   },
+   "q": "E",
+   "src": "blanching: an external press above ~3-5 kPa (LANDIS30, the project's materials research note GAPS_RESEARCH.md 4) empties the dermal plexus; x0.25 blood left is E; refill 1-3 s after release (SCHRIGER88)"
+  },
+  "cold": {
+   "set": {
+    "layers.dermis.optics.absorbers.f_blood": 0.004,
+    "layers.dermis.optics.absorbers.sat": 0.55
+   },
+   "q": "E",
+   "src": "vasoconstriction lowers flow; slower flow lets saturation fall (bluish); direction cited only qualitatively"
+  },
+  "wet": {
+   "set": {
+    "surface.coat": {
+     "n": 1.333,
+     "alpha": 0.02,
+     "src": "water n 1.333 (skin_moisture.md O9); a free water surface is near-smooth (E)"
+    }
+   },
+   "q": "E",
+   "src": "a water film over the surface: bench coat"
+  },
+  "oily": {
+   "set": {
+    "surface.coat": {
+     "n": 1.48,
+     "alpha": 0.08,
+     "src": "sebum n 1.48-1.50 (skin_moisture.md O9, squalene 1.499); an oil film > 0.5 um hides fine steps (hair_styling.md:83, hair); alpha 0.08 E"
+    }
+   },
+   "q": "E",
+   "src": "a sebum film: bench coat"
+  }
+ },
+ "physiology": {
+  "capillary_refill_s": {
+   "v": {
+    "women_median": 1.2,
+    "women_p95": 2.9
+   },
+   "q": "M",
+   "src": "SCHRIGER88 (via summary); the project's materials research note GAPS_RESEARCH.md 4"
+  },
+  "blanch_pressure_kPa": {
+   "v": [
+    3,
+    5
+   ],
+   "q": "D",
+   "src": "LANDIS30 capillary pressures 32/20/12 mmHg -> pallor from ~20-40 mmHg; the venous plexus empties first (the project's materials research note GAPS_RESEARCH.md 4)"
+  }
+ },
+ "sources": {
+  "ADAMS13": {
+   "cite": "Adams MJ, Johnson SA, Lefevre P, Levesque V, Hayward V, Andre T, Thonnard J-L. Finger pad friction and its role in grip and touch. J R Soc Interface 10:20120467 (2013); its Tables 1 and 3 carry Pasumarty et al. 2011 (Tribol Lett 44:117) fits",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3565724",
+   "lic": "(c) The Authors, Royal Society; PMC copyright notice; numbers used as facts, text studied only"
+  },
+  "AERTS95": {
+   "cite": "Aerts P, Ker RF, De Clercq D, Ilsley DW, Alexander RMcN. The mechanical properties of the human heel pad: a paradox resolved. J Biomech 28:1299-1308 (1995)",
+   "url": "https://doi.org/10.1016/0021-9290(95)00009-7",
+   "lic": "abstract read; numbers used as facts, text studied only"
+  },
+  "ALPHALAB09": {
+   "cite": "AlphaLab Inc. (W. Lee). The TriboElectric Series, charge affinity in nC/J, 72 F, 35 % RH (2009)",
+   "url": "https://www.trifield.com/content/tribo-electric-series/",
+   "lic": "(c) AlphaLab 2009; two entries used as facts, table not copied"
+  },
+  "ANNAIDH12": {
+   "cite": "Ni Annaidh A, Bruyere K, Destrade M, Gilchrist MD, Ottenio M. Characterization of the anisotropic mechanical properties of excised human skin. J Mech Behav Biomed Mater 5:139-148 (2012)",
+   "url": "https://arxiv.org/abs/1302.3022",
+   "lic": "arXiv non-exclusive licence (default); numbers used as facts, text studied only"
+  },
+  "ANNAIDH12B": {
+   "cite": "Ni Annaidh A, Bruyere K, Destrade M, Gilchrist MD, Maurini C, Ottenio M, Saccomandi G. Automated estimation of collagen fibre dispersion in the dermis and its contribution to the anisotropic behaviour of skin. Ann Biomed Eng 40:1666-1678 (2012)",
+   "url": "https://arxiv.org/abs/1203.4733",
+   "lic": "arXiv non-exclusive licence (default); numbers used as facts, text studied only"
+  },
+  "BOBJER93": {
+   "cite": "Bobjer O, Johansson SE, Piguet S. Friction between hand and handle: effects of oil and lard on textured and non-textured surfaces; perception of discomfort. Appl Ergon 24(3):190-202 (1993); Bobjer 2004 thesis (Loughborough)",
+   "url": "https://doi.org/10.1016/0003-6870(93)90007-V",
+   "lic": "abstract read; numbers used as facts, text studied only"
+  },
+  "CUA90": {
+   "cite": "Cua AB, Wilhelm KP, Maibach HI. Frictional properties of human skin: relation to age, sex and anatomical region, stratum corneum hydration and transepidermal water loss. Br J Dermatol 123:473-479 (1990)",
+   "url": "https://doi.org/10.1111/j.1365-2133.1990.tb01452.x",
+   "lic": "abstract read; numbers used as facts, text studied only"
+  },
+  "DERLER07": {
+   "cite": "Derler S, Schrade U, Gerhardt L-C. Tribology of human skin and mechanical skin equivalents in contact with textiles. Wear 263:1112 (2007)",
+   "url": "https://doi.org/10.1016/j.wear.2006.11.031",
+   "lic": "paywalled; numbers used as facts, text studied only"
+  },
+  "DERLER09": {
+   "cite": "Derler S, Gerhardt L-C, Lenz A, Bertaux E, Hadad M. Friction of human skin against smooth and rough glass as a function of the contact pressure. Tribol Int 42:1565-1574 (2009)",
+   "url": "https://doi.org/10.1016/j.triboint.2008.11.009",
+   "lic": "paywalled; abstract read; numbers used as facts, text studied only"
+  },
+  "DERLER12": {
+   "cite": "Derler S, Gerhardt L-C. Tribology of skin: review and analysis of experimental results for the friction coefficient of human skin. Tribol Lett 45:1-27 (2012)",
+   "url": "https://doi.org/10.1007/s11249-011-9854-y",
+   "lic": "paywalled; author copy doc.rero.ch/record/315296; numbers used as facts, text studied only"
+  },
+  "DUCK90": {
+   "cite": "Duck FA. Physical Properties of Tissue. Academic Press (1990); standard ranges",
+   "url": "https://doi.org/10.1016/C2009-0-02649-4",
+   "lic": "book, copyright; numbers used as facts, text studied only"
+  },
+  "ELKHYAT04": {
+   "cite": "Elkhyat A, Courderot-Masuyer C, Gharbi T, Humbert P. Influence of the hydrophobic and hydrophilic characteristics of sliding and slider surfaces on friction coefficient: in vivo human skin friction comparison. Skin Res Technol 10:215-221 (2004)",
+   "url": "https://doi.org/10.1111/j.1600-0846.2004.00077.x",
+   "lic": "secondary (GAPS_RESEARCH.md 6); numbers used as facts, text studied only"
+  },
+  "FENG22": {
+   "cite": "Feng X, Li GY, Ramier A, Eltony AM, Yun SH. In vivo stiffness measurement of epidermis, dermis, and hypodermis using broadband Rayleigh-wave OCE. Acta Biomater (2022); arXiv:2201.12258 (via params/skin_layers.json)",
+   "url": "https://arxiv.org/abs/2201.12258",
+   "lic": "arXiv; numbers used as facts, text studied only"
+  },
+  "GABRIEL96": {
+   "cite": "Gabriel S, Lau RW, Gabriel C. The dielectric properties of biological tissues II/III. Phys Med Biol 41:2251-2293 (1996); low-frequency values as compiled in a Frontiers supplementary table (article id 1094968, Table 1)",
+   "url": "https://www.frontiersin.org/api/v4/articles/1094968/file/Table_1.DOCX/1094968_supplementary-materials_tables_1_docx/1",
+   "lic": "the Frontiers table CC BY 4.0; the 1996 paper paywalled; numbers used as facts, text studied only"
+  },
+  "GERHARDT08": {
+   "cite": "Gerhardt L-C, Strassle V, Lenz A, Spencer ND, Derler S. Influence of epidermal hydration on the friction of human skin against textiles. J R Soc Interface 5:1317-1328 (2008)",
+   "url": "https://doi.org/10.1098/rsif.2008.0034",
+   "lic": "(c) The Royal Society; PMC2607440; numbers used as facts, text studied only"
+  },
+  "ICRU44": {
+   "cite": "ICRU Report 44 (1989), densities as listed by NIST X-Ray Mass Attenuation Coefficients Table 2",
+   "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/tab2.html",
+   "lic": "NIST page, US government work"
+  },
+  "ITIS": {
+   "cite": "Baumgartner C, Hasgall PA, Di Gennaro F, Neufeld E, Lloyd B, Gosselin MC, Payne D, Klingenboeck A, Kuster N. IT'IS Database for thermal and electromagnetic parameters of biological tissues, Version 5.0, Aug 21 2025, DOI 10.13099/VIP21000-05-0 (average values; the live tables re-read 11-08: the 2024-06-04 and 2025-08-21 table files give the same skin, fat and muscle rows)",
+   "url": "https://itis.swiss/virtual-population/tissue-properties/database",
+   "lic": "IT'IS legal notice (read 11-08): web pages and documents may be copied only for private, scientific and noncommercial use; storing them on other servers or data carriers needs written consent: STUDY ONLY (P13). Individual averages used as facts with this citation; the table is never copied in bulk"
+  },
+  "JS001": {
+   "cite": "ANSI/ESDA/JEDEC JS-001 human-body model: 100 pF through 1500 ohm (the standard ESD body model)",
+   "url": "https://www.esda.org",
+   "lic": "standard; model constants used as facts"
+  },
+  "KER96": {
+   "cite": "Ker RF. The time-dependent mechanical properties of the human heel pad in the context of locomotion. J Exp Biol 199:1501-1508 (1996)",
+   "url": "https://cob.silverchair.com/jeb/article-pdf/199/7/1501/3391090/jexbio_199_7_1501.pdf",
+   "lic": "(c) Company of Biologists, free archive; numbers used as facts, text studied only"
+  },
+  "LANDIS30": {
+   "cite": "Landis EM. Micro-injection studies of capillary blood pressure in human skin. Heart 15:209-228 (1930)",
+   "url": "https://www.jci.org/articles/view/100254",
+   "lic": "JCI archive, free"
+  },
+  "LAYERS": {
+   "cite": "the project's parameter file skin_layers.json (per-region epidermis and dermis thickness, OCE moduli)",
+   "url": "the project's parameter file skin_layers.json",
+   "lic": "project file"
+  },
+  "MAVON97": {
+   "cite": "Mavon A, Zahouani H, Redoules D, Agache P, Gall Y, Humbert P. Sebum and stratum corneum lipids increase human skin surface free energy as determined from contact angle measurements. Colloids Surf B 8:147-155 (1997); CST values via US patent 6846490 (secondary)",
+   "url": "https://doi.org/10.1016/S0927-7765(96)01317-5",
+   "lic": "paywalled; numbers used as facts, text studied only"
+  },
+  "PARK19": {
+   "cite": "Park et al. Low-cost indentation device for skin viscoelasticity (Prony fit), in vivo forearm and wrist. Molecules (2019), PMC6429284 (pilot, small n)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6429284",
+   "lic": "CC BY 4.0"
+  },
+  "SCHRIGER88": {
+   "cite": "Schriger DL, Baraff L. Defining normal capillary refill. Ann Emerg Med 17(9):932-935 (1988)",
+   "url": "https://doi.org/10.1016/S0196-0644(88)80675-9",
+   "lic": "paywalled; via Wikipedia summary (CC BY-SA); numbers used as facts, text studied only"
+  },
+  "SHERGOLD06": {
+   "cite": "Shergold OA, Fleck NA, Radford D. The uniaxial stress versus strain response of pig skin and silicone rubber at low and high strain rates. Int J Impact Eng 32:1384-1402 (2006)",
+   "url": "https://doi.org/10.1016/j.ijimpeng.2004.11.010",
+   "lic": "paywalled; abstract read; parameters recalled; numbers used as facts, text studied only"
+  },
+  "SOFTTISSUE": {
+   "cite": "the project's research note soft_tissue.md (project research file; its R-keys name the primary papers: R20 Boyer 2012, R21, R25, R31 gluteal ultrasound + compression, R32/R33 seated MRI + FE, R42 Korean biopsies, R43 skin US, R44 fat/muscle US, M31 drop landing)",
+   "url": "the project's research note soft_tissue.md",
+   "lic": "project file; primary licences as listed there"
+  },
+  "SRL": {
+   "cite": "the project's research note skin_regions_and_layers.md (F1 SC layers, F2 RCM, F5 dermis US, F11 sweat glands, skin types section 2)",
+   "url": "the project's research note skin_regions_and_layers.md",
+   "lic": "project file"
+  },
+  "STEKETEE73": {
+   "cite": "Steketee J. Spectral emissivity of skin and pericardium. Phys Med Biol 18:686-694 (1973)",
+   "url": "https://doi.org/10.1088/0031-9155/18/5/307",
+   "lic": "paywalled; abstract re-read 11-08 via a reproduction (Europe PMC has no abstract); numbers used as facts, text studied only"
+  },
+  "TISSUE": {
+   "cite": "the project's parameter file soft_tissue_constants.json and tissue_depths.json",
+   "url": "the project's parameter file ",
+   "lic": "project file"
+  },
+  "YAMAMOTO76": {
+   "cite": "Yamamoto T, Yamamoto Y. Electrical properties of the epidermal stratum corneum. Med Biol Eng 14:151-158 (1976); Dielectric constant and resistivity of epidermal stratum corneum, ibid. 494-500",
+   "url": "https://doi.org/10.1007/BF02478741",
+   "lic": "paywalled; not read (numbers not retrieved)"
+  },
+  "YANG15": {
+   "cite": "Yang W, Sherman VR, Gludovatz B, Schaible E, Stewart P, Ritchie RO, Meyers MA. On the tear resistance of skin. Nat Commun 6:6649 (2015); quotes Comley & Fleck 2010 (pig skin trouser tear J 17 +/- 4 kJ/m2) and Ashby 1995 (skin 1-20 kJ/m2)",
+   "url": "https://www.nature.com/articles/ncomms7649",
+   "lic": "CC BY 4.0"
+  },
+  "ZHANGMAK99": {
+   "cite": "Zhang M, Mak AFT. In vivo friction properties of human skin. Prosthet Orthot Int 23:135-141 (1999); it quotes Taylor & Lenderman (fingertip on aluminium ~0.6, down >= 75 % with soap)",
+   "url": "https://doi.org/10.3109/03093649909071625",
+   "lic": "abstract and search summary read; numbers used as facts, text studied only"
+  },
+  "ISOGAI22": {
+   "cite": "Isogai K, et al. J Phys Ther Sci 34:777-783 (2022). doi 10.1589/jpts.34.777 (SOFTTISSUE R31): gluteal fat and muscle in vivo, ultrasound + compression, 16 men 20-22 y, 576 mm2 probe",
+   "url": "https://doi.org/10.1589/jpts.34.777",
+   "lic": "open access, journal licence CC BY-NC-ND 4.0 (not re-checked 11-08): the text and figures STUDY ONLY (P13); four numbers used as facts"
+  },
+  "BOYER07": {
+   "cite": "Boyer G et al. (2007 conference paper, dynamic indentation of forearm skin in vivo, 4 subjects, Kelvin-Voigt fit; quoted in search abstracts with Boyer G et al. Skin Res Technol 15:55-67 (2009)); full citation not captured",
+   "url": "https://doi.org/10.1111/j.1600-0846.2008.00324.x",
+   "lic": "paywalled; abstract-level numbers only (weak); numbers used as facts"
+  },
+  "GRIG17": {
+   "cite": "Grigoriadis G, Newell N, Carpanen D, Christou A, Bull AMJ, Masouros SD. Material properties of the heel fat pad across strain rates. J Mech Behav Biomed Mater 65:398-407 (2017). doi 10.1016/j.jmbbm.2016.09.003; 5 male cadaveric limbs 40-57 y, drop tests 0.6-3.4 m/s, rates to ~150 /s, 20-25 C",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5161234/",
+   "lic": "CC BY 4.0"
+  }
+ }
+}

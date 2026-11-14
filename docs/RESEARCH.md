@@ -15,7 +15,7 @@ direction, the research baseline, the current state and the future direction are
 
 **What it is not.** It is not a claim of novelty: most ingredients are published work, credited where they are
 used, and where something may be distinctive it is the specific mechanism, how the parts are combined, and the
-measured trade-offs. It is not a product announcement: the tool is not finished, and the author's own hands-on
+measured trade-offs. It is not a product announcement: the tool is not finished, and the hands-on
 sculpting test of the rebuilt toolkit is still to come. It is not legal advice and it claims no patent clearance:
 every patent reading below is our own non-lawyer's reading of claim text, carried over as recorded.
 
@@ -69,7 +69,7 @@ history, given as provenance for a date; they will mean something to readers onl
 | E1, E2 | the elbow test cases: E1 a synthetic stand-in arm, E2 the elbow region of the human model's own field |
 | d1 to d4 | one-change-at-a-time experiments on the elbow stall (Part 6, section B.9) |
 | n2c to n2j | successive variants of the generated head of hair (Part 8) |
-| Form N, Form E | the implicit (Newton) and explicit forms of the author's field-read contact (Part 2, section 1) |
+| Form N, Form E | the implicit (Newton) and explicit forms of the field-read contact (Part 2, section 1) |
 
 **Code.** The tool will be released as open source. The code is not part of this first release: parts of it are
 being redesigned around patents we found while reading (listed in Part 10), and those parts stay out until the
@@ -93,10 +93,9 @@ redesign has landed. This document describes them as they are and says where the
 
 # Part 1. Direction: what Field Studio is and why
 
-**The outcome.** The author's standard, in his words: "extreme realism, but generally aligned with the reference.
-Extreme, ultra realistic, life like, at every level ... if I look at your end result I should be looking at it and
-saying, 'my god whoever took that photograph has extraordinary talent, it's unbelievably good!' No matter what
-level I am zoomed to, no matter what body part." Section 6 of Part 2 turns that into a bounded test.
+**The outcome.** The project's standard: extreme, life-like realism, generally aligned with the reference, at every
+level of zoom and on every part of the body, so that the result reads as an exceptionally good photograph. Section 6
+of Part 2 turns that into a bounded test.
 
 **The tool.** Field Studio is a sculpting, simulation and rendering tool in which every form is an implicit field:
 a signed distance field stored on a sparse lattice at several levels of detail (0.25 mm at the finest level today).
@@ -108,20 +107,19 @@ a pattern lattice; contact, posing and light are computed on the fields directly
 mesh cannot do (adding surface means adding vertices; contact between two sculpted surfaces needs typed-in values;
 skinning, light caches and collision all hang off mesh structure). A field has no topology to maintain, can be
 cut, merged and grown freely, and gives every point its distance to the surface, which contact, light and brushes
-can all read. The author's direction to every part of the work (2026-11-12): "we are a field-based system, not a
-mesh ... The real test of our capability to achieve the targeted end result is whether we can truly capture the
-full capability and uniqueness of what we're building, to the level of realism and completeness we've set as a
-target, without having to do so on expensive hardware."
+can all read. The direction set for every part of the work (2026-11-12): the system is field-based, not mesh-based,
+and its real test is whether it reaches the targeted realism and completeness with the full capability of fields,
+without needing expensive hardware.
 
 **Why a tool.** Until 2026-11-11 the project built one human model by direct engineering. On that date the aim
 changed: build the tool, so that a person finishes the work by hand, quickly and intuitively. The first yardstick
 is plain: a sphere to a rough head in under five minutes. The first runs did not meet it (Part 5), and on
-2026-11-12 the author, sculpting himself, could not block out a head with the tools as they were. That led to a
+2026-11-12 a hands-on sculpting test could not block out a head with the tools as they were. That led to a
 review of the whole toolkit against an experienced sculptor's expectations (Part 5).
 
 **Built to last.** Each subject should need less hands-on work than the one before: approved work becomes the
 target that generators learn to reproduce from references (hair, skin, iris, teeth, garments, materials), stored as
-a recipe (generator version, seed, settings) plus the author's edits.
+a recipe (generator version, seed, settings) plus the authored edits.
 
 **Open source.** The tool will be fully open source. No method that we read as covered by a patent is meant to
 ship; where we find one, we study the published research and build a different mechanism, and record which claim
@@ -135,7 +133,7 @@ These are the concepts the author introduced, with the time each was first state
 is or would be built, and what has been measured. Several have relatives in published work, named where known.
 
 ## 1. Contact read from each body's own distance field, with a short-range barrier
-**First stated:** 2026-11-12, ~15:30 PT (the author's "magnetic field" idea: a repulsion between surfaces that reaches
+**First stated:** 2026-11-12, ~15:30 PT (framed as a magnetic field: a repulsion between surfaces that reaches
 its limit where they touch). **Status:** built in two forms and measured on synthetic cases; promising on the tested
 soft-on-soft cases, not established as generally better.
 
@@ -174,7 +172,7 @@ force inside an equilibrium Newton solve, as in IPC-family methods; renaming the
 itself place it outside existing barrier-method patents, and no clearance is claimed.
 
 ## 2. A field through the environment as the contact *sensor*
-**First stated:** 2026-11-12, ~15:55 PT (the author's touch-screen analogy). **Status:** proposed; not built.
+**First stated:** 2026-11-12, ~15:55 PT (framed as a touch-screen analogy). **Status:** proposed; not built.
 
 **Idea.** One field solved through the space between bodies reports where anything is approaching anything, as a
 finger is detected by the disturbance it makes in a touch screen's field. Under a fixed-potential, parallel-surface
@@ -240,7 +238,7 @@ authoritative store.
 
 ## 5. Store the recipe, keep the authored edits
 **First stated:** 2026-11-12, ~16:50 PT (a reading of the DNA analogy); in use in the generators since 10-30 / 11-09.
-A generated asset is **a versioned recipe (generator version, seed, settings, dependencies) + the author's subsequent
+A generated asset is **a versioned recipe (generator version, seed, settings, dependencies) + the subsequent authored
 modifications + caches that can be rebuilt**, so an improved generator never silently changes an approved character.
 Not claimed as an invention; recorded as the project's practice.
 
@@ -269,7 +267,7 @@ volumetric terms are under 2 % of the elastic energy (which does not by itself e
 conditioning); the energy sits 44 % in the front crease and 22 % in a 22 mm plug of soft tissue between bone ends that
 do not articulate; the real flexion axis (Visible Human Female, left elbow) lies ~36 % of the arm's depth from the back
 skin. Controlled one-change-at-a-time runs from a frozen baseline followed the same evening (Part 6, section B.9):
-bones that articulate at the axis did not move the stall ("No on every mark"), and neither did fat at its literature
+bones that articulate at the axis did not move the stall (no on every pre-registered mark), and neither did fat at its literature
 stiffness. The current plan: the skin as its own sliding sheet over the tissue, on the human model's real arm, with
 a 2 mm crease resolution as the control; then the axis depth and the integration formulation, each separately.
 
@@ -302,7 +300,7 @@ publication dates. The only public date is the release date of this disclosure.
 - *implemented*: built and run, with no measurement we rely on;
 - *measured on named cases*: numbers exist for the cases named, usually from a single run;
 - *reproduced under a frozen configuration*: re-run to the same result from recorded inputs and hashes;
-- *accepted in the workflow*: in daily use, by the author's decision.
+- *accepted in the workflow*: in daily use, by an explicit adoption decision.
 
 Nothing here claims novelty, protection or freedom to operate. Published methods are credited where they are used.
 
@@ -314,45 +312,43 @@ The project is one author, Mathew, working with AI coding sessions on one deskto
 adopted one at a time, usually after something went wrong. All of them carry the state *accepted in the workflow*.
 
 **1.1 One short charter (11-02) and a short list of principles (11-06).** A single charter of at most 30 lines
-states the outcome in the author's words: "extreme realism, but generally aligned with the reference ...
-if I look at your end result I should be looking at it and saying, 'my god whoever took that photograph has
-extraordinary talent, it's unbelievably good!' No matter what level I am zoomed to." Every other document is a
-reference, a tool or a dated record, to be weighed and not obeyed. A list of principles and machine mechanics was
-approved on 11-06. The author's words are read in three tiers: an observation is a hypothesis
-to test; an explicit direction holds for that task only; a standing rule exists only where he says it is one.
+states the outcome: extreme, life-like realism, generally aligned with the reference, at every level of zoom. Every
+other document is a reference, a tool or a dated record, to be weighed and not obeyed. A list of principles and
+machine mechanics was adopted on 11-06. Direction is read in three tiers: an observation is a hypothesis to test; an
+explicit direction holds for that task only; a standing rule exists only where it is set as one.
 
 **1.2 Outcome first (stated 11-06, the default since 11-09).** Define the target outcome from the references with
 precision, so that it holds in every view, light, zoom and motion, and build it directly. Causes (anatomy, physiology,
 physics) come in as drivers of variation and states, or where the outcome is itself a behaviour such as contact or
 motion. Physics is never tuned until a shape appears. This replaced a cause-first default. The cost behind it: skin
 colour built up from chromophore causes kept producing blotches that were hard to trace, across rounds on 11-02, 11-06
-and 11-07 ("hours", by the record). The author approved it on 11-09 with his own caveat: lanes that genuinely need
-causes first are to say so plainly and build that way (`engine/lessons/outcome_first.md`).
+and 11-07 (hours of work, by the record). It was adopted on 11-09 with one provision: a lane whose outcome genuinely
+needs causes first says so plainly and builds that way (`engine/lessons/outcome_first.md`).
 
 **1.3 Built, not painted (11-09).** A look has to come from the structure that produces it (form, volume, translucent
 layers, an optical medium, motion), so it holds when the light, view or zoom changes. Blur used to soften, baked or
 painted creases and pores, painted shading and colour decals are not allowed unless that operation is what really
 happens. Defects are fixed at the shape, never hidden.
 
-**1.4 Fix a named problem at its cause (charter, 11-02).** When the author names a problem, the session finds what
+**1.4 Fix a named problem at its cause (charter, 11-02).** When a problem is named, the work finds what
 causes that point and resolves it there. Making the surroundings look right instead is the one thing the charter
 forbids. Two recorded costs. On 11-02, eight builds tried to shape a nose and an upper lip with numeric displacement
-fields fitted to 2-D outlines, each stacking an offset on the last; after about 20 hours the nose was "clearly wrong".
+fields fitted to 2-D outlines, each stacking an offset on the last; after about 20 hours the nose was still clearly wrong.
 A profile line says nothing about width, so everything off the line was guessed by falloffs. What worked was a real
-3-D form: the author sculpted those features himself. On 10-31, a one-shot hair rebuild ran ten rounds of fixes that
-each made the next artefact; he marked it a total failure and it was archived, not built on.
+3-D form: those features were sculpted by hand. On 10-31, a one-shot hair rebuild ran ten rounds of fixes that
+each made the next artefact; it was recorded as a failure and archived, not built on.
 
-**1.5 Measure before claiming.** Numbers locate a fault and confirm a change; the rendered image and the author's eye
-decide whether a form is right (`engine/lessons/measuring.md`). Pass marks are written before a run and not moved
+**1.5 Measure before claiming.** Numbers locate a fault and confirm a change; the rendered image, looked at beside
+the reference, decides whether a form is right (`engine/lessons/measuring.md`). Pass marks are written before a run and not moved
 after it. Every number is labelled measured, derived or estimated. Failures are kept as run. An instrument is proved
 once on the failure it exists for: one closest-point routine with a one-token bug made 11-38 % of distances too small,
 and its own self-check could not see it. In one overnight run about five results were withdrawn under these habits,
-two of them over-claims by the lead session.
+two of them over-claims in coordination summaries.
 
-**1.6 The author sees each round and decides.** Each round reaches him as a numbered sheet beside the reference: the
-current model through the real renderer at full quality, looked at by the session first. He decides what enters the
-current model. The cost behind "the real renderer": on 11-03 a session's own render path moved the eyes of his
-sculpted face, and he rejected the work outright. A face guard followed (a content hash over the field bricks of the
+**1.6 Each round is reviewed beside the reference.** Each round is shown as a numbered sheet beside the reference:
+the current model through the real renderer at full quality, looked at first by the session that made it. What enters
+the current model is an explicit decision. The cost behind the real-renderer requirement: on 11-03 a session's own
+render path moved the eyes of the hand-sculpted face, and the work was rejected outright. A face guard followed (a content hash over the field bricks of the
 face region, checked before and after every edit). On 11-04 a review found the checksum then in use had been guarding
 a superseded file outside the render path; it was replaced.
 
@@ -360,8 +356,8 @@ a superseded file outside the render path; it was replaced.
 three lanes each owned by one session advanced, while the Field Studio integration, split into 30-minute hand-offs
 between fresh sessions that each re-learned the plan, barely moved in four rounds
 (the project's lesson record of 11-07). Since then one session owns each lane continuously; a lead
-plans, briefs and arbitrates and does not carry lane work. Briefs carry the outcome, the author's words, the machine
-constants and a "done when", not a method. Other costs from that night: flags lost in short summaries, and a stuck GPU
+plans, briefs and arbitrates and does not carry lane work. Briefs carry the outcome, the direction as given, the machine
+constants and a completion condition, not a method. Other costs from that night: flags lost in short summaries, and a stuck GPU
 process nobody was permitted to stop, which held the card for three hours.
 
 **1.8 One shared machine.** All sessions share 8 cores, 32 GB of RAM (16 GB until 11-06) and one 8 GB RTX 5050.
@@ -380,8 +376,8 @@ process nobody was permitted to stop, which held the card for three hours.
 
 **1.9 Records.** A ledger keeps every request and run outcome and is reconciled after each run (since 10-26). Work is
 committed locally; the repository has no remote. Each change of lead writes a dated hand-off: what is measured, what
-is *not established*, each lane's state, and the decisions waiting on the author. Incoming sessions take the work "as
-it actually is, not how it is stated to be", and look at the latest images before trusting a status line.
+is *not established*, each lane's state, and the decisions still open. Incoming sessions take the work as
+it actually is, not as it is stated to be, and look at the latest images before trusting a status line.
 
 **1.10 Sources and licences (since 10-26).** No source or asset whose terms limit commercial use is used, except to
 study. Facts and numbers from a paper are used as facts; its text, figures, data and code are not copied. One ledger
@@ -389,11 +385,11 @@ study. Facts and numbers from a paper are used as facts; its text, figures, data
 
 **1.11 Mesh-free everywhere (11-07 and 11-08).** No triangles, quads, tetrahedra or element meshes in the model, the
 tools, the renderer, previews, tests or scaffolding. Bodies, cloth, hair and fluids are fields, lattices, particles or
-curves. The steps: vertices dropped for the model on 11-03; "zero meshes allowed anywhere ever" on 11-07; test benches
+curves. The steps: vertices dropped for the model on 11-03; no meshes anywhere, as a standing rule, on 11-07; test benches
 included on 11-08. What it cost: a 2-D finite-element bench used for material proofs was retired that night, and a
 real-time web viewer with a mesh skin was archived.
 
-**1.12 Patents (11-11).** The author intends an open-source release. A patented method is studied, not shipped. Where
+**1.12 Patents (11-11).** The tool is intended for an open-source release. A patented method is studied, not shipped. Where
 a published patent appears to cover something the tool needs, the lane designs a plainly different method and records
 its reading of the claim elements one by one. These are engineering notes by non-lawyers; the searches are not
 exhaustive, and no clearance is claimed.
@@ -406,7 +402,7 @@ exhaustive, and no clearance is claimed.
 
 The earliest dated build records are from 10-19. The human model was a polygon mesh in Blender, rendered with Cycles.
 Its base body came from a free base model from Blender Studio (Human Base Meshes v1.4.1; every asset's licence field
-says CC0, per `engine/LICENSES.md`), and the author sculpted the face on it. This era left procedural skin relief
+says CC0, per `engine/LICENSES.md`), and the face was sculpted on it by hand. This era left procedural skin relief
 driven as render-time displacement, seeded iris and hair tools, and the measuring lessons above. It also hit a wall:
 at full skin detail Blender ran out of memory on every close frame on this machine (12.25 GB) and finished 31 of 120
 frames in 30 minutes.
@@ -414,8 +410,8 @@ frames in 30 minutes.
 
 ### 2.2 Vertices dropped (11-03)
 
-At 00:12 the author wrote that treating a human form as millions of vertices with modifiers "makes realism detail work
-almost impossible". At 17:47 he decided: "I want to get rid of the entire vertex-based framework." Cage, subdivision
+At 00:12 the problem was recorded: treating a human form as millions of vertices with modifiers makes realism at fine
+detail close to impossible. At 17:47 the decision followed: the vertex-based framework is dropped entirely. Cage, subdivision
 and displacement fallbacks were set aside too. Success would be measured on the field side: the same or better look
 for less time and memory on an 8 GB card.
 **Evidence: accepted in the workflow.**
@@ -445,7 +441,7 @@ additions:
 frame against the same renderer's brute force at 425.5 ms, with a mean image difference of 0.96/255. Whole-shot wall
 time was about 7 s against about 300 s for Blender, a figure extrapolated from 5 frames. The record lists why that is
 not like for like: the field renderer computed less light transport, the materials differed, Blender was not tuned,
-and the cache is valid only while light and subject stay still. Its own verdict was "yes, partly". A later round found
+and the cache is valid only while light and subject stay still. Its own conclusion was a qualified yes. A later round found
 the field's path tracer no faster per sample than Cycles: the speed comes from the cache, not from the field format.
 **Evidence: measured on named cases** (single runs, one head, one machine).
 
@@ -481,7 +477,7 @@ is a cache that one deterministic writer regenerates from them, bit for bit.
 - Separate tissues that touch are never blended: each part is stored whole and the visible field is their minimum.
 - Every edit is an entry in a replayable operation log; undo is exact.
 
-**Tolerance.** On 11-05 the author allowed his sculpts to be rebuilt natively "within that small tolerance", about
+**Tolerance.** On 11-05 a tolerance was set for rebuilding the hand sculpts natively: about
 20 um (pass mark: 1 mm-averaged offset, 99th percentile at most 20 um), in place of byte copies.
 
 **What happened.** The neck was native by 11-05 23:45. The first full assembly, on the night of 11-06, was refused by
@@ -489,8 +485,8 @@ the writer, as designed: two joins did not fit and three had no overlap. By the 
 native in one full-body cache that matched the old version on the GPU (mean difference 0.01 to 0.22 of 255); the rest
 were blocked where three or more parts meet or slits close. One limit was reported plainly: where the old mesh's
 stair-steps sit on a sculpted fold, holding the sculpt within 20 um means re-drawing the stair-steps. Whether every
-region finally met the 20 um bar is **not established** in the records read for this part. On 11-09 the author added
-that no part is sacred, his sculpts included: flaws are fixed and small shifts are fine.
+region finally met the 20 um bar is **not established** in the records read for this part. On 11-09 the rule was extended:
+no part is held as final, the hand sculpts included; flaws are fixed and small shifts are fine.
 **Evidence: measured on named cases.**
 
 **Finer than 0.25 mm.** The renderer's finest body level is 0.25 mm. Contact leaves at 0.125 mm were built for tight
@@ -505,25 +501,25 @@ Field Studio began as a CPU-only Windows tool that sculpts directly in a field, 
 command (first committed 11-05). Its viewport moved to GPU tracing and sculpting on 11-08, and a product design
 followed on 11-10.
 
-On 11-11 the author changed the main effort. A round on the lips had come back with the lips pressed together, "the
-sort of thing that a human would not have done". His conclusion: the sessions are strong at code, physics, measurement
-and research, and weak in the fine visual refinement loop. So the work became "the actual base, the tool, the studio,
-and all of the components it needs ... so that a human can finish the work", within 16 GB of RAM and an 8 GB card for
-the whole system.
+On 11-11 the main effort changed. A round on the lips had come back with the lips pressed together in a way a person
+would not have shaped them. The conclusion drawn: the sessions are strong at code, physics, measurement and research,
+and weak in the fine visual refinement loop. So the work became the base itself (the tool, the studio and all the
+components it needs) so that a person can finish the work by hand, within 16 GB of RAM and an 8 GB card for the whole
+system.
 
 **Test 1.** With front and side reference images on one centre axis, sculpt a sphere into a basic head (head shape,
-eye indents, nose, cheeks, chin and jaw line) aligned with them, in under 5 minutes (first said as 2). Scripted
+eye indents, nose, cheeks, chin and jaw line) aligned with them, in under 5 minutes (first set at 2). Scripted
 measures: outline mean within 3 mm, lumps at most 1.5 mm RMS, at least 30 frames per second while stroking, at most
 100 ms to the next stroke.
 
-**How the first runs went.** A scripted run in the real window on 11-11 at 10:47 made "a lumpy egg with a flat face",
+**How the first runs went.** A scripted run in the real window on 11-11 at 10:47 made a lumpy, egg-like form with a flat face,
 after 144 actions and an estimated 7.8 minutes. Four passes of Smooth took the lumps from 4.49 to 4.23 mm RMS (6 %).
 Strokes ran at 6.6 to 13 frames per second. A neck pulled down with Grab tore into an open ring. 22 of 166 presses
-near the silhouette turned the view instead of sculpting. The author's first comment was about the driver: "You used
-too small of a brush". A sculptor blocks in with a brush a third to half the size of the head, and the tool capped
+near the silhouette turned the view instead of sculpting. The first finding was about the driver: the brush was too
+small. A sculptor blocks in with a brush a third to half the size of the head, and the tool capped
 brush size and ran large brushes slowest. Since the run could not tell tool limits from AI limits, each tool was then
 measured on standard forms against its equivalent elsewhere. By the 11-12 morning hand-off, 30 frames per second for
-small strokes was still not established, and the author's own first hand run of test 1 was still open.
+small strokes was still not established, and the first hands-on run of test 1 was still open.
 **Evidence: measured on named cases** (scripted runs; test 1 is not passed).
 
 ### 2.7 Skin
@@ -551,7 +547,7 @@ estimates. Cadaver data serves form and thickness only; colour comes from living
 fields. Its random walk was checked against a published Monte Carlo reference (colour difference 0.5), and the check
 showed the older analytic colour model wrong by 7 to 10. An earlier tone multiplier, fitted through a film-look
 display transform, had baked that transform into the material. Even with correct optics, colour from causes kept
-blotching. The author's direction: a natural base tone per zone from living references; low natural variation matched
+blotching. The direction adopted: a natural base tone per zone from living references; low natural variation matched
 per zone on the band ruler; sparse, faint accents; then triggered states. Causes stay for the states.
 **Evidence: accepted in the workflow.**
 
@@ -561,7 +557,7 @@ pores, texture, per-zone overrides, local refinements). The same seed and settin
 gives another skin of the same kind. Colour is a regional base smoothed along the surface, plus tan by exposure, four
 seeded bands of variation, and freckles and moles as a seeded point process of irregular soft patches. Relief comes
 from seeded growers scaled by age and sex. Output is evaluated at any point and written as lattices aligned with the
-model's bricks. The author approved it as the model's default on 11-11. It has no panel in the tool yet and is
+model's bricks. It was adopted as the model's default on 11-11. It has no panel in the tool yet and is
 re-baked after a shape change.
 **Evidence: accepted in the workflow.**
 
@@ -573,7 +569,7 @@ fibres at their real scale, over a dark back layer, under an analytic cornea. Gl
 **Evidence: measured on named cases.**
 
 **Why four rounds read as a stain (analysis 11-05).** A brown inner zone had read as a circle, then a splat, a
-watercolour stain and a starburst. The author asked for a pause to study reference irises: colour, then texture, then
+watercolour stain and a starburst. The work paused to study reference irises: colour, then texture, then
 structure. Three independent measures agreed. In real irises the amber is the bright material: brownness and lightness
 correlate at about +0.5 at fibre scale. In ours it was a dark absorbing film: -0.3 to -0.7. The amber added absorption
 and no scatter, and its edge was drawn across the fibres instead of being made by them, so no edge shape could fix it.
@@ -582,11 +578,11 @@ and Larsson 2009). The reference photographs were iris macros under CC BY and CC
 **Evidence: measured on named cases** (three reference irises; three others were too soft to resolve the zone).
 
 **What the r22 draft got wrong (11-09).** It failed its own gates as run (9 of 13 texture gates, 6 of 10 geometry
-gates, parallax failed). The author's read: "Ours blur, rather than being natural, and are too wavy in a consistent
-way", too symmetrical at the inner border, with fine detail "all but absent". Blur used to soften is painting (1.3).
+gates, parallax failed). On review it read as blurred rather than natural and too regularly wavy, too symmetrical at the inner border, with
+fine detail almost absent. Blur used to soften is painting (1.3).
 A fresh session took the lane.
 
-**The seeded generator (11-09 17:40; `engine/eye_lane/iris_gen.py`).** His direction: a seed and settings that give
+**The seeded generator (11-09 17:40; `engine/eye_lane/iris_gen.py`).** The direction: a seed and settings that give
 different irises (colour variation, patterns, crypts), not one eye. Everything is drawn from (seed, settings) on a
 5 um grid over the iris plane:
 
@@ -599,10 +595,10 @@ different irises (colour variation, patterns, crypts), not one eye. Everything i
 Relief and collagen density come from distance fields to the strands. There are about 80 settings and four presets.
 **Evidence: measured on named cases** (two to four seeds shown beside reference photographs).
 
-**Colour carried by the fibres (the author's verdict, 11-09 about 21:30).** The blue irises worked because their
+**Colour carried by the fibres (a finding of 11-09, about 21:30).** The blue irises worked because their
 colour comes out of the fibre structure itself. For green, hazel and brown, a separate pigmented tissue had been laid
-over the strands; it hid the fibre architecture and read as mud. "That was the single action that drove the failure of
-effectively every eye except the blue." The direction: one fibre architecture for every colour, with the pigment
+over the strands; it hid the fibre architecture and read as mud. That one choice drove the failure of effectively
+every eye except the blue. The direction: one fibre architecture for every colour, with the pigment
 carried inside the strands and tissue, per strand, layer and zone. The 11-11 status still lists this as missing, along
 with a whole-eye generator.
 **Evidence: proposed.**
@@ -624,8 +620,8 @@ beside licensed reference photographs. As of the 11-11 status the tool's viewpor
 part did not re-check that. A separate catalogue (11-09) plans 215 further profiles; it is planning only.
 **Evidence: implemented.**
 
-**Labels carry the material (design, 11-10).** A label is the front door to a profile: "I label that as an eye ...
-Field Studio knows what an eye is." Labelling a part applies its material, physics and generator. Proof sheets for
+**Labels carry the material (design, 11-10).** A label is the front door to a profile: a part labelled as an
+eye is known to Field Studio as an eye. Labelling a part applies its material, physics and generator. Proof sheets for
 stone and wood, rendered in the field renderer beside references, are future work.
 **Evidence: proposed.**
 
@@ -810,8 +806,8 @@ checks in the gate 11-12 10:39 (`8013917f`). Evidence: accepted in the workflow.
   108,237 / 30,263 / 7,717 / 1,082 seam nodes at L0-L3, 8,899 of the L0 ones within a cell of the surface and 169 + 33
   with opposite signs. They had been written by earlier writer paths. They were repaired at the data (a finer level's
   uncapped value at L1-L3, otherwise the copies' midrange; L0 moved at most 29.5 um), 4 + 2 enclosed air bubbles were
-  filled and 7,219 unreferenced duplicate brick rows dropped. The next version scans clean and was published with the
-  author's agreement, on the condition that the cause be fixed too.
+  filled and 7,219 unreferenced duplicate brick rows dropped. The next version scans clean and was published on the
+  condition that the cause be fixed too.
 - **The cause proof.** Five real strokes written back through the editor: the pre-fix writer produced 4,053 L0 and 73
   L1 seams; the fixed writer (`8f2333eb`, 11-12 09:06) produced 0 at every level. One earlier unpublished write-back
   carried 9,051 new L0 seams of up to 5.4 mm.
@@ -879,16 +875,16 @@ accepted in the workflow.*
   A project is a folder of sculpt chunks (only changed chunks re-compressed, the rest hard-linked from the previous
   save), stroke results, the undo journal and `project.json` with a state hash last. It is written to `<name>.tmp` and
   swapped in by rename, retried while the operating system holds a handle, with the previous save restored if the swap
-  cannot finish. Opening recomputes the hash and refuses a mismatch. **A failure that reached the author:** on 11-12 a
+  cannot finish. Opening recomputes the hash and refuses a mismatch. **A failure seen in real use:** on 11-12 a
   save followed at once by quitting was killed with the process (the writer ran on a daemon thread), leaving no
   project file and no automatic save; the work was recovered from the temporary folder. Since then a save is counted
   as pending from request to the writer's end, quitting waits for it, and a failed write keeps the window and the
   automatic save. After: the close waited 1.4 s and the project reopened with the same hash.
 - **Checks kept in the tool.** A debug check compares every card brick with the CPU field at its own nodes (tolerance
   50 um): clean after each of 12 repeated Smooth strokes on an eyelid. Those 12 strokes lower a 1.54 mm bulge to
-  0.45-0.49 mm and stall; none raises it again. The author's report that a smoothed eyelid bulge reappeared on screen
-  is therefore **not reproduced and not explained** yet; the working hypothesis (an edited brick losing its atlas row,
-  so the store's original shape is drawn there) is untested. His report of lag growing after 5-10 minutes is also open:
+  0.45-0.49 mm and stall; none raises it again. The report from hand use that a smoothed eyelid bulge reappeared on
+  screen is therefore **not reproduced and not explained** yet; the working hypothesis (an edited brick losing its atlas row,
+  so the store's original shape is drawn there) is untested. The report of lag growing after 5-10 minutes is also open:
   a 16-stroke run showed none, and the longer run was not finished.
 
 ### 7. The scaling study: what a stroke costs and where the store goes next
@@ -936,7 +932,7 @@ save.
    it (the sign of unstored space comes from that distance, never from per-tile tags).
 4. For worlds: chunked residency, brush levels for body-scale strokes, shared bricks for repeated objects, edit layers.
 
-**Decision** (the author, 11-12 09:27): the full path; steps 1-2 now, step 3 right after step 2.
+**Decision** (11-12 09:27): the full path; steps 1-2 now, step 3 right after step 2.
 
 **Status at the time of writing.** Parts of step 1 landed 11-12 10:47 (`94ad156d`, `655c0fc2`): a body Flatten's table
 time 1,359 -> 21 ms; mirror sync 266 -> 0 ms a body stroke; torso Draw 14.6 -> 23.6 fps; body Smooth 2.5 -> 5.8 fps,
@@ -973,7 +969,7 @@ reproduced under a frozen configuration* for the first fault below (two fresh ru
 
 ### 9. Parts being redesigned around named patents
 
-On 11-12 the independent claims of the patents below were read beside our mechanisms, following an outside review's
+On 11-12 the independent claims of the patents below were read beside our mechanisms, to the
 standard that each concern name the claim element behind it and each design-around name the element that is absent.
 These are flags from our own review, not conclusions that any claim is or is not met. **As of this text none of the four redesigns has landed; the
 affected code is held out of any published code until it does.**
@@ -1029,12 +1025,12 @@ Each mechanism carries exactly one evidence state:
 - **implemented**: in code (the live tool or a named working copy), not measured beyond smoke checks.
 - **measured on named cases**: run on the cases named beside the numbers.
 - **reproduced under a frozen configuration**: the same result obtained again from a fixed code state and inputs.
-- **accepted in the workflow**: used by the author as part of the working process.
+- **accepted in the workflow**: used as part of the working process.
 
-The most important fact comes first. On 2026-11-12 at about 17:20 the author sculpted with the tool by hand and
-stopped the toolkit: "Right now, I cannot even block out a character's head." The scripted head test had been
+The most important fact comes first. On 2026-11-12 at about 17:20 a hands-on sculpting test with the tool could
+not block out even a character's head, and the toolkit work was stopped. The scripted head test had been
 reaching all its stages, though never its marks (section 12). Much of what follows is therefore a record of mechanisms that work by their own numbers and still did not
-give a sculptor a usable tool, plus the redesign that came out of that. **The author's hands-on sculpt test of the
+give a sculptor a usable tool, plus the redesign that came out of that. **The hands-on sculpt test of the
 rebuilt toolkit is still to come.** Nothing here should be read as a claim that the toolkit is finished.
 
 ### 1. Setting, machine and how to read the numbers
@@ -1110,7 +1106,7 @@ point, which moves the surface without leaving a step in F.
 
 Amounts: displacement brushes move 0.2 x spacing x s x r per dab, so the same screen stroke gives the same-looking
 shape at any radius. Smooth, Flatten, Pinch and Crease's pull use a per-dab factor k = k_max (1 - exp(-k0 s / k_max)),
-monotone in strength and saturating, never clamped (2026-11-11 13:59, at the author's direction that every tool's
+monotone in strength and saturating, never clamped (2026-11-11 13:59, under the decision that every tool's
 effect rise smoothly with strength). Measured on the CPU path at s = 0.1 / 0.25 / 0.5 / 1 / 1.5 / 2: Smooth removes
 0.14 / 0.30 / 0.44 / 0.50 / 0.53 / 0.53 of a 12 mm bump per pass; Crease depth 0.10 / 0.24 / 0.45 / 0.82 / 1.12 /
 1.34 mm. Ctrl inverts every surface brush (measured on all seven; Ctrl+Clay digs 1.44 mm).
@@ -1149,7 +1145,7 @@ Failures on record:
 - **Volume.** Ten passes at r 30, s 0.5 on a 40 mm bump: height -53 %, volume -20.7 %. Smooth shrinks.
 - **CPU-path stall.** On the CPU path a 40 mm bump stalls at about 63 % remaining, because Smooth compresses the
   field at the edge of its 6h band and the release re-distance skips it. The card path does not stall.
-- The author's own report after sculpting (2026-11-12 about 18:20): Smooth "works fairly well", but a smoothed lid bulge
+- Hands-on use (2026-11-12 about 18:20): Smooth worked fairly well, but a smoothed lid bulge
   came back after further strokes, and some surfaces keep small tear or grain marks.
 
 ### 4. Shared stroke rules
@@ -1180,19 +1176,19 @@ Failures on record:
 - **Targeting** (2026-11-08; evidence state: measured on named cases; superseded by section 5). "Only the surface
   the brush faces" and "connected only" switches. On the thin-wall test they hold at r 6 and fail above it.
 
-### 5. "The sheet under the brush": nothing behind the worked surface moves
+### 5. The sheet under the brush: nothing behind the worked surface moves
 
-The author's requirement (2026-11-12 about 12:50): tools "only impact the surface that they are working on, and nothing
-behind them, unless you activate a setting or a toggle". The cases he named: an eyelid over the eye, the two lips,
-a bra's two faces over the skin beneath.
+The requirement (2026-11-12 about 12:50): a tool acts only on the surface it is working on and on nothing behind it,
+unless a setting or toggle says otherwise. The cases named: an eyelid over the eye, the two lips, a bra's two faces
+over the skin beneath.
 
 **The fault, measured** (CPU, 2026-11-12 13:00). One object: a 4 mm wall with a ball 2 mm behind it. Strokes on the
 wall's front at r 6 / 12 / 20 mm moved the wall's back face by 0.30 / 2.0 / 3.9 mm (Draw), up to 3.5 mm (Clay), and
 the ball behind by up to 3.5 mm (Draw) and 5.2 mm (Clay, closing the gap). Even Smooth on the flat front moved the
 ball 0.52 mm at r 20. The older targeting switches held only at r 6.
 
-**Mechanism** (landed 2026-11-12 14:40 as an opt-in switch "Protect surfaces behind"; on by default 15:48 at the
-author's direction; evidence state: measured on named cases).
+**Mechanism** (landed 2026-11-12 14:40 as an opt-in switch "Protect surfaces behind"; on by default from 15:48 by
+decision; evidence state: measured on named cases).
 1. Surface cells are lattice cells whose corners have both signs.
 2. Seeds are the surface cells under the dab centre, or the nearest surface cell along the dab's axis.
 3. The seeds (taken from the 3 x 3 x 3 block of cells around the press, keeping only cells whose own normal faces
@@ -1247,7 +1243,7 @@ all near bricks in one call (2026-11-12 about 01:50, field bit-identical).
 
 ### 7. Sculpting surfaces into contact
 
-The author's aim: bring two surfaces to touching while sculpting (a lid onto the eye, a fold onto a neighbouring
+The aim: bring two surfaces to touching while sculpting (a lid onto the eye, a fold onto a neighbouring
 part), smoothly, with no typed values.
 
 **Swell to contact** (first form 2026-11-09 01:15; eased formula 2026-11-12; on the card and the default Swell from
@@ -1294,16 +1290,16 @@ version failed a store check for reasons in the writer and was not published.
 6. The same formula differed between card and CPU (a lid's front puffed up to 0.6 mm on the card, 0.05 mm on the
    CPU). Not explained.
 
-The author's report after sculpting: "Swell worked fairly well too." The contact tools are held for the rebuild.
+In hands-on use Swell also worked fairly well. The contact tools are held for the rebuild.
 
 ### 8. Grab, Stretch and what replaces them
 
 **What failed** (measured 2026-11-12 on a sphere of r 120 mm, h 1 mm, r 40 brush).
 - *View dependence.* Grab, Stretch and Snake Hook map the drag onto a plane parallel to the screen. One intended
   pull, 30 mm out along the normal, gave 30.1 / 17.7 / 5.7 / 0.8 mm from views at 0 / 30 / 60 / 80 degrees.
-- *"Stretch does not work."* It scaled the field about the pressed point itself, so that point moved 0.0 mm from
+- *Stretch did not work.* It scaled the field about the pressed point itself, so that point moved 0.0 mm from
   every view after a 30-80 mm drag; only the inner ring changed; a wiggle left a sharp ring around a flattened disc
-  (the author saw a half-circle cut out of the sphere); it compounded per mouse event (+5.19 against +4.44 mm for one
+  (seen in hand use as a half-circle cut out of the sphere); it compounded per mouse event (+5.19 against +4.44 mm for one
   drag at two mouse rates).
 - *Path dependence.* Drag out, circle, return: Grab left 2.96 mm, Stretch 5.02 mm.
 - *Folding.* F(x - v w) folds once the pull exceeds about 0.67 r; Snake Hook showed three surfaces on a probe ray.
@@ -1317,7 +1313,7 @@ as much as a plane containing n0 can. Each cursor ray is intersected with it. Wi
 Ctrl the target is the point on the line c0 + t n0 closest to the cursor ray; near head-on, t is the drag's
 component along the camera's up axis. Measured through the real window: 29.9 / 29.9 / 29.9 / 29.4 / 29.9 mm from
 0 / 30 / 60 / 80 degrees and above. A first 15-degree blend slid an 80-degree pull 32 mm sideways and was narrowed.
-An outside review noted that the silent change of operation near head-on should become a visible switch; open.
+The silent change of operation near head-on is to become a visible switch; open.
 
 **Anchored moves** (same copy, CPU path; evidence state: measured on named cases). The result is a function of the stroke-start field
 and the current total drag. On every update each touched node is restored to its stroke-start value and one
@@ -1335,7 +1331,7 @@ Axis a = v / |v|; pivot P = c0 - D a with D = max(T, r), T the depth of the form
 the pivot and the pressed end scale by (D + Le) / D with Le = |v| w(rho / r), rho the distance from the axis; beyond
 the end the displacement falls linearly to zero over max(2|v|, r). The inverse is closed-form.
 
-**Form-aware Grab** (decision 2026-11-12 about 09:50, in the author's words "Form-aware Grab"; evidence state: proposed;
+**Form-aware Grab** (decision 2026-11-12 about 09:50; evidence state: proposed;
 the prototype had not been started in the records read). A Grab whose weight follows the form's own interior, for
 example the distance through the material from the pressed point computed from the field itself, or a
 connectivity-limited falloff, so the far side of a head or the next finger does not move. It uses no elasticity
@@ -1351,37 +1347,33 @@ proposed.
 
 ### 9. The pencil: creases, ridges and cuts drawn on the surface
 
-**The shelf's pencil** (first commit 2026-11-05; measured on named cases; found faulty). Each stroke adds a tube
-centred on the surface to the base tree (subtract for a valley, union for a ridge) with a smooth blend. Because the
-tube is as deep outward as inward and the blend acts on anything in reach, a line along the upper lip 1.2 mm above
-the mouth slit cut the lower lip across the slit by up to 226 um at 811 points. In the window it showed nothing
-while drawing, then 3-4 minutes of work after release.
+**Design intent of the current Pencil** (defined 2026-11-13/14, after this write-up; in the code of the 0.2.0 release,
+`3389050f`, it is not yet the window's line tool). Pencil is a surface-following precision tool for carving grooves and
+building ridges. Its tip defines the local shape of the mark, with controls for width, depth or height, and the
+transition into the surrounding surface. The intended interaction is direct: geometry changes beneath the tip as the
+cursor moves. Each press-and-drag is one controlled pass. Retracing the same path within that pass does not accumulate
+additional depth or height. Releasing and beginning another pass establishes a new surface reference, allowing
+successive passes to deepen a groove or build a ridge deliberately. Pencil supports fine lines, creases, and broader
+cuts through the same tool rather than requiring separate carving and creasing tools. The two earlier pencils below
+are the record of how the project got there.
 
-**The rebuilt pencil** (2026-11-12 about 15:50, working copy only, never landed; evidence state: measured on named cases).
-1. Picks define a Catmull-Rom curve sampled about every h. Each pick is moved along its view ray onto the surface as
-   it was before the stroke; without that the line steered by its own fresh relief (0.27 mm median wobble: beaded
-   ridges, ribbed valleys); with it, at most 0.13 mm.
-2. Every value is computed from the stroke-start field F0, held per brick. Each extension recomputes only nodes in
-   reach of the changed part of the curve, so drawn-live equals laid-at-once exactly (0.0 um).
-3. Writes are limited to the drawn sheet by the flood of section 5, seeded by the stroke's own samples.
-4. With D(lat) the profile (round, V, U or custom, softened at its shoulders) at lateral distance lat from the
-   line, hgt a node's height above the drawn surface and dn its depth below it: a valley is
-   F' = max(F0, min(hgt + D, 3h - dn)), removing the volume between the floor and 3h above the surface; a ridge is
-   F' = F0 - D.
-5. Depth is limited per sample to half the form's thickness or half the gap, measured along the normal on F0.
-6. The keep-apart guard runs on every extension.
+**The shelf's pencil** (first commit 2026-11-05; measured on named cases; found faulty). A line along the upper lip
+1.2 mm above the mouth slit cut the lower lip across the slit by up to 226 um at 811 points. In the window it showed
+nothing while drawing, then 3-4 minutes of work after release.
 
-Measured: valley 1.497 of 1.5 mm; fine ridge 0.6 x 0.15 mm gave 0.141; a facing sphere across 0.75 mm moved 0.0 um;
-the lip case 0.0 um on the facing lip. Limits: a V cut closes where narrower than a cell, so cuts need a U profile;
-the finest line is about 0.5 mm wide at h = 0.25 mm. **Not reached:** 4-13 fps while drawing with hitches to 527 ms,
-against the brushes' 20 fps and more. The pencil work was stopped with the rest of the toolkit. What the author
-used by hand that evening was still the shelf's old pencil, and his verdict on it was: "pencil tool still sucks. It
-doesn't crease well, it covers too broad of an area, it mangles most surfaces surrounding the mark".
+**The rebuilt pencil** (2026-11-12 about 15:50, working copy only, never landed; evidence state: measured on named
+cases). Line wobble at most 0.13 mm (0.27 mm median before the correction); the line drawn with progressive on-screen updates equal to the line laid at once (0.0 um);
+valley 1.497 of 1.5 mm; fine ridge 0.6 x 0.15 mm gave 0.141; a facing sphere across 0.75 mm moved 0.0 um; the lip case
+0.0 um on the facing lip. Limits: a V cut closes where narrower than a cell, so cuts need a U profile; the finest line
+is about 0.5 mm wide at h = 0.25 mm. **Not reached:** 4-13 fps while drawing with hitches to 527 ms, against the
+brushes' 20 fps and more. The pencil work was stopped with the rest of the toolkit. The pencil in hand use that evening
+was still the shelf's old one, and it fell short: it creased poorly, covered too broad an area and damaged most of
+the surfaces around the mark.
 
 ### 10. The toolkit framework: ten principles and the experience harness
 
 Written 2026-11-12 ~17:55 after a study of Blender's sculpt tools; evidence state: proposed. The build order that
-follows from it (the harness first, then Grab on the common machinery) was agreed by the author at about 18:40.
+follows from it (the harness first, then Grab on the common machinery) was agreed at about 18:40.
 
 1. **Full 3D.** A tool gives the same result from any view; the camera only says where the hand points.
 2. **What you see is what moves.** The ring is the true reach and its inner ring the true 50 % weight.
@@ -1404,7 +1396,7 @@ return; T4 mouse rate 30 / 120 / 480 Hz; T5 nothing behind moves; T6 size; T7 Sm
 Baseline on the shipped tools: surface brushes view-independent within 3-4 %; Draw 11 % stronger at 480 Hz than at
 30 Hz; window stalls up to 111 ms. The pass mark is a person blocking out a head from a sphere.
 
-**Window freeze** (2026-11-12 ~17:49). The author's window stopped answering for about five minutes. The run's log
+**Window freeze** (2026-11-12 ~17:49). The window in hands-on use stopped answering for about five minutes. The run's log
 was overwritten by the relaunch, so the work that ran is unknown. A mechanism was measured: a compiled kernel that
 keeps the interpreter lock stops the window thread for its whole run (a 93 ms kernel gave a 95 ms stall; 11 ms when
 it releases the lock). Landed 18:06: a per-session log that a relaunch never erases, and a watchdog (a 250 ms timer
@@ -1433,27 +1425,27 @@ stroke. They are met on simple forms at small and medium radii and not met on th
 The cost of a ball of radius r grows as (2r / h)^3 nodes, and the radius is capped at 80h (160h on the human model).
 Coarse levels for large tools, with detail stored relative to the coarse surface, are proposed. A whole-body Smooth
 at r 60 once ran the card out of memory (6.52 of 6.91 GB in use) and hung the engine; strokes are now split to fit
-and a card failure falls back with a notice. The author's report after sculpting on 2026-11-12: "Performance is
-abysmal. Lag started hitting me after several minutes, some tools take several seconds to do their job."
+and a card failure falls back with a notice. Hands-on use on 2026-11-12 found performance very poor: lag
+set in after several minutes, and some tools took several seconds to act.
 
 ### 12. Test 1: a sphere to a head, and why its scripted runs meant little
 
 Test 1: front and side reference photos on one axis, a sphere sculpted into a basic head (nose, eye sockets, jaw and
 chin, cheeks) in under five minutes.
 
-- 2026-11-11 10:47, first scripted run: "not a head": a lumpy egg after 144 actions and about 7.8 minutes; Smooth
+- 2026-11-11 10:47, first scripted run: not yet a head, a lumpy egg after 144 actions and about 7.8 minutes; Smooth
   removed 6 % of the lumps; a torn ring under the neck; rectangular seams at the mouth; 22 of 166 presses turned the
-  view instead of sculpting. The author: "You used too small of a brush."
+  view instead of sculpting. The brush used was too small.
 - After the rebuild, scripted runs from a fresh sphere reached all stages in about 39 actions and 113-121 s of a
   person's time, 0 orbits, no holes, outline within 3.9 / 5.3 / 4.8 mm (front / face / back), lumps 2.47-2.52 mm RMS
-  (target 1.5, not met). The author ranked a brushes-only run best so far on 2026-11-11 18:48.
+  (target 1.5, not met). A brushes-only run was ranked best so far on 2026-11-11 18:48.
 - Along the way: a nose split into two lobes (mirror), a granular jaw (midline snap stacking about 15 Smooth passes),
   jaw scratches on the card (ring samples reading unheld bricks), and the chin bands of section 3.1.
-- 2026-11-12 about 17:20: the author could not block out a head by hand. The script had pulled only from the side and
+- 2026-11-12 about 17:20: a head could not be blocked out by hand. The script had pulled only from the side and
   front views, where screen-plane tools happen to do what was meant, with strokes chosen to work, and it judged the
   outline in millimetres. It measured the field, not the experience.
-- The author's summary that evening: Smooth and Swell worked fairly well; "Most of the other tools are effectively useless";
-  "progress has been made, but it has a LONG way to go."
+- The summary that evening: Smooth and Swell worked fairly well; most of the other tools were effectively unusable;
+  progress had been made, with a long way still to go.
 
 ### 13. The shell
 
@@ -1524,22 +1516,25 @@ followed: a concern names the claim element behind it; a design-around names the
   design-around: the form-aware Grab decided the same day and the flow Grab of section 8 use no elasticity equation
   and no Poisson ratio; whether that is sufficient is not asserted here.
 - **US 8,265,909 B2 (MERL; active, expected to 2031).** Element of concern, claim 1: the distance field of a shape
-  swept along a parametric path, found by determining "in a continuous manner" an optimal path parameter per sample.
+  swept along a parametric path, found by determining an optimal path parameter per sample continuously.
   Flagged in two places: the capsule primitive (a sphere's distance at the clamped closest point of a segment) and
   the brick admission test of an unwired flow-Grab module (brick centres projected onto the drag segment with a
   clamped parameter). **Both are being redesigned; no design-around had been chosen or recorded when this was
   written**, and the full reading was still owed. Ordinary dabs are separate fixed-centre edits added in turn, with no
-  per-sample search for a placement. The records hold no reading of the rebuilt pencil, which finds each node's
-  position relative to a sampled stroke curve, against this patent; that reading is owed before the pencil returns.
+  per-sample search for a placement.
+  The current Pencil (0.2.0) evaluates discrete path samples, each at its own placement relative to the stroke-start
+  surface, and nothing searches along the path for a nearest placement; its implementation is described in
+  `docs/PATENTS.md`. The records hold no reading of the rebuilt pencil of 2026-11-12 against this patent; that reading is owed before the pencil
+  returns.
 - **US 9,836,879 B2 and US 10,062,203 B2 (Autodesk)**, read against the sheet flood. The first requires paths
   through interior voxels from an influence to a mesh vertex, a boundary-voxel penalty, a skinning weight and an
   animation; the flood walks surface cells from the press point and yields a yes/no gate on a brush write. The second
   requires voxelising a mesh; there is no mesh.
 - **US 8,988,461 B1 (Disney / ETH)**, read against Swell and Settle: each independent claim requires paint strokes
-  that "do not alter the shape" of the object; these tools alter the shape. Older distance-field sculpting and
+  that leave the object's shape unaltered; these tools alter the shape. Older distance-field sculpting and
   haptic-clay patents (MERL, SensAble) appear expired; their status was not confirmed at the patent office.
 - **US 9,830,743 B2 (Autodesk)**, a volume-keeping smoothing brush: to be read before any keep-volume Smooth ships.
-- The patent searches were web searches and partial. "None found" is not "none exists".
+- The patent searches were web searches and partial. Finding none does not show that none exists.
 
 ### 16. What is not established
 
@@ -1551,7 +1546,7 @@ followed: a concern names the claim element behind it; a design-around names the
 - A Smooth that keeps volume, has spheres of every size as fixed points, and does not band on a chin.
 - Scope for move tools, reach-through as a control, the honest ring, levels, region transforms, and deformers that
   carry the sculpting with them: all proposed.
-- The author's hands-on block-out of a head with the rebuilt toolkit, which is the pass mark, has not happened.
+- A hands-on block-out of a head with the rebuilt toolkit, which is the pass mark, has not happened.
 
 ---
 
@@ -1650,17 +1645,17 @@ sheets for that pose (entry id = part and sheet); that part is designed, not mea
 **Failures and corrections.** (a) Field Studio first read each part as a dense lattice box; estimated for a whole body
 of about 90 parts that is 3-6 GB of RAM, over budget. Parts were changed to sparse stores read from the band rows
 (11-11 19:38): about 16 MB of program data per lip measured; the whole-body figure (about +1.6 GB RAM, about 1.6 GB of
-card memory) is an estimate, not a measurement. (b) A record that the lips "rest closed" was corrected: on the current
+card memory) is an estimate, not a measurement. (b) A record that the lips rest closed was corrected: on the current
 model they rest 0.3-1.2 mm apart across the middle and touch only near the corners; closed is a state, not the rest.
 (c) The leaf writer ran out of memory on a 34-part mouth and was rebuilt to work in bounded batches (2.49 GB peak).
 
 ### B.2 Solid by default, with designed cavities
 
-**Evidence state:** measured on named cases (the human model's store). **Date:** stated by the author 11-12 00:32;
+**Evidence state:** measured on named cases (the human model's store). **Date:** first stated 11-12 00:32;
 built and published into the working model 11-12 07:50.
 
-The rule, in the author's words: objects are solid; "designed cavities are never filled ... made deliberately with the
-cut tool or as a labelled part, so the tool knows it's meant. Tests must show zero unintended pockets."
+The rule: objects are solid; a designed cavity is never filled, and is made deliberately, with the cut tool or as a
+labelled part, so the tool knows it is meant. Tests must show zero unintended pockets.
 
 As built: the model's interior, which an earlier surface-band store left unknown beyond its band, is given the inside
 sign at the coarsest level; enclosed air pockets of 0.01 mL or more that no design accounts for are found on a 1 mm
@@ -1751,7 +1746,7 @@ over-wide search margin).
 
 ### B.5 The patent finding on the IPC-style solver
 
-**Date:** 11-12 08:22 (the reading); 11-12 about 09:00 (a wider search); an outside review of our checks the same
+**Date:** 11-12 08:22 (the reading); 11-12 about 09:00 (a wider search); a further check of our readings the same
 morning. **This is our own reading, not legal advice; no clearance is claimed.**
 
 **The patent.** US 12,216,969 B2, "Methods of contact for simulation", NVIDIA Corporation, filed 2020-09-04, granted
@@ -1763,8 +1758,8 @@ determine constraints, a preconditioner is applied to a gradient descent, and an
 primal formulation. Our first solver (B.3) is a barrier energy minimised by Newton steps, so it was
 flagged in our review; held out of the code pending redesign. We publish no conclusion on whether any claim is or is not met;
 that is a question for counsel, and so is the effect of earlier published work (IPC itself was published by other
-authors before this patent's filing date). An outside review of our checks added two cautions: a rewrite was "not
-yet proven necessary", and a replacement "not yet proven clear". The author's decision (11-12 about 08:35): build
+authors before this patent's filing date). Two cautions were recorded: a rewrite was not yet
+proven necessary, and a replacement was not yet proven free of the claims. Decision (11-12 about 08:35): build
 around it. Direction of the design-around: the constraint solver of B.6, which solves the contact conditions as
 equations with multipliers and minimises no energy. The same search also flagged US 7,616,204 (position based
 dynamics, to about 2027-08) for any position-level loop.
@@ -1847,7 +1842,7 @@ the dropped plane (11 pairs, 294 um), so it was reverted: where skins meet nearl
 hold. The friction check's landing step sits near a convergence boundary and needs one step halving. Speed against the
 baseline's interactive bench and the full proof suite are not run.
 
-### B.7 The author's "magnetic field" contact
+### B.7 The magnetic-field contact concept
 
 **Evidence state:** measured on named cases (synthetic scenes). **Date:** first stated 11-12 about 15:30; patent
 reading of the options 15:31; built 15:50-17:15 (in a working copy of the contact code).
@@ -1899,13 +1894,13 @@ not evaluating an energy value, or renaming the search objective, does not by it
 explicit, with no minimisation, and is flagged under the pending continuation's force-based wording. Rules kept for
 both because of other patents the search found: bound the time step rather than clamp points (US 7,616,204), and
 stay synchronous (US 9,020,787 concerns a divergent barrier together with kinetic data structures and asynchronous
-variational integrators, none of which are used). The author accepted these flags for testing. Neither form is in the public code.
+variational integrators, none of which are used). These flags were accepted for testing. Neither form is in the public code.
 
 ### B.8 A field through the environment as the contact sensor
 
 **Evidence state:** proposed; not built. **Date:** first stated 11-12 about 15:55; prior-art check 19:56.
 
-The idea (the author's touch-screen analogy): a value held in the space between bodies reports where anything
+The idea (a touch-screen analogy): a value held in the space between bodies reports where anything
 approaches anything, so candidate pairs are found without pair searches. It is a sensor only; the response stays with
 a contact law (B.6, B.7). The planned build-out: one value per node of the *existing* sparse lattice in the air region,
 for example the distance to the nearest other body, read from the bodies' own distance fields and refreshed only in
@@ -1977,7 +1972,7 @@ parts of the solver, so that is not yet a diagnosis.
 After d1 and d4 the one lever measured to move the stall is cell size at the crease, so the leading candidate is the
 crease's discretisation: a 4 mm trilinear cell cannot fold into a crease a few mm deep. It remains a candidate.
 
-**On the real arm ("E2").** At the author's direction (11-12 about 19:50) the test moves from the stand-in to an
+**On the real arm ("E2").** By decision (11-12 about 19:50) the test moves from the stand-in to an
 isolated elbow region of the human model's own field, with bones placed from anatomy (committed 19:56). Measured since (commits at 20:13 and 20:17): with the
 stand-in's simple bones and skin rows, the baseline converged every state from rest to 90 degrees from rest (about
 112 degrees anatomical), but with Newton at its iteration cap from 67.5 degrees from rest, four substeps a step from
@@ -2003,10 +1998,10 @@ them), and only then from older rules: 0 wrong-way flips in the same test; engin
 **Evidence state:** proposed. **Date:** first stated 11-12 about 16:50; scoped 11-12 about 19:50.
 
 The larger idea (state such as temperature or moisture held in the environment and advanced when its dependencies
-require it) is described in Part 2, section 3. In contact it appears only as the sensor of B.8, and the author's
-scoping is recorded here as given: the form is left open (no commitment to an air mesh, nor to static or moving
-fields), and it is not to be expanded "too far incidentally right now ... We have to build the base before anything
-else is possible."
+require it) is described in Part 2, section 3. In contact it appears only as the sensor of B.8, and its
+scope is recorded as decided: the form is left open (no commitment to an air mesh, nor to static or moving
+fields), and it is not to be expanded further for now, because the base has to be built before anything else is
+possible.
 
 ### B.12 Summary of states
 
@@ -2169,7 +2164,7 @@ Per frame, median: node update about 4 ms on the CPU; posed-band preparation on 
 
 *Evidence for the geodesic weights: measured on named cases, bench and study only.*
 
-A first weight module computed, for each bone, Dijkstra distances through the 26-neighbour graph of inside voxels, with a smoothstep falloff scaled by limb radius (after Dionne and de Lasa 2013, "Geodesic voxel binding for production character meshes"). On 11 Nov at about 16:55 a patent check flagged it, and the author decided it would be studied only. The claims were then read (about 17:45) from the USPTO's public page scans, by eye.
+A first weight module computed, for each bone, Dijkstra distances through the 26-neighbour graph of inside voxels, with a smoothstep falloff scaled by limb radius (after Dionne and de Lasa 2013, "Geodesic voxel binding for production character meshes"). On 11 Nov at about 16:55 a patent check flagged it, and it was decided that it would be studied only. The claims were then read (about 17:45) from the USPTO's public page scans, by eye.
 
 **US 9,836,879 B2, "Mesh skinning technique" (Autodesk).** As we read them, independent claims 1, 10 and 16 each require all of:
 (a) a voxelization of a 3-D model with interior voxels;
@@ -2192,7 +2187,7 @@ Searches on 11 Nov found no patents on bone heat, bounded biharmonic weights, du
 
 *Evidence: proposed.*
 
-The author left open that any work session may build bones and muscles as field layers, whole or partial, from medical measurements, if posing tests need them (the shoulder girdle and muscles that bulge with flexion come first). The body's outer surface stays the target; the layers would sit under it and be kept consistent by contact. Nothing was built. Muscle bulge is planned as an activation state of a muscle layer inside the corrective solve.
+It was left open that any work session may build bones and muscles as field layers, whole or partial, from medical measurements, if posing tests need them (the shoulder girdle and muscles that bulge with flexion come first). The body's outer surface stays the target; the layers would sit under it and be kept consistent by contact. Nothing was built. Muscle bulge is planned as an activation state of a muscle layer inside the corrective solve.
 
 ---
 
@@ -2277,7 +2272,7 @@ A settled sheet becomes a solid: `F(x) = distance to the midsurface - thickness 
 
 *Evidence: measured on named cases; the menu entry landed in the tool (window tests 5 of 5, failure cases 3 of 3).*
 
-An earlier mannequin sculpted only from measurement points was criticised by the author as likely to cause fitting faults, so the form is now derived from the model's own field:
+An earlier mannequin sculpted only from measurement points was set aside as likely to cause fitting faults, so the form is now derived from the model's own field:
 
 1. Sample the body at 2 mm; inside/outside from the body's own reader.
 2. Remove each arm at a flat plane through the shoulder point and the armpit.
@@ -2344,7 +2339,7 @@ The parts were written into a copy of the model's store one 24 mm region per pro
 
 **How to read the dates.** Times in this part are internal provenance times: Pacific time, taken from the project's local commit log and dated lane records (short commit ids are given where one exists). They say when a mechanism was first built or measured inside the project. They are not publication dates. The public date of this text is the release date of the document it sits in.
 
-**How to read the status words.** Each mechanism carries exactly one of: *proposed* (designed, not built), *implemented* (built, runs, not yet measured against a reference), *measured on named cases* (numbers exist for the cases named), *reproduced under a frozen configuration* (the same inputs gave the same output again, bit for bit where stated), *accepted in the workflow* (in daily use and approved in the author's review).
+**How to read the status words.** Each mechanism carries exactly one of: *proposed* (designed, not built), *implemented* (built, runs, not yet measured against a reference), *measured on named cases* (numbers exist for the cases named), *reproduced under a frozen configuration* (the same inputs gave the same output again, bit for bit where stated), *accepted in the workflow* (in daily use and approved on review).
 
 **Machine.** Everything was measured on one Windows PC with 32 GB of RAM and one 8 GB RTX 5050, shared between several work sessions through a queue. Timings taken while other jobs waited are marked where the record says so. "The human model" is the project's one test subject: a female head and body held as a signed-distance field on a sparse multi-level lattice (levels of 8 mm bricks down to 0.25 mm cells).
 
@@ -2358,15 +2353,15 @@ The parts were written into a copy of the model's store one 24 mm region per pro
 
 Three earlier attempts are part of the record.
 
-- **A rest-groom rebuild, archived 2026-10-31.** Its fixes were made mechanism by mechanism but judged only on full-head renders, and untested pieces went straight onto the head. The author's review: it "totally failed". The lesson taken: prove each piece on one lock or one fibre before a head.
-- **A built style (2026-11-10 to 11-11).** A groom generator placed locks by a specification: an envelope of layer heights, Poisson-disc lock centres, a smooth held top. It matched a reference photograph's tone and contrast measures at lock and section scale, but the author's review on 11-11 08:14 was that it read "as a mound at the top and front", with locks "all basically the same size and too symmetrical" and a top that looked smoothed with hair spray. It was stopped there. Status of that generator: measured on named cases, rejected.
+- **A rest-groom rebuild, archived 2026-10-31.** Its fixes were made mechanism by mechanism but judged only on full-head renders, and untested pieces went straight onto the head. It was reviewed as a complete failure. The lesson taken: prove each piece on one lock or one fibre before a head.
+- **A built style (2026-11-10 to 11-11).** A groom generator placed locks by a specification: an envelope of layer heights, Poisson-disc lock centres, a smooth held top. It matched a reference photograph's tone and contrast measures at lock and section scale, but on review (11-11 08:14) it read as a mound at the top and front, with locks nearly all the same size and too symmetrical, and a top that looked smoothed with hair spray. It was stopped there. Status of that generator: measured on named cases, rejected.
 - **The foundations audit (2026-11-11 ~00:10).** Each foundation under the look was measured or read in code. Faults found and fixed at their causes: (a) every point of a strand used its *root's* skin normal as its outward direction for sky light, so lengths hanging 30 cm below the root were lit by where they grew, not where they were; (b) the key light's size widened the skin's highlights but not the hair's; (c) one roughness value along a fibre that is about three years old at 40 cm; (d) every cut hair tapered like an uncut one; (e) 8 % of points bent tighter than a 12 mm radius; (f) thousands of strands ran through the body (2,177 and 4,961 in two sets) where the body lattice had no gradient; (g) the biggest tool fault, found ~01:10: the 3 mm body lattice was a true distance only within about 10 mm of the skin (the store clamps at ±12 mm), so it read 13 mm where the truth was over 30 mm. Every envelope number taken before that used a faulty ruler. The repair is in D1.9.
 
-After these, the direction became: grow a natural base from causes first, and treat every style as a state applied to it (the author's agreement, 11-11 07:57).
+After these, the direction became: grow a natural base from causes first, and treat every style as a state applied to it (adopted 11-11 07:57).
 
 ### D1.2 Grow once, style as states
 
-*First designed 2026-10-31 (commit 0de30c0f); the natural base on the human model 11-11 10:36. Status: measured on named cases. The base head drew the author's first comment "This is a good baseline for the hair" (11-11 10:38); the current base variant still awaits his acceptance (his review of the latest comparison sheet is open). The styling passes are measured on named cases in the hair work area, not in the tool's window.*
+*First designed 2026-10-31 (commit 0de30c0f); the natural base on the human model 11-11 10:36. Status: measured on named cases. The base head was first reviewed as a good baseline for the hair (11-11 10:38); the current base variant still awaits acceptance (the review of the latest comparison sheet is open). The styling passes are measured on named cases in the hair work area, not in the tool's window.*
 
 Hair is grown once from its causes: follicle position and exit angle, the fibre's inherited type, stiffness and weight, sebum creeping from the root, water, wear with age along the fibre, and a cut. The result is a rested natural head, saved. A style is a sequence of physical passes on that saved head (brush strokes, finger passes, a water set while drying, product). No pass holds anything once it ends.
 
@@ -2374,7 +2369,7 @@ Hair is grown once from its causes: follicle position and exit angle, the fibre'
 
 **Layer files** (`engine/hair/layers.py`). A look is five JSON files: hair, style, colour, environment, simulation. Every setting has exactly one owner layer (longest-prefix rule). A layer file that holds a key another layer owns is refused, so a style cannot re-tune a fibre or a follicle.
 
-**The natural base as built on the human model:** 137,865 hairs at about 225 per cm² on 608 cm² of scalp; 1,023 guide hairs settled as rods; child hairs interpolated; locks formed by wet cohesion and not placed. Acts: a soft side part, one finger-comb, fingers raking wet hair off the face, air-dried. No product, no root lift. Two changes requested in the author's review of the first base were made at their causes: front follicles turned back and to the side (fading over 70 mm inside the hairline) so the hair sweeps off the face, and the cut raised to just past the shoulders. Hairs crossing the face region fell from 2,196 to 265.
+**The natural base as built on the human model:** 137,865 hairs at about 225 per cm² on 608 cm² of scalp; 1,023 guide hairs settled as rods; child hairs interpolated; locks formed by wet cohesion and not placed. Acts: a soft side part, one finger-comb, fingers raking wet hair off the face, air-dried. No product, no root lift. Two changes requested on review of the first base were made at their causes: front follicles turned back and to the side (fading over 70 mm inside the hairline) so the hair sweeps off the face, and the cut raised to just past the shoulders. Hairs crossing the face region fell from 2,196 to 265.
 
 **Order of the style stage:** load the grown head (fingerprints checked) → product → brush strokes → hand passes → water set → release every act → release solves with friction anchors kept → final gated settle → child hairs → form → baby hairs → colour → a 0.2 mm push-out from the body.
 
@@ -2408,7 +2403,7 @@ Every kind except scalp hair and its edge is shorter than its own gravity length
 
 In the frame carried along the strand, the rest curvature is κ0·(cos θ, flat·sin θ) with θ = τ0·(s − start) + phase, ramped in over `ramp_mm`. κ0 = 2/CD where CD is the curve diameter. τ0 comes from the curl index i (stretched length over end-to-end length): for a round helix τ0 = κ0/√(i² − 1); for a flattened one, by bisection on the measured index of the generated path. So at fixed i the shape is self-similar in CD: free amplitude ≈ (i² − 1)·CD/2, wavelength ≈ π·√(i² − 1)·CD. The classification follows de la Mettrie and Loussouarn. Design values: wavy = CD 48 mm, i 1.10, flat 0.25, a/b 1.3, lock of ~30 hairs, bond 0.1; curly = CD 10 mm, i 2.0, lock ~50, bond 0.35. Lock size and bond strength are stored as traits of the type: clumping is a property the fibre carries, not a style.
 
-**What was wrong first.** To get "a bit more waviness" (author's review, 11-12 about 12:10) the first lever tried was a tighter CD (48 → 44 mm). Measured on the head: no gain. One hanging fibre, 250 mm, dry, rms offset from the straight hang: CD 48/i 1.10: 4.75 mm; CD 44/i 1.10: 4.59; CD 40/i 1.10: 4.61; CD 40/i 1.15: 5.67 (+19 %); CD 35/i 1.20: 6.32 (+33 %). A tighter CD alone makes smaller, shorter waves. The lever is the curl index. Gravity stretches the hanging wave: about 89 mm against 69 mm free.
+**What was wrong first.** To get a little more waviness (a review direction, 11-12 about 12:10) the first lever tried was a tighter CD (48 → 44 mm). Measured on the head: no gain. One hanging fibre, 250 mm, dry, rms offset from the straight hang: CD 48/i 1.10: 4.75 mm; CD 44/i 1.10: 4.59; CD 40/i 1.10: 4.61; CD 40/i 1.15: 5.67 (+19 %); CD 35/i 1.20: 6.32 (+33 %). A tighter CD alone makes smaller, shorter waves. The lever is the curl index. Gravity stretches the hanging wave: about 89 mm against 69 mm free.
 
 ### D1.5 The settle, the rest gate, the cached head
 
@@ -2469,9 +2464,9 @@ Solver: L-BFGS-B in scaled variables. Growth is by continuation: the active arc 
 
 **The water set and its timing.** Over the set span, each joint's rest turning moves toward its current turning: ρ ← ρ + set·(dd − ρ). Re-wetting removes the set's share; the follicle's own curl is untouched by water. The set fades with time and humidity as R(t) = 0.7·exp(−t′/0.5 h) + 0.3·exp(−t′/24 h), t′ = t·(RH/90)^5.2·10^(−2·hold). Water softens and loads the fibre: E × (1 − 0.5·wet). The first recipe took the set at the end of the hand pass, while the hand still held the hair. Taking it in the free fall after the hands are gone (n2g) gave +11–15 % wave with the body changed by only 0.2–1.8 mm. Kept. *Tried and rejected:* re-taking friction anchors at the dry friction (0.13) after drying gave no width gain and let the front slide onto the face (529 points over the face region against 275).
 
-**Body.** The author's review asked for a little more body, later clarified as mostly at the sides and "a derivative of just the texture of the waviness". Exit angles, comb strength and CD all measured flat after the style. On n2j the sides' p95 width rose 2.2–3.0 mm and the crown 1.4 mm with the wave, but n2j is unverified.
+**Body.** A review asked for a little more body, later clarified as mostly at the sides and as following from the texture of the waviness alone. Exit angles, comb strength and CD all measured flat after the style. On n2j the sides' p95 width rose 2.2–3.0 mm and the crown 1.4 mm with the wave, but n2j is unverified.
 
-**Flyaways: designed against defect.** The generator marks a small fraction of strands as fly-aways that leave their lock partway along. Of the base's 104 loose stretches, 12 are on designed fly-away strands and 92 are not. On n2d: 16 designed, 310 not. On n2e: 14 and 154. On the untouched heads: 787 (base), 1,004 with the first phase shift, 740 with the wave-only shift. The author's review of the n2c / n2d sheet was that the flyaways were "most likely ... by design" and should change only through styling. The counts say otherwise for n2d: its extra loose strands were a defect of the first phase shift, fixed at that cause.
+**Flyaways: designed against defect.** The generator marks a small fraction of strands as fly-aways that leave their lock partway along. Of the base's 104 loose stretches, 12 are on designed fly-away strands and 92 are not. On n2d: 16 designed, 310 not. On n2e: 14 and 154. On the untouched heads: 787 (base), 1,004 with the first phase shift, 740 with the wave-only shift. On review of the n2c / n2d sheet the flyaways were taken as most likely by design, to change only through styling. The counts say otherwise for n2d: its extra loose strands were a defect of the first phase shift, fixed at that cause.
 
 **Crown loop.** The base has a loop of hair standing at the crown. Measured cause: short regrowth hairs (35–73 mm) at the whorl, where the long layer parts away and nothing lies over them; a 70 µm hair only buckles under its own weight past about 91 mm. The generator fix (2026-11-11 21:43, 7bc80fe5): short hairs take the wet set with the long hair. On a test cap: 5 of 5,331 short hairs standing before, 0 after. The base itself has not been regrown with it.
 
@@ -2487,7 +2482,7 @@ Measured: 198,156 hairs with 1,593 guides generated in 342 s on the CPU and 195,
 
 ### D1.9 The fibre layer: rendering, scattering, shadows
 
-*Fibre layer 2026-11-10 (b0535200); multiple scattering 11-10; exact skin shadows 11-11; lean scalp shadow default 11-12 01:19 (1964801a). Status: accepted in the workflow for the face-hair shadow fix (author's review: approved) and the scalp shadow; the rest measured on named cases.*
+*Fibre layer 2026-11-10 (b0535200); multiple scattering 11-10; exact skin shadows 11-11; lean scalp shadow default 11-12 01:19 (1964801a). Status: accepted in the workflow for the face-hair shadow fix (approved on review) and the scalp shadow; the rest measured on named cases.*
 
 **Data.** Per strand 24 points, radius and pigment per point, ellipticity, twist rate, roughness, root normal. Each strand is a centripetal Catmull-Rom curve. A uniform span grid (0.5 mm cells for short hair, 2 mm otherwise) lists each span in the cells its curve passes.
 
@@ -2539,7 +2534,7 @@ A rig is a small versioned file: lights (sun, area rectangle or disk, sphere, sp
 
 **The Rembrandt-style preset** (2026-11-12 08:38, 03f20e3a). Key 65° round and 30° up, 4° across as seen from the subject (a 9×14 cm softbox at 2 m), fill 0.05, a dark studio with room light 0.05. It was set by measuring five traits of the pattern on the model's face (lit triangle against shadow cheek, lit against shadow side, triangle against lit side, triangle against nose shadow, and the nose shadow's edge width) against a published portrait-lighting reference that was studied and is not redistributed. Of 96 settings the chosen one was nearest (distance 0.81; the previous preset 1.72); nose shadow edge 4.0 mm against the reference's 3.9. A softer variant (10° key, fill 0.1) is kept under its own name. A 17° candidate cost the same per pass but gave an 11.6 mm edge and was not adopted.
 
-*What light could not do:* across 288 settings the "closure" of the triangle (the region beside the nostril as dark as the reference's) never moved. On the model that region is as bright as the cheek shadow in every setting. It is the model's form there, not light, and it was not forced. Status of the preset: accepted in the workflow, conditionally (the author's review: keep it if it clears the legal checks and the other requirements); grain and cheek crops at the 4° key were not measured on the card.
+*What light could not do:* across 288 settings the "closure" of the triangle (the region beside the nostril as dark as the reference's) never moved. On the model that region is as bright as the cheek shadow in every setting. It is the model's form there, not light, and it was not forced. Status of the preset: accepted in the workflow, conditionally (kept on the condition that it passes the legal checks and the other requirements); grain and cheek crops at the 4° key were not measured on the card.
 
 ### D2.3 The stage-1 study: what was measured before building
 
@@ -2569,7 +2564,7 @@ A rig is a small versioned file: lights (sun, area rectangle or disk, sphere, sp
 
 **What the first version did** (11-11 19:33 to 11-12 10:22). At each gather hit, if the hit was at least 10 cm away the gather read the hit brick's *outgoing* cache (albedo/π × (direct + bounce)); nearer hits were lit exactly. This came from the study, where it met the patch-error gate.
 
-**The flag.** An outside review of our patent checks pointed out that NVIDIA US11790594 has an independent claim 16
+**The flag.** A further check of our patent readings found that NVIDIA US11790594 has an independent claim 16
 which our earlier check had missed. As we read it, the claim concerns a ray cast from one location that meets a
 second location associated with an outgoing irradiance cache, and rendering that uses the cached outgoing value
 based at least on a distance between the two (claim 18: beyond a threshold). The first look-dev gather, with its
@@ -2635,7 +2630,7 @@ Not used: OptiX (proprietary terms, one vendor's hardware).
 
 ## D4. Patent readings carried over as recorded
 
-**These are our own readings of the claims, made without counsel. They are not legal advice and no clearance is claimed.** A search hit is a screening flag; a claim reads only if every element of at least one claim is met. "None found" is not proof of absence. Expiry dates are estimates. Pending applications can change and need re-reading at grant.
+**These are our own readings of the claims, made without counsel. They are not legal advice and no clearance is claimed.** A search hit is a screening flag; a claim reads only if every element of at least one claim is met. Finding none is not proof of absence. Expiry dates are estimates. Pending applications can change and need re-reading at grant.
 
 | record | claim element of concern | what is absent in our design |
 |---|---|---|
@@ -2680,20 +2675,20 @@ been reproduced by anyone outside the project.
 **The headline, stated plainly.** The tool exists and runs: a real window, a field store with versions and undo,
 brushes on the CPU and on the card, parts that touch without merging, a light rig with a settling still frame,
 generated hair, teeth and garments. It does not yet pass its own first test (a sphere to a rough head in under
-five minutes), it misses its frame-rate targets on the full human model, and the author's own hands-on sculpting
+five minutes), it misses its frame-rate targets on the full human model, and the hands-on sculpting
 test of the rebuilt toolkit has not happened yet. Several mechanisms described here are prototypes measured on
 synthetic cases only.
 
 | Subsystem | What works (evidence state) | What is slow or failing | Not done |
 |---|---|---|---|
 | Field store (Part 4) | Four-level sparse brick lattice, 0.25 mm finest; versions by copy-on-write; one writer transaction per edit; a seam guard and a publish gate (accepted in the workflow: the current human model is made through them; five real strokes written back gave 0 seams at every level where the earlier writer left 4,053) | Whole body at the finest level does not fit the 8 GB card at once; the full-session benchmark on the human model hit an out-of-memory fault on the card and missed the 30 frames per second and 100 ms targets; one save was interrupted by quitting (the sculpt was recovered from the temporary folder, and the save path was fixed) | The stroke's whole turn on the card; one live sparse store on the card with copy-on-write undo; per-part lattices finer than the 0.125 mm leaves that exist today |
-| Brushes and toolkit (Part 5) | Draw, Carve, Inflate, Clay, Smooth, Swell to contact, Settle onto, protection of surfaces behind (implemented; measured on standard forms and on a thin-wall test). Grab is view-dependent and is being replaced; the rebuilt Pencil is faulty and has not landed | Test 1 not passed: the first scripted run made "a lumpy egg with a flat face" at 6.6-13 frames per second; on 11-12 the author could not block out a head; a screen-plane pull lost most of its depth off-axis (30.1 / 17.7 / 5.7 / 0.8 mm at 0 / 30 / 60 / 80 degrees) until the form-based constraint (29.4-29.9 mm at every angle, in a test copy) | The toolkit rebuilt on its ten principles; the author's hands-on test; form-aware Grab; design changes for two patent flags |
+| Brushes and toolkit (Part 5) | Draw, Carve, Inflate, Clay, Smooth, Swell to contact, Settle onto, protection of surfaces behind (implemented; measured on standard forms and on a thin-wall test). Grab is view-dependent and is being replaced; the rebuilt Pencil is faulty and has not landed | Test 1 not passed: the first scripted run made a lumpy, egg-like form with a flat face at 6.6-13 frames per second; on 11-12 a head could not be blocked out by hand; a screen-plane pull lost most of its depth off-axis (30.1 / 17.7 / 5.7 / 0.8 mm at 0 / 30 / 60 / 80 degrees) until the form-based constraint (29.4-29.9 mm at every angle, in a test copy) | The toolkit rebuilt on its ten principles; the hands-on test; form-aware Grab; design changes for two patent flags |
 | Shell (Part 5) | The window, shelf, grids, section and cut tools, regions, marks (implemented; shown in the images) | | A designed product pass with the sculptor in the loop |
 | Contact and parts (Part 6) | Parts as separate fields with touch / slide / bond rules; solid-by-default body with designed cavities; a barrier solver as baseline; a constraint-based prototype; the field-read barrier in two forms (all measured on named, mostly synthetic, cases) | The stand-in elbow stalls at 85-90 degrees (from a straight rest) under three different contact laws, cause not established; the human model's own elbow reached 90 degrees from rest (about 112 anatomical) with the solver at its limits, against a 145-155 degree target; soft-on-rigid favours the baseline (73 s against 7.4 s); the hand-on-cheek scene did not converge; the explicit form fails friction | A contact law of record; a broad phase for many bodies; the environment-field sensor (proposed only) |
 | Posing (Part 7) | Skeleton, joint finder, volumetric bone-heat weights on the lattice, dual-quaternion map with inverse; drag at a median 16.5 ms a frame at 1080p on stored corrective states (measured on named cases) | Skinning alone folds at the elbow at every zone width; the posing corrective (an earlier, different setup from the contact study) reaches 60 degrees on the test arm and 55 degrees on the human model, with visible crease defects | 90 degrees and beyond; shoulders; bones and muscles as layers |
 | Cloth (Part 7) | Body measurements and landmarks read from the field; yarn points on a pattern lattice; a swim-knit top built, settled and shown; a dress form (measured on named cases) | No tee is at rest yet | Garments as two-faced thin objects for the brushes; cloth in motion |
 | Mouth library (Part 7) | Generated teeth, arch, gums, palate, jaw and tongue as field parts, placed in a head in the real window (measured on named cases) | The cheek-to-teeth space in the human model is unresolved (one run ended out of memory) | Seating published in the model; the life-like look |
-| Hair (Part 8) | Grown once from follicles as curves with an inherited helix, settled to a rest gate, cached; a wave-banding fault found and fixed with measurements; fibre scattering after published models; exact shadow rays checked against a 144-ray reference (measured on named cases; the base awaits the author's acceptance) | About 6.5 minutes to grow a head on the card; 20-36 s a frame for the full-quality hair render; one variant failed its style gate; an earlier whole rebuild was archived as failed (10-31) and a built style was stopped on review (11-11) | Dynamics (statics only today); styles as states in the tool's window (styling passes are measured in the hair work area only); brows and lashes following a sculpt; the hair in the tool's own window at full quality |
+| Hair (Part 8) | Grown once from follicles as curves with an inherited helix, settled to a rest gate, cached; a wave-banding fault found and fixed with measurements; fibre scattering after published models; exact shadow rays checked against a 144-ray reference (measured on named cases; the base awaits acceptance) | About 6.5 minutes to grow a head on the card; 20-36 s a frame for the full-quality hair render; one variant failed its style gate; an earlier whole rebuild was archived as failed (10-31) and a built style was stopped on review (11-11) | Dynamics (statics only today); styles as states in the tool's window (styling passes are measured in the hair work area only); brows and lashes following a sculpt; the hair in the tool's own window at full quality |
 | Light (Part 8) | Sphere tracing; a rig, panel and presets; a lattice light while moving and a gather that settles over 64 passes when still, with no denoiser; the cache redesigned on 11-12 around a patent reading, one bounce within 0.12 % of the all-exact reference on the test folds (measured on named cases) | The second bounce is missing (0.5-2 % in folds, about 35 % in dark pockets); no light setting reached the studied portrait reference | Light on cards without ray-tracing hardware: nothing measured yet |
 | Skin, eyes, materials (Part 3) | Render-time micro-relief generated and varied; colour by zone; a seeded iris generator (measured on named cases; see the image set for the present look); 72 sourced material profiles committed, 75 on disk (implemented; the tool's viewport did not read them as of 11-11) | The lip colour border steps in 0.3 mm cells in close-up; grain at the lid margins from a stale copy of the eye in the body field (cause measured, fix not done) | Material proof sheets (stone, wood); a second subject |
 
@@ -2707,15 +2702,14 @@ single runs, unequal materials); it is not a claim about the present tool.
 
 # Part 10. Patent readings carried over, and what is held out of the code
 
-**Read this first.** By the author's decision this release publishes flags only: it names each patent our review
+**Read this first.** By decision, this release publishes flags only: it names each patent our review
 flagged and says what was done about it, and it publishes no conclusion that our code does or does not meet any
-claim. These are our own readings of claim text, made by non-lawyers (the engineering sessions, and
-one outside review the author obtained on 2026-11-12). No patent attorney has been consulted. A search hit is a
+claim. These are our own readings of claim text, made by non-lawyers. No patent attorney has been consulted. A search hit is a
 screening flag, not proof; writing our own code or
 measuring better performance is not protection; and a status such as "expired - fee related" is a dated note, not
 a permanent fact. The searches were not exhaustive. Nothing here is a clearance, and nothing here is legal advice.
 
-How a reading is recorded in this project (adopted 2026-11-12, from the outside review): each proposed restriction
+How a reading is recorded in this project (adopted 2026-11-12): each proposed restriction
 names the claim element that causes the concern, and each design-around names the element that is absent.
 
 ## 10.1 Flags on code as it stands: held out of any public code until redesigned
@@ -2736,7 +2730,7 @@ Because the edit program, the tracer and the band store are central, the tool's 
 |---|---|---|
 | Geodesic voxel binding for skinning weights | Autodesk US 9,836,879 B2, US 10,062,203 | volumetric bone heat solved on the lattice (Baran and Popović 2007), Part 7; our own geodesic bench module is study-only |
 | Regularised Kelvinlet brushes | Pixar US 10,586,401 | not used; see 10.1 |
-| Exact cubic in-voxel ray hit for distance grids | NVIDIA US 11,823,319 | marching with bracketing and bisection; the reading is recorded both as "clear, elements named" and as "not verified either way" in different records, so it is treated as open |
+| Exact cubic in-voxel ray hit for distance grids | NVIDIA US 11,823,319 | marching with bracketing and bisection; one record names the elements as absent and another marks the reading as not verified either way, so it is treated as open |
 | Cubic turning-point shadow rays; voxel-local hit storage | NVIDIA US 11,887,245; US 12,175,588 | not used; hits are kept in object or world space |
 | Feedback photon splatting | NVIDIA US 12,315,070 | not used |
 
@@ -2759,9 +2753,8 @@ quaternion blending, bone heat, and the hair models of Marschner et al. 2003 and
 implemented), per-brick spherical-harmonic sky transfer and light tracing for caustics (probe results), photon
 mapping, and non-linear sphere tracing (Seyb et al. 2019; benched only).
 
-The author's position, in his words (2026-11-11 and 11-12): "using a patented method is legally risky. We can
-study and learn from it though. Then improve it." And: "We should attempt to learn from existing research, and
-build our own mechanisms."
+The position taken (2026-11-11 and 11-12): using a patented method is a legal risk; a patented method may be studied
+and learned from, and then improved on; the work learns from existing research and builds its own mechanisms.
 
 ---
 
@@ -2769,8 +2762,8 @@ build our own mechanisms."
 
 Ordered roughly by what the tool needs first.
 
-1. **The author's hands-on sculpting test.** A sphere to a rough head in under five minutes with the rebuilt
-   toolkit, by the author's own hand. Not yet run on the rebuilt tools. It is the benchmark for the tool's first
+1. **The hands-on sculpting test.** A sphere to a rough head in under five minutes with the rebuilt
+   toolkit, by hand. Not yet run on the rebuilt tools. It is the benchmark for the tool's first
    version.
 2. **The toolkit rebuilt on its ten principles** (Part 5): every tool fully three-dimensional and independent of
    the view once its constraint is set; the constraint shown on screen; tools that touch only the sheet under the
@@ -2779,14 +2772,14 @@ Ordered roughly by what the tool needs first.
    the card with copy-on-write undo and a fine surface band; per-part lattices finer than today's 0.125 mm leaves where they pay.
 4. **The design changes for the patent flags** in Part 10 (the capsule, Grab's admission, tile skipping, the band
    store), each recorded element by element, so the code can be released.
-5. **Contact** (Part 6): finish the constraint-based solver; test the author's field-read barrier alone and in
+5. **Contact** (Part 6): finish the constraint-based solver; test the field-read barrier alone and in
    hybrids; settle why the elbow stalls near 85-90 degrees by one-change-at-a-time runs on the real arm; build the
    environment-field sensor only if its four open problems have answers; a broad phase for many bodies.
 6. **Persistent state and compact encodings** (Part 2, sections 3 and 4): one small experiment each, measuring
    total cost including decode and writes.
 7. **Posing** (Part 7): the elbow to 90 degrees and beyond in clay, then other joints; bones and
    muscles as field layers from medical measurements where a part needs them.
-8. **Hair** (Part 8): the natural base accepted by the author (it awaits his acceptance today), then styles as states on the grown head (brush, hand, product,
+8. **Hair** (Part 8): the natural base accepted (it awaits acceptance today), then styles as states on the grown head (brush, hand, product,
    tie), in the tool's own window; brows and lashes that follow a sculpt.
 9. **Light** (Part 8): the second bounce from the lattice; a portrait preset set; ray-traced-quality light on
    cards without ray-tracing hardware.
@@ -2795,7 +2788,7 @@ Ordered roughly by what the tool needs first.
 11. **Proofs on other subjects.** A materials library with examples (stone blocks, wood), from the 72 sourced material profiles already written (a further catalogue of 215 is planned only), and a native rebuild of an earlier animal model (a cat) in
     Field Studio. None of these proofs exists yet; they are the next evidence the project wants, to show the tool
     is not about one human model.
-12. **A sibling runtime engine** built for these fields, and, much later, the author's larger aim: a persistent,
+12. **A sibling runtime engine** built for these fields, and, much later, the project's larger aim: a persistent,
     causal world in which fields carry geometry, material and physics.
 13. **The code release**, open source, once items 4 and the clean-up of the code set are done.
 

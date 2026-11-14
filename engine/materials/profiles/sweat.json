@@ -1,0 +1,295 @@
+{
+ "id": "sweat",
+ "kind": "fluid",
+ "family": "fluid",
+ "_": "Eccrine sweat: a dilute salt solution (99 % water; NaCl ~10-90 mmol/L, hypotonic to plasma; pH ~4.5-7) secreted onto the skin. Numbers at skin temperature 32-35 C. Built from water.variants.sweat plus research; apocrine (axillary, lipid/protein-rich, viscous) secretion is a state. World lane 2026-11-07.",
+ "surface": {
+  "alpha": {
+   "v": 0.005,
+   "q": "E",
+   "src": "a free liquid surface; on skin the film follows the relief (pores, furrows)"
+  },
+  "n": {
+   "v": 1.3345,
+   "q": "D",
+   "src": "water.variants.sweat: water + 0.2-0.5 % NaCl (dn ~ +0.0017 per 1 %, GAPS 7)"
+  },
+  "F0": {
+   "v": 0.0205,
+   "q": "D",
+   "src": "((n-1)/(n+1))^2"
+  }
+ },
+ "optics_summary": {
+  "n": {
+   "v": 1.3345,
+   "q": "D",
+   "src": "water.variants.sweat: water + 0.2-0.5 % NaCl (dn ~ +0.0017 per 1 %, GAPS 7)"
+  },
+  "absorption": {
+   "v": "clear; water-like absorption (negligible at mm scale in the visible)",
+   "q": "D",
+   "src": "GAPS 5 water mu_a < 1 per m in 400-700 nm"
+  },
+  "scattering_length_mm": {
+   "v": null,
+   "q": "E",
+   "src": "not found: no scatterers resolved; clear film"
+  },
+  "translucency": {
+   "v": "transparent film",
+   "q": "D",
+   "src": "as absorption"
+  }
+ },
+ "contact": {
+  "surface_tension_mN_m": {
+   "v": 71.8,
+   "q": "M",
+   "src": "SONNER15 via GAPS 7 (table value in a review)"
+  },
+  "viscosity_mPa_s": {
+   "v": [
+    0.7,
+    0.8
+   ],
+   "q": "E",
+   "src": "water-like at 32-37 C (IAPWS); no sweat measurement found (GAPS 7)"
+  },
+  "density_kg_m3": {
+   "v": [
+    1000,
+    1005
+   ],
+   "q": "E",
+   "src": "water at 32-35 C (994) + 0.2-0.5 % NaCl (+~7 kg/m3 per 1 %)"
+  },
+  "sodium_mmol_L": {
+   "v": [
+    10,
+    90
+   ],
+   "q": "M",
+   "src": "BAKER17 re-read 11-08 (PMC5371639): local (forearm patch) sweat [Na+] typically ~10 to ~90 mmol/L; predicted whole-body ~10-70; no numeric mean stated in the text"
+  },
+  "rate_mg_cm2_min": {
+   "v": {
+    "rest_heat_mean": 0.36,
+    "rest_heat_forehead": 0.99,
+    "exercise_mean": 0.89,
+    "exercise_forehead": 3.39,
+    "palm_emotional_peak": 0.7
+   },
+   "q": "M",
+   "src": "SKINMOIST E4/E5/M2"
+  },
+  "whole_body_L_h": {
+   "v": {
+    "rest_heat": 0.4,
+    "light_moderate_exercise": 1.0,
+    "hard_exercise_heat": [
+     1.5,
+     2.5
+    ]
+   },
+   "q": "E",
+   "src": "SKINMOIST E5 for rest and light-moderate; BAKER17 re-read 11-08: whole-body sweating rate typically ~0.5-2.0 L/h, > 3.0 L/h rare (~2 % of athletes); the hard_exercise_heat [1.5, 2.5] split is E (not stated as such in Baker)"
+  },
+  "onset_min": {
+   "v": 14,
+   "q": "M",
+   "src": "SKINMOIST T1 (forehead, passive heating, single subject); emergence 'porewise' in pores first (T2)"
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": {
+     "on_hydrated_sweating_skin": [
+      20,
+      40
+     ]
+    },
+    "q": "M",
+    "src": "GAPS 5 / skin_moisture.md: sweat puddles 20-40 deg"
+   }
+  },
+  "drying": {
+   "v": "film unobservable 5-10 min after cooling; salt residue left on evaporation (a faint white crust after heavy sweating)",
+   "q": "M",
+   "src": "SKINMOIST T5; salt crust E"
+  },
+  "friction_effect": {
+   "v": "moist sweating skin has higher friction against dry counterfaces than dry skin (grip rises, then falls when dripping wet)",
+   "q": "M",
+   "src": "GERHARDT08 (hydration raises skin friction)"
+  },
+  "solver": {
+   "phase": {
+    "v": "fluid",
+    "q": "D",
+    "src": "a liquid (deform.model)"
+   },
+   "collision_thickness_mm": {
+    "v": {
+     "film_on_surface": "the film's own thickness (layers / film values)",
+     "particle_solver": "half the particle spacing"
+    },
+    "q": "D",
+    "src": "ANON_E solver convention: a liquid has no skin of its own; it keeps a no-penetration boundary at solids"
+   },
+   "penetration_response": {
+    "model": {
+     "v": "incompressible: no stiffness ramp; a pressure projection (or weakly compressible SPH with numerical sound speed >= 10x the max flow speed) keeps it out of solids and out of itself",
+     "q": "D",
+     "src": "bulk modulus (water 2.2 GPa: effectively incompressible at body speeds)"
+    },
+    "ramp": {
+     "v": "pressure_projection",
+     "q": "D",
+     "src": "as model"
+    },
+    "boundary_wetting": {
+     "v": "the contact angle per pair (pairs/world.json wetting) sets the meniscus at a solid",
+     "q": "D",
+     "src": "DEGENNES04"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": {
+      "on_wettable_surface": 0.0,
+      "on_superhydrophobic": [
+       0.3,
+       0.9
+      ]
+     },
+     "q": "M",
+     "src": "RICHARD02 / DEGENNES04: drops stick and spread on wettable solids; bounce only on (super)hydrophobic ones"
+    },
+    "response_time_ms": {
+     "v": {
+      "drop_R1mm": 9.7,
+      "drop_R2mm": 27.5
+     },
+     "q": "D",
+     "src": "RICHARD02 tau = 2.6 sqrt(rho R^3/gamma) with rho 1003, gamma 0.0718 N/m"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "sound": 1500,
+      "capillary_wave_1mm": 0.67
+     },
+     "q": "D",
+     "src": "sound ~ water's (CRC; oils ~1450); capillary-wave phase speed sqrt(2 pi gamma/(rho lambda)) at lambda 1 mm"
+    },
+    "damping_ratio": {
+     "v": "viscous: set by viscosity_mPa_s (no separate damping)",
+     "q": "D",
+     "src": "Newtonian/viscous dissipation"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "newtonian_fluid",
+   "q": "E",
+   "src": "dilute salt solution, water-like"
+  },
+  "density_kg_m3": {
+   "v": 1003,
+   "q": "E",
+   "src": "as contact.density_kg_m3 mid"
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.6,
+   "q": "E",
+   "src": "water-like (>= 99 % water): IAPWS ~0.62 at 35 C"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 4100,
+   "q": "E",
+   "src": "water-like, slightly lowered by solutes"
+  },
+  "effusivity": {
+   "v": 1571,
+   "q": "D",
+   "src": "sqrt(k rho c) with the values above"
+  },
+  "emissivity": {
+   "v": 0.96,
+   "q": "E",
+   "src": "water's value (CRC)"
+  }
+ },
+ "states": {
+  "apocrine": {
+   "set": {
+    "contact.viscosity_mPa_s": null,
+    "deform.model": "non_newtonian_fluid"
+   },
+   "q": "M",
+   "src": "SKINMOIST M5: apocrine secretion viscous, lipid-rich (axilla, areola and other apocrine sites); no viscosity number found"
+  },
+  "dried_salt": {
+   "set": {
+    "surface.alpha": 0.3
+   },
+   "q": "E",
+   "src": "ANON_E: salt microcrystals roughen the surface; read from photos"
+  }
+ },
+ "sources": {
+  "SONNER15": {
+   "cite": "Sonner Z et al. Biomicrofluidics 9:031301 (2015) PMC4433483 (via GAPS 7)",
+   "url": "https://doi.org/10.1063/1.4921039",
+   "lic": "PMC, licence not read; number used as fact"
+  },
+  "BAKER17": {
+   "cite": "Baker LB. Sweating rate and sweat sodium concentration in athletes: a review of methodology and intra/interindividual variability. Sports Med 47(Suppl 1):111-128 (2017). PMC5371639. Recalled: sweat Na ~10-90 mmol/L",
+   "url": "https://doi.org/10.1007/s40279-017-0691-5",
+   "lic": "CC BY 4.0 (open access)"
+  },
+  "SKINMOIST": {
+   "cite": "The project's research note skin_moisture.md (E4/E5 sweat rates from Taylor & Machado-Moreira 2013 review, T1-T8 sweat in time from Jose et al. 2025 arXiv 2505.04789 CC BY-NC-ND 4.0)",
+   "url": "local",
+   "lic": "project record; S5 paper CC BY-NC-ND 4.0: numbers used as facts, text not copied"
+  },
+  "GAPS": {
+   "cite": "Project research note the project's materials research note GAPS_RESEARCH.md (11-07), which carries the primary citations (IAPWS14/08, MAVON97, ELKHYAT04, MOTWANI01, SONNER15, SCHIPPER07, ERMPS18, DAIMON07, POPEFRY97)",
+   "url": "local",
+   "lic": "project record; primary sources' terms listed there"
+  },
+  "GERHARDT08": {
+   "cite": "Gerhardt L-C, Strassle V, Lenz A, Spencer ND, Derler S. Influence of epidermal hydration on the friction of human skin against textiles. J R Soc Interface 5:1317-1328 (2008). PMC2607440",
+   "url": "https://doi.org/10.1098/rsif.2008.0034",
+   "lic": "(c) The Royal Society; numbers used as facts"
+  },
+  "IAPWS": {
+   "cite": "IAPWS releases: Surface Tension of Ordinary Water Substance (2014); Viscosity of Ordinary Water (2008); IAPWS-95 density; thermal conductivity (2011)",
+   "url": "http://www.iapws.org/release.html",
+   "lic": "freely available releases; numbers used as facts"
+  },
+  "CRC": {
+   "cite": "CRC Handbook of Chemistry and Physics (any recent edition): standard property tables for water, ice, air, oils. Values recalled as standard table values, not re-checked line by line this session",
+   "url": "https://hbcp.chemnetbase.com",
+   "lic": "copyright, paywalled; individual physical constants used as facts, no table copied"
+  },
+  "ANON_E": {
+   "cite": "Estimate made in this lane; the reason is given in each src",
+   "url": "-",
+   "lic": "own work"
+  },
+  "RICHARD02": {
+   "cite": "Richard D, Clanet C, Quere D. Contact time of a bouncing drop. Nature 417:811 (2002): tau = 2.6 sqrt(rho R^3 / gamma), independent of impact speed",
+   "url": "https://doi.org/10.1038/417811a",
+   "lic": "paywalled; formula used as fact"
+  },
+  "DEGENNES04": {
+   "cite": "de Gennes P-G, Brochard-Wyart F, Quere D. Capillarity and Wetting Phenomena. Springer (2004): capillary length, Bond number, Tanner spreading",
+   "url": "https://doi.org/10.1007/978-0-387-21656-0",
+   "lic": "book, copyright; formulas used"
+  }
+ }
+}

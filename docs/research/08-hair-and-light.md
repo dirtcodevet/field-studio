@@ -4,7 +4,7 @@
 
 **How to read the dates.** Times in this part are internal provenance times: Pacific time, taken from the project's local commit log and dated lane records (short commit ids are given where one exists). They say when a mechanism was first built or measured inside the project. They are not publication dates. The public date of this text is the release date of the document it sits in.
 
-**How to read the status words.** Each mechanism carries exactly one of: *proposed* (designed, not built), *implemented* (built, runs, not yet measured against a reference), *measured on named cases* (numbers exist for the cases named), *reproduced under a frozen configuration* (the same inputs gave the same output again, bit for bit where stated), *accepted in the workflow* (in daily use and approved in the author's review).
+**How to read the status words.** Each mechanism carries exactly one of: *proposed* (designed, not built), *implemented* (built, runs, not yet measured against a reference), *measured on named cases* (numbers exist for the cases named), *reproduced under a frozen configuration* (the same inputs gave the same output again, bit for bit where stated), *accepted in the workflow* (in daily use and approved on review).
 
 **Machine.** Everything was measured on one Windows PC with 32 GB of RAM and one 8 GB RTX 5050, shared between several work sessions through a queue. Timings taken while other jobs waited are marked where the record says so. "The human model" is the project's one test subject: a female head and body held as a signed-distance field on a sparse multi-level lattice (levels of 8 mm bricks down to 0.25 mm cells).
 
@@ -18,15 +18,15 @@
 
 Three earlier attempts are part of the record.
 
-- **A rest-groom rebuild, archived 2026-10-31.** Its fixes were made mechanism by mechanism but judged only on full-head renders, and untested pieces went straight onto the head. The author's review: it "totally failed". The lesson taken: prove each piece on one lock or one fibre before a head.
-- **A built style (2026-11-10 to 11-11).** A groom generator placed locks by a specification: an envelope of layer heights, Poisson-disc lock centres, a smooth held top. It matched a reference photograph's tone and contrast measures at lock and section scale, but the author's review on 11-11 08:14 was that it read "as a mound at the top and front", with locks "all basically the same size and too symmetrical" and a top that looked smoothed with hair spray. It was stopped there. Status of that generator: measured on named cases, rejected.
+- **A rest-groom rebuild, archived 2026-10-31.** Its fixes were made mechanism by mechanism but judged only on full-head renders, and untested pieces went straight onto the head. It was reviewed as a complete failure. The lesson taken: prove each piece on one lock or one fibre before a head.
+- **A built style (2026-11-10 to 11-11).** A groom generator placed locks by a specification: an envelope of layer heights, Poisson-disc lock centres, a smooth held top. It matched a reference photograph's tone and contrast measures at lock and section scale, but on review (11-11 08:14) it read as a mound at the top and front, with locks nearly all the same size and too symmetrical, and a top that looked smoothed with hair spray. It was stopped there. Status of that generator: measured on named cases, rejected.
 - **The foundations audit (2026-11-11 ~00:10).** Each foundation under the look was measured or read in code. Faults found and fixed at their causes: (a) every point of a strand used its *root's* skin normal as its outward direction for sky light, so lengths hanging 30 cm below the root were lit by where they grew, not where they were; (b) the key light's size widened the skin's highlights but not the hair's; (c) one roughness value along a fibre that is about three years old at 40 cm; (d) every cut hair tapered like an uncut one; (e) 8 % of points bent tighter than a 12 mm radius; (f) thousands of strands ran through the body (2,177 and 4,961 in two sets) where the body lattice had no gradient; (g) the biggest tool fault, found ~01:10: the 3 mm body lattice was a true distance only within about 10 mm of the skin (the store clamps at ±12 mm), so it read 13 mm where the truth was over 30 mm. Every envelope number taken before that used a faulty ruler. The repair is in D1.9.
 
-After these, the direction became: grow a natural base from causes first, and treat every style as a state applied to it (the author's agreement, 11-11 07:57).
+After these, the direction became: grow a natural base from causes first, and treat every style as a state applied to it (adopted 11-11 07:57).
 
 ### D1.2 Grow once, style as states
 
-*First designed 2026-10-31 (commit 0de30c0f); the natural base on the human model 11-11 10:36. Status: measured on named cases. The base head drew the author's first comment "This is a good baseline for the hair" (11-11 10:38); the current base variant still awaits his acceptance (his review of the latest comparison sheet is open). The styling passes are measured on named cases in the hair work area, not in the tool's window.*
+*First designed 2026-10-31 (commit 0de30c0f); the natural base on the human model 11-11 10:36. Status: measured on named cases. The base head was first reviewed as a good baseline for the hair (11-11 10:38); the current base variant still awaits acceptance (the review of the latest comparison sheet is open). The styling passes are measured on named cases in the hair work area, not in the tool's window.*
 
 Hair is grown once from its causes: follicle position and exit angle, the fibre's inherited type, stiffness and weight, sebum creeping from the root, water, wear with age along the fibre, and a cut. The result is a rested natural head, saved. A style is a sequence of physical passes on that saved head (brush strokes, finger passes, a water set while drying, product). No pass holds anything once it ends.
 
@@ -34,7 +34,7 @@ Hair is grown once from its causes: follicle position and exit angle, the fibre'
 
 **Layer files** (`engine/hair/layers.py`). A look is five JSON files: hair, style, colour, environment, simulation. Every setting has exactly one owner layer (longest-prefix rule). A layer file that holds a key another layer owns is refused, so a style cannot re-tune a fibre or a follicle.
 
-**The natural base as built on the human model:** 137,865 hairs at about 225 per cm² on 608 cm² of scalp; 1,023 guide hairs settled as rods; child hairs interpolated; locks formed by wet cohesion and not placed. Acts: a soft side part, one finger-comb, fingers raking wet hair off the face, air-dried. No product, no root lift. Two changes requested in the author's review of the first base were made at their causes: front follicles turned back and to the side (fading over 70 mm inside the hairline) so the hair sweeps off the face, and the cut raised to just past the shoulders. Hairs crossing the face region fell from 2,196 to 265.
+**The natural base as built on the human model:** 137,865 hairs at about 225 per cm² on 608 cm² of scalp; 1,023 guide hairs settled as rods; child hairs interpolated; locks formed by wet cohesion and not placed. Acts: a soft side part, one finger-comb, fingers raking wet hair off the face, air-dried. No product, no root lift. Two changes requested on review of the first base were made at their causes: front follicles turned back and to the side (fading over 70 mm inside the hairline) so the hair sweeps off the face, and the cut raised to just past the shoulders. Hairs crossing the face region fell from 2,196 to 265.
 
 **Order of the style stage:** load the grown head (fingerprints checked) → product → brush strokes → hand passes → water set → release every act → release solves with friction anchors kept → final gated settle → child hairs → form → baby hairs → colour → a 0.2 mm push-out from the body.
 
@@ -68,7 +68,7 @@ Every kind except scalp hair and its edge is shorter than its own gravity length
 
 In the frame carried along the strand, the rest curvature is κ0·(cos θ, flat·sin θ) with θ = τ0·(s − start) + phase, ramped in over `ramp_mm`. κ0 = 2/CD where CD is the curve diameter. τ0 comes from the curl index i (stretched length over end-to-end length): for a round helix τ0 = κ0/√(i² − 1); for a flattened one, by bisection on the measured index of the generated path. So at fixed i the shape is self-similar in CD: free amplitude ≈ (i² − 1)·CD/2, wavelength ≈ π·√(i² − 1)·CD. The classification follows de la Mettrie and Loussouarn. Design values: wavy = CD 48 mm, i 1.10, flat 0.25, a/b 1.3, lock of ~30 hairs, bond 0.1; curly = CD 10 mm, i 2.0, lock ~50, bond 0.35. Lock size and bond strength are stored as traits of the type: clumping is a property the fibre carries, not a style.
 
-**What was wrong first.** To get "a bit more waviness" (author's review, 11-12 about 12:10) the first lever tried was a tighter CD (48 → 44 mm). Measured on the head: no gain. One hanging fibre, 250 mm, dry, rms offset from the straight hang: CD 48/i 1.10: 4.75 mm; CD 44/i 1.10: 4.59; CD 40/i 1.10: 4.61; CD 40/i 1.15: 5.67 (+19 %); CD 35/i 1.20: 6.32 (+33 %). A tighter CD alone makes smaller, shorter waves. The lever is the curl index. Gravity stretches the hanging wave: about 89 mm against 69 mm free.
+**What was wrong first.** To get a little more waviness (a review direction, 11-12 about 12:10) the first lever tried was a tighter CD (48 → 44 mm). Measured on the head: no gain. One hanging fibre, 250 mm, dry, rms offset from the straight hang: CD 48/i 1.10: 4.75 mm; CD 44/i 1.10: 4.59; CD 40/i 1.10: 4.61; CD 40/i 1.15: 5.67 (+19 %); CD 35/i 1.20: 6.32 (+33 %). A tighter CD alone makes smaller, shorter waves. The lever is the curl index. Gravity stretches the hanging wave: about 89 mm against 69 mm free.
 
 ### D1.5 The settle, the rest gate, the cached head
 
@@ -129,9 +129,9 @@ Solver: L-BFGS-B in scaled variables. Growth is by continuation: the active arc 
 
 **The water set and its timing.** Over the set span, each joint's rest turning moves toward its current turning: ρ ← ρ + set·(dd − ρ). Re-wetting removes the set's share; the follicle's own curl is untouched by water. The set fades with time and humidity as R(t) = 0.7·exp(−t′/0.5 h) + 0.3·exp(−t′/24 h), t′ = t·(RH/90)^5.2·10^(−2·hold). Water softens and loads the fibre: E × (1 − 0.5·wet). The first recipe took the set at the end of the hand pass, while the hand still held the hair. Taking it in the free fall after the hands are gone (n2g) gave +11–15 % wave with the body changed by only 0.2–1.8 mm. Kept. *Tried and rejected:* re-taking friction anchors at the dry friction (0.13) after drying gave no width gain and let the front slide onto the face (529 points over the face region against 275).
 
-**Body.** The author's review asked for a little more body, later clarified as mostly at the sides and "a derivative of just the texture of the waviness". Exit angles, comb strength and CD all measured flat after the style. On n2j the sides' p95 width rose 2.2–3.0 mm and the crown 1.4 mm with the wave, but n2j is unverified.
+**Body.** A review asked for a little more body, later clarified as mostly at the sides and as following from the texture of the waviness alone. Exit angles, comb strength and CD all measured flat after the style. On n2j the sides' p95 width rose 2.2–3.0 mm and the crown 1.4 mm with the wave, but n2j is unverified.
 
-**Flyaways: designed against defect.** The generator marks a small fraction of strands as fly-aways that leave their lock partway along. Of the base's 104 loose stretches, 12 are on designed fly-away strands and 92 are not. On n2d: 16 designed, 310 not. On n2e: 14 and 154. On the untouched heads: 787 (base), 1,004 with the first phase shift, 740 with the wave-only shift. The author's review of the n2c / n2d sheet was that the flyaways were "most likely ... by design" and should change only through styling. The counts say otherwise for n2d: its extra loose strands were a defect of the first phase shift, fixed at that cause.
+**Flyaways: designed against defect.** The generator marks a small fraction of strands as fly-aways that leave their lock partway along. Of the base's 104 loose stretches, 12 are on designed fly-away strands and 92 are not. On n2d: 16 designed, 310 not. On n2e: 14 and 154. On the untouched heads: 787 (base), 1,004 with the first phase shift, 740 with the wave-only shift. On review of the n2c / n2d sheet the flyaways were taken as most likely by design, to change only through styling. The counts say otherwise for n2d: its extra loose strands were a defect of the first phase shift, fixed at that cause.
 
 **Crown loop.** The base has a loop of hair standing at the crown. Measured cause: short regrowth hairs (35–73 mm) at the whorl, where the long layer parts away and nothing lies over them; a 70 µm hair only buckles under its own weight past about 91 mm. The generator fix (2026-11-11 21:43, 7bc80fe5): short hairs take the wet set with the long hair. On a test cap: 5 of 5,331 short hairs standing before, 0 after. The base itself has not been regrown with it.
 
@@ -147,7 +147,7 @@ Measured: 198,156 hairs with 1,593 guides generated in 342 s on the CPU and 195,
 
 ### D1.9 The fibre layer: rendering, scattering, shadows
 
-*Fibre layer 2026-11-10 (b0535200); multiple scattering 11-10; exact skin shadows 11-11; lean scalp shadow default 11-12 01:19 (1964801a). Status: accepted in the workflow for the face-hair shadow fix (author's review: approved) and the scalp shadow; the rest measured on named cases.*
+*Fibre layer 2026-11-10 (b0535200); multiple scattering 11-10; exact skin shadows 11-11; lean scalp shadow default 11-12 01:19 (1964801a). Status: accepted in the workflow for the face-hair shadow fix (approved on review) and the scalp shadow; the rest measured on named cases.*
 
 **Data.** Per strand 24 points, radius and pigment per point, ellipticity, twist rate, roughness, root normal. Each strand is a centripetal Catmull-Rom curve. A uniform span grid (0.5 mm cells for short hair, 2 mm otherwise) lists each span in the cells its curve passes.
 
@@ -199,7 +199,7 @@ A rig is a small versioned file: lights (sun, area rectangle or disk, sphere, sp
 
 **The Rembrandt-style preset** (2026-11-12 08:38, 03f20e3a). Key 65° round and 30° up, 4° across as seen from the subject (a 9×14 cm softbox at 2 m), fill 0.05, a dark studio with room light 0.05. It was set by measuring five traits of the pattern on the model's face (lit triangle against shadow cheek, lit against shadow side, triangle against lit side, triangle against nose shadow, and the nose shadow's edge width) against a published portrait-lighting reference that was studied and is not redistributed. Of 96 settings the chosen one was nearest (distance 0.81; the previous preset 1.72); nose shadow edge 4.0 mm against the reference's 3.9. A softer variant (10° key, fill 0.1) is kept under its own name. A 17° candidate cost the same per pass but gave an 11.6 mm edge and was not adopted.
 
-*What light could not do:* across 288 settings the "closure" of the triangle (the region beside the nostril as dark as the reference's) never moved. On the model that region is as bright as the cheek shadow in every setting. It is the model's form there, not light, and it was not forced. Status of the preset: accepted in the workflow, conditionally (the author's review: keep it if it clears the legal checks and the other requirements); grain and cheek crops at the 4° key were not measured on the card.
+*What light could not do:* across 288 settings the "closure" of the triangle (the region beside the nostril as dark as the reference's) never moved. On the model that region is as bright as the cheek shadow in every setting. It is the model's form there, not light, and it was not forced. Status of the preset: accepted in the workflow, conditionally (kept on the condition that it passes the legal checks and the other requirements); grain and cheek crops at the 4° key were not measured on the card.
 
 ### D2.3 The stage-1 study: what was measured before building
 
@@ -229,7 +229,7 @@ A rig is a small versioned file: lights (sun, area rectangle or disk, sphere, sp
 
 **What the first version did** (11-11 19:33 to 11-12 10:22). At each gather hit, if the hit was at least 10 cm away the gather read the hit brick's *outgoing* cache (albedo/π × (direct + bounce)); nearer hits were lit exactly. This came from the study, where it met the patch-error gate.
 
-**The flag.** An outside review of our patent checks pointed out that NVIDIA US11790594 has an independent claim 16
+**The flag.** A further check of our patent readings found that NVIDIA US11790594 has an independent claim 16
 which our earlier check had missed. As we read it, the claim concerns a ray cast from one location that meets a
 second location associated with an outgoing irradiance cache, and rendering that uses the cached outgoing value
 based at least on a distance between the two (claim 18: beyond a threshold). The first look-dev gather, with its
@@ -295,7 +295,7 @@ Not used: OptiX (proprietary terms, one vendor's hardware).
 
 ## D4. Patent readings carried over as recorded
 
-**These are our own readings of the claims, made without counsel. They are not legal advice and no clearance is claimed.** A search hit is a screening flag; a claim reads only if every element of at least one claim is met. "None found" is not proof of absence. Expiry dates are estimates. Pending applications can change and need re-reading at grant.
+**These are our own readings of the claims, made without counsel. They are not legal advice and no clearance is claimed.** A search hit is a screening flag; a claim reads only if every element of at least one claim is met. Finding none is not proof of absence. Expiry dates are estimates. Pending applications can change and need re-reading at grant.
 
 | record | claim element of concern | what is absent in our design |
 |---|---|---|

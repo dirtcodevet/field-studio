@@ -17,7 +17,7 @@ direction, the research baseline, the current state and the future direction are
 
 **What it is not.** It is not a claim of novelty: most ingredients are published work, credited where they are
 used, and where something may be distinctive it is the specific mechanism, how the parts are combined, and the
-measured trade-offs. It is not a product announcement: the tool is not finished, and the author's own hands-on
+measured trade-offs. It is not a product announcement: the tool is not finished, and the hands-on
 sculpting test of the rebuilt toolkit is still to come. It is not legal advice and it claims no patent clearance:
 every patent reading below is our own non-lawyer's reading of claim text, carried over as recorded.
 
@@ -71,7 +71,7 @@ history, given as provenance for a date; they will mean something to readers onl
 | E1, E2 | the elbow test cases: E1 a synthetic stand-in arm, E2 the elbow region of the human model's own field |
 | d1 to d4 | one-change-at-a-time experiments on the elbow stall (Part 6, section B.9) |
 | n2c to n2j | successive variants of the generated head of hair (Part 8) |
-| Form N, Form E | the implicit (Newton) and explicit forms of the author's field-read contact (Part 2, section 1) |
+| Form N, Form E | the implicit (Newton) and explicit forms of the field-read contact (Part 2, section 1) |
 
 **Code.** The tool will be released as open source. The code is not part of this first release: parts of it are
 being redesigned around patents we found while reading (listed in Part 10), and those parts stay out until the

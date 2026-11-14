@@ -1,0 +1,575 @@
+{
+ "id": "water",
+ "kind": "fluid",
+ "family": "fluid",
+ "_": "Liquid water at skin temperature (32-37 C): the base of sweat, tears and saliva and of the wet state. Sources: the project's materials research note GAPS_RESEARCH.md 5. Materials foundation lane 2026-11-07. v2 (world lane, 2026-11-07): contact / deform / thermal added; the old `mechanics` block moved into them; layers, surface and variants untouched. States: ice, vapour (steam, fog), film, droplet.",
+ "layers": [
+  {
+   "name": "water",
+   "thickness_mm": {
+    "v": null,
+    "q": "E",
+    "src": "a droplet or film's own size"
+   },
+   "optics": {
+    "model": {
+     "v": "generic",
+     "q": "D",
+     "src": "optics.py"
+    },
+    "absorbers": {
+     "f_water": {
+      "v": 1.0,
+      "q": "M",
+      "src": "pure water (POPEFRY97, spectra.json): 0.0092 / 0.0565 / 0.325 per m at 450 / 550 / 650 nm - clear at mm scale"
+     }
+    },
+    "g": {
+     "v": 0.0,
+     "q": "M",
+     "src": "no scatterers"
+    },
+    "n": {
+     "v": 1.3347,
+     "q": "D",
+     "src": "DAIMON07 Sellmeier at 550 nm, 20 C (1.3396 at 450, 1.3317 at 650); ~1.331 at 37 C (dn/dT ~ -1.5e-4, E)"
+    }
+   }
+  }
+ ],
+ "surface": {
+  "alpha": {
+   "v": 0.005,
+   "q": "E",
+   "src": "a free liquid surface is smooth at optical scale (capillary waves only)"
+  },
+  "n": {
+   "v": 1.3347,
+   "q": "D",
+   "src": "as above"
+  }
+ },
+ "contact": {
+  "surface_tension_mN_m": {
+   "v": {
+    "20C": 72.74,
+    "25C": 71.97,
+    "32C": 70.88,
+    "37C": 70.08
+   },
+   "q": "D",
+   "src": "IAPWS 2014 correlation (GAPS 5 evaluated 25/32/37 C; 20 C from the same formula)"
+  },
+  "viscosity_mPa_s": {
+   "v": {
+    "20C": 1.002,
+    "25C": 0.89,
+    "32C": 0.765,
+    "37C": 0.691
+   },
+   "q": "D",
+   "src": "IAPWS 2008 (GAPS 5 Vogel fit for 32/37 C; 20/25 C standard IAPWS values); model newtonian"
+  },
+  "density_kg_m3": {
+   "v": {
+    "4C": 999.97,
+    "20C": 998.2,
+    "37C": 993.3
+   },
+   "q": "M",
+   "src": "NISTWB (NIST Chemistry WebBook, IAPWS-95 / IAPWS 2011 formulations, 0.101325 MPa), re-read 11-08: 999.975 (4 C), 998.207 (20 C), 993.330 (37 C) kg/m3"
+  },
+  "wetting": {
+   "water_contact_angle_deg": {
+    "v": {
+     "forearm_dry": [
+      80,
+      91
+     ],
+     "forehead": [
+      57,
+      73
+     ],
+     "hydrated_sweating": [
+      20,
+      40
+     ]
+    },
+    "q": "M",
+    "src": "GAPS MAVON97, ELKHYAT04 (via secondary); sweat puddles 20-40 deg: research/skin_moisture.md T3. Sebum makes skin MORE wettable (MAVON97)"
+   },
+   "note": "angles on other solids (glass, marble, wood, cotton) are pair values: pairs/world.json"
+  },
+  "permeation": {
+   "porous_solids": {
+    "v": "water enters any porous solid with a contact angle < 90 deg by capillary suction (Washburn: depth ~ sqrt(gamma r cos(theta) t / (2 mu))); wood, sandstone, unglazed stone, soil and cotton take it up; the permeability_m2 and water_absorption of each solid live in that solid's profile",
+    "q": "D",
+    "src": "DEGENNES04 Washburn law"
+   },
+   "stratum_corneum_swelling": {
+    "v": "the stratum corneum takes up water and swells in thickness (corneocytes swell; at full hydration the SC is several times its dry mass and markedly thicker); fingertip/palm glabrous skin wrinkles after minutes of warm immersion",
+    "q": "E",
+    "src": "BOUWSTRA03: E: recalled from Bouwstra 2003, not re-read (SC swells in thickness with hydration); wrinkling onset ~5-10 min at ~40 C is E from the immersion-wrinkling literature"
+   },
+   "skin_friction_effect": {
+    "v": "a thin water film on skin RAISES skin friction against most counterfaces (softened SC, more real contact, capillary adhesion) until the film is thick enough to lubricate",
+    "q": "M",
+    "src": "GERHARDT08"
+   }
+  },
+  "friction": {
+   "v": "a liquid: no friction of its own; it changes the friction of the pair it wets (see states.film and pairs/world.json)",
+   "q": "D",
+   "src": "ANON_E definition"
+  },
+  "solver": {
+   "phase": {
+    "v": "fluid",
+    "q": "D",
+    "src": "a liquid (deform.model)"
+   },
+   "collision_thickness_mm": {
+    "v": {
+     "film_on_surface": "the film's own thickness (layers / film values)",
+     "particle_solver": "half the particle spacing"
+    },
+    "q": "D",
+    "src": "ANON_E solver convention: a liquid has no skin of its own; it keeps a no-penetration boundary at solids"
+   },
+   "penetration_response": {
+    "model": {
+     "v": "incompressible: no stiffness ramp; a pressure projection (or weakly compressible SPH with numerical sound speed >= 10x the max flow speed) keeps it out of solids and out of itself",
+     "q": "D",
+     "src": "bulk modulus (water 2.2 GPa: effectively incompressible at body speeds)"
+    },
+    "ramp": {
+     "v": "pressure_projection",
+     "q": "D",
+     "src": "as model"
+    },
+    "boundary_wetting": {
+     "v": "the contact angle per pair (pairs/world.json wetting) sets the meniscus at a solid",
+     "q": "D",
+     "src": "DEGENNES04"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": {
+      "on_wettable_surface": 0.0,
+      "on_superhydrophobic": [
+       0.3,
+       0.9
+      ]
+     },
+     "q": "M",
+     "src": "RICHARD02 / DEGENNES04: drops stick and spread on wettable solids; bounce only on (super)hydrophobic ones"
+    },
+    "response_time_ms": {
+     "v": {
+      "drop_R1mm": 9.8,
+      "drop_R2mm": 27.6
+     },
+     "q": "D",
+     "src": "RICHARD02 tau = 2.6 sqrt(rho R^3/gamma) with rho 994, gamma 0.0705 N/m"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "sound": 1500,
+      "capillary_wave_1mm": 0.67
+     },
+     "q": "D",
+     "src": "sound ~ water's (CRC; oils ~1450); capillary-wave phase speed sqrt(2 pi gamma/(rho lambda)) at lambda 1 mm"
+    },
+    "damping_ratio": {
+     "v": "viscous: set by viscosity_mPa_s (no separate damping)",
+     "q": "D",
+     "src": "Newtonian/viscous dissipation"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "newtonian_fluid",
+   "q": "M",
+   "src": "IAPWS (water is Newtonian)"
+  },
+  "density_kg_m3": {
+   "v": 994,
+   "q": "M",
+   "src": "NISTWB (NIST Chemistry WebBook, IAPWS-95 / IAPWS 2011 formulations, 0.101325 MPa), re-read 11-08: 994.37 at 34 C, 993.33 at 37 C (994 at ~35 C)"
+  },
+  "viscosity_mPa_s": {
+   "v": {
+    "32C": 0.765,
+    "37C": 0.691
+   },
+   "q": "D",
+   "src": "IAPWS08 correlation"
+  },
+  "bulk_modulus_GPa": {
+   "v": 2.2,
+   "q": "D",
+   "src": "NISTWB (NIST Chemistry WebBook, IAPWS-95 / IAPWS 2011 formulations, 0.101325 MPa), re-read 11-08: adiabatic K = rho c^2 = 998.207 x 1482.35^2 = 2.19 GPa at 20 C; 2.2 kept (the isothermal value from CRC compressibility is recalled, not re-read)"
+  },
+  "sound_speed_m_s": {
+   "v": {
+    "20C": 1482,
+    "37C": 1524
+   },
+   "q": "M",
+   "src": "NISTWB (NIST Chemistry WebBook, IAPWS-95 / IAPWS 2011 formulations, 0.101325 MPa), re-read 11-08: 1482.35 (20 C), 1523.66 (37 C) m/s"
+  },
+  "sim": {
+   "capillary_length_mm": {
+    "v": 2.71,
+    "q": "D",
+    "src": "DEGENNES04 l_c = sqrt(gamma/(rho g)) with gamma 72.0 mN/m, rho 998, g 9.80665"
+   },
+   "kinematic_viscosity_m2_s": {
+    "v": 7.69e-07,
+    "q": "D",
+    "src": "IAPWS mu / rho at 32 C"
+   },
+   "note": "SPH/FLIP: use the real viscosity only at mm scale; at body scale numerical viscosity dominates"
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": {
+    "20C": 0.598,
+    "37C": 0.624
+   },
+   "q": "M",
+   "src": "NISTWB (NIST Chemistry WebBook, IAPWS-95 / IAPWS 2011 formulations, 0.101325 MPa), re-read 11-08: 0.5980 (20 C), 0.6245 (37 C) W/mK; 37 C corrected from 0.627"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 4178,
+   "q": "M",
+   "src": "NISTWB (NIST Chemistry WebBook, IAPWS-95 / IAPWS 2011 formulations, 0.101325 MPa), re-read 11-08: cp 4184 (20 C), 4179 (34-37 C) J/kgK; IT'IS v5.0 water 4178 (re-read 11-08); 4178 kept"
+  },
+  "effusivity": {
+   "v": 1605,
+   "q": "D",
+   "src": "sqrt(k rho c) = sqrt(0.62*994*4178) W s^0.5 m^-2 K^-1"
+  },
+  "emissivity": {
+   "v": 0.96,
+   "q": "E",
+   "src": "CRC: E: recalled from CRC / IR thermography tables (0.95-0.98), not re-read"
+  },
+  "latent_heat_vaporisation_kJ_kg": {
+   "v": {
+    "35C": 2418,
+    "100C": 2256
+   },
+   "q": "D",
+   "src": "NISTWB (NIST Chemistry WebBook, IAPWS-95 / IAPWS 2011 formulations, 0.101325 MPa), re-read 11-08: h_vap = h_v - h_l at saturation: 2564.55 - 146.63 = 2417.9 (35 C), 2675.57 - 419.17 = 2256.4 (100 C); 100 C corrected from 2257"
+  },
+  "latent_heat_fusion_kJ_kg": {
+   "v": 333.6,
+   "q": "E",
+   "src": "CRC: E: recalled from the CRC Handbook (333.6 kJ/kg), not re-read"
+  }
+ },
+ "variants": {
+  "sweat": {
+   "n": {
+    "v": 1.3345,
+    "q": "D",
+    "src": "water + 0.2-0.5 % NaCl (dn ~ +0.0017 per 1 %)"
+   },
+   "surface_tension_mN_m": {
+    "v": 71.8,
+    "q": "M",
+    "src": "SONNER15 via review"
+   }
+  },
+  "tears": {
+   "n": {
+    "v": 1.337,
+    "q": "M",
+    "src": "research/eye.md G1"
+   },
+   "film_um": {
+    "v": 3.3,
+    "q": "M",
+    "src": "research/eye.md F1 precorneal film 3.3 +- 1.5 um; lipid layer 52.7 nm"
+   }
+  },
+  "saliva": {
+   "n": {
+    "v": 1.335,
+    "q": "E",
+    "src": "99.5 % water"
+   },
+   "viscosity_mPa_s": {
+    "v": [
+     1.5,
+     1.6
+    ],
+    "q": "M",
+    "src": "SCHIPPER07 (shear-thinning; others 3.8-8.8)"
+   },
+   "surface_tension_mN_m": {
+    "v": 45.6,
+    "q": "M",
+    "src": "ERMPS18"
+   },
+   "film_um": {
+    "v": {
+     "tongue_tip": 68.9,
+     "cheek": 44.0,
+     "front_palate": 11.3
+    },
+    "q": "M",
+    "src": "research/mouth_teeth_tongue.md D19"
+   }
+  }
+ },
+ "states": {
+  "ice": {
+   "set": {
+    "deform.model": "brittle",
+    "deform.density_kg_m3": 917,
+    "surface.n": 1.309,
+    "deform.E_GPa": 9.0,
+    "deform.poisson": 0.33,
+    "deform.shear_GPa": 3.38,
+    "deform.fracture.tensile_MPa": [
+     0.7,
+     3.1
+    ],
+    "deform.fracture.compressive_MPa": [
+     5,
+     25
+    ],
+    "deform.fracture.K_IC_MPa_m05": [
+     0.05,
+     0.15
+    ],
+    "thermal.conductivity_W_mK": 2.22,
+    "thermal.heat_capacity_J_kgK": 2050,
+    "thermal.effusivity": 2043,
+    "thermal.emissivity": 0.97,
+    "contact.friction.kinetic": {
+     "ice_on_ice_fast_0.1_to_1_m_s": [
+      0.01,
+      0.05
+     ],
+     "ice_on_ice_slow": [
+      0.1,
+      0.6
+     ],
+     "skate_steel": [
+      0.003,
+      0.01
+     ]
+    },
+    "contact.premelt": "a nm-thick liquid-like layer exists below 0 C (thicker toward 0 C); at speed, frictional melting adds a meltwater film; the film is ~ 100x more viscous than bulk water (CANALE19); hence ice is slippery near 0 C and grippier when very cold",
+    "surface.alpha": 0.01,
+    "contact.solver.phase": "solid",
+    "contact.solver.collision_thickness_mm": 0.01,
+    "contact.solver.penetration_response.ramp": "barrier_log",
+    "contact.solver.impact.wave_speed_m_s": 1920,
+    "contact.solver.impact.restitution": [
+     0.3,
+     0.7
+    ]
+   },
+   "q": "M",
+   "src": "density 917 / k 2.22 / cp 2.05: CRC; n 1.309 at 589 nm: WARREN08; E ~9 GPa (9-10 GPa, polycrystal), nu 0.31-0.36, strengths, K_IC: PETROVIC03; shear D = E/(2(1+nu)); effusivity D; friction ranges KIETZIG10 / CANALE19 (E within those reviews' ranges: slow sliding high, fast low); premelt PREMELT; alpha E (smooth melt-glazed ice; frosted/rimed ice much rougher); solver: phase solid, 10 um numerical skin (E: smooth hard solid), shear wave sqrt(G/rho) D, restitution of ice spheres on ice 0.3-0.7 at ~1 m/s (planetary-ring impact experiments, Bridges et al. 1984 Nature 309:333, recalled; frost lowers it) E"
+  },
+  "vapour": {
+   "set": {
+    "deform.model": "ideal_gas",
+    "deform.density_kg_m3": {
+     "steam_100C_1atm": 0.598,
+     "saturated_at_20C": 0.0173,
+     "saturated_at_35C": 0.0396
+    },
+    "optics.steam_visible": "pure vapour is invisible (n - 1 ~ 2.5e-4 like air); visible 'steam' is condensed droplets of a few to tens of um",
+    "fog.droplet_diameter_um": [
+     2,
+     50
+    ],
+    "fog.droplet_mode_um": [
+     10,
+     20
+    ],
+    "fog.liquid_water_g_m3": [
+     0.05,
+     0.5
+    ],
+    "fog.visibility_m": "< 1000 by definition; optical extinction ~ 3.912 / visibility (Koschmieder)",
+    "mist.droplet_diameter_um": [
+     1,
+     10
+    ]
+   },
+   "q": "M",
+   "src": "steam and saturation densities: CRC steam tables; fog/mist droplet sizes and LWC: PRUPPACHER (recalled ranges); Koschmieder relation standard (D)"
+  },
+  "film": {
+   "set": {
+    "layers[water].thickness_mm": [
+     0.0001,
+     1.0
+    ],
+    "contact.film_effect.on_skin": "raises skin friction vs dry (GERHARDT08: wet skin on textiles roughly x1.5-2+) by softening and capillary adhesion",
+    "contact.film_effect.on_hard_smooth": "lubricates: hydrodynamic film under a sliding rubber/hard pair (hydroplaning); shoe/tyre COF ~0.6-0.9 dry -> ~0.2-0.5 wet on smooth floors",
+    "contact.film_effect.on_rough_porous": "little change on rough drained surfaces (asphalt, textured stone), large on polished stone, glazed tile, ice",
+    "contact.film_breakup": "a film thinner than ~ the capillary length on a surface with contact angle > 0 dewets into droplets (DEGENNES04)",
+    "surface.alpha": 0.005
+   },
+   "q": "M",
+   "src": "GERHARDT08 (skin); PERSSON (rubber, floors; recalled ranges); dewetting DEGENNES04; thickness range E (from a molecular film to a 1 mm sheet)"
+  },
+  "droplet": {
+   "set": {
+    "capillary_length_mm": 2.71,
+    "bond_number": "Bo = rho g L^2 / gamma = (L / 2.71 mm)^2: Bo < 1 drops stay round (sessile caps), Bo > 1 they flatten into puddles of height ~ 2 l_c sin(theta/2)",
+    "max_puddle_height_mm": 5.42,
+    "rain_terminal_velocity_m_s": {
+     "d0.5mm": 2.06,
+     "d1mm": 4.03,
+     "d2mm": 6.49,
+     "d3mm": 8.06,
+     "d4mm": 8.83,
+     "d5mm": 9.09,
+     "d5.8mm": 9.17
+    },
+    "rain_drop_shape": "spherical below ~1 mm; oblate 'hamburger bun' above ~2 mm; break up above ~6-8 mm",
+    "drizzle_d_mm": [
+     0.2,
+     0.5
+    ]
+   },
+   "q": "M",
+   "src": "capillary length / Bond / puddle height D from DEGENNES04 formulas with IAPWS gamma; terminal velocities GUNNKINZER49 (recalled standard table); shapes and break-up PRUPPACHER"
+  }
+ },
+ "sources": {
+  "IAPWS": {
+   "cite": "IAPWS releases: Surface Tension of Ordinary Water Substance (2014); Viscosity of Ordinary Water (2008); IAPWS-95 density; thermal conductivity (2011)",
+   "url": "http://www.iapws.org/release.html",
+   "lic": "freely available releases; numbers used as facts"
+  },
+  "CRC": {
+   "cite": "CRC Handbook of Chemistry and Physics (any recent edition): standard property tables for water, ice, air, oils. Values recalled as standard table values, not re-checked line by line this session",
+   "url": "https://hbcp.chemnetbase.com",
+   "lic": "copyright, paywalled; individual physical constants used as facts, no table copied"
+  },
+  "PETROVIC03": {
+   "cite": "Petrovic JJ. Review: Mechanical properties of ice and snow. J Mater Sci 38:1-6 (2003). doi:10.1023/A:1021134128038. Values recalled, not re-checked",
+   "url": "https://doi.org/10.1023/A:1021134128038",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "WARREN08": {
+   "cite": "Warren SG, Brandt RE. Optical constants of ice from the ultraviolet to the microwave: a revised compilation. J Geophys Res 113:D14220 (2008); via refractiveindex.info",
+   "url": "https://refractiveindex.info/?shelf=3d&book=crystals&page=ice",
+   "lic": "database CC0 1.0; paper's numbers used as facts"
+  },
+  "KIETZIG10": {
+   "cite": "Kietzig A-M, Hatzikiriakos SG, Englezos P. Physics of ice friction. J Appl Phys 107:081101 (2010). doi:10.1063/1.3340792. Regimes (premelt / meltwater film) read from the abstract; numbers are typical ranges from the review literature, recalled",
+   "url": "https://doi.org/10.1063/1.3340792",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "CANALE19": {
+   "cite": "Canale L, Comtet J, Nigues A, et al. Nanorheology of interfacial water during ice gliding. Phys Rev X 9:041025 (2019)",
+   "url": "https://doi.org/10.1103/PhysRevX.9.041025",
+   "lic": "CC BY 4.0 (APS open access)"
+  },
+  "PREMELT": {
+   "cite": "Dash JG, Rempel AW, Wettlaufer JS. The physics of premelted ice and its geophysical consequences. Rev Mod Phys 78:695 (2006). Recalled: liquid-like layer nm-thick, thickening toward 0 C",
+   "url": "https://doi.org/10.1103/RevModPhys.78.695",
+   "lic": "paywalled; findings used as facts"
+  },
+  "GUNNKINZER49": {
+   "cite": "Gunn R, Kinzer GD. The terminal velocity of fall for water droplets in stagnant air. J Meteorol 6:243-248 (1949). Values recalled as widely tabulated",
+   "url": "https://doi.org/10.1175/1520-0469(1949)006<0243:TTVOFF>2.0.CO;2",
+   "lic": "AMS; numbers used as facts"
+  },
+  "PRUPPACHER": {
+   "cite": "Pruppacher HR, Klett JD. Microphysics of Clouds and Precipitation, 2nd ed. Kluwer (1997): fog/cloud droplet sizes, raindrop break-up. Recalled",
+   "url": "https://doi.org/10.1007/978-0-306-48100-0",
+   "lic": "book, copyright; numbers used as facts"
+  },
+  "DEGENNES04": {
+   "cite": "de Gennes P-G, Brochard-Wyart F, Quere D. Capillarity and Wetting Phenomena. Springer (2004): capillary length, Bond number, Tanner spreading",
+   "url": "https://doi.org/10.1007/978-0-387-21656-0",
+   "lic": "book, copyright; formulas used"
+  },
+  "GAPS": {
+   "cite": "Project research note the project's materials research note GAPS_RESEARCH.md (11-07), which carries the primary citations (IAPWS14/08, MAVON97, ELKHYAT04, MOTWANI01, SONNER15, SCHIPPER07, ERMPS18, DAIMON07, POPEFRY97)",
+   "url": "local",
+   "lic": "project record; primary sources' terms listed there"
+  },
+  "GERHARDT08": {
+   "cite": "Gerhardt L-C, Strassle V, Lenz A, Spencer ND, Derler S. Influence of epidermal hydration on the friction of human skin against textiles. J R Soc Interface 5:1317-1328 (2008). PMC2607440",
+   "url": "https://doi.org/10.1098/rsif.2008.0034",
+   "lic": "(c) The Royal Society; numbers used as facts"
+  },
+  "BOUWSTRA03": {
+   "cite": "Bouwstra JA, de Graaff A, Gooris GS, Nijsse J, Wiechers JW, van Aelst AC. Water distribution and related morphology in human stratum corneum at different hydration levels. J Invest Dermatol 120:750-758 (2003). Recalled: SC swells markedly in thickness at high hydration, water in corneocytes",
+   "url": "https://doi.org/10.1046/j.1523-1747.2003.12128.x",
+   "lic": "open archive (Elsevier/JID); numbers used as facts"
+  },
+  "PERSSON": {
+   "cite": "Rubber friction on dry vs wet road / floor surfaces: Persson BNJ, J Phys Condens Matter 18:7789 (2006); floor slip-resistance practice (HSE UK, pendulum test values). Recalled: rubber on dry concrete ~0.6-0.9, wet ~0.4-0.7; smooth wet surfaces much lower",
+   "url": "https://doi.org/10.1088/0953-8984/18/32/025",
+   "lic": "paywalled / HSE free; ranges used as facts"
+  },
+  "ANON_E": {
+   "cite": "Estimate made in this lane; the reason is given in each src",
+   "url": "-",
+   "lic": "own work"
+  },
+  "DAIMON07": {
+   "cite": "Daimon M, Masumura A. Appl Opt 46:3811 (2007), via refractiveindex.info",
+   "url": "https://doi.org/10.1364/AO.46.003811",
+   "lic": "database CC0 1.0"
+  },
+  "POPEFRY97": {
+   "cite": "Pope RM, Fry ES. Appl Opt 36:8710 (1997), OMLC pope97.txt",
+   "url": "https://omlc.org/spectra/water/",
+   "lic": "terms not stated; numbers used as facts"
+  },
+  "SONNER15": {
+   "cite": "Sonner Z et al. Biomicrofluidics 9:031301 (2015) PMC4433483 (via GAPS 7)",
+   "url": "https://doi.org/10.1063/1.4921039",
+   "lic": "PMC, licence not read; number used as fact"
+  },
+  "SCHIPPER07": {
+   "cite": "Schipper RG, Silletti E, Vingerhoeds MH. Arch Oral Biol 52:1114 (2007) (via GAPS 7)",
+   "url": "https://doi.org/10.1016/j.archoralbio.2007.06.009",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "ERMPS18": {
+   "cite": "Evaluation of salivary surface tension in a cohort of young healthy adults. Eur Rev Med Pharmacol Sci 22 (2018), PMID 29565473 (via GAPS 7)",
+   "url": "https://www.europeanreview.org/?p=14457",
+   "lic": "terms not stated; numbers used as facts"
+  },
+  "MAVON97": {
+   "cite": "Mavon A et al. Colloids Surf B 8:147-155 (1997) (via GAPS 5/6): sebum raises skin surface free energy",
+   "url": "https://doi.org/10.1016/S0927-7765(96)01318-0",
+   "lic": "paywalled; findings used as facts"
+  },
+  "ELKHYAT04": {
+   "cite": "Elkhyat A et al. Skin Res Technol 10:215-221 (2004) (via GAPS 5)",
+   "url": "https://doi.org/10.1111/j.1600-0846.2004.00077.x",
+   "lic": "paywalled; numbers used as facts"
+  },
+  "RICHARD02": {
+   "cite": "Richard D, Clanet C, Quere D. Contact time of a bouncing drop. Nature 417:811 (2002): tau = 2.6 sqrt(rho R^3 / gamma), independent of impact speed",
+   "url": "https://doi.org/10.1038/417811a",
+   "lic": "paywalled; formula used as fact"
+  },
+  "NISTWB": {
+   "cite": "NIST Chemistry WebBook, SRD 69: thermophysical properties of fluid systems (water: IAPWS-95 equation of state, IAPWS 2011 thermal conductivity)",
+   "url": "https://webbook.nist.gov/chemistry/fluid/",
+   "lic": "US government work (NIST Standard Reference Data); numbers used as facts"
+  }
+ }
+}

@@ -13,12 +13,12 @@ Each mechanism carries exactly one evidence state:
 - **implemented**: in code (the live tool or a named working copy), not measured beyond smoke checks.
 - **measured on named cases**: run on the cases named beside the numbers.
 - **reproduced under a frozen configuration**: the same result obtained again from a fixed code state and inputs.
-- **accepted in the workflow**: used by the author as part of the working process.
+- **accepted in the workflow**: used as part of the working process.
 
-The most important fact comes first. On 2026-11-12 at about 17:20 the author sculpted with the tool by hand and
-stopped the toolkit: "Right now, I cannot even block out a character's head." The scripted head test had been
+The most important fact comes first. On 2026-11-12 at about 17:20 a hands-on sculpting test with the tool could
+not block out even a character's head, and the toolkit work was stopped. The scripted head test had been
 reaching all its stages, though never its marks (section 12). Much of what follows is therefore a record of mechanisms that work by their own numbers and still did not
-give a sculptor a usable tool, plus the redesign that came out of that. **The author's hands-on sculpt test of the
+give a sculptor a usable tool, plus the redesign that came out of that. **The hands-on sculpt test of the
 rebuilt toolkit is still to come.** Nothing here should be read as a claim that the toolkit is finished.
 
 ### 1. Setting, machine and how to read the numbers
@@ -94,7 +94,7 @@ point, which moves the surface without leaving a step in F.
 
 Amounts: displacement brushes move 0.2 x spacing x s x r per dab, so the same screen stroke gives the same-looking
 shape at any radius. Smooth, Flatten, Pinch and Crease's pull use a per-dab factor k = k_max (1 - exp(-k0 s / k_max)),
-monotone in strength and saturating, never clamped (2026-11-11 13:59, at the author's direction that every tool's
+monotone in strength and saturating, never clamped (2026-11-11 13:59, under the decision that every tool's
 effect rise smoothly with strength). Measured on the CPU path at s = 0.1 / 0.25 / 0.5 / 1 / 1.5 / 2: Smooth removes
 0.14 / 0.30 / 0.44 / 0.50 / 0.53 / 0.53 of a 12 mm bump per pass; Crease depth 0.10 / 0.24 / 0.45 / 0.82 / 1.12 /
 1.34 mm. Ctrl inverts every surface brush (measured on all seven; Ctrl+Clay digs 1.44 mm).
@@ -133,7 +133,7 @@ Failures on record:
 - **Volume.** Ten passes at r 30, s 0.5 on a 40 mm bump: height -53 %, volume -20.7 %. Smooth shrinks.
 - **CPU-path stall.** On the CPU path a 40 mm bump stalls at about 63 % remaining, because Smooth compresses the
   field at the edge of its 6h band and the release re-distance skips it. The card path does not stall.
-- The author's own report after sculpting (2026-11-12 about 18:20): Smooth "works fairly well", but a smoothed lid bulge
+- Hands-on use (2026-11-12 about 18:20): Smooth worked fairly well, but a smoothed lid bulge
   came back after further strokes, and some surfaces keep small tear or grain marks.
 
 ### 4. Shared stroke rules
@@ -164,19 +164,19 @@ Failures on record:
 - **Targeting** (2026-11-08; evidence state: measured on named cases; superseded by section 5). "Only the surface
   the brush faces" and "connected only" switches. On the thin-wall test they hold at r 6 and fail above it.
 
-### 5. "The sheet under the brush": nothing behind the worked surface moves
+### 5. The sheet under the brush: nothing behind the worked surface moves
 
-The author's requirement (2026-11-12 about 12:50): tools "only impact the surface that they are working on, and nothing
-behind them, unless you activate a setting or a toggle". The cases he named: an eyelid over the eye, the two lips,
-a bra's two faces over the skin beneath.
+The requirement (2026-11-12 about 12:50): a tool acts only on the surface it is working on and on nothing behind it,
+unless a setting or toggle says otherwise. The cases named: an eyelid over the eye, the two lips, a bra's two faces
+over the skin beneath.
 
 **The fault, measured** (CPU, 2026-11-12 13:00). One object: a 4 mm wall with a ball 2 mm behind it. Strokes on the
 wall's front at r 6 / 12 / 20 mm moved the wall's back face by 0.30 / 2.0 / 3.9 mm (Draw), up to 3.5 mm (Clay), and
 the ball behind by up to 3.5 mm (Draw) and 5.2 mm (Clay, closing the gap). Even Smooth on the flat front moved the
 ball 0.52 mm at r 20. The older targeting switches held only at r 6.
 
-**Mechanism** (landed 2026-11-12 14:40 as an opt-in switch "Protect surfaces behind"; on by default 15:48 at the
-author's direction; evidence state: measured on named cases).
+**Mechanism** (landed 2026-11-12 14:40 as an opt-in switch "Protect surfaces behind"; on by default from 15:48 by
+decision; evidence state: measured on named cases).
 1. Surface cells are lattice cells whose corners have both signs.
 2. Seeds are the surface cells under the dab centre, or the nearest surface cell along the dab's axis.
 3. The seeds (taken from the 3 x 3 x 3 block of cells around the press, keeping only cells whose own normal faces
@@ -231,7 +231,7 @@ all near bricks in one call (2026-11-12 about 01:50, field bit-identical).
 
 ### 7. Sculpting surfaces into contact
 
-The author's aim: bring two surfaces to touching while sculpting (a lid onto the eye, a fold onto a neighbouring
+The aim: bring two surfaces to touching while sculpting (a lid onto the eye, a fold onto a neighbouring
 part), smoothly, with no typed values.
 
 **Swell to contact** (first form 2026-11-09 01:15; eased formula 2026-11-12; on the card and the default Swell from
@@ -278,16 +278,16 @@ version failed a store check for reasons in the writer and was not published.
 6. The same formula differed between card and CPU (a lid's front puffed up to 0.6 mm on the card, 0.05 mm on the
    CPU). Not explained.
 
-The author's report after sculpting: "Swell worked fairly well too." The contact tools are held for the rebuild.
+In hands-on use Swell also worked fairly well. The contact tools are held for the rebuild.
 
 ### 8. Grab, Stretch and what replaces them
 
 **What failed** (measured 2026-11-12 on a sphere of r 120 mm, h 1 mm, r 40 brush).
 - *View dependence.* Grab, Stretch and Snake Hook map the drag onto a plane parallel to the screen. One intended
   pull, 30 mm out along the normal, gave 30.1 / 17.7 / 5.7 / 0.8 mm from views at 0 / 30 / 60 / 80 degrees.
-- *"Stretch does not work."* It scaled the field about the pressed point itself, so that point moved 0.0 mm from
+- *Stretch did not work.* It scaled the field about the pressed point itself, so that point moved 0.0 mm from
   every view after a 30-80 mm drag; only the inner ring changed; a wiggle left a sharp ring around a flattened disc
-  (the author saw a half-circle cut out of the sphere); it compounded per mouse event (+5.19 against +4.44 mm for one
+  (seen in hand use as a half-circle cut out of the sphere); it compounded per mouse event (+5.19 against +4.44 mm for one
   drag at two mouse rates).
 - *Path dependence.* Drag out, circle, return: Grab left 2.96 mm, Stretch 5.02 mm.
 - *Folding.* F(x - v w) folds once the pull exceeds about 0.67 r; Snake Hook showed three surfaces on a probe ray.
@@ -301,7 +301,7 @@ as much as a plane containing n0 can. Each cursor ray is intersected with it. Wi
 Ctrl the target is the point on the line c0 + t n0 closest to the cursor ray; near head-on, t is the drag's
 component along the camera's up axis. Measured through the real window: 29.9 / 29.9 / 29.9 / 29.4 / 29.9 mm from
 0 / 30 / 60 / 80 degrees and above. A first 15-degree blend slid an 80-degree pull 32 mm sideways and was narrowed.
-An outside review noted that the silent change of operation near head-on should become a visible switch; open.
+The silent change of operation near head-on is to become a visible switch; open.
 
 **Anchored moves** (same copy, CPU path; evidence state: measured on named cases). The result is a function of the stroke-start field
 and the current total drag. On every update each touched node is restored to its stroke-start value and one
@@ -319,7 +319,7 @@ Axis a = v / |v|; pivot P = c0 - D a with D = max(T, r), T the depth of the form
 the pivot and the pressed end scale by (D + Le) / D with Le = |v| w(rho / r), rho the distance from the axis; beyond
 the end the displacement falls linearly to zero over max(2|v|, r). The inverse is closed-form.
 
-**Form-aware Grab** (decision 2026-11-12 about 09:50, in the author's words "Form-aware Grab"; evidence state: proposed;
+**Form-aware Grab** (decision 2026-11-12 about 09:50; evidence state: proposed;
 the prototype had not been started in the records read). A Grab whose weight follows the form's own interior, for
 example the distance through the material from the pressed point computed from the field itself, or a
 connectivity-limited falloff, so the far side of a head or the next finger does not move. It uses no elasticity
@@ -335,37 +335,33 @@ proposed.
 
 ### 9. The pencil: creases, ridges and cuts drawn on the surface
 
-**The shelf's pencil** (first commit 2026-11-05; measured on named cases; found faulty). Each stroke adds a tube
-centred on the surface to the base tree (subtract for a valley, union for a ridge) with a smooth blend. Because the
-tube is as deep outward as inward and the blend acts on anything in reach, a line along the upper lip 1.2 mm above
-the mouth slit cut the lower lip across the slit by up to 226 um at 811 points. In the window it showed nothing
-while drawing, then 3-4 minutes of work after release.
+**Design intent of the current Pencil** (defined 2026-11-13/14, after this write-up; in the code of the 0.2.0 release,
+`3389050f`, it is not yet the window's line tool). Pencil is a surface-following precision tool for carving grooves and
+building ridges. Its tip defines the local shape of the mark, with controls for width, depth or height, and the
+transition into the surrounding surface. The intended interaction is direct: geometry changes beneath the tip as the
+cursor moves. Each press-and-drag is one controlled pass. Retracing the same path within that pass does not accumulate
+additional depth or height. Releasing and beginning another pass establishes a new surface reference, allowing
+successive passes to deepen a groove or build a ridge deliberately. Pencil supports fine lines, creases, and broader
+cuts through the same tool rather than requiring separate carving and creasing tools. The two earlier pencils below
+are the record of how the project got there.
 
-**The rebuilt pencil** (2026-11-12 about 15:50, working copy only, never landed; evidence state: measured on named cases).
-1. Picks define a Catmull-Rom curve sampled about every h. Each pick is moved along its view ray onto the surface as
-   it was before the stroke; without that the line steered by its own fresh relief (0.27 mm median wobble: beaded
-   ridges, ribbed valleys); with it, at most 0.13 mm.
-2. Every value is computed from the stroke-start field F0, held per brick. Each extension recomputes only nodes in
-   reach of the changed part of the curve, so drawn-live equals laid-at-once exactly (0.0 um).
-3. Writes are limited to the drawn sheet by the flood of section 5, seeded by the stroke's own samples.
-4. With D(lat) the profile (round, V, U or custom, softened at its shoulders) at lateral distance lat from the
-   line, hgt a node's height above the drawn surface and dn its depth below it: a valley is
-   F' = max(F0, min(hgt + D, 3h - dn)), removing the volume between the floor and 3h above the surface; a ridge is
-   F' = F0 - D.
-5. Depth is limited per sample to half the form's thickness or half the gap, measured along the normal on F0.
-6. The keep-apart guard runs on every extension.
+**The shelf's pencil** (first commit 2026-11-05; measured on named cases; found faulty). A line along the upper lip
+1.2 mm above the mouth slit cut the lower lip across the slit by up to 226 um at 811 points. In the window it showed
+nothing while drawing, then 3-4 minutes of work after release.
 
-Measured: valley 1.497 of 1.5 mm; fine ridge 0.6 x 0.15 mm gave 0.141; a facing sphere across 0.75 mm moved 0.0 um;
-the lip case 0.0 um on the facing lip. Limits: a V cut closes where narrower than a cell, so cuts need a U profile;
-the finest line is about 0.5 mm wide at h = 0.25 mm. **Not reached:** 4-13 fps while drawing with hitches to 527 ms,
-against the brushes' 20 fps and more. The pencil work was stopped with the rest of the toolkit. What the author
-used by hand that evening was still the shelf's old pencil, and his verdict on it was: "pencil tool still sucks. It
-doesn't crease well, it covers too broad of an area, it mangles most surfaces surrounding the mark".
+**The rebuilt pencil** (2026-11-12 about 15:50, working copy only, never landed; evidence state: measured on named
+cases). Line wobble at most 0.13 mm (0.27 mm median before the correction); the line drawn with progressive on-screen updates equal to the line laid at once (0.0 um);
+valley 1.497 of 1.5 mm; fine ridge 0.6 x 0.15 mm gave 0.141; a facing sphere across 0.75 mm moved 0.0 um; the lip case
+0.0 um on the facing lip. Limits: a V cut closes where narrower than a cell, so cuts need a U profile; the finest line
+is about 0.5 mm wide at h = 0.25 mm. **Not reached:** 4-13 fps while drawing with hitches to 527 ms, against the
+brushes' 20 fps and more. The pencil work was stopped with the rest of the toolkit. The pencil in hand use that evening
+was still the shelf's old one, and it fell short: it creased poorly, covered too broad an area and damaged most of
+the surfaces around the mark.
 
 ### 10. The toolkit framework: ten principles and the experience harness
 
 Written 2026-11-12 ~17:55 after a study of Blender's sculpt tools; evidence state: proposed. The build order that
-follows from it (the harness first, then Grab on the common machinery) was agreed by the author at about 18:40.
+follows from it (the harness first, then Grab on the common machinery) was agreed at about 18:40.
 
 1. **Full 3D.** A tool gives the same result from any view; the camera only says where the hand points.
 2. **What you see is what moves.** The ring is the true reach and its inner ring the true 50 % weight.
@@ -388,7 +384,7 @@ return; T4 mouse rate 30 / 120 / 480 Hz; T5 nothing behind moves; T6 size; T7 Sm
 Baseline on the shipped tools: surface brushes view-independent within 3-4 %; Draw 11 % stronger at 480 Hz than at
 30 Hz; window stalls up to 111 ms. The pass mark is a person blocking out a head from a sphere.
 
-**Window freeze** (2026-11-12 ~17:49). The author's window stopped answering for about five minutes. The run's log
+**Window freeze** (2026-11-12 ~17:49). The window in hands-on use stopped answering for about five minutes. The run's log
 was overwritten by the relaunch, so the work that ran is unknown. A mechanism was measured: a compiled kernel that
 keeps the interpreter lock stops the window thread for its whole run (a 93 ms kernel gave a 95 ms stall; 11 ms when
 it releases the lock). Landed 18:06: a per-session log that a relaunch never erases, and a watchdog (a 250 ms timer
@@ -417,27 +413,27 @@ stroke. They are met on simple forms at small and medium radii and not met on th
 The cost of a ball of radius r grows as (2r / h)^3 nodes, and the radius is capped at 80h (160h on the human model).
 Coarse levels for large tools, with detail stored relative to the coarse surface, are proposed. A whole-body Smooth
 at r 60 once ran the card out of memory (6.52 of 6.91 GB in use) and hung the engine; strokes are now split to fit
-and a card failure falls back with a notice. The author's report after sculpting on 2026-11-12: "Performance is
-abysmal. Lag started hitting me after several minutes, some tools take several seconds to do their job."
+and a card failure falls back with a notice. Hands-on use on 2026-11-12 found performance very poor: lag
+set in after several minutes, and some tools took several seconds to act.
 
 ### 12. Test 1: a sphere to a head, and why its scripted runs meant little
 
 Test 1: front and side reference photos on one axis, a sphere sculpted into a basic head (nose, eye sockets, jaw and
 chin, cheeks) in under five minutes.
 
-- 2026-11-11 10:47, first scripted run: "not a head": a lumpy egg after 144 actions and about 7.8 minutes; Smooth
+- 2026-11-11 10:47, first scripted run: not yet a head, a lumpy egg after 144 actions and about 7.8 minutes; Smooth
   removed 6 % of the lumps; a torn ring under the neck; rectangular seams at the mouth; 22 of 166 presses turned the
-  view instead of sculpting. The author: "You used too small of a brush."
+  view instead of sculpting. The brush used was too small.
 - After the rebuild, scripted runs from a fresh sphere reached all stages in about 39 actions and 113-121 s of a
   person's time, 0 orbits, no holes, outline within 3.9 / 5.3 / 4.8 mm (front / face / back), lumps 2.47-2.52 mm RMS
-  (target 1.5, not met). The author ranked a brushes-only run best so far on 2026-11-11 18:48.
+  (target 1.5, not met). A brushes-only run was ranked best so far on 2026-11-11 18:48.
 - Along the way: a nose split into two lobes (mirror), a granular jaw (midline snap stacking about 15 Smooth passes),
   jaw scratches on the card (ring samples reading unheld bricks), and the chin bands of section 3.1.
-- 2026-11-12 about 17:20: the author could not block out a head by hand. The script had pulled only from the side and
+- 2026-11-12 about 17:20: a head could not be blocked out by hand. The script had pulled only from the side and
   front views, where screen-plane tools happen to do what was meant, with strokes chosen to work, and it judged the
   outline in millimetres. It measured the field, not the experience.
-- The author's summary that evening: Smooth and Swell worked fairly well; "Most of the other tools are effectively useless";
-  "progress has been made, but it has a LONG way to go."
+- The summary that evening: Smooth and Swell worked fairly well; most of the other tools were effectively unusable;
+  progress had been made, with a long way still to go.
 
 ### 13. The shell
 
@@ -508,22 +504,25 @@ followed: a concern names the claim element behind it; a design-around names the
   design-around: the form-aware Grab decided the same day and the flow Grab of section 8 use no elasticity equation
   and no Poisson ratio; whether that is sufficient is not asserted here.
 - **US 8,265,909 B2 (MERL; active, expected to 2031).** Element of concern, claim 1: the distance field of a shape
-  swept along a parametric path, found by determining "in a continuous manner" an optimal path parameter per sample.
+  swept along a parametric path, found by determining an optimal path parameter per sample continuously.
   Flagged in two places: the capsule primitive (a sphere's distance at the clamped closest point of a segment) and
   the brick admission test of an unwired flow-Grab module (brick centres projected onto the drag segment with a
   clamped parameter). **Both are being redesigned; no design-around had been chosen or recorded when this was
   written**, and the full reading was still owed. Ordinary dabs are separate fixed-centre edits added in turn, with no
-  per-sample search for a placement. The records hold no reading of the rebuilt pencil, which finds each node's
-  position relative to a sampled stroke curve, against this patent; that reading is owed before the pencil returns.
+  per-sample search for a placement.
+  The current Pencil (0.2.0) evaluates discrete path samples, each at its own placement relative to the stroke-start
+  surface, and nothing searches along the path for a nearest placement; its implementation is described in
+  `docs/PATENTS.md`. The records hold no reading of the rebuilt pencil of 2026-11-12 against this patent; that reading is owed before the pencil
+  returns.
 - **US 9,836,879 B2 and US 10,062,203 B2 (Autodesk)**, read against the sheet flood. The first requires paths
   through interior voxels from an influence to a mesh vertex, a boundary-voxel penalty, a skinning weight and an
   animation; the flood walks surface cells from the press point and yields a yes/no gate on a brush write. The second
   requires voxelising a mesh; there is no mesh.
 - **US 8,988,461 B1 (Disney / ETH)**, read against Swell and Settle: each independent claim requires paint strokes
-  that "do not alter the shape" of the object; these tools alter the shape. Older distance-field sculpting and
+  that leave the object's shape unaltered; these tools alter the shape. Older distance-field sculpting and
   haptic-clay patents (MERL, SensAble) appear expired; their status was not confirmed at the patent office.
 - **US 9,830,743 B2 (Autodesk)**, a volume-keeping smoothing brush: to be read before any keep-volume Smooth ships.
-- The patent searches were web searches and partial. "None found" is not "none exists".
+- The patent searches were web searches and partial. Finding none does not show that none exists.
 
 ### 16. What is not established
 
@@ -535,7 +534,7 @@ followed: a concern names the claim element behind it; a design-around names the
 - A Smooth that keeps volume, has spheres of every size as fixed points, and does not band on a chin.
 - Scope for move tools, reach-through as a control, the honest ring, levels, region transforms, and deformers that
   carry the sculpting with them: all proposed.
-- The author's hands-on block-out of a head with the rebuilt toolkit, which is the pass mark, has not happened.
+- A hands-on block-out of a head with the rebuilt toolkit, which is the pass mark, has not happened.
 
 ---
 

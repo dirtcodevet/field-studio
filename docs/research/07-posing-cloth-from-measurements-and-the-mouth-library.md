@@ -143,7 +143,7 @@ Per frame, median: node update about 4 ms on the CPU; posed-band preparation on 
 
 *Evidence for the geodesic weights: measured on named cases, bench and study only.*
 
-A first weight module computed, for each bone, Dijkstra distances through the 26-neighbour graph of inside voxels, with a smoothstep falloff scaled by limb radius (after Dionne and de Lasa 2013, "Geodesic voxel binding for production character meshes"). On 11 Nov at about 16:55 a patent check flagged it, and the author decided it would be studied only. The claims were then read (about 17:45) from the USPTO's public page scans, by eye.
+A first weight module computed, for each bone, Dijkstra distances through the 26-neighbour graph of inside voxels, with a smoothstep falloff scaled by limb radius (after Dionne and de Lasa 2013, "Geodesic voxel binding for production character meshes"). On 11 Nov at about 16:55 a patent check flagged it, and it was decided that it would be studied only. The claims were then read (about 17:45) from the USPTO's public page scans, by eye.
 
 **US 9,836,879 B2, "Mesh skinning technique" (Autodesk).** As we read them, independent claims 1, 10 and 16 each require all of:
 (a) a voxelization of a 3-D model with interior voxels;
@@ -166,7 +166,7 @@ Searches on 11 Nov found no patents on bone heat, bounded biharmonic weights, du
 
 *Evidence: proposed.*
 
-The author left open that any work session may build bones and muscles as field layers, whole or partial, from medical measurements, if posing tests need them (the shoulder girdle and muscles that bulge with flexion come first). The body's outer surface stays the target; the layers would sit under it and be kept consistent by contact. Nothing was built. Muscle bulge is planned as an activation state of a muscle layer inside the corrective solve.
+It was left open that any work session may build bones and muscles as field layers, whole or partial, from medical measurements, if posing tests need them (the shoulder girdle and muscles that bulge with flexion come first). The body's outer surface stays the target; the layers would sit under it and be kept consistent by contact. Nothing was built. Muscle bulge is planned as an activation state of a muscle layer inside the corrective solve.
 
 ---
 
@@ -251,7 +251,7 @@ A settled sheet becomes a solid: `F(x) = distance to the midsurface - thickness 
 
 *Evidence: measured on named cases; the menu entry landed in the tool (window tests 5 of 5, failure cases 3 of 3).*
 
-An earlier mannequin sculpted only from measurement points was criticised by the author as likely to cause fitting faults, so the form is now derived from the model's own field:
+An earlier mannequin sculpted only from measurement points was set aside as likely to cause fitting faults, so the form is now derived from the model's own field:
 
 1. Sample the body at 2 mm; inside/outside from the body's own reader.
 2. Remove each arm at a flat plane through the shoulder point and the armpit.

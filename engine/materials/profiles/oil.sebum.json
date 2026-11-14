@@ -1,0 +1,320 @@
+{
+ "id": "oil.sebum",
+ "kind": "fluid",
+ "family": "fluid",
+ "_": "Skin surface lipid (sebum): a thin film, drawn by the bench as a smooth dielectric COAT over the skin (0.6-1.4 um on the forehead, far below a path step). Sources: the project's materials research note GAPS_RESEARCH.md 6, research/skin_moisture.md O8-O9. Materials foundation lane 2026-11-07. v2 (world lane, 2026-11-07): contact / deform / thermal added from the old `mechanics` block; layers, surface untouched.",
+ "layers": [
+  {
+   "name": "sebum",
+   "thickness_mm": {
+    "v": 0.0014,
+    "q": "D",
+    "src": "skin_moisture.md O8: forehead 60-140 ug/cm2 ~ 0.6-1.4 um; forearm ~7 nm"
+   },
+   "optics": {
+    "model": {
+     "v": "generic",
+     "q": "D",
+     "src": "optics.py"
+    },
+    "absorbers": {
+     "extra_mua_per_cm": {
+      "v": 0.0,
+      "q": "E",
+      "src": "essentially clear, may be faintly yellow; no spectrum found (GAPS 6); at 1 um any tint is invisible"
+     }
+    },
+    "g": {
+     "v": 0.0,
+     "q": "E",
+     "src": "a clear liquid film"
+    },
+    "n": {
+     "v": 1.475,
+     "q": "E",
+     "src": "no measured whole-sebum n; volume mix of triglyceride ~1.47 (57.5 %), wax ester ~1.465 (26 %), squalene 1.499 (12 %, CRC via skin_moisture.md O9)"
+    }
+   }
+  }
+ ],
+ "surface": {
+  "alpha": {
+   "v": 0.08,
+   "q": "E",
+   "src": "a film > 0.5 um hides fine steps (research/hair_styling.md:83, on hair); on skin it fills the finest relief but follows the furrows; 0.08 reasoned, to be read from oily-skin photos"
+  },
+  "n": {
+   "v": 1.475,
+   "q": "E",
+   "src": "as above"
+  },
+  "F0": {
+   "v": 0.036,
+   "q": "D",
+   "src": "((1.475 - 1) / 2.475)^2; skin_moisture.md O9 gives 0.037-0.040 for n 1.48-1.50"
+  }
+ },
+ "contact": {
+  "surface_tension_mN_m": {
+   "v": [
+    22.9,
+    24.9
+   ],
+   "q": "M",
+   "src": "MOTWANI01 (scalp 22.9 / forehead 24.9)"
+  },
+  "viscosity_mPa_s": {
+   "v": {
+    "25C": 82,
+    "35C": 32,
+    "38C": 55
+   },
+   "q": "M",
+   "src": "MOTWANI01 (site columns garbled in extraction: per-site values uncertain); ~35-60 at skin temperature (D)"
+  },
+  "density_kg_m3": {
+   "v": 905,
+   "q": "M",
+   "src": "MOTWANI01 Table I: forehead 0.91, scalp 0.90"
+  },
+  "wetting": {
+   "spreading": {
+    "v": "spreads on skin (surface tension below skin's surface energy); no angle found",
+    "q": "E",
+    "src": "MAVON97, MOTWANI01: MAVON97, MOTWANI01"
+   },
+   "water_on_sebum_skin": {
+    "v": "sebum makes skin MORE wettable by water (angle forehead 57-73 vs forearm 80-91)",
+    "q": "M",
+    "src": "MAVON97 via GAPS 5"
+   }
+  },
+  "friction": {
+   "effect": {
+    "v": "a sebum film lowers skin's friction against hard smooth counterfaces only slightly at body amounts (0.6-1.4 um on the forehead); added oils (cosmetic) lubricate more; skin with sebum reads higher friction in some studies (sebum + hydration covary)",
+    "q": "E",
+    "src": "SKIN_SEBUM_FRIC qualitative; no clean sebum-only friction number found"
+   }
+  },
+  "permeation": {
+   "v": "lipophilic: it does not wet water-filled pores; it wicks into hair (along the cuticle) and fabric (cotton, polyester) and stains them; it softens and plasticises the stratum corneum surface lipids",
+   "q": "E",
+   "src": "ANON_E from its low surface tension (23-25 mN/m: it wets almost every solid) and composition"
+  },
+  "solver": {
+   "phase": {
+    "v": "fluid",
+    "q": "D",
+    "src": "a liquid (deform.model)"
+   },
+   "collision_thickness_mm": {
+    "v": {
+     "film_on_surface": "the film's own thickness (layers / film values)",
+     "particle_solver": "half the particle spacing"
+    },
+    "q": "D",
+    "src": "ANON_E solver convention: a liquid has no skin of its own; it keeps a no-penetration boundary at solids"
+   },
+   "penetration_response": {
+    "model": {
+     "v": "incompressible: no stiffness ramp; a pressure projection (or weakly compressible SPH with numerical sound speed >= 10x the max flow speed) keeps it out of solids and out of itself",
+     "q": "D",
+     "src": "bulk modulus (water 2.2 GPa: effectively incompressible at body speeds)"
+    },
+    "ramp": {
+     "v": "pressure_projection",
+     "q": "D",
+     "src": "as model"
+    },
+    "boundary_wetting": {
+     "v": "the contact angle per pair (pairs/world.json wetting) sets the meniscus at a solid",
+     "q": "D",
+     "src": "DEGENNES04"
+    }
+   },
+   "impact": {
+    "restitution": {
+     "v": {
+      "on_wettable_surface": 0.0,
+      "on_superhydrophobic": [
+       0.3,
+       0.9
+      ]
+     },
+     "q": "M",
+     "src": "RICHARD02 / DEGENNES04: drops stick and spread on wettable solids; bounce only on (super)hydrophobic ones"
+    },
+    "response_time_ms": {
+     "v": {
+      "drop_R1mm": 16.0,
+      "drop_R2mm": 45.2
+     },
+     "q": "D",
+     "src": "RICHARD02 tau = 2.6 sqrt(rho R^3/gamma) with rho 905, gamma 0.024 N/m"
+    },
+    "wave_speed_m_s": {
+     "v": {
+      "sound": 1450,
+      "capillary_wave_1mm": 0.41
+     },
+     "q": "D",
+     "src": "sound ~ water's (CRC; oils ~1450); capillary-wave phase speed sqrt(2 pi gamma/(rho lambda)) at lambda 1 mm"
+    },
+    "damping_ratio": {
+     "v": "viscous: set by viscosity_mPa_s (no separate damping)",
+     "q": "D",
+     "src": "Newtonian/viscous dissipation"
+    }
+   }
+  }
+ },
+ "deform": {
+  "model": {
+   "v": "newtonian_fluid",
+   "q": "E",
+   "src": "ANON_E: triglyceride-rich liquids are Newtonian above their melting range; below ~30 C a solid fraction separates (MOTWANI01) and it turns paste-like"
+  },
+  "density_kg_m3": {
+   "v": 905,
+   "q": "M",
+   "src": "MOTWANI01 Table I: forehead 0.91, scalp 0.90"
+  },
+  "viscosity_mPa_s": {
+   "v": {
+    "25C": 82,
+    "35C": 32,
+    "38C": 55
+   },
+   "q": "M",
+   "src": "MOTWANI01 (site columns garbled in extraction: per-site values uncertain); ~35-60 at skin temperature (D)"
+  },
+  "phase": {
+   "v": "discontinuity at 30 C; starts freezing ~30 C, solid 15-17 C, melts 33-35 C",
+   "q": "M",
+   "src": "MOTWANI01 "
+  }
+ },
+ "thermal": {
+  "conductivity_W_mK": {
+   "v": 0.17,
+   "q": "E",
+   "src": "OILS_TYPICAL: triglyceride oils 0.16-0.17"
+  },
+  "heat_capacity_J_kgK": {
+   "v": 1950,
+   "q": "E",
+   "src": "OILS_TYPICAL: triglyceride oils ~1.9-2.0 kJ/kgK"
+  },
+  "effusivity": {
+   "v": 548,
+   "q": "D",
+   "src": "sqrt(0.17*905*1950)"
+  },
+  "emissivity": {
+   "v": null,
+   "q": "E",
+   "src": "not found: a um film is IR-thin; the skin below sets the emission (~0.98)"
+  }
+ },
+ "composition": {
+  "v": {
+   "triglycerides_ffa": 57.5,
+   "wax_esters": 26,
+   "squalene": 12,
+   "cholesterol_esters": 3,
+   "cholesterol": 1.5
+  },
+  "q": "M",
+  "src": "PICARDO09 (classic Downing / Strauss values, recalled, unverified)"
+ },
+ "effect_on_skin": {
+  "v": "lowers directional reflectance 400-600 nm, raises it above; the shine comes from the smooth air-sebum surface over rougher skin",
+  "q": "M",
+  "src": "SEBUM_DIRREF23, KOHLI21 (GAPS 6); forehead gloss +21 % from 0.5 to 6 h after washing, glossy area x4.1 (Jang 2018, skin_specular.json)"
+ },
+ "states": {
+  "cold_paste": {
+   "set": {
+    "deform.model": "non_newtonian_fluid",
+    "deform.viscosity_mPa_s": null
+   },
+   "q": "M",
+   "src": "MOTWANI01: below ~30 C a solid fraction separates; solid at 15-17 C"
+  },
+  "spread_shine": {
+   "set": {
+    "layers[sebum].thickness_mm": 0.003,
+    "surface.alpha": 0.05
+   },
+   "q": "E",
+   "src": "ANON_E: hours after washing, forehead gloss rises (Jang 2018 in skin_specular.json); a thicker, smoother film; values to be read from oily-skin photos"
+  }
+ },
+ "sources": {
+  "MOTWANI01": {
+   "cite": "Motwani MR, Rhein LD, Zatz JL. Differential scanning calorimetry studies of sebum models. J Cosmet Sci 52:211-224 (2001), Table I (via GAPS 6)",
+   "url": "https://library.scconline.org/v052n04/13",
+   "lic": "SCC library, access-controlled; numbers used as facts"
+  },
+  "MAVON97": {
+   "cite": "Mavon A et al. Colloids Surf B 8:147-155 (1997) (via GAPS 5/6): sebum raises skin surface free energy",
+   "url": "https://doi.org/10.1016/S0927-7765(96)01318-0",
+   "lic": "paywalled; findings used as facts"
+  },
+  "GAPS": {
+   "cite": "Project research note the project's materials research note GAPS_RESEARCH.md (11-07), which carries the primary citations (IAPWS14/08, MAVON97, ELKHYAT04, MOTWANI01, SONNER15, SCHIPPER07, ERMPS18, DAIMON07, POPEFRY97)",
+   "url": "local",
+   "lic": "project record; primary sources' terms listed there"
+  },
+  "OILS_TYPICAL": {
+   "cite": "Typical vegetable/triglyceride oil thermal properties: k ~0.16-0.17 W/mK, cp ~1.9-2.0 kJ/kgK (e.g. Engineering ToolBox / CRC). Used as an analogue for sebum",
+   "url": "https://www.engineeringtoolbox.com",
+   "lic": "free web reference; numbers used as facts"
+  },
+  "SKIN_SEBUM_FRIC": {
+   "cite": "Skin friction with surface lipid / oily skin: Derler & Gerhardt, Tribol Lett 45:1-27 (2012) review; Cua AB, Wilhelm K-P, Maibach HI. Br J Dermatol 123:473 (1990): friction correlates with hydration and sebum. Recalled qualitative",
+   "url": "https://doi.org/10.1007/s11249-011-9854-y",
+   "lic": "paywalled; findings used"
+  },
+  "ANON_E": {
+   "cite": "Estimate made in this lane; the reason is given in each src",
+   "url": "-",
+   "lic": "own work"
+  },
+  "PICARDO09": {
+   "cite": "Picardo M et al. Sebaceous gland lipids. Dermato-Endocrinology 1:68-71 (2009) (via GAPS 6)",
+   "url": "https://doi.org/10.4161/derm.1.2.8472",
+   "lic": "not checked; numbers used as facts"
+  },
+  "SEBUM_DIRREF23": {
+   "cite": "The influence of sebum on directional reflectance of the skin. Appl Sci 13:2838 (2023)",
+   "url": "https://doi.org/10.3390/app13052838",
+   "lic": "CC BY 4.0"
+  },
+  "KOHLI21": {
+   "cite": "Kohli I et al. Arch Dermatol Res (2021) PMID 32270323",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32270323/",
+   "lic": "terms not stated; findings used"
+  },
+  "DAIMON07": {
+   "cite": "Daimon M, Masumura A. Appl Opt 46:3811 (2007), via refractiveindex.info",
+   "url": "https://doi.org/10.1364/AO.46.003811",
+   "lic": "database CC0 1.0"
+  },
+  "RICHARD02": {
+   "cite": "Richard D, Clanet C, Quere D. Contact time of a bouncing drop. Nature 417:811 (2002): tau = 2.6 sqrt(rho R^3 / gamma), independent of impact speed",
+   "url": "https://doi.org/10.1038/417811a",
+   "lic": "paywalled; formula used as fact"
+  },
+  "DEGENNES04": {
+   "cite": "de Gennes P-G, Brochard-Wyart F, Quere D. Capillarity and Wetting Phenomena. Springer (2004): capillary length, Bond number, Tanner spreading",
+   "url": "https://doi.org/10.1007/978-0-387-21656-0",
+   "lic": "book, copyright; formulas used"
+  },
+  "CRC": {
+   "cite": "CRC Handbook of Chemistry and Physics (any recent edition): standard property tables for water, ice, air, oils. Values recalled as standard table values, not re-checked line by line this session",
+   "url": "https://hbcp.chemnetbase.com",
+   "lic": "copyright, paywalled; individual physical constants used as facts, no table copied"
+  }
+ }
+}
